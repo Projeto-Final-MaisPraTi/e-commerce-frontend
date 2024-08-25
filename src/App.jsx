@@ -1,9 +1,18 @@
 import "./styles.jsx";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from "./components/Header/Header.jsx";
+import Buttons from "./components/Buttons/Buttons.jsx";
+import Footer from "./components/Footer/ComponentFooter.jsx";
 
 function App() {
   return (
     <>
+      <Header />
       <h1>Hello World</h1>
+      <Buttons type={1} text={"add to cart type 1"} />
+      <Buttons type={2} text={"buy now type 2"} />
+      <Buttons type={3} text={"add to wishlist type 3"} />
+      <Footer />
     </>
   );
 }
