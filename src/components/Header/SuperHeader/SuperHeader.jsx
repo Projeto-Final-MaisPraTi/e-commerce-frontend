@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import menuIcon from "../../../assets/menuIcon.png";
 import useLanguage from "../../../utils/useLanguage";
 import "./SuperHeader.css";
@@ -7,10 +7,20 @@ const SuperHeader = () => {
   const { language, switchLanguage, translations } = useLanguage();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
+  // Hook para verificar e aplicar o idioma salvo no localStorage
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem("preferredLanguage");
+    if (savedLanguage && savedLanguage !== language) {
+      switchLanguage(savedLanguage);
+    }
+  }); // Esse hook será executado uma única vez quando o componente for montado
+
   const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
 
   const selectLanguage = (lang) => {
-    switchLanguage(lang === "English" ? "en" : "pt");
+    const langCode = lang === "English" ? "en" : "pt";
+    switchLanguage(langCode);
+    localStorage.setItem("preferredLanguage", langCode); // Salva a escolha no localStorage
     setDropdownOpen(false);
   };
 
