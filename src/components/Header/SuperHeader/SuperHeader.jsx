@@ -7,20 +7,20 @@ const SuperHeader = () => {
   const { language, switchLanguage, translations } = useLanguage();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
-  // Hook para verificar e aplicar o idioma salvo no localStorage
+  // Verifica se o idioma preferido foi salvo no localStorage e se o idioma atual não é o mesmo. Caso seja, não faz nada. Caso não seja, altera o idioma para o idioma preferido.
   useEffect(() => {
     const savedLanguage = localStorage.getItem("preferredLanguage");
     if (savedLanguage && savedLanguage !== language) {
       switchLanguage(savedLanguage);
     }
-  }); // Esse hook será executado uma única vez quando o componente for montado
+  });
 
   const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
 
   const selectLanguage = (lang) => {
     const langCode = lang === "English" ? "en" : "pt";
     switchLanguage(langCode);
-    localStorage.setItem("preferredLanguage", langCode); // Salva a escolha no localStorage
+    localStorage.setItem("preferredLanguage", langCode);
     setDropdownOpen(false);
   };
 
