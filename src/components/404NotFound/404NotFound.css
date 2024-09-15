@@ -1,0 +1,63 @@
+/* 404 Page Styles */
+.page-not-found {
+  text-align: center;
+  padding: 200px 50px;
+}
+
+.page-not-found h1 {
+  color: black;
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.page-not-found p {
+  color: black;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.back-home-button {
+  background-color: #db4444;
+  color: white;
+  padding: 16px 48px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+
+.back-home-button:hover {
+  background-color: #e04e53;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .page-not-found h1 {
+    font-size: 36px;
+  }
+
+  .page-not-found p {
+    font-size: 16px;
+  }
+
+  .back-home-button {
+    padding: 12px 36px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .page-not-found h1 {
+    font-size: 60px;
+  }
+
+  .page-not-found p {
+    font-size: 24px;
+  }
+
+  .back-home-button {
+    padding: 18px 56px;
+    font-size: 18px;
+  }
+}

@@ -1,16 +1,15 @@
-import SuperHeader from "./SuperHeader";
-import NavBar from "./NavBar";
-import FooterHeader from "./FooterHeader";
-import { LanguageProvider } from "../../utils/LanguageContext";
+import SuperHeader from "./SuperHeader/SuperHeader";
+import NavBar from "./NavBar/NavBar";
+import FooterHeader from "./FooterHeader/FooterHeader";
 
 const Header = () => {
   const isUserLogged = true;
   return (
-    <LanguageProvider>
+    <>
       <SuperHeader />
       <NavBar isUserLoggedIn={isUserLogged} />
       <FooterHeader />
-    </LanguageProvider>
+    </>
   );
 };
 
