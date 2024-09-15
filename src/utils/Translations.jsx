@@ -14,6 +14,7 @@ export default {
       myReviews: "My Reviews",
       logout: "Logout",
     },
+    createAccount: "Create an account"
   },
   pt: {
     headerText:
