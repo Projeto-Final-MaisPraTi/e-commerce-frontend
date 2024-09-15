@@ -14,6 +14,16 @@ export default {
       myReviews: "My Reviews",
       logout: "Logout",
     },
+    homeCategories: {
+      p: "Categories",
+      h2: "Browse By Category",
+      phone: "Phones",
+      computer: "Computers",
+      watch: "SmartWatch",
+      camera: "Camera",
+      headPhone: "Headphones",
+      gaming: "Gaming",
+    },
   },
   pt: {
     headerText:
@@ -30,6 +40,16 @@ export default {
       myCancellations: "Minhas Cancelamentos",
       myReviews: "Minhas Avaliações",
       logout: "Sair",
+    },
+    homeCategories: {
+      p: "Categorias",
+      h2: "Navegar por categoria",
+      phone: "Telefones",
+      computer: "Computadores",
+      watch: "SmartWatch",
+      camera: "Câmera",
+      headPhone: "Fones de ouvido",
+      gaming: "Jogos",
     },
   },
 };

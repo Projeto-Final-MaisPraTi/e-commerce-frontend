@@ -1,6 +1,15 @@
+import CardCategory from "./CardCategory";
+import BestSelling from "./BestSelling";
+import { LanguageProvider } from "../../utils/LanguageContext";
+import NewArrival from "./NewArrival";
+
 function Home() {
   return (
-    <div>Home page</div>
+      <LanguageProvider>
+        <CardCategory />
+        <BestSelling />
+        <NewArrival />
+      </LanguageProvider>
   )
 }
 
