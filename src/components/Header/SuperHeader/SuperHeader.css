@@ -1,0 +1,186 @@
+/* Estilos Gerais do SuperHeader */
+
+.super-header {
+  background-color: black;
+  height: 3rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.super-header-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.text-link-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.text-link-container p {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.text-link-container a {
+  color: white;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.language-select-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: absolute;
+  right: 0;
+}
+
+.language-select-button {
+  background: none;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: bold;
+  padding: 0;
+  margin-right: 8.5rem;
+}
+
+.arrow-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s;
+}
+
+.arrow-icon.open {
+  transform: rotate(180deg);
+}
+
+.language-dropdown {
+  display: none;
+  position: absolute;
+  top: 2.13rem;
+  left: auto;
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+  z-index: 1;
+}
+
+.language-dropdown.open {
+  display: block;
+}
+
+.language-dropdown div {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
+.language-dropdown div:hover {
+  background-color: #f0f0f0;
+}
+
+/* Media Queries */
+
+@media (max-width: 1250px) {
+  .super-header {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .super-header-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .text-link-container {
+    justify-content: center;
+  }
+
+  .language-select-container {
+    position: relative;
+    margin: 0;
+    justify-content: center;
+  }
+
+  .language-select-button {
+    margin-right: 0;
+  }
+
+  .language-dropdown {
+    top: 2.13rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .super-header {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .super-header-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .text-link-container {
+    justify-content: center;
+  }
+
+  .language-select-container {
+    position: relative;
+    margin: 0;
+    justify-content: center;
+  }
+
+  .language-select-button {
+    margin-right: 0;
+  }
+
+  .language-dropdown {
+    top: 2.13rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .super-header-content {
+    gap: 0.5rem;
+  }
+
+  .language-select-button {
+    font-size: 0.75rem;
+  }
+
+  .text-link-container {
+    gap: 0.25rem;
+    flex-direction: column;
+  }
+
+  .text-link-container p,
+  .text-link-container a {
+    font-size: 0.75rem;
+  }
+
+  .arrow-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+}

@@ -84,27 +84,27 @@ function CardCategory() {
         <CategoriesContainer>
             <div className="slide" onMouseOver={() => handleMouseHover("Phones")} onMouseLeave={handleMouseLeave}>
                 <Phones color={hovered == "Phones" ? "white": "black"}/>
-                <p>Phones</p>
+                <p>{translations.homeCategories.phone}</p>
             </div>
             <div className="slide" onMouseOver={() => handleMouseHover("Computers")} onMouseLeave={handleMouseLeave}>
                 <Computers color={hovered == "Computers" ? "white": "black"}/>
-                <p>Computers</p>
+                <p>{translations.homeCategories.computer}</p>
             </div>
             <div className="slide" onMouseOver={() => handleMouseHover("SmartWatch")} onMouseLeave={handleMouseLeave}>
                 <SmartWatch color={hovered == "SmartWatch" ? "white": "black"}/>
-                <p>SmartWatch</p>
+                <p>{translations.homeCategories.watch}</p>
             </div>
             <div className="slide" onMouseOver={() => handleMouseHover("Camera")} onMouseLeave={handleMouseLeave}>
                 <Camera color={hovered == "Camera" ? "white": "black"}/>
-                <p>Camera</p>
+                <p>{translations.homeCategories.camera}</p>
             </div>
             <div className="slide" onMouseOver={() => handleMouseHover("Headphones")} onMouseLeave={handleMouseLeave}>
                 <Headphones color={hovered == "Headphones" ? "white": "black"}/>
-                <p>Headphones</p>
+                <p>{translations.homeCategories.headPhone}</p>
             </div>
             <div className="slide" onMouseOver={() => handleMouseHover("Gaming")} onMouseLeave={handleMouseLeave}>
                 <Gaming color={hovered == "Gaming" ? "white": "black"}/>
-                <p>Gaming</p>
+                <p>{translations.homeCategories.gaming}</p>
             </div>
         </CategoriesContainer>
       </Categories>
