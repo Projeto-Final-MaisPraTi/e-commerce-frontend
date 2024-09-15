@@ -1,0 +1,239 @@
+/* Container geral da navbar */
+.navbar-container {
+  width: 100%;
+  background-color: #fff;
+  padding: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Conteúdo centralizado e distribuído da navbar */
+.navbar-content {
+  max-width: 81.25vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo alinhada à esquerda */
+.logo-container {
+  flex: 1;
+}
+
+.logo {
+  width: auto;
+  height: auto;
+}
+
+/* Links centralizados */
+.links-container {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.links-container a {
+  margin: 0 25px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #000;
+  font-weight: 500;
+}
+
+.links-container a:hover {
+  text-decoration: underline;
+}
+
+/* Barra de busca e ícones de ações alinhados à direita */
+.actions-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Barra de busca */
+.search-bar {
+  display: flex;
+  align-items: center;
+  /* margin-right: 20px; */
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 5px 10px;
+  min-width: 240px;
+  flex-grow: 1;
+}
+
+.search-button {
+  background-color: transparent;
+  border: none;
+  /* margin-left: 5px; */
+  cursor: pointer;
+}
+
+.search-icon {
+  height: 24px;
+  width: 24px;
+}
+
+/* Ícones de ações */
+.icon-group {
+  display: flex;
+  align-items: center;
+}
+
+.icon-button {
+  margin-left: 12px;
+  cursor: pointer;
+}
+
+.icon-button img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Menu de usuário */
+.user-menu-container {
+  position: relative;
+}
+
+.user-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 1000;
+  background: linear-gradient(to right, #ed2e7e, #ffd789);
+  min-width: 220px;
+}
+
+.user-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.user-menu-item:hover {
+  text-decoration: underline;
+}
+
+.user-menu-item a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+
+.user-menu-item img {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+/* MEDIA QUERIES */
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+  .navbar-content {
+    max-width: 85vw; /* Aumenta a largura da navbar para se ajustar a telas menores */
+  }
+
+  .links-container a {
+    margin: 0 15px; /* Reduz o espaçamento entre os links */
+    font-size: 14px; /* Reduz o tamanho da fonte */
+  }
+
+  .search-input {
+    min-width: 180px; /* Reduz a largura mínima da barra de busca */
+  }
+}
+
+/* Tablets em modo retrato ou celulares grandes (768px - 480px) */
+@media (max-width: 768px) {
+  .navbar-content {
+    flex-direction: column; /* Alinha os itens da navbar em coluna */
+    max-width: 90vw; /* Ajusta a largura para 90% da tela */
+  }
+
+  .logo-container {
+    margin-bottom: 10px; /* Adiciona espaçamento entre o logo e o resto da navbar */
+  }
+
+  .links-container {
+    margin-bottom: 15px; /* Espaçamento entre os links e a barra de busca/ícones */
+  }
+
+  .search-bar {
+    margin-bottom: 10px; /* Adiciona espaçamento abaixo da barra de busca */
+  }
+
+  .icon-button {
+    margin-left: 8px; /* Reduz o espaçamento entre os ícones */
+  }
+
+  .user-menu {
+    right: 5px; /* Reposiciona o menu do usuário */
+    top: calc(100% + 10px); /* Ajusta a posição do menu do usuário */
+  }
+}
+
+/* Smartphones (480px e menos) */
+@media (max-width: 480px) {
+  .navbar-content {
+    flex-direction: column;
+    max-width: 95vw; /* Ainda maior para telas pequenas */
+  }
+
+  .links-container {
+    flex-direction: column; /* Coloca os links em coluna */
+    justify-content: center;
+  }
+
+  .links-container a {
+    margin: 10px 0; /* Adiciona mais espaçamento entre os links na coluna */
+    font-size: 12px; /* Reduz o tamanho da fonte dos links */
+  }
+
+  .search-input {
+    min-width: 140px; /* Ainda menor em smartphones */
+    font-size: 12px; /* Reduz o tamanho da fonte da barra de busca */
+  }
+
+  .icon-button img {
+    width: 20px;
+    height: 20px; /* Reduz o tamanho dos ícones */
+  }
+
+  .user-menu-item img {
+    width: 16px;
+    height: 16px; /* Reduz o tamanho dos ícones do menu do usuário */
+  }
+}
+
+/* Smartphones pequenos (320px e menos) */
+@media (max-width: 320px) {
+  .links-container a {
+    margin: 5px 0;
+    font-size: 10px; /* Ainda menor para caber em telas pequenas */
+  }
+
+  .search-input {
+    min-width: 120px; /* Largura mínima da barra de busca ainda menor */
+    padding: 3px 8px; /* Ajusta o padding */
+  }
+
+  .icon-button img {
+    width: 18px;
+    height: 18px; /* Menores ícones */
+  }
+}

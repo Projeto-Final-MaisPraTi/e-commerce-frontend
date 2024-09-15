@@ -1,21 +1,25 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./styles.jsx";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from "./components/Header/Header.jsx";
-import Buttons from "./components/Buttons/Buttons.jsx";
-import Footer from "./components/Footer/ComponentFooter.jsx";
-import LoginPage from "./pages/login/index.jsx"
+import "bootstrap/dist/css/bootstrap.min.css";
+import { LanguageProvider } from "./utils/LanguageContext.jsx";
+import Home from "./pages/Home/Home.jsx";
+import ContactPage from "./pages/ContactPage/ContactPage.jsx";
+import PageNotFound from "./pages/404NotFound/PageNotFound.jsx";
 
 function App() {
   return (
-    <>
-      {/* <Header /> */}
-      {/* <h1>Hello World</h1> */}
-      {/* <Buttons type={1} text={"add to cart type 1"} /> */}
-      {/* <Buttons type={2} text={"buy now type 2"} /> */}
-      {/* <Buttons type={3} text={"add to wishlist type 3"} /> */}
-      {/* <Footer /> */}
-      <LoginPage></LoginPage>
-    </>
+    <LanguageProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<ContactPage />} />
+          <Route path="/products" element={<ContactPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          {/* Rota para capturar qualquer caminho inválido */}
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </Router>
+    </LanguageProvider>
   );
 }
 
