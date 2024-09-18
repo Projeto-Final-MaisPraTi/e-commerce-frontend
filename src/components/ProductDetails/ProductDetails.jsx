@@ -11,7 +11,23 @@ import heartFavorite from '../../assets/icon-heart-favorite.png';
 
 import './ProductDetails.css';
 
+import { useState } from 'react';
+
 const ProductDetails = () => {
+  let [contadorQuantidade, setContadorQuantidade] = useState(0);
+
+  function aumentaQuantidadeProduto() {
+    setContadorQuantidade(contadorQuantidade + 1);
+  }
+
+  function diminuiQuantidadeProduto() {
+    if (contadorQuantidade <= 0) {
+      contadorQuantidade = 0;
+    } else {
+      setContadorQuantidade(contadorQuantidade - 1);
+    }
+  }
+
   return (
     <div className='container'>
       <div className='row'>
@@ -61,9 +77,13 @@ const ProductDetails = () => {
           </div>
           <div className='secao-quantidade'>
             <div className='quantity'>
-              <button id='botaoMenos'>-</button>
-              <input type='text' value='2' />
-              <button id='botaoMais'>+</button>
+              <button id='botaoMenos' onClick={diminuiQuantidadeProduto}>
+                -
+              </button>
+              <input type='text' value={contadorQuantidade} />
+              <button id='botaoMais' onClick={aumentaQuantidadeProduto}>
+                +
+              </button>
             </div>
 
             <div className='purchase-section'>
