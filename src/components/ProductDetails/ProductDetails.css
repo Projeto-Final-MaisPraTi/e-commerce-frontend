@@ -185,6 +185,14 @@ input[type='radio'] .radioButtom {
   border: 1px solid black;
 }
 
+.freeDelivery img {
+  background-color: #ffffff;
+}
+
+.returnDelivery img {
+  background-color: #ffffff;
+}
+
 .freeDeliveryText,
 .returnDeliveryText {
   display: flex;
