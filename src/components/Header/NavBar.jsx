@@ -1,17 +1,16 @@
-import { useState, useRef, useEffect } from "react";
-import styled from "styled-components";
-import logo from "../../assets/Logo.png";
-import lupa from "../../assets/Lupa.png";
-import wishlist from "../../assets/Wishlist.png";
-import cart from "../../assets/Cart.png";
-import userIcon from "../../assets/User=On.png";
-import user from "../../assets/user.png";
-import mallbagIcon from "../../assets/mallbag.png";
-import cancelIcon from "../../assets/cancel.png";
-import reviewsIcon from "../../assets/Reviews.png";
-import logoutIcon from "../../assets/Logout.png";
-import useLanguage from "../../utils/useLanguage";
-
+import { useState, useRef, useEffect } from 'react';
+import styled from 'styled-components';
+import logo from '../../assets/Logo.png';
+import lupa from '../../assets/Lupa.png';
+import wishlist from '../../assets/Wishlist.png';
+import cart from '../../assets/Cart.png';
+import userIcon from '../../assets/User=On.png';
+import user from '../../assets/user.png';
+import mallbagIcon from '../../assets/mallbag.png';
+import cancelIcon from '../../assets/cancel.png';
+import reviewsIcon from '../../assets/Reviews.png';
+import logoutIcon from '../../assets/logout.png';
+import useLanguage from '../../utils/useLanguage';
 
 const NavBarContainer = styled.div`
   background-color: #fff;
@@ -153,14 +152,13 @@ const NavBar = ({ isUserLoggedIn }) => {
   const searchInputRef = useRef(null);
   const { translations } = useLanguage();
 
-
   const toggleUserMenu = () => {
     setUserMenuOpen((prev) => !prev);
   };
 
   const handleClickOutside = (e) => {
     if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
-      setUserMenuOpen(false); 
+      setUserMenuOpen(false);
     }
   };
 
@@ -172,9 +170,9 @@ const NavBar = ({ isUserLoggedIn }) => {
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -182,53 +180,56 @@ const NavBar = ({ isUserLoggedIn }) => {
     <NavBarContainer>
       <NavBarContent>
         <LogoLinksContainer>
-          <Logo src={logo} alt="Logo" />
+          <Logo src={logo} alt='Logo' />
           <LinksContainer>
-            <a href="/home">{translations.nav.home}</a>
-            <a href="/contact">{translations.nav.contact}</a>
-            <a href="/about">{translations.nav.about}</a>
-            {!isUserLoggedIn && <a href="/signup">{translations.nav.signup}</a>}
+            <a href='/home'>{translations.nav.home}</a>
+            <a href='/contact'>{translations.nav.contact}</a>
+            <a href='/about'>{translations.nav.about}</a>
+            {!isUserLoggedIn && <a href='/signup'>{translations.nav.signup}</a>}
           </LinksContainer>
         </LogoLinksContainer>
         <OtherContentContainer>
           <SearchBar>
-            <SearchInput ref={searchInputRef} placeholder={translations.nav.searchPlaceholder} />
+            <SearchInput
+              ref={searchInputRef}
+              placeholder={translations.nav.searchPlaceholder}
+            />
             <SearchButton onClick={handleSearch}>
-              <SearchIcon src={lupa} alt="Search Icon" />
+              <SearchIcon src={lupa} alt='Search Icon' />
             </SearchButton>
           </SearchBar>
           <IconGroup>
             <IconButton>
-              <img src={wishlist} alt="Wishlist Icon" />
+              <img src={wishlist} alt='Wishlist Icon' />
             </IconButton>
             <IconButton>
-              <img src={cart} alt="Cart Icon" />
+              <img src={cart} alt='Cart Icon' />
             </IconButton>
             {isUserLoggedIn && (
               <UserMenuContainer ref={userMenuRef}>
                 <IconButton onClick={toggleUserMenu}>
-                  <img src={userIcon} alt="User Icon" />
+                  <img src={userIcon} alt='User Icon' />
                 </IconButton>
                 {isUserMenuOpen && (
                   <UserMenu>
                     <UserMenuItem>
-                      <MenuItemIcon src={user} alt="Account Icon" />
+                      <MenuItemIcon src={user} alt='Account Icon' />
                       {translations.nav.manageAccount}
                     </UserMenuItem>
                     <UserMenuItem>
-                      <MenuItemIcon src={mallbagIcon} alt="Order Icon" />
+                      <MenuItemIcon src={mallbagIcon} alt='Order Icon' />
                       {translations.nav.myOrder}
                     </UserMenuItem>
                     <UserMenuItem>
-                      <MenuItemIcon src={cancelIcon} alt="Cancellations Icon" />
+                      <MenuItemIcon src={cancelIcon} alt='Cancellations Icon' />
                       {translations.nav.myCancellations}
                     </UserMenuItem>
                     <UserMenuItem>
-                      <MenuItemIcon src={reviewsIcon} alt="Reviews Icon" />
+                      <MenuItemIcon src={reviewsIcon} alt='Reviews Icon' />
                       {translations.nav.myReviews}
                     </UserMenuItem>
                     <UserMenuItem>
-                      <MenuItemIcon src={logoutIcon} alt="Logout Icon" />
+                      <MenuItemIcon src={logoutIcon} alt='Logout Icon' />
                       {translations.nav.logout}
                     </UserMenuItem>
                   </UserMenu>
