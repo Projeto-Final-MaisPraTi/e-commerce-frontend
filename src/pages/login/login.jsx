@@ -40,36 +40,35 @@ const AccountCreationForm = () => {
 
         <ContainerAccountCreate>
           <AccountCreate onSubmit={handleSubmit}>
-            <Title>{translations.createAccount}</Title>
-            <SubTitle>Enter your details below</SubTitle>
+            <Title>{translations.login.loginToAccount}</Title>
+            <SubTitle>{translations.login.enterDetails}</SubTitle>
 
-            <InputField
+            {/* <InputField
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder={translations.login.inputName}
               value={formData.name}
               onChange={handleChange}
-            />
+            /> */}
             <InputField
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder={translations.login.inputEmail}
               value={formData.email}
               onChange={handleChange}
             />
             <InputField
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder={translations.login.inputPassword}
               value={formData.password}
               onChange={handleChange}
             />
 
-            <Button type="submit">Create Account</Button>
-            <GoogleButton type="button">Login with Google</GoogleButton>
+            <Button type="submit">{translations.login.login}</Button>
           </AccountCreate>
 
-          <HaveAccount>Already have account? <a href="#">Log in</a></HaveAccount>
+          <HaveAccount><a href="#">{translations.login.forgetPassword}</a></HaveAccount>
         </ContainerAccountCreate>
 
       </Container>

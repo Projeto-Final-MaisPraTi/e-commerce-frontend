@@ -7,6 +7,10 @@ export const Container = styled.div`
   width: 90%;
   height: 48.813rem;
   margin-bottom: 2.5rem;
+
+  @media (max-width: 1200px) {
+      width: 100%;
+    }
 `;
 
 export const LoginImage = styled.div`
@@ -16,10 +20,13 @@ export const LoginImage = styled.div`
     width: 59.375rem;
 
     @media (max-width: 1200px) {
-    width: 37.5rem;
-  }
+      width: 37.5rem;
+    }
   }
 
+  @media (max-width: 800px) {
+    display: none;
+  }
 
 `;
 
@@ -29,12 +36,18 @@ export const ContainerAccountCreate = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 50%;
+
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 
 export const AccountCreate = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 21rem;
 `;
 
 export const Title = styled.h1`

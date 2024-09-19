@@ -3,6 +3,8 @@ import "./styles.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { LanguageProvider } from "./utils/LanguageContext.jsx";
 import Home from "./pages/Home/Home.jsx";
+import Login from "./pages/login/login.jsx";
+import Register from "./pages/register/register.jsx";
 import ContactPage from "./pages/ContactPage/ContactPage.jsx";
 import PageNotFound from "./pages/404NotFound/PageNotFound.jsx";
 
@@ -12,6 +14,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/about" element={<ContactPage />} />
           <Route path="/products" element={<ContactPage />} />
           <Route path="/contact" element={<ContactPage />} />
