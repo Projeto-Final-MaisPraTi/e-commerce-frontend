@@ -1,5 +1,5 @@
 export default {
-  en: {
+  en: {    
     headerText: "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
     shopNow: "Shop Now",
     nav: {
@@ -53,6 +53,25 @@ export default {
       description: "The page you visited does not exist. You may go back to the home page.",
       backButton: "Back to home page",
     },
+    register: {
+      createAccount: "Create an account",
+      enterDetails: "Enter your details below",
+      inputName: "Name",
+      inputEmail: "Email",
+      inputPassword: "Password",
+      buttonCreateAccount: "Create Account",
+      buttonLoginGoogle: "Login with Google",
+      haveAccount: "Already have account?",
+      login: "Log in",
+    },
+    login: {
+      loginToAccount: "Access account",
+      enterDetails: "Enter your details below",
+      inputEmail: "Email",
+      inputPassword: "Password",
+      forgetPassword: "Forget Password?",
+      login: "Log in",
+    }
   },
   pt: {
     headerText:
@@ -109,5 +128,24 @@ export default {
       description: "A página que você visitou não existe. Você pode voltar para a página inicial.",
       backButton: "Voltar para a página inicial",
     },
+    register: {
+      createAccount: "Crie uma conta",
+      enterDetails: "Insira seus dados abaixo",
+      inputName: "Nome",
+      inputEmail: "E-mail",
+      inputPassword: "Senha",
+      buttonCreateAccount: "Criar uma conta",
+      buttonLoginGoogle: "Faça login com o Google",
+      haveAccount: "Já tem conta?",
+      login: "Acessar",
+    },
+    login: {
+      loginToAccount: "Acessar conta",
+      enterDetails: "Insira seus dados abaixo",
+      inputEmail: "E-mail",
+      inputPassword: "Senha",
+      forgetPassword: "Esqueceu sua senha?",
+      login: "Acessar",
+    }
   },
 };
