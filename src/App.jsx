@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { LanguageProvider } from "./utils/LanguageContext.jsx";
 import Home from "./pages/Home/Home.jsx";
 import ContactPage from "./pages/ContactPage/ContactPage.jsx";
+import CartPage from "./pages/Cart/CartPage.jsx";
 import PageNotFound from "./pages/404NotFound/PageNotFound.jsx";
 
 function App() {
@@ -12,9 +13,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<ContactPage />} />
+          {/* <Route path="/about" element={<ContactPage />} /> */}
           <Route path="/products" element={<ContactPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/cart" element={<CartPage />} />
           {/* Rota para capturar qualquer caminho inválido */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
