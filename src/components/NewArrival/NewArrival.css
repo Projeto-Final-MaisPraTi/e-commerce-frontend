@@ -1,0 +1,98 @@
+.new-arrival {
+  padding: 20px;
+}
+
+.featured {
+  display: flex;
+  align-items: center;
+  width: 110px;
+  height: 40px;
+  gap: 16px
+
+}
+
+.featured-indicator {
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  border-radius: 5px;
+}
+
+.featured-title {
+  display: flex;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #db4444;
+  /* align-items: center; */
+  /* align-content: center; */
+  /* align-self: center; */
+}
+
+.main-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 32px;
+}
+
+.product.large {
+   grid-area: 1 / 1 / 3 / 2;
+   background-image: url("../../assets/PS5slim.png");
+   background-size: contain;
+   background-repeat: no-repeat;
+}
+
+.product.medium { 
+  grid-area: 1 / 2 / 2 / 4;
+  background-image: url("../../assets/mulher.png");
+}
+
+.product.small { 
+  grid-area: 2 / 2 / 3 / 3;
+  background-image: url("../../assets/speakers.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.product.smaller {
+  grid-area: 2 / 3 / 3 / 4; /* Corrigido para a área correta */
+  background-image: url("../../assets/Perfume.png");
+  background-size: contain; /* Alinhando o tamanho da imagem */
+  background-repeat: no-repeat;
+}
+
+
+.product {
+  background-color: black;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.large {
+  width: 570px;
+  height: 600px;
+}
+
+.medium {
+  width: 570px;
+  height: 284px;
+}
+
+.small {
+  width: 270px;
+  height: 284px;
+}
+
+.smaller {
+  width: 270px;
+  height: 284px;
+}
