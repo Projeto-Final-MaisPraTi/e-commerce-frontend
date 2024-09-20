@@ -18,7 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<ContactPage />} />
-          <Route path="/products" element={<ContactPage />} />
+          <Route path="/product" element={<ContactPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/cart" element={<CartPage />} />
           {/* Rota para capturar qualquer caminho inválido */}
