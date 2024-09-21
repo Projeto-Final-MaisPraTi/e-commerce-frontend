@@ -5,6 +5,7 @@ import { LanguageProvider } from "./utils/LanguageContext.jsx";
 import Home from "./pages/Home/Home.jsx";
 import ContactPage from "./pages/ContactPage/ContactPage.jsx";
 import PageNotFound from "./pages/404NotFound/PageNotFound.jsx";
+import MyAccount from "./pages/MyAccount/MyAccount.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/about" element={<ContactPage />} />
           <Route path="/products" element={<ContactPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/account" element={<MyAccount />} />
           {/* Rota para capturar qualquer caminho inválido */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>

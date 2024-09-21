@@ -1,5 +1,5 @@
 import styles from "./FeaturesSection.module.css"; // Importando o CSS Module
-import delivery from "../../assets/Icon-Delivery.png";
+import delivery from "../../assets/Icon-delivery.png";
 import customerService from "../../assets/Icon-Customer-service.png";
 import secure from "../../assets/Icon-secure.png";
 import useLanguage from "../../utils/useLanguage"; // Hook de linguagem para pegar as traduções

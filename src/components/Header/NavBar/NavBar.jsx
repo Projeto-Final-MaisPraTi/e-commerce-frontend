@@ -9,7 +9,7 @@ import user from "../../../assets/user.png";
 import mallbagIcon from "../../../assets/mallbag.png";
 import cancelIcon from "../../../assets/cancel.png";
 import reviewsIcon from "../../../assets/Reviews.png";
-import logoutIcon from "../../../assets/Logout.png";
+import logoutIcon from "../../../assets/logout.png";
 import useLanguage from "../../../utils/useLanguage";
 import "./NavBar.css";
 
