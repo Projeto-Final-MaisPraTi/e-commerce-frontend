@@ -36,6 +36,23 @@ export default {
         viewer: "View All",
       },
     },
+    account: {
+      account: "Manage My Account",
+      profile: "My Profile",
+      address: "Address Book",
+      payment: "My Payment Options",
+      orders: "My Orders",
+      returns: "My Returns",
+      cancellations: "My Cancellations",
+      formLabels: {
+        firstname: "First Name",
+        lastname: "Last Name",
+        email: "E-mail",
+        address: "Address",
+        password: "Password",
+      },
+      save: "Save",
+    },
     contact: {
       callToUs: "Call To Us",
       availability: "We are available 24/7, 7 days a week.",

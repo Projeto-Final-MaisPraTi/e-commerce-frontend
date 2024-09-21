@@ -1,0 +1,198 @@
+/* Estilos Gerais */
+.account-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 181px 135px 140px 135px;
+  /* Mantido em px para consistência na tela base */
+}
+
+.account-p {
+  text-indent: 30px;
+}
+
+.account-info {
+  flex: 1;
+  margin-right: 30px;
+  /* px para espaçamento fixo */
+}
+
+.account-card {
+  box-shadow: 0 0 0px;
+  padding: 40px 35px 51px 35px;
+  margin-right: 8px;
+}
+
+.account-method {
+  margin-bottom: 20px;
+}
+
+.account-method h3 {
+  color: black;
+  font-size: 18px;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.account-method p {
+  font-size: 14px;
+  color: black;
+  opacity: 50%;
+  margin-bottom: 5px;
+}
+
+.account-form {
+  flex: 2;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.1);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 40px 32px 40px 31px;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  gap: 16px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+}
+
+.form-group input {
+  height: 50px;
+}
+
+.size textarea {
+  height: 50px;
+  resize: none;
+}
+
+/* Estilo das mensagens de erro */
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Botão de envio */
+.save {
+  background-color: #db4444;
+  color: white;
+  padding: 10px 48px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-end;
+}
+
+.send-button:hover {
+  background-color: #e04e53;
+}
+
+/* Media Queries */
+
+/* Mobile (até 768px) */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    margin: 2rem 1.5rem;
+    /* Ajustar margens para telas menores */
+  }
+
+  .contact-info {
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .form-group {
+    flex-direction: column;
+    gap: 1rem;
+    /* Ajustar espaçamento entre campos */
+  }
+
+  .send-button {
+    align-self: center;
+  }
+}
+
+/* Para telas entre 1000px e 1250px */
+@media (max-width: 1250px) and (min-width: 1001px) {
+  .contact-container {
+    margin: 100px 5vw;
+    /* Margens laterais dinâmicas usando vw */
+  }
+}
+
+/* Para telas com 1000px ou menos, até 768px */
+@media (max-width: 1000px) {
+  .contact-container {
+    margin: 50px 3vw;
+    /* Margens laterais menores */
+  }
+}
+
+/* Full HD (1920px) */
+@media (min-width: 1920px) {
+  .contact-container {
+    margin: 10rem 8rem;
+    /* Ajustar margens para telas maiores */
+  }
+
+  .contact-method h3 {
+    font-size: 1.5rem;
+    /* Aumentar fonte */
+  }
+
+  .contact-method p {
+    font-size: 1.125rem;
+    /* Aumentar fonte */
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 1rem;
+  }
+}
+
+/* 4K (3840px) */
+@media (min-width: 3840px) {
+  .contact-container {
+    margin: 15rem 12rem;
+    /* Margens maiores para telas 4K */
+    padding: 2.5rem;
+  }
+
+  .contact-method h3 {
+    font-size: 2rem;
+    /* Aumentar fonte */
+  }
+
+  .contact-method p {
+    font-size: 1.25rem;
+    /* Aumentar fonte */
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 1.25rem;
+  }
+}
