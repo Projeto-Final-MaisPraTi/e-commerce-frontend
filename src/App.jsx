@@ -10,6 +10,7 @@ import CartPage from "./pages/Cart/CartPage.jsx";
 import CheckoutPage from "./pages/Checkout/Checkout.jsx";
 import PageNotFound from "./pages/404NotFound/PageNotFound.jsx";
 import MyAccount from "./pages/MyAccount/MyAccount.jsx";
+import Product from "./pages/Product/Product.jsx";
 
 function App() {
   return (
@@ -24,8 +25,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           {/* Responsável: José */}
           <Route path="/about" element={<ContactPage />} />
-          {/* Responsável: Henrique  || Informações do produto */}
-          <Route path="/product" element={<ContactPage />} />
+          {/* Responsável: Henrique */}
+          <Route path="/product" element={<Product />} />
           {/* Responsável: Gabriel W. */}
           <Route path="/contact" element={<ContactPage />} />
           {/* Responsável: Gabriel W. */}

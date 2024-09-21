@@ -1,0 +1,221 @@
+:root {
+  --backgroundCaixaImagem: #f5f5f5;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.caixa-imagem-menor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.caixa-imagem-menor img {
+  width: 150px;
+}
+
+img {
+  /* margin-bottom: 10px; */
+  background-color: var(--backgroundCaixaImagem);
+  padding: 20px;
+}
+
+.caixa-imagem {
+  background-color: var(--backgroundCaixaImagem);
+  width: 450px;
+  margin: 0 10px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.caixa-imagem img {
+  width: 430px;
+}
+
+.review {
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+}
+
+.review img {
+  background-color: #ffffff;
+}
+
+.cores {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+
+.color-options {
+  display: flex;
+  gap: 10px;
+}
+
+.color-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.circuloCorCinza {
+  background-color: #a0bce0;
+}
+
+.circuloCorVermelho {
+  background-color: #e07575;
+}
+
+.cores h5,
+input[type='radio'] .radioButtom {
+  padding-right: 20px;
+}
+
+.size-options {
+  display: flex;
+  gap: 10px;
+}
+
+.size-options span {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.size-options .selected {
+  border-color: #db4444;
+  background-color: #db4444;
+  border: 1px solid #db4444;
+  border-radius: 5px;
+  color: #fafafa;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+}
+
+.quantity button {
+  width: 35px;
+  height: 40px;
+  font-size: 18px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+.quantity input {
+  width: 60px;
+  height: 40px;
+  text-align: center;
+}
+
+#botaoMenos {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+#botaoMais {
+  background-color: #db4444;
+  color: #fafafa;
+}
+
+.purchase-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.buy-now {
+  padding: 10px;
+  background-color: #ff5e5e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 15px;
+  width: 150px;
+  height: 40px;
+}
+
+.buy-now:hover {
+  background-color: #e04b4b;
+}
+
+.favorite-icon {
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+.favorite-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.secao-quantidade {
+  display: flex;
+  margin: 20px 0;
+}
+
+.cardDelivery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.freeDelivery,
+.returnDelivery {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  border: 1px solid black;
+}
+
+.freeDelivery img {
+  background-color: #ffffff;
+}
+
+.returnDelivery img {
+  background-color: #ffffff;
+}
+
+.freeDeliveryText,
+.returnDeliveryText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1rem;
+}
+
+h6,
+p {
+  margin: 0;
+}
+
+span#title {
+  color: #00ff66;
+}
+
+.estrelaAmarela {
+  color: #ffad39;
+}
+
+.review {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
