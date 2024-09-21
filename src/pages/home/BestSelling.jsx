@@ -2,11 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import CardProduct from "../../components/Product/CardProduct";
 import produtos from "./products";
+import ProductCard from "../../components/FlashSales/ProductCard";
 
 const Container = styled.div`
     width: 80%;
     margin: auto;
     margin-top: 20px;
+    margin-bottom: 50px;
     .title {
         display: flex;
         align-items: center;
@@ -60,7 +62,7 @@ const BestSelling = () => {
             <button>View All</button>
         </SecTitle>
         <div className="produtos">
-            {produtos.map((produto) => produto.id < 6 ? <CardProduct key={produto.id} img={produto.imagem} name={produto.nome} value={produto.valor} star={produto.avaliacao} avaliations={produto.avaliadores}/> : '')}
+            {produtos.map((produto) => produto.id < 18 ? <ProductCard key={produto.id} product={produto}/> : "")}
         </div>
         </Container>
     )
