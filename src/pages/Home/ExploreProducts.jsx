@@ -2,6 +2,7 @@ import styled from "styled-components";
 import produtos from "./products";
 import ProductCard from "../../components/FlashSales/ProductCard";
 import { useState, useEffect } from "react";
+import useLanguage from '../../utils/useLanguage';
 
 const Container = styled.div`
     width: 80%;
@@ -65,6 +66,7 @@ const SecTitle = styled.div`
 const ExploreProducts = () => {
 
     const [maxProducts, setMaxProducts] = useState(8);
+    const { translations } = useLanguage();
 
     const handleMaxProducts = () => {
         const width = window.innerWidth;
@@ -94,11 +96,11 @@ const ExploreProducts = () => {
         <Container>
             <div className='title'>
                 <span className='color'></span>
-                <p>Our Products</p>
+                <p>{translations.home.ExploreProducts.p}</p>
             </div>
             <SecTitle>
-                <h2>Explore Our Products</h2>
-                <button>View All</button>
+                <h2>{translations.home.ExploreProducts.h2}</h2>
+                <button>{translations.home.ExploreProducts.viewer}</button>
             </SecTitle>
             <div className="products-gid">
                 {produtos.slice(0, maxProducts).map((produto) => <ProductCard key={produto.id} product={produto} />)}

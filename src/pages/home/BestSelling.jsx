@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CardProduct from "../../components/Product/CardProduct";
 import produtos from "./products";
 import ProductCard from "../../components/FlashSales/ProductCard";
+import useLanguage from '../../utils/useLanguage';
 
 const Container = styled.div`
     width: 80%;
@@ -29,6 +30,7 @@ const Container = styled.div`
     .produtos {
         display: flex;
         gap: 15px;
+        padding: 15px;
         width: 100%;
         overflow-x: hidden;
     }
@@ -51,15 +53,17 @@ const SecTitle = styled.div`
 `
 
 const BestSelling = () => {
+    const { translations } = useLanguage();
+
     return (
         <Container>
         <div className='title'>
             <span className='color'></span>
-            <p>This Month</p>
+            <p>{translations.home.BestSelling.p}</p>
         </div>
         <SecTitle>
-            <h2>Best Selling Products</h2>
-            <button>View All</button>
+            <h2>{translations.home.BestSelling.h2}</h2>
+            <button>{translations.home.BestSelling.viewer}</button>
         </SecTitle>
         <div className="produtos">
             {produtos.map((produto) => produto.id < 18 ? <ProductCard key={produto.id} product={produto}/> : "")}

@@ -14,15 +14,27 @@ export default {
       myReviews: "My Reviews",
       logout: "Logout",
     },
-    homeCategories: {
-      p: "Categories",
-      h2: "Browse By Category",
-      phone: "Phones",
-      computer: "Computers",
-      watch: "SmartWatch",
-      camera: "Camera",
-      headPhone: "Headphones",
-      gaming: "Gaming",
+    home: {
+      Categories: {
+        p: "Categories",
+        h2: "Browse By Category",
+        phone: "Phones",
+        computer: "Computers",
+        watch: "SmartWatch",
+        camera: "Camera",
+        headPhone: "Headphones",
+        gaming: "Gaming",
+      },
+      BestSelling: {
+        p:"This Month",
+        h2:"Best Selling Products",
+        viewer:"View All",
+      },
+      ExploreProducts: {
+        p:"Our Products",
+        h2:"Explore Our Products",
+        viewer:"View All",
+      },
     },
     contact: {
       callToUs: "Call To Us",
@@ -80,7 +92,8 @@ export default {
       myReviews: "Minhas Avaliações",
       logout: "Sair",
     },
-    homeCategories: {
+    home: {
+      Categories: {
       p: "Categorias",
       h2: "Navegar por categoria",
       phone: "Telefones",
@@ -89,6 +102,17 @@ export default {
       camera: "Câmera",
       headPhone: "Fones de ouvido",
       gaming: "Jogos",
+      },
+      BestSelling: {
+        p:"Este mês",
+        h2:"Produtos mais vendidos",
+        viewer:"Ver tudo",
+      },
+      ExploreProducts: {
+        p:"Nossos produtos",
+        h2:"Explore nossos produtos",
+        viewer:"Ver tudo",
+      },
     },
     contact: {
       callToUs: "Ligue Para Nós",
