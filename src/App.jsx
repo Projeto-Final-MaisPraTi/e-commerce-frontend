@@ -7,6 +7,7 @@ import Login from "./pages/login/login.jsx";
 import Register from "./pages/register/register.jsx";
 import ContactPage from "./pages/ContactPage/ContactPage.jsx";
 import CartPage from "./pages/Cart/CartPage.jsx";
+import CheckoutPage from "./pages/Checkout/Checkout.jsx";
 import PageNotFound from "./pages/404NotFound/PageNotFound.jsx";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/product" element={<ContactPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           {/* Rota para capturar qualquer caminho inválido */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>

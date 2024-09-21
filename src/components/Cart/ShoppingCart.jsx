@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./ShoppingCart.css";
 import ps5control from "../../assets/ps5control.png";
 import notebook from "../../assets/notebook.png";
@@ -97,7 +98,9 @@ const ShoppingCart = () => {
           <p>Subtotal: ${subtotal}</p>
           <p>Shipping: Free</p>
           <p>Total: ${subtotal}</p>
-          <button className="checkout-button">Proceed to checkout</button>
+          <Link to="/checkout">
+            <button className="checkout-button">Proceed to checkout</button>
+          </Link>
         </div>
       </div>
     </div>
