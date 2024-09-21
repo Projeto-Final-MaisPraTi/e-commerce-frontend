@@ -31,5 +31,10 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "vite": "^5.3.4"
-  }
+  },
+  "description": "- ℹ️ Para fazer uso deste repositório, siga os procedimentos descritos abaixo para fazer a instalação:\r - 👨🏻‍💻 Clone o repositório;\r - 🧑🏾‍💻 Abra o arquivo na IDE;\r - 🧑🏾‍💻 Abra o terminal e execute o seguinte comando: <code>npm install</code>\r - 👩🏻‍💻 Após fazer a instalação das dependências, execute: <code>npm run dev</code> para inicializar o projéto.",
+  "main": "vite.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
