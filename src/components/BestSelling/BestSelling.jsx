@@ -1,6 +1,5 @@
-import React from "react";
 import styled from "styled-components";
-import CardProduct from "../../components/Product/CardProduct";
+import CardProduct from "../Product/CardProduct";
 import produtos from "./products";
 
 const Container = styled.div`
