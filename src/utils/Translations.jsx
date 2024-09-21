@@ -14,6 +14,16 @@ export default {
       myReviews: "My Reviews",
       logout: "Logout",
     },
+    homeCategories: {
+      p: "Categories",
+      h2: "Browse By Category",
+      phone: "Phones",
+      computer: "Computers",
+      watch: "SmartWatch",
+      camera: "Camera",
+      headPhone: "Headphones",
+      gaming: "Gaming",
+    },
     contact: {
       callToUs: "Call To Us",
       availability: "We are available 24/7, 7 days a week.",
@@ -89,6 +99,16 @@ export default {
       myReviews: "Minhas Avaliações",
       logout: "Sair",
     },
+    homeCategories: {
+      p: "Categorias",
+      h2: "Navegar por categoria",
+      phone: "Telefones",
+      computer: "Computadores",
+      watch: "SmartWatch",
+      camera: "Câmera",
+      headPhone: "Fones de ouvido",
+      gaming: "Jogos",
+    },
     contact: {
       callToUs: "Ligue Para Nós",
       availability: "Estamos disponíveis 24 horas por dia, 7 dias por semana.",
@@ -147,5 +167,5 @@ export default {
       forgetPassword: "Esqueceu sua senha?",
       login: "Acessar",
     }
-  },
+  }
 };
