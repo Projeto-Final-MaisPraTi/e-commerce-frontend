@@ -1,5 +1,5 @@
 export default {
-  en: {    
+  en: {
     headerText: "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
     shopNow: "Shop Now",
     nav: {
@@ -81,7 +81,7 @@ export default {
       inputPassword: "Password",
       forgetPassword: "Forget Password?",
       login: "Log in",
-    }
+    },
   },
   pt: {
     headerText:
@@ -166,6 +166,6 @@ export default {
       inputPassword: "Senha",
       forgetPassword: "Esqueceu sua senha?",
       login: "Acessar",
-    }
-  }
+    },
+  },
 };
