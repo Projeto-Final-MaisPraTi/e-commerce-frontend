@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import Gaming from '../../assets/svgs/Gaming';
 import Headphones from '../../assets/svgs/Headphones';
@@ -33,16 +33,25 @@ const Container = styled.div`
 `
 
 const CategoriesContainer = styled.div`
-     display: flex;
-     gap: 20px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* Oculta a barra de rolagem no IE e Edge */
+    scrollbar-width: none;
+    height: 250px;
+    @media (max-width: 450px){
+        align-items: center;
+    }
 `
 
 const Categories = styled.div`
-    .slide {
+    .apresentation {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        justify-content: space-between;
+    }
+    .slide {
+        display: inline-block;
         height: 200px;
         width: 200px;
         border: solid 1px grey;
@@ -52,6 +61,9 @@ const Categories = styled.div`
             margin-top: 10px;
         }
     }
+    .slide + .slide {
+        margin-left: 15px;
+    }
     .slide:hover{
         background-color: #DB4444;
         p {
@@ -59,12 +71,69 @@ const Categories = styled.div`
         }
         cursor: pointer;
     }
+    @media (max-width: 1300px){
+        .slide {
+            height: 180px;
+            width: 180px;
+        }
+    }
 `
+
+const Itens = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    height: 100%;
+`
+
+const ArrowsWrapper = styled.div`
+  display: flex; /* Coloca as setas lado a lado */
+  gap: 10px; /* Adiciona espaço entre as setas */
+  margin-bottom: 10px;
+  @media (min-width: 1400px) {
+    display: none;
+  }
+`;
+
+const ArrowButton = styled.button`
+  background-color: #ccc; /* Fundo cinza */
+  color: #000;
+  border: none;
+  border-radius: 50%; /* Torna o botão redondo */
+  width: 40px; /* Ajusta o tamanho do botão */
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+
+  &:hover {
+    background-color: #bbb; /* Cor de fundo ao passar o mouse */
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: #000; /* Cor preta para a seta */
+  }
+`;
 
 function CardCategory() {
 
     const { translations } = useLanguage();
     const [hovered, setHover] = useState();
+
+    const carouselRef = useRef(null);
+
+    const scroll = (direction) => {
+      if (carouselRef.current) {
+        const scrollAmount = direction === "left" ? -200 : 200;
+        carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      }
+    };  
 
     const handleMouseHover = (componenteHover) => {
         setHover(componenteHover);
@@ -73,38 +142,79 @@ function CardCategory() {
     const handleMouseLeave = () => {
         setHover(null);
     }
+
   return (
     <Container>
         <div className='title'>
             <span className='color'></span>
-            <p>{translations.homeCategories.p}</p>
+            <p>{translations.home.Categories.p}</p>
         </div>
       <Categories>
-        <h2>{translations.homeCategories.h2}</h2>
-        <CategoriesContainer>
+        <div className='apresentation'>
+            <h2>{translations.home.Categories.h2}</h2>
+            <ArrowsWrapper>
+                <ArrowButton onClick={() => scroll("left")}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M7 12l5-5m0 10l-5-5"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    />
+                    </svg>
+                </ArrowButton>
+                <ArrowButton onClick={() => scroll("right")}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                        d="M17 12l-5-5m0 10l5-5"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    />
+                    </svg>
+                </ArrowButton>
+            </ArrowsWrapper>
+        </div>
+        <CategoriesContainer ref={carouselRef}>
             <div className="slide" onMouseOver={() => handleMouseHover("Phones")} onMouseLeave={handleMouseLeave}>
-                <Phones color={hovered == "Phones" ? "white": "black"}/>
-                <p>{translations.homeCategories.phone}</p>
+                <Itens>
+                    <Phones color={hovered == "Phones" ? "white": "black"}/>
+                    <p>{translations.home.Categories.phone}</p>
+                </Itens>
             </div>
             <div className="slide" onMouseOver={() => handleMouseHover("Computers")} onMouseLeave={handleMouseLeave}>
-                <Computers color={hovered == "Computers" ? "white": "black"}/>
-                <p>{translations.homeCategories.computer}</p>
+                <Itens>
+                    <Computers color={hovered == "Computers" ? "white": "black"}/>
+                    <p>{translations.home.Categories.computer}</p>
+                </Itens>
             </div>
             <div className="slide" onMouseOver={() => handleMouseHover("SmartWatch")} onMouseLeave={handleMouseLeave}>
-                <SmartWatch color={hovered == "SmartWatch" ? "white": "black"}/>
-                <p>{translations.homeCategories.watch}</p>
+                <Itens>
+                    <SmartWatch color={hovered == "SmartWatch" ? "white": "black"}/>
+                    <p>{translations.home.Categories.watch}</p>
+                </Itens>
             </div>
             <div className="slide" onMouseOver={() => handleMouseHover("Camera")} onMouseLeave={handleMouseLeave}>
-                <Camera color={hovered == "Camera" ? "white": "black"}/>
-                <p>{translations.homeCategories.camera}</p>
+                <Itens>
+                    <Camera color={hovered == "Camera" ? "white": "black"}/>
+                    <p>{translations.home.Categories.camera}</p>
+                </Itens>
             </div>
             <div className="slide" onMouseOver={() => handleMouseHover("Headphones")} onMouseLeave={handleMouseLeave}>
-                <Headphones color={hovered == "Headphones" ? "white": "black"}/>
-                <p>{translations.homeCategories.headPhone}</p>
+                <Itens>
+                    <Headphones color={hovered == "Headphones" ? "white": "black"}/>
+                    <p>{translations.home.Categories.headPhone}</p>
+                </Itens>
             </div>
             <div className="slide" onMouseOver={() => handleMouseHover("Gaming")} onMouseLeave={handleMouseLeave}>
-                <Gaming color={hovered == "Gaming" ? "white": "black"}/>
-                <p>{translations.homeCategories.gaming}</p>
+                <Itens>
+                    <Gaming color={hovered == "Gaming" ? "white": "black"}/>
+                    <p>{translations.home.Categories.gaming}</p>
+                </Itens>
             </div>
         </CategoriesContainer>
       </Categories>

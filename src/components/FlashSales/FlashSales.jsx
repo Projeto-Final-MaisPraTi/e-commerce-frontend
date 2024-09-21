@@ -1,10 +1,10 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
-import ProductCard from "./ProductCard";
-import ps5controlImage from '../../assets/ps5control.png';
-import tvImage from '../../assets/tv.png';
-import notebookImage from '../../assets/notebook.png';
-import geladeiraImage from '../../assets/geladeira.png'
+import ProductCard from "../ProductCard/ProductCard";
+import ps5controlImage from "../../assets/ps5control.png";
+import tvImage from "../../assets/tv.png";
+import notebookImage from "../../assets/notebook.png";
+import geladeiraImage from "../../assets/geladeira.png";
 
 const FlashSalesContainer = styled.div`
   width: 100%;
@@ -84,15 +84,15 @@ const ProductsCarousel = styled.div`
   display: flex;
   overflow-x: scroll;
   scroll-behavior: smooth;
-  -ms-overflow-style: none;  /* Oculta a barra de rolagem no IE e Edge */
-  scrollbar-width: none;  /* Oculta a barra de rolagem no Firefox */
+  -ms-overflow-style: none; /* Oculta a barra de rolagem no IE e Edge */
+  scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
 
   img {
     max-height: 120px; // Limita a altura da imagem para padronizar
   }
 
   &::-webkit-scrollbar {
-    display: none;  /* Oculta a barra de rolagem no Chrome, Safari e Opera */
+    display: none; /* Oculta a barra de rolagem no Chrome, Safari e Opera */
   }
 `;
 
@@ -186,7 +186,7 @@ const products = [
     originalPrice: "R$400",
     discount: "-25%",
     reviewCount: 99,
-  }
+  },
 ];
 
 const FlashSales = () => {
@@ -215,13 +215,9 @@ const FlashSales = () => {
     const minutes = Math.floor((seconds % 3600) / 60);
     const secs = Math.floor(seconds % 60);
 
-    return `${String(days).padStart(2, "0")} : ${String(hours).padStart(
-      2,
-      "0"
-    )} : ${String(minutes).padStart(2, "0")} : ${String(secs).padStart(
-      2,
-      "0"
-    )}`;
+    return `${String(days).padStart(2, "0")} : ${String(hours).padStart(2, "0")} : ${String(
+      minutes,
+    ).padStart(2, "0")} : ${String(secs).padStart(2, "0")}`;
   };
 
   return (
