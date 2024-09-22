@@ -1,5 +1,5 @@
 // src/components/ProductCard.jsx
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { FaHeart } from "react-icons/fa";
 

@@ -1,19 +1,26 @@
 import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/ComponentFooter";
-import FeaturesSection from "../../components/FeaturesSection/FeaturesSection";
 import FlashSales from "../../components/FlashSales/FlashSales";
-import CardCategory from "./CardCategory.jsx";
-import BestSelling from "./BestSelling.jsx";
-import ExploreProducts from "./ExploreProducts.jsx";
+import BrowseByCategory from "../../components/BrowseByCategory/CardCategory";
+import BestSelling from "../../components/BestSelling/BestSelling";
+import ExploreProducts from "../../components/ExploreProducts/ExploreProducts";
+import NewArrival from "../../components/NewArrival/NewArrival";
+import FeaturesSection from "../../components/FeaturesSection/FeaturesSection";
+import Footer from "../../components/Footer/ComponentFooter";
+import DividingLine from "../../components/DividingLine/DividingLine.jsx";
 
 function Home() {
   return (
     <>
       <Header />
       <FlashSales />
-      <CardCategory />
+      <DividingLine />
+      <BrowseByCategory />
+      <DividingLine />
       <BestSelling />
+      <DividingLine />
       <ExploreProducts />
+      <DividingLine />
+      <NewArrival />
       <FeaturesSection />
       <Footer />
     </>

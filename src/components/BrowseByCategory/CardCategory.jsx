@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import Gaming from '../../assets/svgs/Gaming';
 import Headphones from '../../assets/svgs/Headphones';

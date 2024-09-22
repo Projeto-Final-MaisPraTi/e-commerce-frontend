@@ -1,0 +1,190 @@
+/* Container geral do carrinho */
+.shopping-cart {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 1170px;
+  margin: 0 auto 140px;
+  padding: 2rem;
+}
+
+/* Cabeçalhos separados da tabela */
+.table-header {
+  display: flex;
+  padding: 24px 40px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  justify-content: space-between;
+}
+
+.table-header span {
+  font-weight: bold;
+}
+
+.cart-items-container {
+  max-height: 210px; /* Limite de altura para ativar o scroll */
+  overflow-y: auto; /* Scroll vertical */
+  gap: 24px;
+}
+
+/* Estilo da tabela dos produtos */
+.cart-items {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr {
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.cart-items th,
+.cart-items td {
+  padding: 1rem;
+  text-align: left;
+  /* border-bottom: 1px solid #eee; */
+  /* box-shadow: 0 0 1px rgba(0, 0, 0, 0.1); */
+}
+
+.cart-items th {
+  background-color: #f9f9f9;
+}
+
+.cart-items td {
+  vertical-align: middle;
+}
+
+/* Estilo para a imagem e nome do produto */
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-image {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* Botão para remover produto */
+.remove-item {
+  background-color: transparent;
+  border: none;
+  color: #ff4d4d;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.remove-item:hover {
+  color: #ff0000;
+}
+
+/* Estilo para o select de quantidade */
+select {
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.coupon-and-summary {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Estilo para o resumo do carrinho */
+.cart-summary {
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 32px 24px;
+  max-width: 470px;
+  align-self: flex-end;
+}
+
+.cart-summary h5 {
+  margin-bottom: 24px;
+}
+
+.cart-summary p {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+/* Botão de envio */
+.cart-checkout-button {
+  background-color: #db4444;
+  color: white;
+  padding: 10px 48px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-end;
+}
+
+.cart-checkout-button:hover {
+  background-color: #E07575;
+}
+
+/* Estilo para a área de cupom */
+.coupon-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.coupon-section input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.coupon-section button {
+  padding: 0.5rem 1rem;
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.coupon-section button:hover {
+  background-color: #E07575;
+}
+
+/* Ações do carrinho (Retornar à loja e Atualizar carrinho) */
+.cart-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+.cart-actions button {
+  padding: 1rem 3rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cart-actions button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .shopping-cart {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .cart-summary {
+    align-self: center;
+  }
+
+  .cart-items-container {
+    max-height: 250px;
+  }
+}
