@@ -130,7 +130,7 @@ function CardCategory() {
 
     const scroll = (direction) => {
       if (carouselRef.current) {
-        const scrollAmount = direction === "left" ? -200 : 200;
+        const scrollAmount = direction === "left" ? -180 : 180;
         carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
       }
     };  

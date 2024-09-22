@@ -44,6 +44,10 @@ const Container = styled.div`
         @media (max-width: 480px) {
             grid-template-columns: 1fr;
         }
+        .product-card {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
     }
 `
 
@@ -103,7 +107,7 @@ const ExploreProducts = () => {
                 <button>{translations.home.ExploreProducts.viewer}</button>
             </SecTitle>
             <div className="products-gid">
-                {produtos.slice(0, maxProducts).map((produto) => <ProductCard key={produto.id} product={produto} />)}
+                {produtos.slice(0, maxProducts).map((produto) => <div  key={produto.id} className="product-card"> <ProductCard product={produto} /> </div>)}
             </div>
 
         </Container>
