@@ -9,8 +9,8 @@ export const Container = styled.div`
   margin-bottom: 2.5rem;
 
   @media (max-width: 1200px) {
-      width: 100%;
-    }
+    width: 100%;
+  }
 `;
 
 export const LoginImage = styled.div`
@@ -27,7 +27,6 @@ export const LoginImage = styled.div`
   @media (max-width: 800px) {
     display: none;
   }
-
 `;
 
 export const ContainerAccountCreate = styled.div`
@@ -92,16 +91,9 @@ export const Button = styled.button`
   }
 `;
 
-export const GoogleButton = styled(Button)`
-  background-color: #4285F4;
-  &:hover {
-    background-color: #357ae8;
-  }
-`;
-
 export const HaveAccount = styled.p`
   margin-top: 15px;
-  
+
   a {
     text-decoration: none;
   }

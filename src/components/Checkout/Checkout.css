@@ -1,6 +1,9 @@
 /* Substitui o body por uma classe específica */
 .checkout-container {
   font-family: Poppins, Inter, sans-serif;
+  margin: 141px 135px 140px;
+  /* desenvolver o restante do componente dentro da borda */
+  border: 1px solid purple;
 }
 
 .checkout-fieldset {

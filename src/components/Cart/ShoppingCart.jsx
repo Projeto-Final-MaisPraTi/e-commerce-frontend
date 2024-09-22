@@ -95,11 +95,13 @@ const ShoppingCart = () => {
         {/* Resumo do carrinho */}
         <div className="cart-summary">
           <h5>Cart Total</h5>
-          <p>Subtotal: ${subtotal}</p>
-          <p>Shipping: Free</p>
-          <p>Total: ${subtotal}</p>
+          <p>Subtotal: <span>${subtotal}</span></p>
+          <hr />
+          <p>Shipping: <span>Free</span></p>
+          <hr />
+          <p>Total: <span >${subtotal}</span></p>
           <Link to="/checkout">
-            <button className="checkout-button">Proceed to checkout</button>
+            <button type="submit" className="cart-checkout-button">Procees to checkout</button>
           </Link>
         </div>
       </div>

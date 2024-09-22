@@ -6,8 +6,7 @@ import useLanguage from "../../utils/useLanguage";
 
 const Container = styled.div`
   width: 80%;
-  margin: auto;
-  margin-top: 20px;
+  margin: 0 auto;
   .title {
     display: flex;
     align-items: center;

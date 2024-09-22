@@ -6,9 +6,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  margin-top: 80px;
-  margin-bottom: 80px;
+  max-width: 1170px;
+  margin: 90px 135px 140px;
 }
 
 .caixa-imagem-menor {
@@ -22,7 +21,7 @@
   width: 150px;
 }
 
-img {
+.img {
   /* margin-bottom: 10px; */
   background-color: var(--backgroundCaixaImagem);
   padding: 20px;
@@ -82,7 +81,7 @@ img {
 }
 
 .cores h5,
-input[type='radio'] .radioButtom {
+input[type="radio"] .radioButtom {
   padding-right: 20px;
 }
 

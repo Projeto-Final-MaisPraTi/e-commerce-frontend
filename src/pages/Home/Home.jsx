@@ -6,15 +6,20 @@ import ExploreProducts from "../../components/ExploreProducts/ExploreProducts";
 import NewArrival from "../../components/NewArrival/NewArrival";
 import FeaturesSection from "../../components/FeaturesSection/FeaturesSection";
 import Footer from "../../components/Footer/ComponentFooter";
+import DividingLine from "../../components/DividingLine/DividingLine.jsx";
 
 function Home() {
   return (
     <>
       <Header />
       <FlashSales />
+      <DividingLine />
       <BrowseByCategory />
+      <DividingLine />
       <BestSelling />
+      <DividingLine />
       <ExploreProducts />
+      <DividingLine />
       <NewArrival />
       <FeaturesSection />
       <Footer />

@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  margin: 181px 135px 140px 135px; /* Mantido em px para consistência na tela base */
+  margin: 141px 135px 140px; /* Mantido em px para consistência na tela base */
 }
 
 .contact-info {

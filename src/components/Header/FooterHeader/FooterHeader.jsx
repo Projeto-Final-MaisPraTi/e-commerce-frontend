@@ -5,7 +5,7 @@ const FooterHeaderContainer = styled.div`
     border: 0;
     height: 1px;
     background-color: gray;
-    margin: 0;
+    margin: 0 auto 40px;
   }
 `;
 

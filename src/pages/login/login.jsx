@@ -1,25 +1,33 @@
-import React, { useState } from 'react';
-
+import { useState } from "react";
 import useLanguage from "../../utils/useLanguage.jsx";
-import imageLogin  from "../../assets/loginImage.jpeg";
-import Header      from "../../components/Header/Header.jsx";
-import Footer      from "../../components/Footer/ComponentFooter.jsx";
-import { Container, LoginImage, ContainerAccountCreate, AccountCreate, Title, SubTitle, InputField, Button, GoogleButton, HaveAccount } from './styles.jsx';
+import imageLogin from "../../assets/loginImage.jpeg";
+import Header from "../../components/Header/Header.jsx";
+import Footer from "../../components/Footer/ComponentFooter.jsx";
+import {
+  Container,
+  LoginImage,
+  ContainerAccountCreate,
+  AccountCreate,
+  Title,
+  SubTitle,
+  InputField,
+  Button,
+  HaveAccount,
+} from "./styles.jsx";
 
 const AccountCreationForm = () => {
-
-  const { language, switchLanguage, translations } = useLanguage();
+  const { translations } = useLanguage();
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: ''
+    name: "",
+    email: "",
+    password: "",
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -33,7 +41,6 @@ const AccountCreationForm = () => {
       <Header />
 
       <Container>
-
         <LoginImage>
           <img src={imageLogin} alt="Celular e carrinho de compras" />
         </LoginImage>
@@ -68,9 +75,10 @@ const AccountCreationForm = () => {
             <Button type="submit">{translations.login.login}</Button>
           </AccountCreate>
 
-          <HaveAccount><a href="#">{translations.login.forgetPassword}</a></HaveAccount>
+          <HaveAccount>
+            <a href="#">{translations.login.forgetPassword}</a>
+          </HaveAccount>
         </ContainerAccountCreate>
-
       </Container>
       <Footer />
     </>
