@@ -1,6 +1,7 @@
-:root {
+/* Root interferindo em outros componentes. */
+/* :root {
   --backgroundCaixaImagem: #f5f5f5;
-}
+} */
 
 .container {
   display: flex;
@@ -22,7 +23,6 @@
 }
 
 .img {
-  /* margin-bottom: 10px; */
   background-color: var(--backgroundCaixaImagem);
   padding: 20px;
 }

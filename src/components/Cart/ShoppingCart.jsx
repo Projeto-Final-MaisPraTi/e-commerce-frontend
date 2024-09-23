@@ -51,12 +51,13 @@ const ShoppingCart = () => {
                   </button>
                 </td>
                 <td className="product-info">
-                  <img src={item.image} alt={item.name} className="product-image" />
+                  <img src={item.image} alt={item.name} className="cart-product-image" />
                   <span>{item.name}</span>
                 </td>
                 <td>${item.price}</td>
                 <td>
                   <select
+                    className="quantity-selector"
                     value={item.quantity}
                     onChange={(e) => updateQuantity(item.id, e.target.value)}
                   >
@@ -95,13 +96,21 @@ const ShoppingCart = () => {
         {/* Resumo do carrinho */}
         <div className="cart-summary">
           <h5>Cart Total</h5>
-          <p>Subtotal: <span>${subtotal}</span></p>
+          <p>
+            Subtotal: <span>${subtotal}</span>
+          </p>
           <hr />
-          <p>Shipping: <span>Free</span></p>
+          <p>
+            Shipping: <span>Free</span>
+          </p>
           <hr />
-          <p>Total: <span >${subtotal}</span></p>
+          <p>
+            Total: <span>${subtotal}</span>
+          </p>
           <Link to="/checkout">
-            <button type="submit" className="cart-checkout-button">Procees to checkout</button>
+            <button type="submit" className="cart-checkout-button">
+              Procees to checkout
+            </button>
           </Link>
         </div>
       </div>

@@ -22,8 +22,8 @@
 }
 
 .cart-items-container {
-  max-height: 210px; /* Limite de altura para ativar o scroll */
-  overflow-y: auto; /* Scroll vertical */
+  max-height: 210px;
+  overflow-y: auto;
   gap: 24px;
 }
 
@@ -60,9 +60,9 @@ tr {
   gap: 1rem;
 }
 
-.product-image {
-  width: 50px;
-  height: 50px;
+.cart-product-image {
+  width: 30px;
+  height: 30px;
   object-fit: contain;
 }
 
@@ -80,7 +80,7 @@ tr {
 }
 
 /* Estilo para o select de quantidade */
-select {
+.quantity-selector {
   padding: 0.4rem;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -125,7 +125,7 @@ select {
 }
 
 .cart-checkout-button:hover {
-  background-color: #E07575;
+  background-color: #e07575;
 }
 
 /* Estilo para a área de cupom */
@@ -152,7 +152,7 @@ select {
 }
 
 .coupon-section button:hover {
-  background-color: #E07575;
+  background-color: #e07575;
 }
 
 /* Ações do carrinho (Retornar à loja e Atualizar carrinho) */
@@ -164,9 +164,14 @@ select {
 
 .cart-actions button {
   padding: 1rem 3rem;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   border-radius: 4px;
   cursor: pointer;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  color: black;
+  font-weight: bold;
+  
 }
 
 .cart-actions button:hover {
