@@ -7,6 +7,7 @@ import SmartWatch from '../../assets/svgs/SmartWatch';
 import Camera from '../../assets/svgs/Camera';
 import Computers from '../../assets/svgs/Computers';
 import useLanguage from '../../utils/useLanguage';
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 
 const Container = styled.div`
@@ -37,11 +38,16 @@ const CategoriesContainer = styled.div`
     flex-wrap: nowrap;
     overflow-x: scroll;
     scroll-behavior: smooth;
+    justify-content: center;
     -ms-overflow-style: none;  /* Oculta a barra de rolagem no IE e Edge */
     scrollbar-width: none;
-    height: 250px;
+    height: 200px;
+    margin-top: 15px;
     @media (max-width: 450px){
         align-items: center;
+    }
+    @media (max-width: 1220px){
+        justify-content: flex-start;
     }
 `
 
@@ -57,6 +63,7 @@ const Categories = styled.div`
         border: solid 1px grey;
         text-align: center;
         border-radius: 3px;
+        /* margin: auto; */
         p{
             margin-top: 10px;
         }
@@ -104,22 +111,26 @@ const ArrowButton = styled.button`
   border-radius: 50%; /* Torna o botão redondo */
   width: 40px; /* Ajusta o tamanho do botão */
   height: 40px;
+  /* margin: auto; */
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 2;
+  z-index: 99;
 
   &:hover {
     background-color: #bbb; /* Cor de fundo ao passar o mouse */
   }
-
-  svg {
-    width: 16px;
-    height: 16px;
-    fill: #000; /* Cor preta para a seta */
-  }
 `;
+
+const Right = styled(FaChevronRight)`
+    position: absolute;
+    fill: grey;
+`
+const Left = styled(FaChevronLeft)`
+    position: absolute;
+    fill: grey;
+`
 
 function CardCategory() {
 
@@ -149,33 +160,16 @@ function CardCategory() {
             <span className='color'></span>
             <p>{translations.home.Categories.p}</p>
         </div>
+            {/* <Right /> */}
       <Categories>
         <div className='apresentation'>
             <h2>{translations.home.Categories.h2}</h2>
             <ArrowsWrapper>
                 <ArrowButton onClick={() => scroll("left")}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                        d="M7 12l5-5m0 10l-5-5"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                    </svg>
+                    <Left />
                 </ArrowButton>
                 <ArrowButton onClick={() => scroll("right")}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path
-                        d="M17 12l-5-5m0 10l5-5"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
-                    </svg>
+                    <Right />
                 </ArrowButton>
             </ArrowsWrapper>
         </div>
@@ -210,12 +204,12 @@ function CardCategory() {
                     <p>{translations.home.Categories.headPhone}</p>
                 </Itens>
             </div>
-            <div className="slide" onMouseOver={() => handleMouseHover("Gaming")} onMouseLeave={handleMouseLeave}>
+            {/* <div className="slide" onMouseOver={() => handleMouseHover("Gaming")} onMouseLeave={handleMouseLeave}>
                 <Itens>
                     <Gaming color={hovered == "Gaming" ? "white": "black"}/>
                     <p>{translations.home.Categories.gaming}</p>
                 </Itens>
-            </div>
+            </div> */}
         </CategoriesContainer>
       </Categories>
     </Container>
