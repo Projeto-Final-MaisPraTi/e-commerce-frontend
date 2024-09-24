@@ -18,7 +18,7 @@ const NewArrival = () => {
           <div className="newarrival-product-info">
             <h2>PlayStation 5</h2>
             <p>Black and White version of the PS5 coming out on sale.</p>
-            <button>Shop Now</button>
+            <button className="newarrival-button">Shop Now</button>
           </div>
         </div>
         <div className="product-card medium">
@@ -26,7 +26,7 @@ const NewArrival = () => {
           <div className="newarrival-product-info">
             <h2>Women&apos;s Collections</h2>
             <p>Featured women collections that give you another vibe.</p>
-            <button>Shop Now</button>
+            <button className="newarrival-button">Shop Now</button>
           </div>
         </div>
         <div className="product-card small">
@@ -34,7 +34,7 @@ const NewArrival = () => {
           <div className="newarrival-product-info">
             <h2>Speakers</h2>
             <p>Amazon wireless speakers.</p>
-            <button>Shop Now</button>
+            <button className="newarrival-button">Shop Now</button>
           </div>
         </div>
         <div className="product-card small">
@@ -42,7 +42,7 @@ const NewArrival = () => {
           <div className="newarrival-product-info">
             <h2>Gucci Perfume</h2>
             <p>Gucci Intense Oud.</p>
-            <button>Shop Now</button>
+            <button className="newarrival-button">Shop Now</button>
           </div>
         </div>
       </div>
