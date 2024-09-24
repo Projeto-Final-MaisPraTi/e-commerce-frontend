@@ -65,7 +65,7 @@ h1 {
   grid-column: span 1; /* Outros produtos ocupam 1 coluna */
 }
 
-.product-info {
+.newarrival-product-info {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -74,17 +74,17 @@ h1 {
   color: #fff;
 }
 
-.product-info h2 {
+.newarrival-product-info h2 {
   font-size: 24px;
   margin-bottom: 10px;
 }
 
-.product-info p {
+.newarrival-product-info p {
   font-size: 16px;
   margin-bottom: 20px;
 }
 
-button {
+.newarrival-button {
   padding: 10px 20px;
   background-color: #000;
   color: #fff;
@@ -94,7 +94,7 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.newarrival-button:hover {
   background-color: #ff4b47;
 }
 
