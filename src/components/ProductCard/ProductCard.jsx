@@ -7,7 +7,6 @@ const ProductCardContainer = styled.div`
   flex: 0 0 180px;
   margin-right: 20px;
   background-color: #f9f9f9;
-  /* padding: 30px; */
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -117,10 +116,6 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  /* position: absolute; */
-  /* bottom: 10px;
-  left: 50%; */
-  /* transform: translateX(-50%); */
   opacity: 0;
   transition: opacity 0.3s ease;
 

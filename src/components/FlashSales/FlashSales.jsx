@@ -7,7 +7,7 @@ import notebookImage from "../../assets/notebook.png";
 import geladeiraImage from "../../assets/geladeira.png";
 
 const FlashSalesContainer = styled.div`
-  width: 100%;
+  width: 80%;
   margin-left: 135px;
   background-color: #fff;
   position: relative;
@@ -53,7 +53,7 @@ const Timer = styled.div`
 const ArrowsWrapper = styled.div`
   display: flex; /* Coloca as setas lado a lado */
   gap: 10px; /* Adiciona espaço entre as setas */
-  padding-right: 20px; /* Afasta as setas do canto direito */
+  /* padding-right: 200px; Afasta as setas do canto direito */
 `;
 
 const ArrowButton = styled.button`
