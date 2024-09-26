@@ -30,7 +30,9 @@ const Container = styled.div`
     gap: 15px;
     padding: 15px;
     width: 100%;
-    overflow-x: hidden;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 `;
 
