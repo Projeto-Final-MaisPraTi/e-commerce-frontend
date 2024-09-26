@@ -1,18 +1,18 @@
-import Header from "../../components/Header/Header";
-import FlashSales from "../../components/FlashSales/FlashSales";
-import BrowseByCategory from "../../components/BrowseByCategory/CardCategory";
-import BestSelling from "../../components/BestSelling/BestSelling";
-import ExploreProducts from "../../components/ExploreProducts/ExploreProducts";
-import NewArrival from "../../components/NewArrival/NewArrival";
-import FeaturesSection from "../../components/FeaturesSection/FeaturesSection";
-import Footer from "../../components/Footer/ComponentFooter";
+import Header from "../../components/Header/Header.jsx";
+import FlashSales from "../../components/FlashSales/FlashSales.jsx";
+import BrowseByCategory from "../../components/BrowseByCategory/CardCategory.jsx";
+import BestSelling from "../../components/BestSelling/BestSelling.jsx";
+import ExploreProducts from "../../components/ExploreProducts/ExploreProducts.jsx";
+import NewArrival from "../../components/NewArrival/NewArrival.jsx";
+import FeaturesSection from "../../components/FeaturesSection/FeaturesSection.jsx";
+import Footer from "../../components/Footer/ComponentFooter.jsx";
 import DividingLine from "../../components/DividingLine/DividingLine.jsx";
 
 function Home() {
   return (
     <>
       <Header />
-      <FlashSales />
+      {/* <FlashSales /> */}
       <DividingLine />
       <BrowseByCategory />
       <DividingLine />
@@ -22,7 +22,7 @@ function Home() {
       <DividingLine />
       <NewArrival />
       <FeaturesSection />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
