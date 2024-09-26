@@ -3,32 +3,20 @@ const ProductsData = {
     {
       id: 1,
       name: {
-        en: "iPhone 14",
-        pt: "iPhone 14",
+        en: "iPhone 14 Pro 128GB",
+        pt: "iPhone 14 Pro 128GB",
       },
       color: "Black",
       price: 999.99,
       description: {
-        en: "Latest model with A15 chip, 6.1-inch display.",
-        pt: "Modelo mais recente com chip A15, tela de 6.1 polegadas.",
+        en: "iPhone 14 Pro. Capture incredible detail with a 48MP Main camera. Experience iPhone in a whole new way with Dynamic Island and Always-On display. And get peace of mind with groundbreaking safety features.",
+        pt: "iPhone 14 Pro. Capture detalhes incríveis com uma câmera principal de 48MP. Experimente o iPhone de uma maneira totalmente nova com a Ilha Dinâmica e a tela Sempre Ativa. E fique tranquilo com recursos de segurança inovadores.",
       },
       discount: 35, // Produto com desconto
       images: [
         "https://example.com/iphone14_black_1.jpg",
         "https://example.com/iphone14_black_2.jpg",
       ],
-      technical_specs: {
-        en: {
-          screen_size: "6.1 inches",
-          battery: "3,279mAh",
-          camera: "12MP dual",
-        },
-        pt: {
-          screen_size: "6.1 polegadas",
-          battery: "3.279mAh",
-          camera: "Câmera dupla de 12MP",
-        },
-      },
     },
     {
       id: 2,
@@ -36,266 +24,68 @@ const ProductsData = {
         en: "Samsung Galaxy S23",
         pt: "Samsung Galaxy S23",
       },
-      color: "White",
+      color: "Black",
       price: 849.99,
       description: {
-        en: "Flagship phone with Snapdragon 8 Gen 2 processor.",
-        pt: "Celular topo de linha com processador Snapdragon 8 Gen 2.",
+        en: "Galaxy AI is here. Search like never before, get real-time interpretation on a call, format your notes into a clear summary, and effortlessly edit your photos - all from your smartphone, all with AI. Get more out of your passions with the phone that is designed to elevate your everyday. Whether you are binge-watching shows or capturing shots for social, Galaxy S23 FE is jam-packed with features that help you get more out of whatever you are into including a long-lasting battery, a premium processor, a smooth and strong display, a triple-lens camera and more. ",
+        pt: "O Galaxy AI está aqui. Pesquise como nunca antes, obtenha interpretação em tempo real em uma chamada, formate suas anotações em um resumo claro e edite suas fotos sem esforço - tudo a partir do seu smartphone, tudo com IA. Aproveite ao máximo suas paixões com o telefone projetado para elevar seu dia a dia. Esteja você assistindo a programas ou capturando fotos para redes sociais, o Galaxy S23 FE está repleto de recursos que ajudam você a aproveitar melhor o que quiser, incluindo uma bateria de longa duração, um processador premium, uma tela suave e forte, uma câmera de lente tripla e muito mais.",
       },
       discount: 0, // Produto sem desconto
       images: [
         "https://example.com/galaxys23_white_1.jpg",
         "https://example.com/galaxys23_white_2.jpg",
       ],
-      technical_specs: {
-        en: {
-          screen_size: "6.6 inches",
-          battery: "4,700mAh",
-          camera: "50MP",
-        },
-        pt: {
-          screen_size: "6.6 polegadas",
-          battery: "4.700mAh",
-          camera: "50MP",
-        },
-      },
     },
     {
       id: 3,
       name: {
-        en: "Google Pixel 7",
-        pt: "Google Pixel 7",
+        en: "Google Pixel 7 Pro",
+        pt: "Google Pixel 7 Pro",
       },
       color: "Black",
       price: 599.99,
       description: {
-        en: "Featuring Google Tensor chip, 50MP camera, 6.3-inch OLED display.",
-        pt: "Com chip Google Tensor, câmera de 50MP e tela OLED de 6.3 polegadas.",
+        en: "Introducing Pixel 7 Pro, Google is best-of-everything phone. Powered by Google Tensor G2, it is fast and secure, with an immersive display and amazing battery life. The best Pixel camera yet includes a telephoto lens and pro-level features like Macro Focus. And with the certified Titan M2 security chip and a built-in VPN, Pixel helps protect your personal data.",
+        pt: "Apresentando o Pixel 7 Pro, o melhor telefone do Google. Alimentado pelo Google Tensor G2, é rápido e seguro, com uma tela imersiva e incrível duração da bateria. A melhor câmera Pixel até agora inclui uma lente telefoto e recursos de nível profissional, como Macro Focus. E com o chip de segurança certificado Titan M2 e uma VPN integrada, o Pixel ajuda a proteger seus dados pessoais.",
       },
       discount: 35, // Produto com desconto
       images: ["https://example.com/pixel7_black_1.jpg", "https://example.com/pixel7_black_2.jpg"],
-      technical_specs: {
-        en: {
-          screen_size: "6.3 inches",
-          battery: "4,614mAh",
-          camera: "50MP",
-        },
-        pt: {
-          screen_size: "6.3 polegadas",
-          battery: "4.614mAh",
-          camera: "50MP",
-        },
-      },
     },
     {
       id: 4,
       name: {
-        en: "OnePlus 11",
-        pt: "OnePlus 11",
+        en: "OnePlus 12",
+        pt: "OnePlus 12",
       },
-      color: "Green",
+      color: "Black",
       price: 799.99,
       description: {
-        en: "5G smartphone with 120Hz Fluid AMOLED display, Snapdragon 8 Gen 2.",
-        pt: "Smartphone 5G com tela Fluid AMOLED de 120Hz, Snapdragon 8 Gen 2.",
+        en: "The NEW OnePlus 12 is powered by Snapdragon 8 Gen 3, with up to 16GB of RAM. With the fastest wireless charging in North America, it powers through everything effortlessly. Enjoy all your content on a brilliant 120Hz Super Fluid AMOLED display, with dynamic refresh rate. The 4th Generation Hasselblad Camera System for Mobile captures incredible photos & videos, making the OnePlus 12 the perfect everyday companion for capturing your favorite memories. Packed with premium hardware specs & intuitive OxygenOS 14 software, the OnePlus 12 is our most complete smartphone experience. Only when using the 50W AIRVOOC Charger by OnePlus. ",
+        pt: "O NOVO OnePlus 12 é alimentado pelo Snapdragon 8 Gen 3, com até 16 GB de RAM. Com o carregamento sem fio mais rápido da América do Norte, ele passa por tudo sem esforço. Desfrute de todo o seu conteúdo em uma tela AMOLED Super Fluid de 120 Hz brilhante, com taxa de atualização dinâmica. O Sistema de Câmera Hasselblad de 4ª Geração para Celular captura fotos e vídeos incríveis, tornando o OnePlus 12 o companheiro perfeito para o dia a dia para capturar suas memórias favoritas. Embalado com especificações de hardware premium e software intuitivo OxygenOS 14, o OnePlus 12 é a nossa experiência de smartphone mais completa. Somente ao usar o carregador AIRVOOC de 50 W da OnePlus. ",
       },
       discount: 0, // Produto sem desconto
       images: [
         "https://example.com/oneplus11_green_1.jpg",
         "https://example.com/oneplus11_green_2.jpg",
       ],
-      technical_specs: {
-        en: {
-          screen_size: "6.7 inches",
-          battery: "5,000mAh",
-          camera: "50MP triple",
-        },
-        pt: {
-          screen_size: "6.7 polegadas",
-          battery: "5.000mAh",
-          camera: "Câmera tripla de 50MP",
-        },
-      },
     },
     {
       id: 5,
       name: {
-        en: "Xiaomi 12T Pro",
-        pt: "Xiaomi 12T Pro",
+        en: "Xiaomi 13T",
+        pt: "Xiaomi 13T",
       },
       color: "Black",
       price: 749.99,
       description: {
-        en: "120Hz AMOLED display, Snapdragon 8+ Gen 1, 200MP camera.",
-        pt: "Tela AMOLED de 120Hz, Snapdragon 8+ Gen 1, câmera de 200MP.",
+        en: "The Xiaomi 13T is an advanced and comprehensive Android smartphone in all points of view with some excellent features. It has a large display of 6.67 inches with a resolution of 2712x1220 pixels. The features offered by the Xiaomi 13T are many and innovative. Starting with 5G that allows data transfer and excellent internet browsing. We emphasize the excellent internal memory of 256 GB but without the possibility of expansion. The Xiaomi 13T is a product with few competitors in terms of multimedia thanks to the 50-megapixel camera that allows the Xiaomi 13T to take fantastic photos with a resolution of 8165x6124 pixels and record videos in 4K at the astonishing resolution of 3840x2160 pixels. Very thin, 8.5 millimeters, which makes the Xiaomi 13T really interesting.",
+        pt: "O Xiaomi 13T é um smartphone Android avançado e abrangente em todos os pontos de vista com algumas características excelentes. Tem uma grande tela de 6.67 polegadas com uma resolução de 2712x1220 pixels. As funcionalidades oferecidas pelo Xiaomi 13T são muitas e inovadoras. Começando pelo 5G que permite a transferência de dados e excelente navegação na internet. Enfatizamos a excelente memória interna de 256 GB mas sem a possibilidade de expansão. O Xiaomi 13T é um produto com poucos concorrentes em termos de multimídia graças à câmera de 50 megapixels que permite ao Xiaomi 13T tirar fotos fantásticas com uma resolução de 8165x6124 pixels e gravar vídeos em 4K a espantosa resolução de 3840x2160 pixels. Muito fino, 8.5 milímetros, o que torna o Xiaomi 13T realmente interessante.",
       },
       discount: 0, // Produto sem desconto
       images: [
         "https://example.com/xiaomi12tpro_black_1.jpg",
         "https://example.com/xiaomi12tpro_black_2.jpg",
       ],
-      technical_specs: {
-        en: {
-          screen_size: "6.67 inches",
-          battery: "5,000mAh",
-          camera: "200MP",
-        },
-        pt: {
-          screen_size: "6.67 polegadas",
-          battery: "5.000mAh",
-          camera: "200MP",
-        },
-      },
-    },
-    {
-      id: 6,
-      name: {
-        en: "Motorola Edge 30 Ultra",
-        pt: "Motorola Edge 30 Ultra",
-      },
-      color: "White",
-      price: 899.99,
-      description: {
-        en: "6.67-inch OLED display, 144Hz refresh rate, 200MP camera.",
-        pt: "Tela OLED de 6.67 polegadas, taxa de atualização de 144Hz, câmera de 200MP.",
-      },
-      discount: 0, // Produto sem desconto
-      images: [
-        "https://example.com/edge30ultra_white_1.jpg",
-        "https://example.com/edge30ultra_white_2.jpg",
-      ],
-      technical_specs: {
-        en: {
-          screen_size: "6.67 inches",
-          battery: "4,610mAh",
-          camera: "200MP",
-        },
-        pt: {
-          screen_size: "6.67 polegadas",
-          battery: "4.610mAh",
-          camera: "200MP",
-        },
-      },
-    },
-    {
-      id: 7,
-      name: {
-        en: "Sony Xperia 1 IV",
-        pt: "Sony Xperia 1 IV",
-      },
-      color: "Black",
-      price: 1299.99,
-      description: {
-        en: "4K OLED display, Snapdragon 8 Gen 1, 12MP triple camera.",
-        pt: "Tela OLED 4K, Snapdragon 8 Gen 1, câmera tripla de 12MP.",
-      },
-      discount: 35, // Produto com desconto
-      images: [
-        "https://example.com/xperia1iv_black_1.jpg",
-        "https://example.com/xperia1iv_black_2.jpg",
-      ],
-      technical_specs: {
-        en: {
-          screen_size: "6.5 inches",
-          battery: "5,000mAh",
-          camera: "12MP triple",
-        },
-        pt: {
-          screen_size: "6.5 polegadas",
-          battery: "5.000mAh",
-          camera: "Câmera tripla de 12MP",
-        },
-      },
-    },
-    {
-      id: 8,
-      name: {
-        en: "Nokia G60 5G",
-        pt: "Nokia G60 5G",
-      },
-      color: "Black",
-      price: 499.99,
-      description: {
-        en: "5G phone with 6.58-inch display, 50MP camera, Snapdragon 695.",
-        pt: "Celular 5G com tela de 6.58 polegadas, câmera de 50MP, Snapdragon 695.",
-      },
-      discount: 0, // Produto sem desconto
-      images: [
-        "https://example.com/nokiag60_black_1.jpg",
-        "https://example.com/nokiag60_black_2.jpg",
-      ],
-      technical_specs: {
-        en: {
-          screen_size: "6.58 inches",
-          battery: "4,500mAh",
-          camera: "50MP",
-        },
-        pt: {
-          screen_size: "6.58 polegadas",
-          battery: "4.500mAh",
-          camera: "50MP",
-        },
-      },
-    },
-    {
-      id: 9,
-      name: {
-        en: "Realme GT Neo 3",
-        pt: "Realme GT Neo 3",
-      },
-      color: "White",
-      price: 549.99,
-      description: {
-        en: "6.7-inch AMOLED display, Dimensity 8100, 150W fast charging.",
-        pt: "Tela AMOLED de 6.7 polegadas, Dimensity 8100, carregamento rápido de 150W.",
-      },
-      discount: 0, // Produto sem desconto
-      images: [
-        "https://example.com/realmegtneo3_white_1.jpg",
-        "https://example.com/realmegtneo3_white_2.jpg",
-      ],
-      technical_specs: {
-        en: {
-          screen_size: "6.7 inches",
-          battery: "5,000mAh",
-          camera: "50MP triple",
-        },
-        pt: {
-          screen_size: "6.7 polegadas",
-          battery: "5.000mAh",
-          camera: "Câmera tripla de 50MP",
-        },
-      },
-    },
-    {
-      id: 10,
-      name: {
-        en: "Asus ROG Phone 6",
-        pt: "Asus ROG Phone 6",
-      },
-      color: "Black",
-      price: 999.99,
-      description: {
-        en: "Gaming phone with 165Hz AMOLED display, Snapdragon 8+ Gen 1.",
-        pt: "Celular gamer com tela AMOLED de 165Hz, Snapdragon 8+ Gen 1.",
-      },
-      discount: 0, // Produto sem desconto
-      images: [
-        "https://example.com/rogphone6_black_1.jpg",
-        "https://example.com/rogphone6_black_2.jpg",
-      ],
-      technical_specs: {
-        en: {
-          screen_size: "6.78 inches",
-          battery: "6,000mAh",
-          camera: "50MP triple",
-        },
-        pt: {
-          screen_size: "6.78 polegadas",
-          battery: "6.000mAh",
-          camera: "Câmera tripla de 50MP",
-        },
-      },
     },
   ],
   computers: [
@@ -308,26 +98,14 @@ const ProductsData = {
       color: "Black",
       price: 1199.99,
       description: {
-        en: "Apple Silicon M2 chip with 8-core CPU.",
-        pt: "Chip Apple Silicon M2 com CPU de 8 núcleos.",
+        en: "Apple M2 chip with 10-core CPU.",
+        pt: "Chip Apple M2 com CPU de 10 núcleos.",
       },
       discount: 35, // Produto com desconto
       images: [
         "https://example.com/macbookair_black_1.jpg",
         "https://example.com/macbookair_black_2.jpg",
       ],
-      technical_specs: {
-        en: {
-          screen_size: "13.6 inches",
-          ram: "8GB",
-          storage: "256GB SSD",
-        },
-        pt: {
-          screen_size: "13.6 polegadas",
-          ram: "8GB",
-          storage: "256GB SSD",
-        },
-      },
     },
     {
       id: 2,
@@ -338,26 +116,14 @@ const ProductsData = {
       color: "Silver",
       price: 1599.99,
       description: {
-        en: "14-inch model with Apple M2 Pro chip and 16-core GPU.",
-        pt: "Modelo de 14 polegadas com chip Apple M2 Pro e GPU de 16 núcleos.",
+        en: "14.2-inch model with Apple M2 Pro chip and 16-core GPU.",
+        pt: "Modelo de 14.2 polegadas com chip Apple M2 Pro e GPU de 16 núcleos.",
       },
       discount: 0, // Produto sem desconto
       images: [
         "https://example.com/macbookpro_silver_1.jpg",
         "https://example.com/macbookpro_silver_2.jpg",
       ],
-      technical_specs: {
-        en: {
-          screen_size: "14 inches",
-          ram: "16GB",
-          storage: "512GB SSD",
-        },
-        pt: {
-          screen_size: "14 polegadas",
-          ram: "16GB",
-          storage: "512GB SSD",
-        },
-      },
     },
     {
       id: 3,
@@ -376,18 +142,6 @@ const ProductsData = {
         "https://example.com/dellxps_white_1.jpg",
         "https://example.com/dellxps_white_2.jpg",
       ],
-      technical_specs: {
-        en: {
-          screen_size: "13.4 inches",
-          ram: "16GB",
-          storage: "512GB SSD",
-        },
-        pt: {
-          screen_size: "13.4 polegadas",
-          ram: "16GB",
-          storage: "512GB SSD",
-        },
-      },
     },
     {
       id: 4,
@@ -446,153 +200,6 @@ const ProductsData = {
           screen_size: "14 polegadas",
           ram: "16GB",
           storage: "1TB SSD",
-        },
-      },
-    },
-    {
-      id: 6,
-      name: {
-        en: "Asus ZenBook 14",
-        pt: "Asus ZenBook 14",
-      },
-      color: "Silver",
-      price: 1099.99,
-      description: {
-        en: "Thin and light with AMD Ryzen 7 and 512GB SSD.",
-        pt: "Fino e leve com AMD Ryzen 7 e SSD de 512GB.",
-      },
-      discount: 0, // Produto sem desconto
-      images: [
-        "https://example.com/zenbook_silver_1.jpg",
-        "https://example.com/zenbook_silver_2.jpg",
-      ],
-      technical_specs: {
-        en: {
-          screen_size: "14 inches",
-          ram: "16GB",
-          storage: "512GB SSD",
-        },
-        pt: {
-          screen_size: "14 polegadas",
-          ram: "16GB",
-          storage: "512GB SSD",
-        },
-      },
-    },
-    {
-      id: 7,
-      name: {
-        en: "Microsoft Surface Laptop 4",
-        pt: "Microsoft Surface Laptop 4",
-      },
-      color: "Platinum",
-      price: 1299.99,
-      description: {
-        en: "13.5-inch touchscreen with Intel Core i5 and 512GB SSD.",
-        pt: "Tela sensível ao toque de 13.5 polegadas com Intel Core i5 e SSD de 512GB.",
-      },
-      discount: 0, // Produto sem desconto
-      images: [
-        "https://example.com/surfaceplatinum_1.jpg",
-        "https://example.com/surfaceplatinum_2.jpg",
-      ],
-      technical_specs: {
-        en: {
-          screen_size: "13.5 inches",
-          ram: "8GB",
-          storage: "512GB SSD",
-        },
-        pt: {
-          screen_size: "13.5 polegadas",
-          ram: "8GB",
-          storage: "512GB SSD",
-        },
-      },
-    },
-    {
-      id: 8,
-      name: {
-        en: "Acer Swift 3",
-        pt: "Acer Swift 3",
-      },
-      color: "Gray",
-      price: 799.99,
-      description: {
-        en: "Lightweight laptop with Intel Core i5 and long battery life.",
-        pt: "Notebook leve com Intel Core i5 e longa duração da bateria.",
-      },
-      discount: 0, // Produto sem desconto
-      images: ["https://example.com/swift3_gray_1.jpg", "https://example.com/swift3_gray_2.jpg"],
-      technical_specs: {
-        en: {
-          screen_size: "14 inches",
-          ram: "8GB",
-          storage: "512GB SSD",
-        },
-        pt: {
-          screen_size: "14 polegadas",
-          ram: "8GB",
-          storage: "512GB SSD",
-        },
-      },
-    },
-    {
-      id: 9,
-      name: {
-        en: "Razer Blade 15",
-        pt: "Razer Blade 15",
-      },
-      color: "Black",
-      price: 1999.99,
-      description: {
-        en: "Gaming laptop with NVIDIA GeForce RTX 3070 and Intel Core i7.",
-        pt: "Notebook gamer com NVIDIA GeForce RTX 3070 e Intel Core i7.",
-      },
-      discount: 0, // Produto sem desconto
-      images: [
-        "https://example.com/razerblade_black_1.jpg",
-        "https://example.com/razerblade_black_2.jpg",
-      ],
-      technical_specs: {
-        en: {
-          screen_size: "15.6 inches",
-          ram: "16GB",
-          storage: "1TB SSD",
-        },
-        pt: {
-          screen_size: "15.6 polegadas",
-          ram: "16GB",
-          storage: "1TB SSD",
-        },
-      },
-    },
-    {
-      id: 10,
-      name: {
-        en: "HP Pavilion 15",
-        pt: "HP Pavilion 15",
-      },
-      color: "Silver",
-      price: 749.99,
-      description: {
-        en: "Budget laptop with Intel Core i5 and 8GB RAM.",
-        pt: "Notebook econômico com Intel Core i5 e 8GB de RAM.",
-      },
-      discount: 0, // Produto sem desconto
-      images: [
-        "https://example.com/hp_pavilion15_silver_1.jpg",
-        "https://example.com/hp_pavilion15_silver_2.jpg",
-      ],
-      technical_specs: {
-        en: {
-          screen_size: "15.6 inches",
-          ram: "8GB",
-          storage: "256GB SSD",
-        },
-        pt: {
-          screen_size: "15.6 polegadas",
-          ram: "8GB",
-          storage: "256GB SSD",
         },
       },
     },
