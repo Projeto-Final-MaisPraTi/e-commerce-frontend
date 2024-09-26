@@ -12,7 +12,7 @@ function Home() {
   return (
     <>
       <Header />
-      {/* <FlashSales /> */}
+      <FlashSales />
       <DividingLine />
       <BrowseByCategory />
       <DividingLine />
@@ -22,7 +22,7 @@ function Home() {
       <DividingLine />
       <NewArrival />
       <FeaturesSection />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
