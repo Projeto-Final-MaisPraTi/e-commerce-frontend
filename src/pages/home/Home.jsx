@@ -1,5 +1,5 @@
 import Header from "../../components/Header/Header.jsx";
-import FlashSales from "../../components/FlashSales/FlashSales.jsx";
+//import FlashSales from "../../components/FlashSales/FlashSales.jsx";
 import BrowseByCategory from "../../components/BrowseByCategory/CardCategory.jsx";
 import BestSelling from "../../components/BestSelling/BestSelling.jsx";
 import ExploreProducts from "../../components/ExploreProducts/ExploreProducts.jsx";
@@ -12,7 +12,7 @@ function Home() {
   return (
     <>
       <Header />
-      <FlashSales />
+      {/* <FlashSales /> */}
       <DividingLine />
       <BrowseByCategory />
       <DividingLine />
