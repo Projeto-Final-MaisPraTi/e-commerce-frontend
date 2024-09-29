@@ -1,88 +1,105 @@
-import { useState } from "react";
+import React, { useState } from 'react';
+import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+
+import styles      from './login.module.css';
 import useLanguage from "../../utils/useLanguage.jsx";
-import imageLogin from "../../assets/loginImage.jpeg";
-import Header from "../../components/Header/Header.jsx";
-import Footer from "../../components/Footer/ComponentFooter.jsx";
-import {
-  Container,
-  LoginImage,
-  ContainerAccountCreate,
-  AccountCreate,
-  Title,
-  SubTitle,
-  InputField,
-  Button,
-  HaveAccount,
-} from "./styles.jsx";
+import Header      from "../../components/Header/Header.jsx";
+import Footer      from "../../components/Footer/ComponentFooter.jsx";
 
-const AccountCreationForm = () => {
-  const { translations } = useLanguage();
+const Login = () => {
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
+  const { language, switchLanguage, translations } = useLanguage();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({ email: '', password: '' });
+
+  const loginWithGoogle = useGoogleLogin({
+    onSuccess: tokenResponse => console.log(tokenResponse),
+    onError: () => console.log('Login Failed'),
   });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const validate = () => {
+    let valid = true;
+    const newErrors = { email: '', password: '' };
+
+    if (!email) {
+      newErrors.email = translations.login.emailRequired;
+      valid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      newErrors.email = translations.login.emailInvalid;
+      valid = false;
+    }
+
+    if (!password) {
+      newErrors.password = translations.login.passwordRequired;
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    return valid;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
-  };
 
+    if (validate()) {
+      console.log({ email, password });
+
+    }
+  };
+  
   return (
     <>
       <Header />
 
-      <Container>
-        <LoginImage>
-          <img src={imageLogin} alt="Celular e carrinho de compras" />
-        </LoginImage>
+      <div className={styles.loginContainer}>
+        <div className={styles.loginBox}>
+          <h2 className={styles.welcomeBack}>{translations.login.welcomeBack}</h2>
+          <p className={styles.dontHaveAccount}>{translations.login.dontHaveAccount}<a href="/register">{translations.login.signUp}</a></p>
 
-        <ContainerAccountCreate>
-          <AccountCreate onSubmit={handleSubmit}>
-            <Title>{translations.login.loginToAccount}</Title>
-            <SubTitle>{translations.login.enterDetails}</SubTitle>
-
-            {/* <InputField
-              type="text"
-              name="name"
-              placeholder={translations.login.inputName}
-              value={formData.name}
-              onChange={handleChange}
-            /> */}
-            <InputField
-              type="email"
-              name="email"
-              placeholder={translations.login.inputEmail}
-              value={formData.email}
-              onChange={handleChange}
+          <form onSubmit={handleSubmit} className={styles.loginForm}>
+            <input 
+              type="email" 
+              placeholder="Email" 
+              className={styles.loginInput}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-            <InputField
-              type="password"
-              name="password"
-              placeholder={translations.login.inputPassword}
-              value={formData.password}
-              onChange={handleChange}
+            {errors.email && <p className={styles.error}>{errors.email}</p>}
+
+            <input 
+              type="password" 
+              placeholder={translations.login.password} 
+              className={styles.loginInputPassword}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
+            {errors.password && <p className={styles.error}>{errors.password}</p>}
 
-            <Button type="submit">{translations.login.login}</Button>
-          </AccountCreate>
+            <button type="submit" className={styles.loginButton}>{translations.login.login}</button>
+          </form>
+          
+          <div className={styles.divider}>
+            <span>{translations.login.or}</span>
+          </div>
 
-          <HaveAccount>
-            <a href="#">{translations.login.forgetPassword}</a>
-          </HaveAccount>
-        </ContainerAccountCreate>
-      </Container>
+          <button onClick={() => loginWithGoogle()} className={styles.googleButton}>
+            <svg className={styles.googleIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+              <path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+              <path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+              <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+              <path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+            </svg>
+            {translations.login.googleButton}
+          </button>
+
+        </div>
+      </div>
+
       <Footer />
     </>
   );
 };
 
-export default AccountCreationForm;
+export default Login;
