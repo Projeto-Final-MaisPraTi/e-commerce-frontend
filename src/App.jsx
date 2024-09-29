@@ -9,7 +9,7 @@ import CartPage from "./pages/Cart/CartPage.jsx";
 import CheckoutPage from "./pages/Checkout/Checkout.jsx";
 import PageNotFound from "./pages/404NotFound/PageNotFound.jsx";
 import MyAccount from "./pages/MyAccount/MyAccount.jsx";
-import Product from "./pages/Product/Product.jsx";
+import ProductDetails from "./components/ProductDetails/ProductDetails.jsx";
 
 function App() {
   return (
@@ -25,7 +25,12 @@ function App() {
           {/* Responsável: José */}
           <Route path="/about" element={<ContactPage />} />
           {/* Responsável: Henrique */}
-          <Route path="/product" element={<Product />} />
+          <Route
+            path="/product"
+            element={
+              <ProductDetails productName={"Havic HV G-92 Gamepad"} price={192.0} quantity={2} />
+            }
+          />
           {/* Responsável: Gabriel W. */}
           <Route path="/contact" element={<ContactPage />} />
           {/* Responsável: Gabriel W. */}
