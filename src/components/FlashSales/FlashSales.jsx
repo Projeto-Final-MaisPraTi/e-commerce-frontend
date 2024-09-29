@@ -8,7 +8,7 @@ import geladeiraImage from "../../assets/geladeira.png";
 
 const FlashSalesContainer = styled.div`
   width: 80%;
-  margin-left: 135px;
+  margin: auto;
   background-color: #fff;
   position: relative;
   overflow: hidden;
@@ -19,6 +19,12 @@ const Header = styled.div`
   justify-content: space-between; /* Distribui espaço entre os elementos */
   align-items: center; /* Centraliza verticalmente os elementos */
   margin-bottom: 20px;
+
+  @media (max-width: 766px) {
+    flex-direction: column; /* Torna o header do componente vertical em telas menores */
+    gap: 15px; /* Da um espaço entre os itens na vertical*/
+    align-items: flex-start; /* Alinha os itens na esquerda*/
+  }
 `;
 
 const TitleTimerWrapper = styled.div`
@@ -35,7 +41,6 @@ const Title = styled.h2`
 const TimerWrapper = styled.div`
   display: flex;
   flex-direction: column; /* Alinha o título e o timer verticalmente */
-  margin-left: 50px;
 `;
 
 const LabelWrapper = styled.div`
@@ -86,6 +91,7 @@ const ProductsCarousel = styled.div`
   scroll-behavior: smooth;
   -ms-overflow-style: none; /* Oculta a barra de rolagem no IE e Edge */
   scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
+  padding: 10px;
 
   img {
     max-height: 120px; // Limita a altura da imagem para padronizar
@@ -223,8 +229,8 @@ const FlashSales = () => {
   return (
     <FlashSalesContainer>
       <Header>
+      <Title>Flash Sales</Title>
         <TitleTimerWrapper>
-          <Title>Flash Sales</Title>
           <TimerWrapper>
             <LabelWrapper>
               <div>Days</div>
