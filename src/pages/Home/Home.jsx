@@ -7,11 +7,13 @@ import NewArrival from "../../components/NewArrival/NewArrival";
 import FeaturesSection from "../../components/FeaturesSection/FeaturesSection";
 import Footer from "../../components/Footer/ComponentFooter";
 import DividingLine from "../../components/DividingLine/DividingLine.jsx";
+import CategoryCarousel from "../../components/categoryWithCarousel/CategoryWithCarousel.jsx";
 
 function Home() {
   return (
     <>
       <Header />
+      <CategoryCarousel/>
       <FlashSales />
       <DividingLine />
       <BrowseByCategory />
