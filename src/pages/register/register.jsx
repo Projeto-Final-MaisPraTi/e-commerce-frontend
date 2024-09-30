@@ -1,88 +1,102 @@
 import { useState } from "react";
+// import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 
+import styles from "./register.module.css";
 import useLanguage from "../../utils/useLanguage.jsx";
-import imageLogin from "../../assets/loginImage.jpeg";
 import Header from "../../components/Header/Header.jsx";
 import Footer from "../../components/Footer/ComponentFooter.jsx";
-import {
-  Container,
-  LoginImage,
-  ContainerAccountCreate,
-  AccountCreate,
-  Title,
-  SubTitle,
-  InputField,
-  Button,
-  GoogleButton,
-  HaveAccount,
-} from "./styles.jsx";
 
 const Register = () => {
   const { translations } = useLanguage();
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({ name: "", email: "", password: "" });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const validate = () => {
+    let valid = true;
+    const newErrors = { name: "", email: "", password: "" };
+
+    if (!name) {
+      newErrors.name = translations.register.nameRequired;
+      valid = false;
+    }
+
+    if (!email) {
+      newErrors.email = translations.register.emailRequired;
+      valid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      newErrors.email = translations.login.emailInvalid;
+      valid = false;
+    }
+
+    if (!password) {
+      newErrors.password = translations.register.passwordRequired;
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    return valid;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+
+    if (validate()) {
+      console.log({ name, email, password });
+    }
   };
 
   return (
     <>
       <Header />
 
-      <Container>
-        <LoginImage>
-          <img src={imageLogin} alt="Celular e carrinho de compras" />
-        </LoginImage>
+      <div className={styles.registerContainer}>
+        <div className={styles.registerBox}>
+          <h2 className={styles.createAccount}>{translations.register.createAccount}</h2>
+          <p className={styles.enterDetails}>{translations.register.enterDetails}</p>
 
-        <ContainerAccountCreate>
-          <AccountCreate onSubmit={handleSubmit}>
-            <Title>{translations.register.createAccount}</Title>
-            <SubTitle>{translations.register.enterDetails}</SubTitle>
-
-            <InputField
-              type="text"
-              name="name"
-              placeholder={translations.register.inputName}
-              value={formData.name}
-              onChange={handleChange}
+          <form onSubmit={handleSubmit} className={styles.registerForm}>
+            <input
+              type="name"
+              placeholder="Name"
+              className={styles.loginName}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
-            <InputField
+            {errors.name && <p className={styles.error}>{errors.name}</p>}
+
+            <input
               type="email"
-              name="email"
-              placeholder={translations.register.inputEmail}
-              value={formData.email}
-              onChange={handleChange}
+              placeholder="Email"
+              className={styles.loginInput}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-            <InputField
+            {errors.email && <p className={styles.error}>{errors.email}</p>}
+
+            <input
               type="password"
-              name="password"
-              placeholder={translations.register.inputPassword}
-              value={formData.password}
-              onChange={handleChange}
+              placeholder={translations.login.password}
+              className={styles.loginInputPassword}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
+            {errors.password && <p className={styles.error}>{errors.password}</p>}
 
-            <Button type="submit">{translations.register.buttonCreateAccount}</Button>
-            <GoogleButton type="button">{translations.register.buttonLoginGoogle}</GoogleButton>
-          </AccountCreate>
+            <button type="submit" className={styles.buttonCreateAccount}>
+              {translations.register.buttonCreateAccount}
+            </button>
+          </form>
 
-          <HaveAccount>
-            {translations.register.haveAccount} <a href="#">{translations.register.login}</a>
-          </HaveAccount>
-        </ContainerAccountCreate>
-      </Container>
+          <p className={styles.haveAccount}>
+            {translations.register.haveAccount}
+            <a href="/login">{translations.register.login}</a>
+          </p>
+        </div>
+      </div>
+
       <Footer />
     </>
   );

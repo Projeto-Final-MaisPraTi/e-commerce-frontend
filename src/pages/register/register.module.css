@@ -1,0 +1,182 @@
+.registerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  margin-bottom: 11rem;
+  margin-top: 8rem;
+  /* min-height: 100vh; */
+}
+
+.registerBox {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.loginName {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.loginInput {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.loginInputPassword {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.buttonCreateAccount {
+  width: 100%;
+  padding: 10px;
+  background-color: #db4444;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.buttonCreateAccount:hover {
+  background-color: #cc4646;
+}
+
+.divider {
+  margin: 20px 0;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  height: 1px;
+  background-color: #ddd;
+  position: absolute;
+  top: 50%;
+  width: 40%;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+.divider span {
+  position: relative;
+  background-color: white;
+  padding: 0 10px;
+  font-size: 12px;
+  color: #888;
+}
+
+.createAccount {
+  margin-bottom: 0;
+}
+
+.haveAccount {
+  margin-top: 2rem;
+  font-size: 12px;
+  color: #6a6a6a;
+}
+
+.haveAccount a {
+  text-decoration: none;
+}
+
+.enterDetails {
+  margin-bottom: 2rem;
+  font-size: 12px;
+  color: #6a6a6a;
+}
+
+.googleButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.googleButton:hover {
+  background-color: #ecf3fe;
+  box-shadow: none;
+  border-color: #d2e3fc;
+  outline: none;
+}
+
+.googleButton:active {
+  background-color: #c2d8fa;
+}
+
+.googleIcon {
+  width: 20px;
+  height: 20px;
+  float: inline-start;
+}
+
+.registerForm {
+  margin: 0px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}
+
+
+@media (max-width: 768px) {
+  .loginBox {
+    padding: 30px;
+  }
+
+  .loginInput,
+  .buttonCreateAccount {
+    font-size: 14px;
+  }
+  
+  h2 {
+    font-size: 1.3em;
+  }
+  
+  .buttonCreateAccount {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginBox {
+    padding: 20px;
+  }
+
+  .loginInput,
+  .buttonCreateAccount {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+}
