@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./ProductCard.module.css";
-// const imagemtest = "https://via.placeholder.com/400x300";
-// import imagemteste2 from "../../assets/phones/Samsung_Galaxy_S23_black_1.jpg";
-import StarRating from './StarRating';
+const ProductNotFound = "https://via.placeholder.com/400x300";
+import StarRating from "./StarRating";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -16,7 +15,8 @@ const ProductCard = ({ product }) => {
     return "Lista de produtos não encontrada";
   }
 
-  const productImage = product.images && product.images.length > 0 ? product.images[0] : "https://via.placeholder.com/400x300";
+  const productImage =
+    product.images && product.images.length > 0 ? product.images[0] : ProductNotFound;
 
   return (
     <div className={styles.productCard} onClick={handleClick}>
@@ -25,7 +25,7 @@ const ProductCard = ({ product }) => {
         <h3 className={styles.productName}>{product.name}</h3>
         <p className={styles.productPrice}>${product.price}</p>
         <div className={styles.productRating}>
-        <StarRating rating={product.rating} />
+          <StarRating rating={product.rating} />
         </div>
       </div>
     </div>

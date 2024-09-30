@@ -16,9 +16,11 @@
 }
 
 .productImage {
-  width: 100%;
+  width: 95%;
   height: 13rem;
-  padding: 8px;
+  padding: 12px;
+  object-fit: contain;
+  margin: 0 auto;
 }
 
 .productInfo {

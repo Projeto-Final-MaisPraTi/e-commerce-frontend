@@ -264,7 +264,7 @@ const ProductsData = [
       en: "Convertible laptop with Intel Evo Core i7 and touchscreen.",
       pt: "Notebook conversível com Intel Evo Core i7 e tela sensível ao toque.",
     },
-    discount: 0, // Produto sem desconto
+    discount: 35, // Produto com desconto
     isBestSelling: false,
     rating: 4,
     images: [HPSpectreX360Black1, HPSpectreX360Black2, HPSpectreX360Black3, HPSpectreX360Black4],
@@ -454,7 +454,7 @@ const ProductsData = [
       en: "20.3MP Micro Four Thirds camera with unlimited 4K recording.",
       pt: "Câmera Micro Four Thirds de 20.3MP com gravação 4K ilimitada.",
     },
-    discount: 0, // Produto sem desconto
+    discount: 35, // Produto com desconto
     isBestSelling: false,
     rating: 4,
     images: [

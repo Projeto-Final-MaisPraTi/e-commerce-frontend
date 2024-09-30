@@ -1,14 +1,11 @@
 import { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import ProductCard from "../ProductCard/ProductCard";
-import ps5controlImage from "../../assets/ps5control.png";
-import tvImage from "../../assets/tv.png";
-import notebookImage from "../../assets/notebook.png";
-import geladeiraImage from "../../assets/geladeira.png";
+import ProductsData from "../../utils/ProductsData";
 
 const FlashSalesContainer = styled.div`
   width: 80%;
-  margin: auto;
+  margin: 0 auto;
   background-color: #fff;
   position: relative;
   overflow: hidden;
@@ -93,119 +90,34 @@ const ProductsCarousel = styled.div`
   scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
   padding: 10px;
 
-  img {
-    max-height: 120px; // Limita a altura da imagem para padronizar
-  }
-
   &::-webkit-scrollbar {
     display: none; /* Oculta a barra de rolagem no Chrome, Safari e Opera */
   }
+  /* Adicionar comportamento de snap ao rolar */
+  scroll-snap-type: x mandatory;
 `;
 
-const products = [
-  {
-    id: 1,
-    title: "HAVIT HV-G92 Gamepad",
-    image: ps5controlImage,
-    discountPrice: "R$120",
-    originalPrice: "R$160",
-    discount: "-40%",
-    reviewCount: 88,
-  },
-  {
-    id: 2,
-    title: "AK-900 Wired Keyboard",
-    image: tvImage,
-    discountPrice: "R$60",
-    originalPrice: "R$100",
-    discount: "-35%",
-    reviewCount: 75,
-  },
-  {
-    id: 3,
-    title: "IPS LCD Gaming Monitor",
-    image: notebookImage,
-    discountPrice: "R$370",
-    originalPrice: "R$400",
-    discount: "-30%",
-    reviewCount: 99,
-  },
-  {
-    id: 4,
-    title: "S-Series Comfort Chair",
-    image: geladeiraImage,
-    discountPrice: "R$375",
-    originalPrice: "R$400",
-    discount: "-25%",
-    reviewCount: 99,
-  },
-  {
-    id: 5,
-    title: "Wireless Gaming Mouse",
-    image: ps5controlImage,
-    discountPrice: "R$45",
-    originalPrice: "R$60",
-    discount: "-25%",
-    reviewCount: 45,
-  },
-  {
-    id: 6,
-    title: "Gaming Headset",
-    image: ps5controlImage,
-    discountPrice: "R$85",
-    originalPrice: "R$120",
-    discount: "-30%",
-    reviewCount: 150,
-  },
-  {
-    id: 7,
-    title: "AK-900 Wired Keyboard",
-    image: geladeiraImage,
-    discountPrice: "R$60",
-    originalPrice: "R$100",
-    discount: "-35%",
-    reviewCount: 75,
-  },
-  {
-    id: 8,
-    title: "IPS LCD Gaming Monitor",
-    image: notebookImage,
-    discountPrice: "R$370",
-    originalPrice: "R$400",
-    discount: "-30%",
-    reviewCount: 99,
-  },
-  {
-    id: 9,
-    title: "S-Series Comfort Chair",
-    image: geladeiraImage,
-    discountPrice: "R$375",
-    originalPrice: "R$400",
-    discount: "-25%",
-    reviewCount: 99,
-  },
-  {
-    id: 10,
-    title: "S-Series Comfort Chair",
-    image: geladeiraImage,
-    discountPrice: "R$375",
-    originalPrice: "R$400",
-    discount: "-25%",
-    reviewCount: 99,
-  },
-];
+const ProductWrapper = styled.div`
+  flex: 0 0 270px;
+  margin: 10px;
+`;
 
 const FlashSales = () => {
+  const [timeLeft, setTimeLeft] = useState(116196); // 03:23:19:56 em segundos
   const carouselRef = useRef(null);
+
+  // Filtrar produtos com desconto
+  const filteredProducts = ProductsData.filter((product) => product.discount === 35);
 
   const scroll = (direction) => {
     if (carouselRef.current) {
-      const scrollAmount = direction === "left" ? -200 : 200;
-      carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      const scrollAmount = 285; // 270px de largura + 15px de margem
+      carouselRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
     }
   };
-
-  const [timeLeft, setTimeLeft] = useState(116196); // 03:23:19:56 em segundos
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -229,7 +141,7 @@ const FlashSales = () => {
   return (
     <FlashSalesContainer>
       <Header>
-      <Title>Flash Sales</Title>
+        <Title>Flash Sales</Title>
         <TitleTimerWrapper>
           <TimerWrapper>
             <LabelWrapper>
@@ -269,8 +181,10 @@ const FlashSales = () => {
         </ArrowsWrapper>
       </Header>
       <ProductsCarousel ref={carouselRef}>
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+        {filteredProducts.map((product) => (
+          <ProductWrapper key={product.id}>
+            <ProductCard product={product} />
+          </ProductWrapper>
         ))}
       </ProductsCarousel>
     </FlashSalesContainer>
