@@ -9,6 +9,7 @@ import CartPage from "./pages/Cart/CartPage.jsx";
 import CheckoutPage from "./pages/Checkout/Checkout.jsx";
 import PageNotFound from "./pages/404NotFound/PageNotFound.jsx";
 import MyAccount from "./pages/MyAccount/MyAccount.jsx";
+import About from "./pages/About/AboutPage.jsx";
 import ProductDetails from "./components/ProductDetails/ProductDetails.jsx";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
@@ -25,7 +26,7 @@ function App() {
             {/* Responsável: Danilo */}
             <Route path="/register" element={<Register />} />
             {/* Responsável: José */}
-            <Route path="/about" element={<ContactPage />} />
+            <Route path="/about" element={<About />} />
             {/* Responsável: Henrique */}
             <Route
             path="/product"

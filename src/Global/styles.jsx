@@ -20,4 +20,11 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
 `;
