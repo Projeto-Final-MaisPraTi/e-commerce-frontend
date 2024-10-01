@@ -1,4 +1,4 @@
-import ourHistoryImage from "../../assets/ourHistoryImage.png";
+import ourHistoryImage from "../../assets/about_ourHistory.png";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const OurHistory = () => {

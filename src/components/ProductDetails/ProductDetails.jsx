@@ -3,11 +3,9 @@ import img2 from "../../assets/image 58.png";
 import img3 from "../../assets/image 61.png";
 import img4 from "../../assets/image 59.png";
 import imgCentro from "../../assets/image 63.png";
-
-import freeDelivery from '../../assets/icon-delivery.png';
-import returnDelivery from '../../assets/Icon-return.png';
-
-import './ProductDetails.modules.css';
+import freeDelivery from "../../assets/icon_delivery2.png";
+import returnDelivery from "../../assets/icon_return.png";
+import "./ProductDetails.modules.css";
 
 import { useState } from "react";
 
@@ -23,7 +21,7 @@ const ProductDetails = ({ productName, price, quantity, color }) => {
       color: corSelecionada,
     };
 
-    console.log('Adicionando ao carrinho:', productDetails);
+    console.log("Adicionando ao carrinho:", productDetails);
     // window.location.href = '/paginaCarrinho';
   }
 
@@ -32,36 +30,36 @@ const ProductDetails = ({ productName, price, quantity, color }) => {
   };
 
   return (
-    <div className='container'>
-      <div className='row'>
-        <div className='col-md-2 caixa-imagem-menor'>
+    <div className="container">
+      <div className="row">
+        <div className="col-md-2 caixa-imagem-menor">
           <img
             src={img1}
             onMouseEnter={() => setImagemSelecionada(img1)}
             onMouseLeave={() => setImagemSelecionada(imgCentro)}
-            alt=''
+            alt=""
           />
           <img
             src={img2}
             onMouseEnter={() => setImagemSelecionada(img2)}
             onMouseLeave={() => setImagemSelecionada(imgCentro)}
-            alt=''
+            alt=""
           />
           <img
             src={img3}
             onMouseEnter={() => setImagemSelecionada(img3)}
             onMouseLeave={() => setImagemSelecionada(imgCentro)}
-            alt=''
+            alt=""
           />
           <img
             src={img4}
             onMouseEnter={() => setImagemSelecionada(img4)}
             onMouseLeave={() => setImagemSelecionada(imgCentro)}
-            alt=''
+            alt=""
           />
         </div>
-        <div className='col-md-6 caixa-imagem'>
-          <img src={imagemSelecionada} alt='' />
+        <div className="col-md-6 caixa-imagem">
+          <img src={imagemSelecionada} alt="" />
         </div>
         <div className="col-md-4">
           <h4>Havic HV G-92 Gamepad</h4>
@@ -81,24 +79,24 @@ const ProductDetails = ({ productName, price, quantity, color }) => {
           <hr />
           <div className="cores">
             <h5>Colors:</h5>
-            <div className='color-options'>
+            <div className="color-options">
               <span
                 className={`color-circle circuloCorBranca ${
-                  corSelecionada === 'Branco' ? 'selected' : ''
+                  corSelecionada === "Branco" ? "selected" : ""
                 }`}
-                onClick={() => selecionarCor('Branco')}
+                onClick={() => selecionarCor("Branco")}
               ></span>
               <span
                 className={`color-circle circuloCorPreta ${
-                  corSelecionada === 'Preto' ? 'selected' : ''
+                  corSelecionada === "Preto" ? "selected" : ""
                 }`}
-                onClick={() => selecionarCor('Preto')}
+                onClick={() => selecionarCor("Preto")}
               ></span>
             </div>
           </div>
-          <div className='secao-quantidade'>
-            <div className='purchase-section'>
-              <button className='buy-now' onClick={handleBuyNow}>
+          <div className="secao-quantidade">
+            <div className="purchase-section">
+              <button className="buy-now" onClick={handleBuyNow}>
                 Buy Now
               </button>
             </div>

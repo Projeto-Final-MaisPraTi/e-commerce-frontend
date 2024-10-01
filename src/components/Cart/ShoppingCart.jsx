@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./ShoppingCart.css";
-import ps5control from "../../assets/ps5control.png";
-import notebook from "../../assets/notebook.png";
+import galaxy_s23 from "../../assets/phones/Samsung_Galaxy_S23_black_1.jpg";
+import Fitbit_Versa3 from "../../assets/smartwatches/Fitbit_Versa3_black_1.png";
 
 const ShoppingCart = () => {
   const [cartItems, setCartItems] = useState([
-    { id: 1, name: "Notebook", price: 550, quantity: 1, image: notebook },
-    { id: 2, name: "PS5 Control", price: 550, quantity: 2, image: ps5control },
-    { id: 3, name: "Notebook", price: 150, quantity: 1, image: notebook },
-    { id: 4, name: "Notebook", price: 100, quantity: 1, image: notebook },
+    { id: 1, name: "Samsung Galaxy S23", price: 550, quantity: 1, image: galaxy_s23 },
+    { id: 2, name: "FitBit Versa 3", price: 550, quantity: 2, image: Fitbit_Versa3 },
+    { id: 3, name: "Samsung Galaxy S23", price: 150, quantity: 1, image: galaxy_s23 },
+    { id: 4, name: "Samsung Galaxy S23", price: 100, quantity: 1, image: galaxy_s23 },
     // ... mais itens, se necessário
   ]);
 

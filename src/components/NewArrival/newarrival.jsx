@@ -1,15 +1,15 @@
-import './NewArrival.css';
+import "./NewArrival.css";
 
 const NewArrival = () => {
   return (
     <div className="new-arrival-section">
       {/* Destaque */}
-      
-      <div className='featured'>
-            <span className='featured-tag'></span>
-            <p>Featured</p>
-        </div>
-        <h2>New Arrival</h2>
+
+      <div className="featured">
+        <span className="featured-tag"></span>
+        <p>Featured</p>
+      </div>
+      <h2>New Arrival</h2>
 
       {/* Grid de Produtos */}
       <div className="product-grid">
