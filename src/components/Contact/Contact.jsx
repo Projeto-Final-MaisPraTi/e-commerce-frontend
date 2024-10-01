@@ -1,6 +1,6 @@
 import "./Contact.css";
-import phoneIcon from "../../assets/icons-phone.png";
-import emailIcon from "../../assets/icons-mail.png";
+import phoneIcon from "../../assets/icon-phone.png";
+import emailIcon from "../../assets/icon-mail.png";
 import useLanguage from "../../utils/useLanguage";
 import { useState } from "react";
 
