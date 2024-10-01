@@ -3,8 +3,26 @@
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  margin: 181px 135px 140px 135px;
+  margin: 181px 135px 140px 170px;
   /* Mantido em px para consistência na tela base */
+}
+
+h4 {
+  margin-top: 28px;
+  margin-left: 80px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: normal;
+  color: #DB4444;
+}
+
+
+label {
+  font-size: 16px;
+  font-weight: none;
+  margin-bottom: 5px;
+  text-align: justify;
+  /* Alinha a legenda à esquerda */
 }
 
 .account-p {
@@ -14,6 +32,7 @@
 .account-info {
   flex: 1;
   margin-right: 30px;
+  margin-left: -85px;
   /* px para espaçamento fixo */
 }
 
@@ -24,12 +43,12 @@
 }
 
 .account-method {
-  margin-bottom: 20px;
+  margin-bottom: 2px;
 }
 
-.account-method h3 {
+.account-method h8 {
   color: black;
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 24px;
   display: flex;
   gap: 10px;
@@ -37,7 +56,7 @@
 }
 
 .account-method p {
-  font-size: 14px;
+  font-size: 16px;
   color: black;
   opacity: 50%;
   margin-bottom: 5px;
@@ -51,13 +70,20 @@
 form {
   display: flex;
   flex-direction: column;
-  margin: 40px 32px 40px 31px;
+  margin: 20px 80px 28px 80px;
 }
 
 .form-group {
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+  gap: 50px;
+}
+
+.form-group-pass {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
   gap: 16px;
 }
 
@@ -80,6 +106,19 @@ form {
   height: 50px;
 }
 
+.form-group-pass input,
+.form-group-pass textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+}
+
+.form-group-pass input {
+  height: 50px;
+}
+
 .size textarea {
   height: 50px;
   resize: none;
@@ -92,11 +131,26 @@ form {
   margin-top: 4px;
 }
 
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  border: none;
+  color: #000000;
+  font-size: 14px;
+  margin-right: 25px;
+  cursor: pointer;
+}
+
 /* Botão de envio */
 .save {
   background-color: #db4444;
   color: white;
-  padding: 10px 48px;
+  padding: 14px 53px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
