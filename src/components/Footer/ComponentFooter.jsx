@@ -1,6 +1,14 @@
 const Footer = () => {
   return (
-    <footer className="bg-dark text-white pt-5 pb-4">
+    <footer
+      className="bg-dark text-white pt-5 pb-4"
+      style={{
+        backgroundColor: '#333',
+        position: 'relative',
+        width: '100%',
+        marginTop: 'auto'
+      }}
+    >
       <div className="container text-center text-md-start">
         <div className="row text-center text-md-start">
           <div className="col-md-4 col-lg-2 col-xl-2 mx-auto mt-3">

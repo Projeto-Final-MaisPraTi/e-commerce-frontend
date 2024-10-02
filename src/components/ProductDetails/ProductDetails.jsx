@@ -3,41 +3,63 @@ import img2 from "../../assets/image 58.png";
 import img3 from "../../assets/image 61.png";
 import img4 from "../../assets/image 59.png";
 import imgCentro from "../../assets/image 63.png";
-
-import freeDelivery from "../../assets/icon-delivery.png";
-import returnDelivery from "../../assets/Icon-return.png";
-import heartFavorite from "../../assets/icon-heart-favorite.png";
-
-import "./ProductDetails.css";
+import freeDelivery from "../../assets/icon_delivery2.png";
+import returnDelivery from "../../assets/icon_return.png";
+import "./ProductDetails.modules.css";
 
 import { useState } from "react";
 
-const ProductDetails = () => {
-  let [contadorQuantidade, setContadorQuantidade] = useState(0);
+const ProductDetails = ({ productName, price, quantity, color }) => {
+  let [imagemSelecionada, setImagemSelecionada] = useState(imgCentro);
+  const [corSelecionada, setCorSelecionada] = useState(color);
 
-  function aumentaQuantidadeProduto() {
-    setContadorQuantidade(contadorQuantidade + 1);
+  function handleBuyNow() {
+    const productDetails = {
+      productName: productName,
+      price: price,
+      quantity: quantity,
+      color: corSelecionada,
+    };
+
+    console.log("Adicionando ao carrinho:", productDetails);
+    // window.location.href = '/paginaCarrinho';
   }
 
-  function diminuiQuantidadeProduto() {
-    if (contadorQuantidade <= 0) {
-      contadorQuantidade = 0;
-    } else {
-      setContadorQuantidade(contadorQuantidade - 1);
-    }
-  }
+  const selecionarCor = (cor) => {
+    setCorSelecionada(cor);
+  };
 
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-2 caixa-imagem-menor">
-          <img className="img" src={img1} alt="" />
-          <img className="img" src={img2} alt="" />
-          <img className="img" src={img3} alt="" />
-          <img className="img" src={img4} alt="" />
+          <img
+            src={img1}
+            onMouseEnter={() => setImagemSelecionada(img1)}
+            onMouseLeave={() => setImagemSelecionada(imgCentro)}
+            alt=""
+          />
+          <img
+            src={img2}
+            onMouseEnter={() => setImagemSelecionada(img2)}
+            onMouseLeave={() => setImagemSelecionada(imgCentro)}
+            alt=""
+          />
+          <img
+            src={img3}
+            onMouseEnter={() => setImagemSelecionada(img3)}
+            onMouseLeave={() => setImagemSelecionada(imgCentro)}
+            alt=""
+          />
+          <img
+            src={img4}
+            onMouseEnter={() => setImagemSelecionada(img4)}
+            onMouseLeave={() => setImagemSelecionada(imgCentro)}
+            alt=""
+          />
         </div>
         <div className="col-md-6 caixa-imagem">
-          <img className="img" src={imgCentro} alt="" />
+          <img src={imagemSelecionada} alt="" />
         </div>
         <div className="col-md-4">
           <h4>Havic HV G-92 Gamepad</h4>
@@ -58,39 +80,25 @@ const ProductDetails = () => {
           <div className="cores">
             <h5>Colors:</h5>
             <div className="color-options">
-              <span className="color-circle circuloCorCinza"></span>
-              <span className="color-circle circuloCorVermelho"></span>
-            </div>
-          </div>
-          <div className="tamanhos">
-            <h5>Size:</h5>
-            <div className="size-options">
-              <span>XS</span>
-              <span>S</span>
-              <span className="selected">M</span>
-              <span>L</span>
-              <span>XL</span>
+              <span
+                className={`color-circle circuloCorBranca ${
+                  corSelecionada === "Branco" ? "selected" : ""
+                }`}
+                onClick={() => selecionarCor("Branco")}
+              ></span>
+              <span
+                className={`color-circle circuloCorPreta ${
+                  corSelecionada === "Preto" ? "selected" : ""
+                }`}
+                onClick={() => selecionarCor("Preto")}
+              ></span>
             </div>
           </div>
           <div className="secao-quantidade">
-            <div className="quantity">
-              <button id="botaoMenos" onClick={diminuiQuantidadeProduto}>
-                -
-              </button>
-              <input type="text" value={contadorQuantidade} />
-              <button id="botaoMais" onClick={aumentaQuantidadeProduto}>
-                +
-              </button>
-            </div>
-
             <div className="purchase-section">
-              <button className="buy-now">Buy Now</button>
-              <img
-                className="favorite-icon img"
-                id="favorite-icon"
-                src={heartFavorite}
-                alt="Favorite"
-              />
+              <button className="buy-now" onClick={handleBuyNow}>
+                Buy Now
+              </button>
             </div>
           </div>
           <div className="cardDelivery">

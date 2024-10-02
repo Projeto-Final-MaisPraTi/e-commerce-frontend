@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ProductCard from "../ProductCard/ProductCard";
-import produtos from "../../utils/Products";
+import ProductsData from "../../utils/ProductsData";
+import { useState, useEffect } from "react";
 import useLanguage from "../../utils/useLanguage";
 
 const Container = styled.div`
@@ -34,6 +35,29 @@ const Container = styled.div`
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  .produtos > * {
+    flex: 0 1 calc(25% - 15px); /* 4 produtos por linha */
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 1200px) {
+    .produtos > * {
+      flex: 0 1 calc(33.33% - 15px); /* 3 colunas em telas médias */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .produtos > * {
+      flex: 0 1 calc(50% - 15px); /* 2 colunas em telas pequenas */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .produtos > * {
+      flex: 0 1 100%; /* 1 coluna em telas muito pequenas */
+    }
+  }
 `;
 
 const SecTitle = styled.div`
@@ -54,7 +78,43 @@ const SecTitle = styled.div`
 
 const BestSelling = () => {
   const { translations } = useLanguage();
+  const [maxProducts, setMaxProducts] = useState(7);
+  const [randomProducts, setRandomProducts] = useState([]);
 
+  // Função para ajustar o número de produtos conforme a largura da tela
+  const handleMaxProducts = () => {
+    const width = window.innerWidth;
+
+    if (width >= 2560) {
+      // 2K resolution - Mostrar no máximo 7 produtos, já que são os disponíveis
+      setMaxProducts(7);
+    } else if (width >= 1200) {
+      // Full HD and larger screens
+      setMaxProducts(4);
+    } else if (width >= 768) {
+      // Tablets and medium screens
+      setMaxProducts(6);
+    } else if (width >= 480) {
+      // Small screens like phones
+      setMaxProducts(4);
+    } else {
+      // Very small screens
+      setMaxProducts(2);
+    }
+  };
+
+  useEffect(() => {
+    // Filtrar produtos sem desconto e embaralhar uma única vez
+    const filteredProducts = ProductsData.filter((product) => product.isBestSelling);
+    const shuffledProducts = filteredProducts.sort(() => 0.5 - Math.random());
+    setRandomProducts(shuffledProducts);
+    handleMaxProducts();
+    window.addEventListener("resize", handleMaxProducts);
+
+    return () => {
+      window.removeEventListener("resize", handleMaxProducts);
+    };
+  }, []);
   return (
     <Container>
       <div className="title">
@@ -66,9 +126,9 @@ const BestSelling = () => {
         <button>{translations.home.BestSelling.viewer}</button>
       </SecTitle>
       <div className="produtos">
-        {produtos.map((produto) =>
-          produto.id < 18 ? <ProductCard key={produto.id} product={produto} /> : "",
-        )}
+        {randomProducts.slice(0, maxProducts).map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </div>
     </Container>
   );

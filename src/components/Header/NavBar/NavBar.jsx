@@ -1,15 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/Logo.png";
-import lupa from "../../../assets/Lupa.png";
-import wishlist from "../../../assets/Wishlist.png";
-import cart from "../../../assets/Cart.png";
-import userIcon from "../../../assets/User=On.png";
-import user from "../../../assets/user.png";
-import mallbagIcon from "../../../assets/mallbag.png";
-import cancelIcon from "../../../assets/cancel.png";
-import reviewsIcon from "../../../assets/Reviews.png";
-import logoutIcon from "../../../assets/logout.png";
+import lupa from "../../../assets/icon_lupa.png";
+import wishlist from "../../../assets/icon_wishlist.png";
+import cart from "../../../assets/icon_cart.png";
+import userIcon from "../../../assets/icon_user=on.png";
+import user from "../../../assets/icon_user.png";
+import mallbagIcon from "../../../assets/icon_mallbag.png";
+import cancelIcon from "../../../assets/icon_cancel.png";
+import reviewsIcon from "../../../assets/icon_reviews.png";
+import logoutIcon from "../../../assets/icon_logout.png";
 import useLanguage from "../../../utils/useLanguage";
 import "./NavBar.css";
 

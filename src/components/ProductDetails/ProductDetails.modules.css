@@ -1,0 +1,165 @@
+:root {
+  --backgroundCaixaImagem: #f5f5f5;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.caixa-imagem-menor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.caixa-imagem-menor img {
+  width: 150px;
+}
+
+.caixa-imagem-menor img {
+  background-color: var(--backgroundCaixaImagem);
+  padding: 20px;
+}
+
+.caixa-imagem {
+  background-color: var(--backgroundCaixaImagem);
+  width: 450px;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.caixa-imagem img {
+  /* width: 430px; */
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.review {
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+}
+
+.review img {
+  background-color: #ffffff;
+}
+
+.purchase-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.buy-now {
+  padding: 10px;
+  background-color: #ff5e5e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 150px;
+  height: 40px;
+}
+
+.buy-now:hover {
+  background-color: #e04b4b;
+}
+
+.secao-quantidade {
+  display: flex;
+  margin: 20px 0;
+}
+
+.cardDelivery {
+  display: flex;
+  flex-direction: column;
+}
+
+.freeDelivery,
+.returnDelivery {
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.freeDelivery img,
+.returnDelivery img {
+  background-color: #ffffff;
+  margin-right: 10px;
+}
+
+.freeDeliveryText,
+.returnDeliveryText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1rem;
+}
+
+h6,
+p {
+  margin: 0;
+}
+
+span#title {
+  color: #00ff66;
+}
+
+.estrelaAmarela {
+  color: #ffad39;
+}
+
+.review {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+/* Cores Preto e Branco */
+.cores {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+
+.color-options {
+  display: flex;
+  gap: 10px;
+}
+
+.color-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.circuloCorPreta {
+  background-color: #222222;
+}
+
+.circuloCorBranca {
+  background-color: #fffafa;
+}
+
+.cores h5,
+input[type='radio'] .radioButtom {
+  padding-right: 20px;
+}
+
+.color-circle.selected {
+  border: 2px solid #e04b4b;
+}
