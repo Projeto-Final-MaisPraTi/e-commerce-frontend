@@ -99,7 +99,7 @@ const ArrowsWrapper = styled.div`
   display: flex; /* Coloca as setas lado a lado */
   gap: 10px; /* Adiciona espaço entre as setas */
   margin-bottom: 10px;
-  @media (min-width: 1400px) {
+  @media (min-width: 1200px) {
     display: none;
   }
 `;

@@ -10,6 +10,7 @@ import CheckoutPage from "./pages/Checkout/Checkout.jsx";
 import PageNotFound from "./pages/404NotFound/PageNotFound.jsx";
 import MyAccount from "./pages/MyAccount/MyAccount.jsx";
 import Product from "./pages/Product/Product.jsx";
+import RegisterProduct from "./pages/RegisterProduct/RegisterProduct.jsx";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />} />
           {/* Responsável: Luiz Lobato */}
           <Route path="/account" element={<MyAccount />} />
+          <Route path="/registerproduct" element={<RegisterProduct />} />
           {/* Rota para capturar qualquer caminho inválido */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
