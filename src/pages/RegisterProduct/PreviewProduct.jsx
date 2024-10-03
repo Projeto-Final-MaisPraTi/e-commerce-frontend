@@ -32,9 +32,10 @@ const PreviewProduct = () => {
 
     let product = produtos[0];
 
-    product["title"] = name;
-    product["discountPrice"] = price;
-    product["image"] = image;
+    product["name"] = name;
+    product["price"] = price;
+    let array = [image];
+    product["images"] = array;
 
     return (
         <Container>

@@ -12,6 +12,7 @@ import MyAccount from "./pages/MyAccount/MyAccount.jsx";
 import About from "./pages/About/AboutPage.jsx";
 import ProductDetails from "./components/ProductDetails/ProductDetails.jsx";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import RegisterProduct from "./pages/RegisterProduct/RegisterProduct.jsx";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             {/* Responsável: Luiz Lobato */}
             <Route path="/account" element={<MyAccount />} />
             {/* Rota para capturar qualquer caminho inválido */}
+            <Route path="/productregister" element={<RegisterProduct />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Router>
