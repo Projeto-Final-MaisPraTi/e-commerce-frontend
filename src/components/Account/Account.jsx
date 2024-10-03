@@ -116,10 +116,11 @@ const Account = () => {
       </section>
 
       <section className="account-form">
-        <h4>Edit Your Profile</h4>
-        <form onSubmit={handleSubmit}>
+        <h4 class="profile-title">Edit Your Profile</h4>
 
-          <div className="form-group">
+        <div form className="form-a" onSubmit={handleSubmit}>
+
+          <div className="form-group-a">
             <div className="input-container">
               <label htmlFor="firstname">First Name</label>
               <input
@@ -149,7 +150,7 @@ const Account = () => {
             </div>
           </div>
 
-          <div className="form-group">
+          <div className="form-group-a">
             <div className="input-container">
               <label htmlFor="email">E-mail</label>
               <input
@@ -233,7 +234,7 @@ const Account = () => {
               {translations.account.save}
             </button>
           </div>
-        </form>
+        </div>
       </section>
     </div>
   );
