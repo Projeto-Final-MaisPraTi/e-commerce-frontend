@@ -12,6 +12,7 @@ import MyAccount from "./pages/MyAccount/MyAccount.jsx";
 import About from "./pages/About/AboutPage.jsx";
 import ProductDetails from "./components/ProductDetails/ProductDetails.jsx";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import CategoryPage from "./pages/Category/CategoryPage.jsx";
 
 function App() {
   return (
@@ -42,8 +43,11 @@ function App() {
             <Route path="/checkout" element={<CheckoutPage />} />
             {/* Responsável: Luiz Lobato */}
             <Route path="/account" element={<MyAccount />} />
+            {/* Responsável: Gabriel Bertollo*/}
+            <Route path="/category/:category" element={<CategoryPage />} />
             {/* Rota para capturar qualquer caminho inválido */}
             <Route path="*" element={<PageNotFound />} />
+            
           </Routes>
         </Router>
       </LanguageProvider>

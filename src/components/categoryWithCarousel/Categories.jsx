@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 const LinkList=styled.div`
 margin-bottom: 0;
@@ -26,11 +27,11 @@ margin-top: 10px;
 function Category() {
     return(
         <LinkList className='col-12 col-md-2'>
-        <a href="">Phones</a>
-        <a href="">Computers</a>
-        <a href="">SmartWatch</a>
-        <a href="">Camera</a>
-        <a href="">HeadPhones</a>
+        <Link to="/category/Phones">Phones</Link>
+        <Link to="/category/Computers">Computers</Link>
+        <Link to="/category/Smartwatches">SmartWatch</Link>
+        <Link to="/category/Cameras">Camera</Link>
+        <Link to="/category/Headphones">HeadPhones</Link>
         </LinkList>
         )
 }
