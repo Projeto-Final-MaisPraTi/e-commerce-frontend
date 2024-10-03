@@ -45,13 +45,16 @@ export default {
       returns: "My Returns",
       cancellations: "My Cancellations",
       formLabels: {
-        firstname: "First Name",
-        lastname: "Last Name",
-        email: "E-mail",
-        address: "Address",
+        firstname: "Luiz",
+        lastname: "Lobato",
+        email: "email@gmail.com",
+        address: "Kingston, 5236, United State",
         password: "Password",
+        CurrentPassword: "Current Password",
+        NewPassword: "New Password",
+        ConfirmPassword: "Confirm New Password"
       },
-      save: "Save",
+      save: "Save Changes",
     },
     contact: {
       callToUs: "Call To Us",
