@@ -160,7 +160,7 @@ const FlashSales = () => {
     <FlashSalesContainer>
       <div className="title">
         <span className="color"></span>
-        <p>Today's</p>
+        <p>Today&apos;s</p>
       </div>
       <Header>
         <Title>Flash Sales</Title>

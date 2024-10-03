@@ -73,7 +73,9 @@ const Account = () => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      alert("Não foi possível salvar as atualizações. Corrija os dados inseridos e tente novamente.");
+      alert(
+        "Não foi possível salvar as atualizações. Corrija os dados inseridos e tente novamente.",
+      );
       return;
     }
     alert("Atualizações salvas com sucesso.");
@@ -97,7 +99,9 @@ const Account = () => {
       <section className="account-info">
         <div className="account-card">
           <div className="account-method">
-            <h6><strong>{translations.account.account}</strong></h6>
+            <h6>
+              <strong>{translations.account.account}</strong>
+            </h6>
             <div className="account-p">
               <p>{translations.account.profile}</p>
               <p>{translations.account.address}</p>
@@ -106,7 +110,9 @@ const Account = () => {
             <br />
           </div>
           <div className="account-method">
-            <h6><strong>{translations.account.orders}</strong></h6>
+            <h6>
+              <strong>{translations.account.orders}</strong>
+            </h6>
             <div className="account-p">
               <p>{translations.account.returns}</p>
               <p>{translations.account.cancellations}</p>
@@ -116,10 +122,9 @@ const Account = () => {
       </section>
 
       <section className="account-form">
-        <h4 class="profile-title">Edit Your Profile</h4>
+        <h4 className="profile-title">Edit Your Profile</h4>
 
         <div form className="form-a" onSubmit={handleSubmit}>
-
           <div className="form-group-a">
             <div className="input-container">
               <label htmlFor="firstname">First Name</label>

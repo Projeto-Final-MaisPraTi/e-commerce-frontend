@@ -3,6 +3,8 @@ import ProductsData from "../../utils/ProductsData";
 import ProductCard from "../ProductCard/ProductCard";
 import { useState, useEffect } from "react";
 import useLanguage from "../../utils/useLanguage";
+import { useNavigate } from "react-router-dom";
+// import Buttons from "../Buttons/Buttons";
 
 // Styled components
 const Container = styled.div`
@@ -79,6 +81,7 @@ const ExploreProducts = () => {
   const { translations } = useLanguage();
   const [maxProducts, setMaxProducts] = useState(8);
   const [randomProducts, setRandomProducts] = useState([]);
+  const navigate = useNavigate();
 
   // Função para ajustar o número de produtos conforme a largura da tela
   const handleMaxProducts = () => {
@@ -114,6 +117,11 @@ const ExploreProducts = () => {
       window.removeEventListener("resize", handleMaxProducts);
     };
   }, []);
+
+  const handleViewAllClick = () => {
+    // Redireciona para a página /category/explore, com os produtos randomProducts no state
+    navigate("/category/explore", { state: { products: randomProducts } });
+  };
   return (
     <Container>
       <div className="title">
@@ -122,7 +130,14 @@ const ExploreProducts = () => {
       </div>
       <SecTitle>
         <h2>{translations.home.ExploreProducts.h2}</h2>
-        <button>{translations.home.ExploreProducts.viewer}</button>
+        <button onClick={() => handleViewAllClick()}>{translations.home.ExploreProducts.viewer}</button>
+        {/* <Buttons
+          type={1}
+          text="View all"
+          paddingX={48}
+          paddingY={16}
+          onClick={() => handleViewAllClick()}
+        /> */}
       </SecTitle>
       <div className="produtos">
         {randomProducts.slice(0, maxProducts).map((product) => (
