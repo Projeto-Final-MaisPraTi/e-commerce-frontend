@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import useRegister from "./useRegister";
+import React, { useState } from 'react';
+import { submitProduct } from "../../services/ProductSubmission";
 
 const Container = styled.div`
   flex: 2;
@@ -38,51 +40,159 @@ const Container = styled.div`
   .img-input{
     height:50px;
   }
+  .inputColor{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+  }
 `
 
 const Register = () => {
-    const { setValues } = useRegister();
+    const { setValues, image , data} = useRegister();
+    // Categorias
+    const [category, setCategory] = useState('');
 
+    const categories = [
+        { value: '', label: 'Categories', disabled: true },
+        { value: 'Games', label: 'Games' },
+        { value: 'Clothes', label: 'Clothes' },
+        { value: 'Phones', label: 'Phones' },
+        { value: 'Other', label: 'Other' },
+    ];
+    // Muda a categoria selecionada
+    const handleChangeCategory = (event) => {
+        const selectedValue = event.target.value;
+        setCategory(selectedValue);
+        setValues(selectedValue, "category");
+    };
+
+    // Pega o primeiro indice para a imagem de capa
     const handleFile = (event) => {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                setValues(reader.result, "img");
+                setValues(reader.result, "cover");
             }
             reader.readAsDataURL(file);
         }
         else {
-            setValues("", "img");
+            setValues("", "cover");
         }
     }
+
+    // Pega todas as outras imagens para o produto
+    const handleFiles = (event) => {
+      const files = event.target.files;
+      if (files.length > 0) {
+
+
+        const images = []; 
+        let filesRead = 0;
+
+
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const reader = new FileReader();
+          reader.onloadend = () => {
+
+              images.push(reader.result);
+              filesRead++;
+
+              if (filesRead === files.length) {
+                setValues(images, "img");
+             }
+          }
+          reader.readAsDataURL(file);
+        }
+      } else {
+        setValues("", "img");
+      }
+  }
+    //Seleciona a cor (Precisa colocar a logica para quando o produto não tiver uma cor)
+    const [corSelecionada, setCorSelecionada] = useState('#000000');
+
+    const opcoesDeCores = [
+        { nome: 'Preto', valor: '#000000' },
+        { nome: 'Vermelho', valor: '#ff0000' },
+        { nome: 'Verde', valor: '#00ff00' },
+        { nome: 'Azul', valor: '#0000ff' },
+        { nome: 'Amarelo', valor: '#ffff00' },
+    ];
+
+    const handleChangeColor = (event) => {
+        setCorSelecionada(event.target.value);
+
+        const corEncontrada = opcoesDeCores.find(opcao => opcao.valor === event.target.value);
+        if (corEncontrada) {
+            setValues(corEncontrada.nome, "color");
+        }
+    };
+    // Enviar para o banco de dados
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      // Necessário confirmar todos os dados antes de enviar
+
+      // União das imagens
+      let imagens = [];
+      imagens.push(data.cover);
+      imagens = [...imagens, ...data.images.flat()];
+
+      try {
+        let result = await submitProduct(data, imagens);
+        alert("Produto cadastrado!");
+        console.log(result);
+      } catch (error){
+        console.error('Erro ao enviar o produto:', error);
+        alert("Erro ao cadastrar o produto.");
+      }
+  };
+    // A maioria dos inputs ainda precisam de validação
     return (
         <Container>
             <div className="title">
                 <h2>Register Product</h2>
             </div>
-            <form action="">
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="">Name:</label><br />
                     <input type="text" onChange={(event) => setValues(event.target.value ,"name")}/>
                 </div>
                 <div>
                     <label htmlFor="">Description:</label><br />
-                    <textarea className="description" type="text" />
+                    <textarea className="description" type="text" onChange={(event) => setValues(event.target.value, "description")}/>
                 </div>
                 <div>
                     <label htmlFor="">Category:</label><br />
-                    <select name="" id="">
-                        <option className="mainSelect" selected disabled value="">Categories</option>
-                        <option value="">Games</option>
-                        <option value="">Clothes</option>
-                        <option value="">Phones</option>
-                        <option value="">Other</option>
+                    <select name="" id="" onChange={handleChangeCategory} value={category}>
+
+                        {categories.map((cat, index) => (
+                          <option key={index} value={cat.value} disabled={cat.disabled}>
+                              {cat.label}
+                          </option>
+                        ))}
                     </select>
+                </div>
+                <div>
+                    <label htmlFor="">Quantity:</label><br />
+                    <input type="number" min={0} placeholder="0" onChange={(event) => setValues(event.target.value ,"quantity")}/>
                 </div>
                 <div>
                     <label htmlFor="">Value:</label><br />
                     <input type="text" placeholder="0,00" onChange={(event) => setValues(event.target.value ,"price")}/>
+                </div>
+                <div>
+                    <label>Cor</label>
+                    <div className="inputColor">
+                      <select value={corSelecionada} onChange={handleChangeColor}>
+                          {opcoesDeCores.map((opcao, index) => (
+                              <option key={index} value={opcao.valor}>
+                                  {opcao.nome}
+                              </option>
+                          ))}
+                      </select>
+                      <span style={{ border:'2px solid black',borderRadius: '5px', padding:'15px' , marginLeft: '10px', width: '20px', height: '20px', display: 'inline-block', backgroundColor: corSelecionada }}></span>
+                    </div>
                 </div>
                 <div>
                     <label htmlFor="">Cover Image:</label><br />
@@ -90,7 +200,7 @@ const Register = () => {
                 </div>
                 <div>
                     <label htmlFor="">Image Details:</label><br />
-                    <input className="img-input" type="file" multiple accept="image/*"/>
+                    <input className="img-input" type="file" multiple accept="image/*" onChange={handleFiles}/>
                 </div>
                 <input type="submit" />
             </form>

@@ -28,13 +28,13 @@ const StyProduct = styled(ProductCard)`
 
 const PreviewProduct = () => {
 
-    const {name, price, image} = useRegister();
+    const {name, price, cover} = useRegister();
 
-    let product = produtos[0];
+    let product = {};
 
     product["name"] = name;
     product["price"] = price;
-    let array = [image];
+    let array = [cover];
     product["images"] = array;
 
     return (
