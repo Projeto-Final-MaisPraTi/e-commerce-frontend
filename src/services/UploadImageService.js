@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { storage } from './firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { getAuth } from 'firebase/auth';

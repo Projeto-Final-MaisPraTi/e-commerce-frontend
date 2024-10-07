@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import useRegister from "./useRegister";
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { submitProduct } from "../../services/ProductSubmission";
 
 const Container = styled.div`
@@ -48,7 +48,7 @@ const Container = styled.div`
 `
 
 const Register = () => {
-    const { setValues, image , data} = useRegister();
+    const { setValues, data} = useRegister();
     // Categorias
     const [category, setCategory] = useState('');
 
