@@ -2,13 +2,28 @@ import styled from "styled-components";
 import useRegister from "./useRegister";
 import React, { useState } from 'react';
 import { submitProduct } from "../../services/ProductSubmission";
+import Box from '@mui/material/Box';
+import { styled as muiStyled} from '@mui/material/styles';
+import CircularProgress from '@mui/material/CircularProgress';
+
+
+// Progesso do banco de dados
+const Root = muiStyled(Box)(({ theme }) => ({
+  display: 'flex',
+  '& > * + *': {
+    marginLeft: theme.spacing(3),
+  },
+  justifyContent: 'center'
+}));
+
+
 
 const Container = styled.div`
   flex: 2;
   box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
   width: 800px;
   text-align: center;
-  h2{
+  h2 {
     text-align: center;
     margin: auto;
   }
@@ -32,25 +47,37 @@ const Container = styled.div`
   label {
     margin-top: 10px;
   }
-  .description{
+  .description {
     padding: 10px;
     width: 80%;
     height: 100px;
   }
-  .img-input{
-    height:50px;
+  .img-input {
+    height: 50px;
   }
   .inputColor{
     display: flex;
     justify-content: center;
     margin-bottom: 5px;
   }
+  .loading_banco_de_dados{
+    margin: auto;
+    margin-top: 15px;
+  }
+  .button_submit {
+    input[type="submit"] {
+      line-height: 100%;
+    }
+  }
 `
 
 const Register = () => {
+
     const { setValues, image , data} = useRegister();
     // Categorias
     const [category, setCategory] = useState('');
+    const [progressBar, setProgressBar] = useState(null);
+    const [progressInsertDB, setProgressInsertDB] = useState(null);
 
     const categories = [
         { value: '', label: 'Categories', disabled: true },
@@ -139,7 +166,7 @@ const Register = () => {
       imagens = [...imagens, ...data.images.flat()];
 
       try {
-        let result = await submitProduct(data, imagens);
+        let result = await submitProduct(data, imagens, setProgressBar, setProgressInsertDB);
         alert("Produto cadastrado!");
         console.log(result);
       } catch (error){
@@ -202,7 +229,24 @@ const Register = () => {
                     <label htmlFor="">Image Details:</label><br />
                     <input className="img-input" type="file" multiple accept="image/*" onChange={handleFiles}/>
                 </div>
-                <input type="submit" />
+                <div className="button_submit">
+                  <input type="submit" value={"Enviar"}/>
+                </div>
+                {progressBar &&
+                <Box sx={{ width: '100%', marginTop: '8px' }}>
+                  <h5>Fazendo upload das imagens</h5>
+                  <Root>
+                    <CircularProgress />
+                  </Root>
+                </Box>}
+                {progressInsertDB &&
+                <div className="loading_banco_de_dados">
+                    <h5>Fazendo upload no banco de dados</h5>
+                  <Root>
+                    <CircularProgress />
+                  </Root>
+                </div>
+                }
             </form>
         </Container>
     );

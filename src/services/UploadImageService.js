@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { storage } from './firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { getAuth } from 'firebase/auth';
@@ -14,7 +13,6 @@ const base64ToBlob = (base64Data, contentType) => {
         for (let i = 0; i < slice.length; i++) {
             byteNumbers[i] = slice.charCodeAt(i);
         }
-
         const byteArray = new Uint8Array(byteNumbers);
         byteArrays.push(byteArray);
     }
@@ -28,7 +26,7 @@ const extractBase64Data = (base64String) => {
     return { base64Data, contentType };
 };
 
-export const uploadImages = async (images) => {
+export const uploadImages = async (images, setProgressBar) => {
     const auth = getAuth();
     const user = auth.currentUser;
     if (!user) {
@@ -50,6 +48,7 @@ export const uploadImages = async (images) => {
                 'state_changed',
                 (snapshot) => {
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    setProgressBar(progress);
                     console.log('Progresso do upload: ' + progress + '%');
                 },
                 (error) => {

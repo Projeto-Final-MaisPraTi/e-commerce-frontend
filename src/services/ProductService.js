@@ -11,7 +11,35 @@ export const createProduct = async (productData) => {
         });
         return response.data; // Retorna os dados do produto cadastrado
     } catch (error) {
-        console.error('Error creating product:', error);
+        console.error('Error ao criar produto:', error);
         throw error; // Repassa o erro
     }
 };
+
+export const findProductByName = async (name) => {
+    try {
+        const response = await axios.get(API_URL + '/search?name=' + name, {
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error ao procurar produto:', error);
+        throw error; // Repassa o erro
+    }
+}
+
+export const findProductById = async (id) => {
+    try {
+        const response = await axios.get(API_URL + '/search?id=' + id, {
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error ao procurar produto:', error);
+        throw error; // Repassa o erro
+    }
+}

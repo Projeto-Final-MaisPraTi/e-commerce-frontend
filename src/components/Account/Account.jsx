@@ -10,7 +10,9 @@ const Account = () => {
     lastName: "",
     email: "",
     address: "",
-    passwordChanges: "",
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -29,19 +31,39 @@ const Account = () => {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.name || formData.name.length < 3) {
-      newErrors.name = translations.account.formErrors.invalidName;
+
+    const nameRegex = /^[A-Za-z]{3,}$/;
+    if (!nameRegex.test(formData.firstname)) {
+      newErrors.firstname = "O nome deve conter pelo menos 3 caracteres e apenas letras.";
     }
+    if (!nameRegex.test(formData.lastName)) {
+      newErrors.lastName = "O sobrenome deve conter pelo menos 3 caracteres e apenas letras.";
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email || !emailRegex.test(formData.email)) {
-      newErrors.email = translations.account.formErrors.invalidEmail;
+    if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Por favor, insira um e-mail válido com '@' e '.com'.";
     }
-    const phoneRegex = /^[0-9]{10,}$/;
-    if (!formData.phone || !phoneRegex.test(formData.phone)) {
-      newErrors.phone = translations.contact.formErrors.invalidPhone;
+
+    const addressRegex = /^([^,]+),\s*(\d+),\s*([^,]+)$/;
+    if (!addressRegex.test(formData.address)) {
+      newErrors.address = "O endereço deve estar no formato: 'Rua, número, estado'.";
     }
-    if (!formData.message || formData.message.length < 10) {
-      newErrors.message = translations.contact.formErrors.shortMessage;
+
+    if (formData.currentPassword.length < 5) {
+      newErrors.currentPassword = "A senha atual deve ter no mínimo 5 caracteres.";
+    }
+    if (formData.newPassword.length < 5) {
+      newErrors.newPassword = "A nova senha deve ter no mínimo 5 caracteres.";
+    }
+    if (formData.confirmPassword.length < 5) {
+      newErrors.confirmPassword = "A confirmação da senha deve ter no mínimo 5 caracteres.";
+    }
+    if (formData.currentPassword === formData.newPassword) {
+      newErrors.newPassword = "A nova senha deve ser diferente da senha atual.";
+    }
+    if (formData.newPassword !== formData.confirmPassword) {
+      newErrors.confirmPassword = "As senhas não coincidem.";
     }
     return newErrors;
   };
@@ -51,9 +73,25 @@ const Account = () => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      alert(
+        "Não foi possível salvar as atualizações. Corrija os dados inseridos e tente novamente.",
+      );
       return;
     }
-    console.log("Form Data Submitted:", formData);
+    alert("Atualizações salvas com sucesso.");
+  };
+
+  const handleCancel = () => {
+    setFormData({
+      firstname: "",
+      lastName: "",
+      email: "",
+      address: "",
+      currentPassword: "",
+      newPassword: "",
+      confirmPassword: "",
+    });
+    setErrors({});
   };
 
   return (
@@ -61,15 +99,20 @@ const Account = () => {
       <section className="account-info">
         <div className="account-card">
           <div className="account-method">
-            <h6><strong>{translations.account.account}</strong></h6>
+            <h6>
+              <strong>{translations.account.account}</strong>
+            </h6>
             <div className="account-p">
-              <p >{translations.account.profile}</p>
+              <p>{translations.account.profile}</p>
               <p>{translations.account.address}</p>
               <p>{translations.account.payment}</p>
             </div>
+            <br />
           </div>
           <div className="account-method">
-            <h6><strong>{translations.account.orders}</strong></h6>
+            <h6>
+              <strong>{translations.account.orders}</strong>
+            </h6>
             <div className="account-p">
               <p>{translations.account.returns}</p>
               <p>{translations.account.cancellations}</p>
@@ -79,27 +122,47 @@ const Account = () => {
       </section>
 
       <section className="account-form">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
+        <h4 className="profile-title">Edit Your Profile</h4>
+
+        <div form className="form-a" onSubmit={handleSubmit}>
+          <div className="form-group-a">
             <div className="input-container">
+              <label htmlFor="firstname">First Name</label>
               <input
-                id="name"
+                id="firstname"
                 type="text"
-                name="name"
+                name="firstname"
                 placeholder={translations.account.formLabels.firstname}
-                value={formData.name}
+                value={formData.firstname}
                 onChange={handleChange}
-                aria-label={translations.account.formLabels.name}
+                aria-label={translations.account.formLabels.firstname}
               />
-              {errors.name && <p className="error-text">{errors.name}</p>}
+              {errors.firstname && <p className="error-text">{errors.firstname}</p>}
             </div>
 
             <div className="input-container">
+              <label htmlFor="lastName">Last Name</label>
+              <input
+                id="lastName"
+                type="text"
+                name="lastName"
+                placeholder={translations.account.formLabels.lastname}
+                value={formData.lastName}
+                onChange={handleChange}
+                aria-label={translations.account.formLabels.lastname}
+              />
+              {errors.lastName && <p className="error-text">{errors.lastName}</p>}
+            </div>
+          </div>
+
+          <div className="form-group-a">
+            <div className="input-container">
+              <label htmlFor="email">E-mail</label>
               <input
                 id="email"
                 type="email"
                 name="email"
-                placeholder={translations.account.formLabels.lastname}
+                placeholder={translations.account.formLabels.email}
                 value={formData.email}
                 onChange={handleChange}
                 aria-label={translations.account.formLabels.email}
@@ -108,81 +171,75 @@ const Account = () => {
             </div>
 
             <div className="input-container">
+              <label htmlFor="address">Address</label>
               <input
-                id="phone"
-                type="tel"
-                name="phone"
-                placeholder={translations.account.formLabels.email}
-                value={formData.phone}
-                onChange={handleChange}
-                aria-label={translations.account.formLabels.email}
-              />
-              {errors.phone && <p className="error-text">{errors.phone}</p>}
-            </div>
-          </div>
-
-          <div className="form-group">
-            <div className="input-container">
-              <div className="size"> <textarea
-                id="message"
-                name="message"
+                id="address"
+                name="address"
                 placeholder={translations.account.formLabels.address}
-                value={formData.message}
+                value={formData.address}
                 onChange={handleChange}
                 aria-label={translations.account.formLabels.address}
-              ></textarea> </div>
-              {errors.message && <p className="error-text">{errors.message}</p>}
+              />
+              {errors.address && <p className="error-text">{errors.address}</p>}
             </div>
           </div>
 
-
-          <div className="form-group">
+          <div className="form-group-pass">
             <div className="input-container">
-              <div className="size"> <textarea
-                id="message"
-                name="message"
-                placeholder={translations.account.formLabels.password}
-                value={formData.message}
+              <label htmlFor="email">Password Changes</label>
+              <input
+                id="currentPassword"
+                type="password"
+                name="currentPassword"
+                placeholder={translations.account.formLabels.CurrentPassword}
+                value={formData.currentPassword}
                 onChange={handleChange}
-                aria-label={translations.account.formLabels.password}
-              ></textarea> </div>
-              {errors.message && <p className="error-text">{errors.message}</p>}
+                aria-label={translations.account.formLabels.CurrentPassword}
+              />
+              {errors.currentPassword && <p className="error-text">{errors.currentPassword}</p>}
             </div>
           </div>
 
-          <div className="form-group">
+          <div className="form-group-pass">
             <div className="input-container">
-              <div className="size"> <textarea
-                id="message"
-                name="message"
-                placeholder={translations.account.formLabels.password}
-                value={formData.message}
+              <input
+                id="newPassword"
+                type="password"
+                name="newPassword"
+                placeholder={translations.account.formLabels.NewPassword}
+                value={formData.newPassword}
                 onChange={handleChange}
-                aria-label={translations.account.formLabels.password}
-              ></textarea> </div>
-              {errors.message && <p className="error-text">{errors.message}</p>}
+                aria-label={translations.account.formLabels.NewPassword}
+              />
+              {errors.newPassword && <p className="error-text">{errors.newPassword}</p>}
             </div>
           </div>
 
-          <div className="form-group">
+          <div className="form-group-pass">
             <div className="input-container">
-              <div className="size"> <textarea
-                id="message"
-                name="message"
-                placeholder={translations.account.formLabels.password}
-                value={formData.message}
+              <input
+                id="confirmPassword"
+                type="password"
+                name="confirmPassword"
+                placeholder={translations.account.formLabels.ConfirmPassword}
+                value={formData.confirmPassword}
                 onChange={handleChange}
-                aria-label={translations.account.formLabels.password}
-              ></textarea> </div>
-              {errors.message && <p className="error-text">{errors.message}</p>}
+                aria-label={translations.account.formLabels.ConfirmPassword}
+              />
+              {errors.confirmPassword && <p className="error-text">{errors.confirmPassword}</p>}
             </div>
           </div>
 
+          <div className="button-group">
+            <button type="button" className="cancel-btn" onClick={handleCancel}>
+              Cancel
+            </button>
 
-          <button type="submit" className="save">
-            {translations.account.save}
-          </button>
-        </form>
+            <button type="submit" className="save">
+              {translations.account.save}
+            </button>
+          </div>
+        </div>
       </section>
     </div>
   );

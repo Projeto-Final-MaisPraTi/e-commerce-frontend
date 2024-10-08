@@ -11,8 +11,11 @@ import PageNotFound from "./pages/404NotFound/PageNotFound.jsx";
 import MyAccount from "./pages/MyAccount/MyAccount.jsx";
 import About from "./pages/About/AboutPage.jsx";
 import ProductDetails from "./components/ProductDetails/ProductDetails.jsx";
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import CategoryPage from "./pages/Category/CategoryPage.jsx";
 import RegisterProduct from "./pages/RegisterProduct/RegisterProduct.jsx";
+import UpdateProduct from "./pages/UpdateProduct/UpdateProduct.jsx";
+import ManagerProduct from "./pages/HomeManagerProduct/Manager.jsx";
 
 function App() {
   return (
@@ -30,11 +33,11 @@ function App() {
             <Route path="/about" element={<About />} />
             {/* Responsável: Henrique */}
             <Route
-            path="/product"
-            element={
-              <ProductDetails productName={"Havic HV G-92 Gamepad"} price={192.0} quantity={2} />
-            }
-          />
+              path="/product"
+              element={
+                <ProductDetails productName={"Havic HV G-92 Gamepad"} price={192.0} quantity={2} />
+              }
+            />
             {/* Responsável: Gabriel W. */}
             <Route path="/contact" element={<ContactPage />} />
             {/* Responsável: Gabriel W. */}
@@ -43,8 +46,15 @@ function App() {
             <Route path="/checkout" element={<CheckoutPage />} />
             {/* Responsável: Luiz Lobato */}
             <Route path="/account" element={<MyAccount />} />
+            {/* Responsável: Gabriel Bertollo*/}
+            <Route path="/category/:category" element={<CategoryPage />} />
+            <Route path="/category/explore" element={<CategoryPage />} />
+            <Route path="/category/bestselling" element={<CategoryPage />} />
+            {/* Responsável: Erick */}
+            <Route path="/manager" element={<ManagerProduct />} />
+            <Route path="/manager/register" element={<RegisterProduct />} />
+            <Route path="/manager/update" element={<UpdateProduct />} />
             {/* Rota para capturar qualquer caminho inválido */}
-            <Route path="/productregister" element={<RegisterProduct />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Router>

@@ -26,5 +26,4 @@ footer {
   bottom: 0;
   width: 100%;
 }
-
 `;
