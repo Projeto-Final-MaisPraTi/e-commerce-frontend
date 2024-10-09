@@ -280,7 +280,7 @@ const ProductsData = [
       pt: "Notebook ultraleve com Intel Core i7 e SSD de 1TB.",
     },
     discount: 0, // Produto sem desconto
-    isBestSelling: false,
+    isBestSelling: true,
     rating: 4,
     images: [
       LenovoThinkPadX1Black1,

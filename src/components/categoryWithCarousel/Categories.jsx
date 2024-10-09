@@ -1,18 +1,15 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const LinkList = styled.div`
-  border-right: solid 1px;
-  border-color: gray;
   margin-bottom: 0;
-  padding-top: 20px;
-  padding-right: 10px;
+  padding-top: 40px;
+  padding-left: 0;
   align-self: baseline;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: baseline;
   justify-content: center;
-  margin-right: 10px;
 
   a {
     color: #000;
@@ -22,9 +19,7 @@ const LinkList = styled.div`
       border-bottom: solid 1px;
     }
   }
-
   @media (max-width: 767px) {
-    border-right: none;
     align-items: center;
   }
 `;
@@ -32,11 +27,11 @@ const LinkList = styled.div`
 function Category() {
   return (
     <LinkList className="col-12 col-md-2">
-      <a href="">Phones</a>
-      <a href="">Computers</a>
-      <a href="">SmartWatch</a>
-      <a href="">Camera</a>
-      <a href="">HeadPhones</a>
+      <Link to="/category/Phones">Phones</Link>
+      <Link to="/category/Computers">Computers</Link>
+      <Link to="/category/Smartwatches">SmartWatch</Link>
+      <Link to="/category/Cameras">Camera</Link>
+      <Link to="/category/Headphones">HeadPhones</Link>
     </LinkList>
   );
 }
