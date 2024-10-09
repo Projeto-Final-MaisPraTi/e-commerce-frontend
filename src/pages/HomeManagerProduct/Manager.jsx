@@ -20,7 +20,7 @@ function ManagerProduct() {
       <Header />
       <NavManage />
       <Container>
-          <HomeManager />
+        <HomeManager />
       </Container>
       <Footer />
     </>

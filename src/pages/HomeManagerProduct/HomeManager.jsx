@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 
 const Container = styled.div`
   display: flex;
@@ -11,13 +11,11 @@ const Container = styled.div`
 `;
 
 const HomeManager = () => {
-
-    
-    return (
-        <Container>
-          <h1>Welcome to Product Management</h1>
-        </Container>
-    );
-}
+  return (
+    <Container>
+      <h1>Welcome to Product Management</h1>
+    </Container>
+  );
+};
 
 export default HomeManager;

@@ -20,7 +20,7 @@ function UpdateProduct() {
       <Header />
       <NavManage />
       <Container>
-          <Update />
+        <Update />
       </Container>
       <Footer />
     </>
