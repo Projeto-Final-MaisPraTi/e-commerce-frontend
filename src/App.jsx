@@ -14,6 +14,8 @@ import ProductDetails from "./components/ProductDetails/ProductDetails.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import CategoryPage from "./pages/Category/CategoryPage.jsx";
 import RegisterProduct from "./pages/RegisterProduct/RegisterProduct.jsx";
+import UpdateProduct from "./pages/UpdateProduct/UpdateProduct.jsx";
+import ManagerProduct from "./pages/HomeManagerProduct/Manager.jsx";
 
 function App() {
   return (
@@ -49,7 +51,9 @@ function App() {
             <Route path="/category/explore" element={<CategoryPage />} />
             <Route path="/category/bestselling" element={<CategoryPage />} />
             {/* Responsável: Erick */}
-            <Route path="/productregister" element={<RegisterProduct />} />
+            <Route path="/manager" element={<ManagerProduct />} />
+            <Route path="/manager/register" element={<RegisterProduct />} />
+            <Route path="/manager/update" element={<UpdateProduct />} />
             {/* Rota para capturar qualquer caminho inválido */}
             <Route path="*" element={<PageNotFound />} />
           </Routes>
