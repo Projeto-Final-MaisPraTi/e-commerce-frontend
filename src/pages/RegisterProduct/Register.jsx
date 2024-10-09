@@ -11,6 +11,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 const Root = muiStyled(Box)(({ theme }) => ({
   display: 'flex',
   '& > * + *': {
+    // Não sei
     marginLeft: theme.spacing(3),
   },
   justifyContent: 'center'
@@ -70,6 +71,21 @@ const Container = styled.div`
     }
   }
 `
+
+const CorAtualSelecionada = styled.span`
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 15px;
+  margin-left: 10px; 
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-color: ${props => props.cor};
+`
+
+const Cor = ({ corAtual }) => (
+  <CorAtualSelecionada cor={corAtual} />
+);
 
 const Register = () => {
 
@@ -206,7 +222,7 @@ const Register = () => {
                 </div>
                 <div>
                     <label htmlFor="">Value:</label><br />
-                    <input type="text" placeholder="0,00" onChange={(event) => setValues(event.target.value ,"price")}/>
+                    <input type="text" placeholder="0,00" onChange={(event) => event.target.value.length == 0 ? setValues(999.99 ,"price") : setValues(event.target.value ,"price")}/>
                 </div>
                 <div>
                     <label>Cor</label>
@@ -218,7 +234,7 @@ const Register = () => {
                               </option>
                           ))}
                       </select>
-                      <span style={{ border:'2px solid black',borderRadius: '5px', padding:'15px' , marginLeft: '10px', width: '20px', height: '20px', display: 'inline-block', backgroundColor: corSelecionada }}></span>
+                      <Cor corAtual={corSelecionada} />
                     </div>
                 </div>
                 <div>

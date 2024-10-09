@@ -4,7 +4,7 @@ export const RegisterContext = createContext();
 
 export const RegisterProvider = ({ children }) => {
     const [name, setName] = useState();
-    const [price, setPrice] = useState();
+    const [price, setPrice] = useState(999.99);
     const [image, setImage] = useState([]);
     const [color, setColor] = useState('Preto');
     const [description, setDescription] = useState();

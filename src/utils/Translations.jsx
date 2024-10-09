@@ -1,5 +1,6 @@
 export default {
   en: {
+    currency: "USD",
     headerText: "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
     shopNow: "Shop Now",
     nav: {
@@ -123,6 +124,7 @@ export default {
     },
   },
   pt: {
+    currency: "BRL",
     headerText:
       "Promoção de Verão para Todos os Trajes de Banho e Entrega Expressa Grátis - DESCONTO DE 50%!",
     shopNow: "Compre Agora",

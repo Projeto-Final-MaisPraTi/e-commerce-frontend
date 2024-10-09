@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import React, { useState } from 'react';
-import ProductCard from "../../components/ProductCard/ProductCard";
 import { findProductByName } from "../../services/ProductService";
 
 import Box from '@mui/material/Box';
 import { styled as muiStyled } from '@mui/material/styles';
 import CircularProgress from '@mui/material/CircularProgress';
+import CardUpdateProduct from "./CardUpdateProduct";
+import CircularProgressBar from "../RegisterProduct/CircularProgressBar";
 
 
 // Progesso do banco de dados
@@ -44,9 +45,52 @@ const ShowProducts = styled.div`
     & > * {
         flex: 0 0 auto; /* Garante que os itens não crescerão ou encolherão */
     }
-    .loading{
-    margin: auto;
-    margin-top: 15px;
+`
+
+const Loading = styled.div`
+  margin: auto;
+  margin-top: 15px;
+`
+
+const PopupUpdate = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  height: 150px;
+  width: 350px;
+  padding: 20px;
+  border: 1px solid black;
+  margin-top: 40px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  color: #333;
+  p {
+    font-weight: 400;
+  }
+  p span {
+    color: #a00606;
+    font-weight: 800;
+  }
+`
+
+const ButtonsUpdate = styled.div`
+  display: flex;
+  gap: 40px;
+  margin-top: 10px;
+  button {
+    padding: 5px 20px 5px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+  .update-yes {
+    background-color: #0765bd;
+    color: white
+  }
+  .update-no {
+    background-color: #e02108;
+    color: white;
   }
 `
 
@@ -57,6 +101,9 @@ const Update = () => {
   const [resultadoBusca, setResultadoBusca] = useState();
   const [load, setLoad] = useState(null);
   const [notFound, setNotFound] = useState(null);
+  // vai receber um objeto com (id do produto)id: , (nome do produto)nome:
+  const [itemUpdate, setItemUpdate] = useState(null);
+  const [deleteItem, setDeleteItem] = useState(null);
 
 
   const buscarProduto = async (textoBusca) => {
@@ -79,6 +126,11 @@ const Update = () => {
     }
   }
 
+  const deleteProduct = () => {
+    let divUpdate = document.getElementById('popup_delete');
+    divUpdate.innerHTML = "<CircularProgressBar />";
+  }
+
   return (
     <Container>
       <SearchBar>
@@ -87,17 +139,17 @@ const Update = () => {
       </SearchBar>
       <ShowProducts>
         {load &&
-          <div className="loading">
+          <Loading>
             <h3>Buscando produtos</h3>
             <Root>
               <CircularProgress size={80}/>
             </Root>
-          </div>
+          </Loading>
         }
         {notFound &&
-          <div className="loading">
+          <Loading>
             <h3>Nenhum resultado encontrado</h3>
-          </div>
+          </Loading>
         }
         {resultadoBusca && resultadoBusca.map((p) => {
           const produto = {
@@ -106,8 +158,27 @@ const Update = () => {
             price: p.preco,
             rating: p.nota,
             images: [p.images]
-          }; return <ProductCard product={produto} />;
+          }; return <CardUpdateProduct product={produto} update={setItemUpdate} delete={setDeleteItem}/>;
         })}
+        { itemUpdate &&
+        <PopupUpdate>
+          <p>Deseja alterar o produto {itemUpdate['nome']} ?</p>
+          <ButtonsUpdate>
+            <button className="update-yes">Sim</button>
+            <button className="update-no" onClick={() => setItemUpdate(null)}>Não</button>
+          </ButtonsUpdate>
+        </PopupUpdate>
+        }
+        { deleteItem &&
+        <PopupUpdate id="popup_delete">
+          <p>Deseja realmente deletar o item {deleteItem['nome']} ?</p>
+          <p><span>Essa operação e irreversivel !</span></p>
+          <ButtonsUpdate>
+            <button className="update-yes" onClick={deleteProduct}>Sim</button>
+            <button className="update-no" onClick={() => setDeleteItem(null)}>Não</button>
+          </ButtonsUpdate>
+        </PopupUpdate>
+        }
       </ShowProducts>
     </Container>
   );
