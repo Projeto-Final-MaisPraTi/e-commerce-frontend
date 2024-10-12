@@ -32,7 +32,7 @@ export const findProductByName = async (name) => {
 
 export const findProductById = async (id) => {
     try {
-        const response = await axios.get(API_URL + '/search?id=' + id, {
+        const response = await axios.get(API_URL + '/' + id, {
             headers: {
             'Content-Type': 'application/json'
             }

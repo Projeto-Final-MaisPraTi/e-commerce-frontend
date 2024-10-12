@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { findProductByName } from "../../services/ProductService";
+import { createRoot } from 'react-dom/client';
+import { findProductByName, deleteProductById } from "../../services/ProductService";
 import Box from '@mui/material/Box';
 import { styled as muiStyled } from '@mui/material/styles';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -118,9 +119,28 @@ const Update = () => {
     }
   };
 
-  const deleteProduct = () => {
+  const sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  const deleteProduct = async (id) => {
     let divUpdate = document.getElementById('popup_delete');
-    divUpdate.innerHTML = "<CircularProgressBar />";
+    let res;
+    const root = createRoot(divUpdate);
+    root.render(<CircularProgressBar />);
+    try {
+      res = await deleteProductById(id);
+      root.render(
+      <div> 
+        <p>Produto excuido com sucesso !</p>
+      </div>);
+      await sleep(3000);
+      buscarProduto(textoBusca);
+    } catch (error) {
+      console.log(error);
+    }
+    setDeleteItem(null);
+    console.log(res);
   }
 
   return (
@@ -170,7 +190,7 @@ const Update = () => {
           <p>Deseja realmente deletar o item {deleteItem['nome']} ?</p>
           <p><span>Essa operação e irreversivel !</span></p>
           <ButtonsUpdate>
-            <button className="update-yes" onClick={deleteProduct}>Sim</button>
+            <button className="update-yes" onClick={() => deleteProduct(parseInt(deleteItem['id']))}>Sim</button>
             <button className="update-no" onClick={() => setDeleteItem(null)}>Não</button>
           </ButtonsUpdate>
         </PopupUpdate>
