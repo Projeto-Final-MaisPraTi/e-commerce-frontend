@@ -5,7 +5,9 @@ function MyAccount() {
   return (
     <>
       <Header />
-      <Account />
+      <main>
+        <Account />
+      </main>
       <Footer />
     </>
   );
