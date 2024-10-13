@@ -24,6 +24,8 @@ const CardUpdateProduct = (props) => {
     const product = props.product;
     const setItemUpdate = props.update;
     const setDeleteItem = props.delete;
+
+    
     return (
         <Container>
             <EditItens>

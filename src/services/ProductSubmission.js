@@ -13,10 +13,12 @@ export const submitProduct = async (productData, images, setProgressBar, setProg
   };
   let completeProductData;
   try {
-    const imageUrls = await uploadImages(images, setProgressBar); // Faz o upload das imagens
+    setProgressBar(true);
+    const imageUrls = await uploadImages(images); // Faz o upload das imagens
     completeProductData = { ...data, images: imageUrls }; // Organiza os dados
     setProgressBar(null);
   } catch (error) {
+    setProgressBar(null);
     console.error("Error upload images:", error);
     throw error; // Repassa o erro
   }

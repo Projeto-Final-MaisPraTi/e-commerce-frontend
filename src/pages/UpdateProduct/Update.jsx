@@ -7,6 +7,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import CardUpdateProduct from "./CardUpdateProduct";
 import CircularProgressBar from "../RegisterProduct/CircularProgressBar";
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 // Progesso do banco de dados
 const Root = muiStyled(Box)(({ theme }) => ({
@@ -100,6 +101,13 @@ const Update = () => {
   const [itemUpdate, setItemUpdate] = useState(null);
   const [deleteItem, setDeleteItem] = useState(null);
 
+
+  const navigate = useNavigate();
+
+  const handlerEditProduct = () => {
+      navigate("/manager/update/" + itemUpdate['id']);
+  }
+
   const buscarProduto = async (textoBusca) => {
     setResultadoBusca(null);
     setNotFound(null);
@@ -180,7 +188,7 @@ const Update = () => {
         <PopupUpdate>
           <p>Deseja alterar o produto {itemUpdate['nome']} ?</p>
           <ButtonsUpdate>
-            <button className="update-yes">Sim</button>
+            <button className="update-yes" onClick={handlerEditProduct}>Sim</button>
             <button className="update-no" onClick={() => setItemUpdate(null)}>Não</button>
           </ButtonsUpdate>
         </PopupUpdate>

@@ -5,6 +5,7 @@ import { submitProduct } from "../../services/ProductSubmission";
 import Box from "@mui/material/Box";
 import { styled as muiStyled } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
+import PreviewProduct from "./PreviewProduct";
 
 // Progesso do banco de dados
 const Root = muiStyled(Box)(({ theme }) => ({
@@ -17,9 +18,19 @@ const Root = muiStyled(Box)(({ theme }) => ({
 }));
 
 const Container = styled.div`
+  display: flex;
+  gap: 20px;
+  width: 100%;
+`
+
+const SidePreview = styled.div`
+  height: 100%;
+`
+
+const SideForm = styled.div`
   flex: 2;
   box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
-  width: 800px;
+  width: 100%;
   text-align: center;
   h2 {
     text-align: center;
@@ -99,6 +110,7 @@ const Register = () => {
     { value: "Cameras", label: "Cameras" },
     { value: "Headphones", label: "Headphones" },
   ];
+
   // Muda a categoria selecionada
   const handleChangeCategory = (event) => {
     const selectedValue = event.target.value;
@@ -152,6 +164,7 @@ const Register = () => {
     { nome: "Branco", valor: "#ffffff" },
   ];
 
+
   const handleChangeColor = (event) => {
     setCorSelecionada(event.target.value);
 
@@ -160,6 +173,7 @@ const Register = () => {
       setValues(corEncontrada.nome, "color");
     }
   };
+
   // Enviar para o banco de dados
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -180,116 +194,123 @@ const Register = () => {
     }
   };
   // A maioria dos inputs ainda precisam de validação
+
+
   return (
     <Container>
-      <div className="title">
-        <h2>Register Product</h2>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="">Name:</label>
-          <br />
-          <input type="text" onChange={(event) => setValues(event.target.value, "name")} />
+      <SidePreview>
+        <PreviewProduct name={data.name} price={data.price} cover={data.cover}/>
+      </SidePreview>
+      <SideForm>
+        <div className="title">
+          <h2>Register Product</h2>
         </div>
-        <div>
-          <label htmlFor="">Description:</label>
-          <br />
-          <textarea
-            className="description"
-            type="text"
-            onChange={(event) => setValues(event.target.value, "description")}
-          />
-        </div>
-        <div>
-          <label htmlFor="">Category:</label>
-          <br />
-          <select name="" id="" onChange={handleChangeCategory} value={category}>
-            {categories.map((cat, index) => (
-              <option key={index} value={cat.value} disabled={cat.disabled}>
-                {cat.label}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="">Quantity:</label>
-          <br />
-          <input
-            type="number"
-            min={0}
-            placeholder="0"
-            onChange={(event) => setValues(event.target.value, "quantity")}
-          />
-        </div>
-        <div>
-          <label htmlFor="">Value:</label>
-          <br />
-          <input
-            type="text"
-            placeholder="0,00"
-            onChange={(event) => setValues(event.target.value, "price")}
-          />
-        </div>
-        <div>
-          <label>Cor</label>
-          <div className="inputColor">
-            <select value={corSelecionada} onChange={handleChangeColor}>
-              {opcoesDeCores.map((opcao, index) => (
-                <option key={index} value={opcao.valor}>
-                  {opcao.nome}
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="">Name:</label>
+            <br />
+            <input type="text" onChange={(event) => setValues(event.target.value, "name")} />
+          </div>
+          <div>
+            <label htmlFor="">Description:</label>
+            <br />
+            <textarea
+              className="description"
+              type="text"
+              onChange={(event) => setValues(event.target.value, "description")}
+            />
+          </div>
+          <div>
+            <label htmlFor="">Category:</label>
+            <br />
+            <select name="" id="" onChange={handleChangeCategory} value={category}>
+              {categories.map((cat, index) => (
+                <option key={index} value={cat.value} disabled={cat.disabled}>
+                  {cat.label}
                 </option>
               ))}
             </select>
-            <span
-              style={{
-                border: "2px solid black",
-                borderRadius: "5px",
-                padding: "15px",
-                marginLeft: "10px",
-                width: "20px",
-                height: "20px",
-                display: "inline-block",
-                backgroundColor: corSelecionada,
-              }}
-            ></span>
           </div>
-        </div>
-        <div>
-          <label htmlFor="">Cover Image:</label>
-          <br />
-          <input className="img-input" type="file" accept="image/*" onChange={handleFile} />
-        </div>
-        <div>
-          <label htmlFor="">Image Details:</label>
-          <br />
-          <input
-            className="img-input"
-            type="file"
-            multiple
-            accept="image/*"
-            onChange={handleFiles}
-          />
-        </div>
-        <div className="button_submit">
-          <input type="submit" value={"Enviar"} />
-        </div>
-        {progressBar && (
-          <Box sx={{ width: "100%", marginTop: "8px" }}>
-            <h5>Fazendo upload das imagens</h5>
-            <Root>
-              <CircularProgress />
-            </Root>
-          </Box>
-        )}
-        {progressInsertDB && (
-          <div className="loading_banco_de_dados">
-            <h5>Fazendo upload no banco de dados</h5>
-            <Root>
-              <CircularProgress />
-            </Root>
+          <div>
+            <label htmlFor="">Quantity:</label>
+            <br />
+            <input
+              type="number"
+              min={0}
+              placeholder="0"
+              onChange={(event) => setValues(event.target.value, "quantity")}
+            />
           </div>
-        )}
-      </form>
+          <div>
+            <label htmlFor="">Value:</label>
+            <br />
+            <input
+              type="text"
+              placeholder="0,00"
+              onChange={(event) => setValues(event.target.value, "price")}
+            />
+          </div>
+          <div>
+            <label>Cor</label>
+            <div className="inputColor">
+              <select value={corSelecionada} onChange={handleChangeColor}>
+                {opcoesDeCores.map((opcao, index) => (
+                  <option key={index} value={opcao.valor}>
+                    {opcao.nome}
+                  </option>
+                ))}
+              </select>
+              <span
+                style={{
+                  border: "2px solid black",
+                  borderRadius: "5px",
+                  padding: "15px",
+                  marginLeft: "10px",
+                  width: "20px",
+                  height: "20px",
+                  display: "inline-block",
+                  backgroundColor: corSelecionada,
+                }}
+              ></span>
+            </div>
+          </div>
+          <div>
+            <label htmlFor="">Cover Image:</label>
+            <br />
+            <input className="img-input" type="file" accept="image/*" onChange={handleFile} />
+          </div>
+          <div>
+            <label htmlFor="">Image Details:</label>
+            <br />
+            <input
+              className="img-input"
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handleFiles}
+            />
+          </div>
+          <div className="button_submit">
+            <input type="submit" value={"Enviar"} />
+          </div>
+          {progressBar && (
+            <Box sx={{ width: "100%", marginTop: "8px" }}>
+              <h5>Fazendo upload das imagens</h5>
+              <Root>
+                <CircularProgress />
+              </Root>
+            </Box>
+          )}
+          {progressInsertDB && (
+            <div className="loading_banco_de_dados">
+              <h5>Fazendo upload no banco de dados</h5>
+              <Root>
+                <CircularProgress />
+              </Root>
+            </div>
+          )}
+        </form>
+      </SideForm>
     </Container>
   );
 };

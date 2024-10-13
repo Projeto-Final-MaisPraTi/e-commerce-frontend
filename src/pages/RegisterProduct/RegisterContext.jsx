@@ -47,7 +47,7 @@ export const RegisterProvider = ({ children }) => {
     ? ""
     : setImage("https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg");
   name ? "" : setName("Title");
-  price ? "" : setPrice("999,99");
+  price ? "" : setPrice("999.99");
   return (
     <RegisterContext.Provider value={{ setValues, name, price, image, cover, data }}>
       {children}

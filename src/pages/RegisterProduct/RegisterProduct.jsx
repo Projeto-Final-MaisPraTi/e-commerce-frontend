@@ -22,7 +22,6 @@ function RegisterProduct() {
       <NavManage />
       <Container>
         <RegisterProvider>
-          <PreviewProduct />
           <Register />
         </RegisterProvider>
       </Container>

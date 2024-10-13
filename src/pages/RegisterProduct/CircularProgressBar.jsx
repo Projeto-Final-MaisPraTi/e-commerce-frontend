@@ -13,12 +13,20 @@ const Root = muiStyled(Box)(({ theme }) => ({
   justifyContent: 'center'
 }));
 
-const CircularProgressBar = () => {
-    return (
-    <Root>
-        <CircularProgress />
-    </Root>
-    );
+const CircularProgressBar = ({size}) => {
+      if (size) {
+        return (
+          <Root>
+              <CircularProgress size={size} />
+          </Root>
+        )
+      } else {
+        return (
+          <Root>
+              <CircularProgress />
+          </Root>
+        )
+      }
 }
 
 export default CircularProgressBar;

@@ -26,16 +26,20 @@ const StyProduct = styled(ProductCard)`
   width: 100%;
 `;
 
-const PreviewProduct = () => {
-  const { name, price, cover } = useRegister();
+const PreviewProduct = ({name, price, cover}) => {
 
   let product = {};
 
   product["name"] = name;
-  product["price"] = price;
+  if (price.length == 0) {
+    product["price"] = "999.99";
+  } else {
+    product["price"] = price;
+  }
   let array = [cover];
   product["images"] = array;
 
+  console.log(price);
   return (
     <Container>
       <div>
