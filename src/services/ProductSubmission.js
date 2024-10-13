@@ -29,7 +29,7 @@ export const submitProduct = async (productData, images, setProgressBar, setProg
     return result; // Retorna os dados do produto cadastrado
   } catch (error) {
     setProgressInsertDB(false);
-    console.error("Error subimmit product in server:", error);
+    console.error("Error submmit product in server:", error);
     throw error; // Repassa o erro
   }
 };

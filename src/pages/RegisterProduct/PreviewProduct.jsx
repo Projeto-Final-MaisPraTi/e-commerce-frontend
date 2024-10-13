@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import ProductCard from "../../components/ProductCard/ProductCard";
 // import produtos from "../../utils/ProductsData";
-import useRegister from "./useRegister";
 
 const Container = styled.div`
   width: 300px;
@@ -31,11 +30,7 @@ const PreviewProduct = ({name, price, cover}) => {
   let product = {};
 
   product["name"] = name;
-  if (price.length == 0) {
-    product["price"] = "999.99";
-  } else {
-    product["price"] = price;
-  }
+  product["price"] = price ? `${price}`.replace(",", ".") : "999.99";
   let array = [cover];
   product["images"] = array;
 

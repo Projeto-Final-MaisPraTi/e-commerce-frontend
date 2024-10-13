@@ -1,12 +1,11 @@
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/ComponentFooter";
 import styled from "styled-components";
-import NavManage from "../../components/NavManageProduct/NavManage";
 import { useParams } from "react-router-dom";
 import { findProductById } from "../../services/ProductService";
 import React, { useEffect, useState } from "react";
 import CircularProgressBar from "../RegisterProduct/CircularProgressBar";
 import PreviewProduct from "../RegisterProduct/PreviewProduct";
+import CurrencyInput from 'react-currency-input-field';
+import CardUpdateImage from "./CardUpdateImage";
 
 const Container = styled.div`
   display: flex;
@@ -61,7 +60,7 @@ const SideForm = styled.div`
     height: 35px;
     font-size: 20px;
     padding: 5px;
-    /* margin: auto; */
+    margin: auto;
     }
 }
 `
@@ -69,6 +68,55 @@ const SideForm = styled.div`
 const InputArea = styled.div`
     display: flex;
     justify-content: center;
+`
+
+const OptionColors = styled.div`
+    
+`
+
+const SelectColor = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+`
+
+const ImageCover = styled.div`
+    display: flex;
+    height: 320px;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
+    margin: auto;
+`
+
+const ImageDetails = styled.div`
+    display: flex;
+    height: 300px;
+    width: 90%;
+    box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: auto;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    padding: 10px;
+    `
+
+const ContainerAddImage = styled.div`
+    box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
+    width: 200px;
+    height: 250px;
+    border-radius: 5px;
+`
+
+const ImageWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 
@@ -81,8 +129,61 @@ function UpdateProduct() {
     /* const [image, setImage] = useState([]); */
     const [cor, setCor] = useState('Preto');
     const [descricao, setDescricao] = useState();
-    const [categoria, setCategoria] = useState();
     const [estoque, setEstoque] = useState();
+
+    const [newImages, setNewImages] = useState();
+
+    const handleAddImage = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const newImageUrl = URL.createObjectURL(file);
+            if (newImages) {
+                setNewImages([...newImages, newImageUrl]);
+            } else {
+                setNewImages([newImageUrl]);
+            }
+            console.log(newImages);
+            product.images = [...product.images, newImageUrl];
+        }
+    };
+
+
+
+    const [categoria, setCategoria] = useState();
+
+    const categories = [
+        { value: "", label: "Categories", disabled: true },
+        { value: "Phones", label: "Phones" },
+        { value: "Computers", label: "Computers" },
+        { value: "SmartWatches", label: "SmartWatches" },
+        { value: "Cameras", label: "Cameras" },
+        { value: "Headphones", label: "Headphones" },
+    ];
+
+    // Muda a categoria selecionada
+    const handleChangeCategory = (event) => {
+        const selectedValue = event.target.value;
+        setCategoria(selectedValue);
+    };
+
+    // cor 
+
+    const [corSelecionada, setCorSelecionada] = useState("#000000");
+
+    const opcoesDeCores = [
+        { nome: "Preto", valor: "#000000" },
+        { nome: "Branco", valor: "#ffffff" },
+    ];
+
+
+    const handleChangeColor = (event) => {
+        setCorSelecionada(event.target.value);
+
+        const corEncontrada = opcoesDeCores.find((opcao) => opcao.valor === event.target.value);
+        if (corEncontrada) {
+            setCor(corEncontrada.nome);
+        }
+    };
 
     const getProduct = async (id) => {
         let product;
@@ -103,7 +204,7 @@ function UpdateProduct() {
             setDescricao(result.descricao);
             setEstoque(result.estoque);
             setCategoria(result.categoria);
-            setProduct(result)
+            setProduct(result);
         });
         console.log(product);
     }, []);
@@ -115,22 +216,17 @@ function UpdateProduct() {
     if (!product) {
         return (
             <>
-                <Header />
-                <NavManage />
                 <Container>
                     <WaitProduct>
                         <CircularProgressBar size={80} />
                     </WaitProduct>
                 </Container>
-                <Footer />
             </>
         );
     }
 
     return (
         <>
-            <Header />
-            <NavManage />
             <Container>
                 <SidePreview>
                     <PreviewProduct name={nome} price={preco} cover={product.images[0]} />
@@ -157,17 +253,17 @@ function UpdateProduct() {
                             />
                             {/* <input type="checkbox" /> */}
                         </div>
-                        {/* <div>
-                    <label htmlFor="">Category:</label>
-                    <br />
-                    <select name="" id="" onChange={handleChangeCategory} value={category}>
-                        {categories.map((cat, index) => (
-                        <option key={index} value={cat.value} disabled={cat.disabled}>
-                            {cat.label}
-                        </option>
-                        ))}
-                    </select>
-                    </div> */}
+                        <div>
+                            <label htmlFor="">Category:</label>
+                            <br />
+                            <select name="" id="" onChange={handleChangeCategory} value={categoria}>
+                                {categories.map((cat, index) => (
+                                    <option key={index} value={cat.value} disabled={cat.disabled}>
+                                        {cat.label}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
                         <div>
                             <label>Quantity:</label>
                             <br />
@@ -183,54 +279,74 @@ function UpdateProduct() {
                         <div>
                             <label >Value:</label>
                             <br />
-
-                            <input
-                                type="text"
-                                placeholder="0,00"
+                            <CurrencyInput
                                 value={preco}
-                                onChange={(event) => setPreco(event.target.value)}
+                                placeholder="R$ 0,00"
+                                decimalSeparator=","
+                                groupSeparator="."
+                                prefix="R$ "
+                                intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
+                                decimalsLimit={2}
+                                onValueChange={(value) => {
+                                    setPreco(value)
+                                    console.log(value);
+                                }}
                             />
                         </div>
-                        {/* <div>
-                    <label>Cor</label>
-                    <div className="inputColor">
-                        <select value={corSelecionada} onChange={handleChangeColor}>
-                        {opcoesDeCores.map((opcao, index) => (
-                            <option key={index} value={opcao.valor}>
-                            {opcao.nome}
-                            </option>
-                        ))}
-                        </select>
-                        <span
-                        style={{
-                            border: "2px solid black",
-                            borderRadius: "5px",
-                            padding: "15px",
-                            marginLeft: "10px",
-                            width: "20px",
-                            height: "20px",
-                            display: "inline-block",
-                            backgroundColor: corSelecionada,
-                        }}
-                        ></span>
-                    </div>
-                    </div> */}
-                        {/* <div>
-                    <label htmlFor="">Cover Image:</label>
-                    <br />
-                    <input className="img-input" type="file" accept="image/*" onChange={handleFile} />
-                    </div>
-                    <div>
-                    <label htmlFor="">Image Details:</label>
-                    <br />
-                    <input
-                        className="img-input"
-                        type="file"
-                        multiple
-                        accept="image/*"
-                        onChange={handleFiles}
-                    />
-                    </div> */}
+                        <OptionColors>
+                            <label>Cor</label>
+                            <SelectColor>
+                                <select value={corSelecionada} onChange={handleChangeColor}>
+                                    {opcoesDeCores.map((opcao, index) => (
+                                        <option key={index} value={opcao.valor}>
+                                            {opcao.nome}
+                                        </option>
+                                    ))}
+                                </select>
+                                <span
+                                    style={{
+                                        border: "2px solid black",
+                                        borderRadius: "5px",
+                                        padding: "15px",
+                                        marginLeft: "10px",
+                                        width: "20px",
+                                        height: "20px",
+                                        display: "inline-block",
+                                        backgroundColor: corSelecionada,
+                                    }}
+                                ></span>
+                            </SelectColor>
+                        </OptionColors>
+                        <div>
+                            <label >Cover Image:</label>
+                            <br />
+                            <ImageCover>
+                                <CardUpdateImage url={product.images[0]} />
+                            </ImageCover>
+                        </div>
+                        <div>
+                            <label>Image Details:</label>
+                            <br />
+                            <ImageDetails>
+                                {product.images.slice(1, product.images.length).map((img) => <CardUpdateImage url={img} />)}
+                                <div>
+                                    <label htmlFor="upload-button" style={{ cursor: 'pointer' }}>
+                                        <ContainerAddImage>
+                                            <ImageWrapper>
+                                                <span>Adicionar imagem</span>
+                                            </ImageWrapper>
+                                        </ContainerAddImage>
+                                    </label>
+                                    <input
+                                        id="upload-button"
+                                        type="file"
+                                        accept="image/*"
+                                        style={{ display: 'none' }}
+                                        onChange={handleAddImage}
+                                    />
+                                </div>
+                            </ImageDetails>
+                        </div>
                         <div className="button_submit">
                             <input type="submit" value={"Update"} />
                         </div>
@@ -253,7 +369,6 @@ function UpdateProduct() {
                     </form>
                 </SideForm>
             </Container>
-            <Footer />
         </>
     );
 }

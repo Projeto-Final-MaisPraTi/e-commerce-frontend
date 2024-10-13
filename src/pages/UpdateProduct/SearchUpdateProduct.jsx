@@ -1,8 +1,5 @@
-import Header from "../../components/Header/Header";
 import Update from "./Update";
-import Footer from "../../components/Footer/ComponentFooter";
 import styled from "styled-components";
-import NavManage from "../../components/NavManageProduct/NavManage";
 
 const Container = styled.div`
   display: flex;
@@ -17,12 +14,9 @@ const Container = styled.div`
 function SearchUpdateProduct() {
   return (
     <>
-      <Header />
-      <NavManage />
       <Container>
         <Update />
       </Container>
-      <Footer />
     </>
   );
 }

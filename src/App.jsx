@@ -17,6 +17,7 @@ import RegisterProduct from "./pages/RegisterProduct/RegisterProduct.jsx";
 import SearchUpdateProduct from "./pages/UpdateProduct/SearchUpdateProduct.jsx";
 import ManagerProduct from "./pages/HomeManagerProduct/Manager.jsx";
 import UpdateProduct from "./pages/UpdateProduct/UpdateProduct.jsx";
+import HomeManager from "./pages/HomeManagerProduct/HomeManager.jsx";
 
 function App() {
   return (
@@ -52,10 +53,12 @@ function App() {
             <Route path="/category/explore" element={<CategoryPage />} />
             <Route path="/category/bestselling" element={<CategoryPage />} />
             {/* Responsável: Erick */}
-            <Route path="/manager" element={<ManagerProduct />} />
-            <Route path="/manager/register" element={<RegisterProduct />} />
-            <Route path="/manager/update" element={<SearchUpdateProduct />} />
-            <Route path="/manager/update/:id" element={<UpdateProduct />} />
+            <Route path="/manager" element={<ManagerProduct />} >
+              <Route index element={<HomeManager />} />
+              <Route path="register" element={<RegisterProduct />} />
+              <Route path="update" element={<SearchUpdateProduct />} />
+              <Route path="update/:id" element={<UpdateProduct />} />
+            </Route>
             {/* Rota para capturar qualquer caminho inválido */}
             <Route path="*" element={<PageNotFound />} />
           </Routes>
