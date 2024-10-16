@@ -13,10 +13,12 @@ export const submitProduct = async (productData, images, setProgressBar, setProg
   };
   let completeProductData;
   try {
-    const imageUrls = await uploadImages(images, setProgressBar); // Faz o upload das imagens
+    setProgressBar(true);
+    const imageUrls = await uploadImages(images); // Faz o upload das imagens
     completeProductData = { ...data, images: imageUrls }; // Organiza os dados
     setProgressBar(null);
   } catch (error) {
+    setProgressBar(null);
     console.error("Error upload images:", error);
     throw error; // Repassa o erro
   }
@@ -27,7 +29,7 @@ export const submitProduct = async (productData, images, setProgressBar, setProg
     return result; // Retorna os dados do produto cadastrado
   } catch (error) {
     setProgressInsertDB(false);
-    console.error("Error subimmit product in server:", error);
+    console.error("Error submmit product in server:", error);
     throw error; // Repassa o erro
   }
 };

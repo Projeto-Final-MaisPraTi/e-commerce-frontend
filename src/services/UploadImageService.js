@@ -26,9 +26,10 @@ const extractBase64Data = (base64String) => {
   return { base64Data, contentType };
 };
 
-export const uploadImages = async (images, setProgressBar) => {
+export const uploadImages = async (images) => {
   const auth = getAuth();
   const user = auth.currentUser;
+
   if (!user) {
     console.error(
       "Usuário não está autenticado. Por favor, faça login antes de tentar fazer o upload.",
@@ -53,7 +54,6 @@ export const uploadImages = async (images, setProgressBar) => {
         "state_changed",
         (snapshot) => {
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setProgressBar(progress);
           console.log("Progresso do upload: " + progress + "%");
         },
         (error) => {

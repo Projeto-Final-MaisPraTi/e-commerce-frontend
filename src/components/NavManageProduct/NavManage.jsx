@@ -30,8 +30,8 @@ const NavManage = () => {
     <Nav>
       <ul className="nav-links">
         <li onClick={() => navigate("/manager")} >Manage Home</li>
-        <li onClick={() => navigate("/manager/register")} >Register Product</li>
-        <li onClick={() => navigate("/manager/update")} >Update Product</li>
+        <li onClick={() => navigate("register")} >Register Product</li>
+        <li onClick={() => navigate("update")} >Update Product</li>
       </ul>
     </Nav>
   );

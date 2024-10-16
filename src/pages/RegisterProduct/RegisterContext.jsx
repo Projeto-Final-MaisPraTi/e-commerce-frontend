@@ -3,14 +3,14 @@ import { createContext, useState } from "react";
 export const RegisterContext = createContext();
 
 export const RegisterProvider = ({ children }) => {
-  const [name, setName] = useState();
-  const [price, setPrice] = useState();
-  const [image, setImage] = useState([]);
-  const [color, setColor] = useState("Preto");
-  const [description, setDescription] = useState();
-  const [category, setCategory] = useState();
-  const [quantity, setQuantity] = useState();
-  const [cover, setCover] = useState();
+    const [name, setName] = useState();
+    const [price, setPrice] = useState(999.99);
+    const [image, setImage] = useState([]);
+    const [color, setColor] = useState('Preto');
+    const [description, setDescription] = useState();
+    const [category, setCategory] = useState();
+    const [quantity, setQuantity] = useState();
+    const [cover, setCover] = useState();
 
   const setValues = (value, type) => {
     if (type == "name") {
@@ -47,7 +47,7 @@ export const RegisterProvider = ({ children }) => {
     ? ""
     : setImage("https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg");
   name ? "" : setName("Title");
-  price ? "" : setPrice("999,99");
+  price ? "" : setPrice("999.99");
   return (
     <RegisterContext.Provider value={{ setValues, name, price, image, cover, data }}>
       {children}
