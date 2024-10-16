@@ -9,6 +9,24 @@ const FlashSalesContainer = styled.div`
   background-color: #fff;
   position: relative;
   overflow: hidden;
+
+  .title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    p {
+      color: #db4444;
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+  .color {
+    margin-right: 10px;
+    height: 30px;
+    width: 18px;
+    background-color: #db4444;
+    border-radius: 5px;
+  }
 `;
 
 const Header = styled.div`
@@ -140,6 +158,10 @@ const FlashSales = () => {
 
   return (
     <FlashSalesContainer>
+      <div className="title">
+        <span className="color"></span>
+        <p>Today&apos;s</p>
+      </div>
       <Header>
         <Title>Flash Sales</Title>
         <TitleTimerWrapper>

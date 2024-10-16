@@ -3,6 +3,8 @@ import ProductCard from "../ProductCard/ProductCard";
 import ProductsData from "../../utils/ProductsData";
 import { useState, useEffect } from "react";
 import useLanguage from "../../utils/useLanguage";
+import { useNavigate } from "react-router-dom";
+// import Buttons from "../Buttons/Buttons";
 
 const Container = styled.div`
   width: 80%;
@@ -80,6 +82,7 @@ const BestSelling = () => {
   const { translations } = useLanguage();
   const [maxProducts, setMaxProducts] = useState(7);
   const [randomProducts, setRandomProducts] = useState([]);
+  const navigate = useNavigate();
 
   // Função para ajustar o número de produtos conforme a largura da tela
   const handleMaxProducts = () => {
@@ -87,7 +90,7 @@ const BestSelling = () => {
 
     if (width >= 2560) {
       // 2K resolution - Mostrar no máximo 7 produtos, já que são os disponíveis
-      setMaxProducts(7);
+      setMaxProducts(8);
     } else if (width >= 1200) {
       // Full HD and larger screens
       setMaxProducts(4);
@@ -115,6 +118,10 @@ const BestSelling = () => {
       window.removeEventListener("resize", handleMaxProducts);
     };
   }, []);
+
+  const handleViewAllClick = () => {
+    navigate("/category/bestselling", { state: { products: randomProducts } });
+  };
   return (
     <Container>
       <div className="title">
@@ -123,7 +130,14 @@ const BestSelling = () => {
       </div>
       <SecTitle>
         <h2>{translations.home.BestSelling.h2}</h2>
-        <button>{translations.home.BestSelling.viewer}</button>
+        <button onClick={handleViewAllClick}>{translations.home.BestSelling.viewer}</button>
+        {/* <Buttons
+          type={1}
+          text="View all"
+          paddingX={48}
+          paddingY={16}
+          onClick={handleBestSellingClick}
+        /> */}
       </SecTitle>
       <div className="produtos">
         {randomProducts.slice(0, maxProducts).map((product) => (

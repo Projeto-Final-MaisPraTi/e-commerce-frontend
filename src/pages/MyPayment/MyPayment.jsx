@@ -1,16 +1,17 @@
 import Header from "../../components/Header/Header";
-import Account from "../../components/Account/Account";
+import Payment from "../../components/Payment/Payment";
 import Footer from "../../components/Footer/ComponentFooter";
-function MyAccount() {
+
+function MyPayment() {
   return (
     <>
       <Header />
       <main>
-        <Account />
+        <Payment />
       </main>
       <Footer />
     </>
   );
 }
 
-export default MyAccount;
+export default MyPayment;

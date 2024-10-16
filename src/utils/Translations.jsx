@@ -1,5 +1,6 @@
 export default {
   en: {
+    currency: "USD",
     headerText: "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
     shopNow: "Shop Now",
     nav: {
@@ -45,13 +46,16 @@ export default {
       returns: "My Returns",
       cancellations: "My Cancellations",
       formLabels: {
-        firstname: "First Name",
-        lastname: "Last Name",
-        email: "E-mail",
-        address: "Address",
+        firstname: "Luiz",
+        lastname: "Lobato",
+        email: "email@gmail.com",
+        address: "Kingston, 5236, United State",
         password: "Password",
+        CurrentPassword: "Current Password",
+        NewPassword: "New Password",
+        ConfirmPassword: "Confirm New Password"
       },
-      save: "Save",
+      save: "Save Changes",
     },
     contact: {
       callToUs: "Call To Us",
@@ -120,6 +124,7 @@ export default {
     },
   },
   pt: {
+    currency: "BRL",
     headerText:
       "Promoção de Verão para Todos os Trajes de Banho e Entrega Expressa Grátis - DESCONTO DE 50%!",
     shopNow: "Compre Agora",

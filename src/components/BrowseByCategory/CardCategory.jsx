@@ -94,7 +94,7 @@ const ArrowsWrapper = styled.div`
   display: flex; /* Coloca as setas lado a lado */
   gap: 10px; /* Adiciona espaço entre as setas */
   margin-bottom: 10px;
-  @media (min-width: 1400px) {
+  @media (min-width: 1200px) {
     display: none;
   }
 `;
@@ -173,7 +173,7 @@ function CardCategory() {
         <CategoriesContainer ref={carouselRef}>
           <div
             className="slide"
-            onClick={() => handleCategoryClick("phones")}
+            onClick={() => handleCategoryClick("Phones")}
             onMouseOver={() => handleMouseHover("Phones")}
             onMouseLeave={handleMouseLeave}
           >
@@ -184,7 +184,7 @@ function CardCategory() {
           </div>
           <div
             className="slide"
-            onClick={() => handleCategoryClick("computers")}
+            onClick={() => handleCategoryClick("Computers")}
             onMouseOver={() => handleMouseHover("Computers")}
             onMouseLeave={handleMouseLeave}
           >
@@ -195,7 +195,7 @@ function CardCategory() {
           </div>
           <div
             className="slide"
-            onClick={() => handleCategoryClick("smartWatch")}
+            onClick={() => handleCategoryClick("Smartwatches")}
             onMouseOver={() => handleMouseHover("SmartWatch")}
             onMouseLeave={handleMouseLeave}
           >
@@ -206,7 +206,7 @@ function CardCategory() {
           </div>
           <div
             className="slide"
-            onClick={() => handleCategoryClick("camera")}
+            onClick={() => handleCategoryClick("Cameras")}
             onMouseOver={() => handleMouseHover("Camera")}
             onMouseLeave={handleMouseLeave}
           >
@@ -217,7 +217,7 @@ function CardCategory() {
           </div>
           <div
             className="slide"
-            onClick={() => handleCategoryClick("headphones")}
+            onClick={() => handleCategoryClick("Headphones")}
             onMouseOver={() => handleMouseHover("Headphones")}
             onMouseLeave={handleMouseLeave}
           >
