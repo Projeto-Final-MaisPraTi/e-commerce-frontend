@@ -1,24 +1,12 @@
 /* Estilos Gerais */
-.account-container {
+.payment-container {
   display: flex;
   justify-content: space-between;
   padding: 20px;
   margin: 181px 135px 140px 180px;
 }
 
-/* Ajuste do Título */
-h4 {
-  margin-top: 28px;
-  margin-bottom: 10px;
-  font-size: 20px;
-  font-weight: normal;
-  color: #db4444;
-  text-align: left;
-  /* Certifica que o título esteja alinhado à esquerda */
-}
-
-/* Novo Estilo para Alinhar o Título com os Demais Elementos */
-.profile-title {
+.profile-title-p {
   display: table;
   /* Faz com que o título se comporte como parte da tabela */
   width: 100%;
@@ -28,60 +16,45 @@ h4 {
   /* Ajuste no espaçamento à esquerda */
 }
 
-label {
-  font-size: 16px;
-  font-weight: none;
-  margin-bottom: 5px;
-  text-align: justify;
-}
-
 /* Cartão de Informação */
-.account-info {
+.payment-info {
   flex: 0.75;
   margin-right: 30px;
   margin-left: -85px;
 }
 
-.account-card {
+.payment-card {
   box-shadow: 0 0 0px;
   padding: 4px 35px 51px 35px;
   margin-right: 8px;
 }
 
-.account-method {
+.payment-method {
   margin-bottom: 2px;
 }
 
-.account-method h8 {
-  color: black;
+.payment-method p {
   font-size: 16px;
-  margin-bottom: 24px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.account-method p {
-  font-size: 16px;
-  color: black;
+  color: rgb(0, 0, 0);
   opacity: 50%;
   margin-left: 30px;
   margin-bottom: 5px;
 }
 
+
 /* Formulário de Conta */
-.account-form {
+.payment-form {
   flex: 2;
   box-shadow: 0 0 5px rgba(255, 0, 0, 0.1);
 }
 
-.form-a {
+.form-p {
   display: flex;
   flex-direction: column;
   margin: 20px 80px 28px 80px;
 }
 
-.form-group-a {
+.form-group-p {
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
@@ -101,8 +74,8 @@ label {
   width: 100%;
 }
 
-.form-group-a input,
-.form-groupa-a textarea {
+.form-group-p input,
+.form-groupa-p textarea {
   width: 100%;
   padding: 10px;
   border: none;
@@ -110,7 +83,7 @@ label {
   background-color: #f5f5f5;
 }
 
-.form-group-a input {
+.form-group-p input {
   height: 50px;
 }
 
@@ -132,42 +105,81 @@ label {
   resize: none;
 }
 
-/* Estilo das mensagens de erro */
-.error-text {
-  color: red;
-  font-size: 12px;
-  margin-top: 4px;
+
+/* Estilo para Saved Cards */
+.saved-cards {
+  margin: 20px 80px 28px 80px;
+  color: #db4444;
+  /* Muda a cor do texto para vermelho */
 }
 
-/* Botões */
-.button-group {
+.saved-cards h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #db4444;
+  /* Muda a cor do título para vermelho */
+  padding-bottom: 5px;
+  /* Espaçamento abaixo do título */
+}
+
+.saved-cards ul {
+  list-style: none;
+  padding: 0;
+}
+
+.saved-cards li {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 15px;
+  /* Aumenta o espaçamento entre os cartões */
+  padding: 14px;
+  /* Reduz o preenchimento interno do cartão */
+  border: 1px solid #ccc;
+  /* Adiciona borda ao cartão */
+  border-radius: 4px;
+  /* Cantos arredondados para o cartão */
+  background-color: #f9f9f9;
+  /* Fundo leve para o cartão */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Sombra suave para profundidade */
   display: flex;
-  justify-content: flex-end;
-  margin-top: 15px;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  /* Definindo a altura dos cartões (20% mais baixos) */
 }
 
-.cancel-btn {
+.saved-cards p {
+  color: rgba(0, 0, 0, 0.5);
+  /* Define a cor do texto para preto */
+}
+
+.edit-btn,
+.delete-btn {
   background-color: transparent;
   border: none;
-  color: #000000;
+  color: #db4444;
+  cursor: pointer;
   font-size: 14px;
-  margin-right: 25px;
-  cursor: pointer;
+  transition: color 0.3s ease, font-weight 0.3s ease;
 }
 
-.save {
-  background-color: #db4444;
-  color: white;
-  padding: 14px 53px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  align-self: flex-end;
+.edit-btn:hover,
+.delete-btn:hover {
+  color: #e04e53;
+  font-weight: bold;
+  /* Negrito ao passar o mouse */
 }
 
-.save:hover {
-  background-color: #e04e53;
+.button-group {
+  display: flex;
+  gap: 25px;
+  /* Espaçamento entre os botões */
+}
+
+.delete-btn {
+  margin-left: 25px;
+  /* Adiciona espaçamento apenas ao botão Delete */
 }
 
 /* Media Queries */
