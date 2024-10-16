@@ -32,31 +32,28 @@ h1 {
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colunas de tamanhos iguais */
+  grid-template-columns: repeat(3, auto); /* 3 colunas de tamanhos iguais */
   grid-template-rows: repeat(2, auto); /* 2 linhas ajustáveis automaticamente */
   grid-gap: 32px; /* Espaçamento entre as caixas */
   max-width: 1170px; /* Largura máxima do grid */
-  margin: 0 auto; /* Centralizar na página */
-  padding: 16px; /* Um leve padding para dar espaçamento interno */
+  margin: 60px auto; /* Centralizar na página */
 }
 
 /* Estilização das caixas */
 .box {
-  background-color: #000; /* Fundo preto */
   position: relative; /* Para posicionamento absoluto dos textos */
-  padding: 35px;
   color: #fff; /* Texto branco */
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   overflow: hidden; /* Esconder qualquer conteúdo que ultrapasse a borda */
+  z-index: 0;
 }
 
 /* Estilos para imagens */
 .box img {
-  height: auto;
   object-fit: cover; /* Mantém a proporção da imagem */
   margin-bottom: 0; /* Remover margem da imagem */
+  z-index: 1;
 }
 
 /* Posicionamento dos textos sobre a imagem */
@@ -81,41 +78,68 @@ h1 {
 }
 
 .shop-button {
-  background-color: #fff;
-  color: #000;
-  padding: 10px 20px;
+  background-color: transparent;
+  color: white;
   border: none;
   cursor: pointer;
-  text-transform: uppercase;
+  text-decoration: none;
 }
 
 .shop-button:hover {
-  background-color: #444; /* Cor de fundo do botão ao passar o mouse */
   color: #fff;
+  text-decoration: underline;
 }
 
 /* Caixa 1 ocupa 2 linhas (toda a coluna 1) */
 .box1 {
   grid-row: span 2;
   grid-column: 1 / 2; /* Ocupa a primeira coluna */
+  background-color: #000; /* Fundo preto */
+}
+
+.box1 img {
+  height: 511px;
+  width: 511px;
+  padding: 35px 35px 0 35px;
+  align-self: flex-end;
 }
 
 /* Caixa 2 ocupa 2 colunas (colunas 2 e 3 da primeira linha) */
 .box2 {
   grid-column: 2 / 4; /* Ocupa colunas 2 e 3 */
   grid-row: 1 / 2; /* Primeira linha */
+  background-color: #000; /* Fundo preto */
 }
+
+.box2 img {
+  height: 286px;
+  width: 432px;
+  align-self: flex-end;
+}
+
 
 /* Caixa 3 ocupa a segunda coluna da segunda linha */
 .box3 {
   grid-column: 2 / 3; /* Segunda coluna */
   grid-row: 2 / 3; /* Segunda linha */
+  background: #858585;
+  background: radial-gradient(at center, #858585, #010101);
+}
+
+.box3 img {
+  padding: 31px 40px 32px 40px;
 }
 
 /* Caixa 4 ocupa a terceira coluna da segunda linha */
 .box4 {
   grid-column: 3 / 4; /* Terceira coluna */
   grid-row: 2 / 3; /* Segunda linha */
+  background: #858585;
+  background: radial-gradient(at center, #858585, #010101);
+}
+
+.box4 img {
+  padding: 38px 35px 43px 34px;
 }
 
 /* Responsividade - ajuste para telas menores */
