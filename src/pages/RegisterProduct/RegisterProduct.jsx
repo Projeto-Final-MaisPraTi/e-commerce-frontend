@@ -2,7 +2,6 @@ import Register from "./Register";
 import styled from "styled-components";
 import { RegisterProvider } from "./RegisterContext";
 
-
 const Container = styled.div`
   display: flex;
   width: 80%;
