@@ -39,9 +39,9 @@ const Payment = () => {
     const formattedValue =
       name === "cardHolder"
         ? value
-          .split(" ")
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-          .join(" ")
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(" ")
         : value;
 
     setFormData({
@@ -61,7 +61,9 @@ const Payment = () => {
       // Limita a entrada a 4 números, inserindo '/' automaticamente após os 2 primeiros números
       if (numericValue.length <= 4) {
         const formattedExpiry =
-          numericValue.length > 2 ? `${numericValue.slice(0, 2)}/${numericValue.slice(2)}` : numericValue;
+          numericValue.length > 2
+            ? `${numericValue.slice(0, 2)}/${numericValue.slice(2)}`
+            : numericValue;
 
         setFormData((prev) => ({ ...prev, expiryDate: formattedExpiry }));
       }
@@ -77,7 +79,8 @@ const Payment = () => {
     }
 
     // Validação do nome do titular
-    const isValidCardHolder = /^[A-Za-zÀ-ÿ\s]+$/.test(formData.cardHolder) && formData.cardHolder.trim().length >= 3;
+    const isValidCardHolder =
+      /^[A-Za-zÀ-ÿ\s]+$/.test(formData.cardHolder) && formData.cardHolder.trim().length >= 3;
     if (!isValidCardHolder) {
       newErrors.cardHolder = "O nome do titular deve conter pelo menos 3 letras e apenas letras.";
     }
@@ -123,13 +126,22 @@ const Payment = () => {
       setIsEditingIndex(null); // Resetar índice de edição após atualização
     } else {
       // Adicionar um novo cartão
-      if (savedCards.length < 2 || window.confirm("Você já tem 2 cartões salvos. Deseja substituir o cartão existente?")) {
+      if (
+        savedCards.length < 2 ||
+        window.confirm("Você já tem 2 cartões salvos. Deseja substituir o cartão existente?")
+      ) {
         if (savedCards.length === 2) {
           const confirmDelete = window.confirm("Deseja substituir um cartão existente?");
           if (confirmDelete) {
             // Montar a mensagem de alerta com os últimos 4 dígitos dos cartões salvos
-            const cardList = savedCards.map((card, index) => `Cartão ${index + 1}: **** **** **** ${card.cardNumber.slice(-4)}`).join('\n');
-            const cardToReplaceIndex = prompt(`Digite o número do cartão a ser substituído:\n${cardList}`);
+            const cardList = savedCards
+              .map(
+                (card, index) => `Cartão ${index + 1}: **** **** **** ${card.cardNumber.slice(-4)}`,
+              )
+              .join("\n");
+            const cardToReplaceIndex = prompt(
+              `Digite o número do cartão a ser substituído:\n${cardList}`,
+            );
             const indexToReplace = parseInt(cardToReplaceIndex) - 1; // Ajustar o índice subtraindo 1
             if (indexToReplace >= 0 && indexToReplace < savedCards.length) {
               const updatedCards = [...savedCards];
@@ -157,7 +169,6 @@ const Payment = () => {
       cpf: "",
     });
   };
-
 
   const handleEditCard = (index) => {
     const cardToEdit = savedCards[index];
@@ -199,7 +210,9 @@ const Payment = () => {
       <section className="payment-info">
         <div className="payment-card">
           <div className="payment-method">
-            <h6><strong>{translations.account.account}</strong></h6>
+            <h6>
+              <strong>{translations.account.account}</strong>
+            </h6>
             <div className="payment-p">
               <p
                 className="profile-option"
@@ -207,8 +220,8 @@ const Payment = () => {
                 onMouseEnter={() => setIsProfileTitleHovered(true)}
                 onMouseLeave={() => setIsProfileTitleHovered(false)}
                 style={{
-                  cursor: 'pointer',
-                  fontWeight: isProfileTitleHovered ? 'bold' : 'normal',
+                  cursor: "pointer",
+                  fontWeight: isProfileTitleHovered ? "bold" : "normal",
                 }}
               >
                 {translations.account.profile}
@@ -220,9 +233,13 @@ const Payment = () => {
                 onMouseEnter={() => setIsPaymentTitleHovered(true)}
                 onMouseLeave={() => setIsPaymentTitleHovered(false)}
                 style={{
-                  cursor: 'pointer',
-                  fontWeight: isOnPaymentPage ? 'normal' : isPaymentTitleHovered ? 'bold' : 'normal',
-                  color: isOnPaymentPage ? 'red' : 'black',
+                  cursor: "pointer",
+                  fontWeight: isOnPaymentPage
+                    ? "normal"
+                    : isPaymentTitleHovered
+                    ? "bold"
+                    : "normal",
+                  color: isOnPaymentPage ? "red" : "black",
                 }}
               >
                 {translations.account.payment}
@@ -232,22 +249,20 @@ const Payment = () => {
           </div>
 
           <div className="payment-method">
-            <h6><strong>{translations.account.orders}</strong></h6>
+            <h6>
+              <strong>{translations.account.orders}</strong>
+            </h6>
             <div className="payment-p">
               <p>{translations.account.returns}</p>
               <p>{translations.account.cancellations}</p>
             </div>
           </div>
         </div>
-
       </section>
       <section className="payment-form">
         <h4 className="profile-title-p">Edit Your Payment Options</h4>
 
-        <form
-          className="form-p"
-          onSubmit={handleSubmit}
-        >
+        <form className="form-p" onSubmit={handleSubmit}>
           <div className="form-group-p">
             <div className="input-container">
               <label htmlFor="cardNumber">Card Number</label>
@@ -317,7 +332,7 @@ const Payment = () => {
             </button>
 
             <button type="submit" className="save">
-              {isEditingIndex !== null ? 'Update Card' : 'Save Card'}
+              {isEditingIndex !== null ? "Update Card" : "Save Card"}
             </button>
           </div>
         </form>
@@ -328,10 +343,15 @@ const Payment = () => {
             <ul>
               {savedCards.map((card, index) => (
                 <li key={index}>
-                  {card.cardHolder} - Ending in {card.cardNumber.slice(-4)} - Expiry: {card.expiryDate}
+                  {card.cardHolder} - Ending in {card.cardNumber.slice(-4)} - Expiry:{" "}
+                  {card.expiryDate}
                   <div>
-                    <button className="edit-btn" onClick={() => handleEditCard(index)}>Edit</button>
-                    <button className="delete-btn" onClick={() => handleDeleteCard(index)}>Delete</button>
+                    <button className="edit-btn" onClick={() => handleEditCard(index)}>
+                      Edit
+                    </button>
+                    <button className="delete-btn" onClick={() => handleDeleteCard(index)}>
+                      Delete
+                    </button>
                   </div>
                 </li>
               ))}
@@ -340,7 +360,6 @@ const Payment = () => {
             <p>No cards saved yet.</p>
           )}
         </section>
-
       </section>
     </div>
   );

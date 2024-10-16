@@ -44,7 +44,9 @@ const Account = () => {
       <section className="account-info">
         <div className="account-card">
           <div className="account-method">
-            <h6><strong>{translations.account.account}</strong></h6>
+            <h6>
+              <strong>{translations.account.account}</strong>
+            </h6>
             <div className="account-p">
               {/* "My Profile" com hover e estilo vermelho quando estiver na página /account */}
               <p
@@ -53,9 +55,9 @@ const Account = () => {
                 onMouseEnter={() => setIsProfileHovered(true)}
                 onMouseLeave={() => setIsProfileHovered(false)}
                 style={{
-                  fontWeight: isProfileHovered ? 'bold' : 'normal', // Negrito ao passar o mouse
-                  color: isOnProfilePage ? 'red' : 'black', // Vermelho quando na página /account
-                  cursor: 'pointer',
+                  fontWeight: isProfileHovered ? "bold" : "normal", // Negrito ao passar o mouse
+                  color: isOnProfilePage ? "red" : "black", // Vermelho quando na página /account
+                  cursor: "pointer",
                 }}
               >
                 {translations.account.profile}
@@ -71,9 +73,9 @@ const Account = () => {
                 onMouseEnter={() => setIsPaymentHovered(true)}
                 onMouseLeave={() => setIsPaymentHovered(false)}
                 style={{
-                  fontWeight: isPaymentHovered ? 'bold' : 'normal', // Negrito ao passar o mouse
-                  color: isOnPaymentPage ? 'red' : 'black', // Vermelho quando na página /payment
-                  cursor: 'pointer',
+                  fontWeight: isPaymentHovered ? "bold" : "normal", // Negrito ao passar o mouse
+                  color: isOnPaymentPage ? "red" : "black", // Vermelho quando na página /payment
+                  cursor: "pointer",
                 }}
               >
                 {translations.account.payment}
@@ -82,7 +84,9 @@ const Account = () => {
             <br />
           </div>
           <div className="account-method">
-            <h6><strong>{translations.account.orders}</strong></h6>
+            <h6>
+              <strong>{translations.account.orders}</strong>
+            </h6>
             <div className="account-p">
               <p>{translations.account.returns}</p>
               <p>{translations.account.cancellations}</p>

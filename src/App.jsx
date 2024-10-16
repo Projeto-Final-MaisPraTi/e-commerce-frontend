@@ -16,6 +16,7 @@ import CategoryPage from "./pages/Category/CategoryPage.jsx";
 import RegisterProduct from "./pages/RegisterProduct/RegisterProduct.jsx";
 import UpdateProduct from "./pages/UpdateProduct/UpdateProduct.jsx";
 import ManagerProduct from "./pages/HomeManagerProduct/Manager.jsx";
+import MyPayment from "./pages/MyPayment/MyPayment.jsx";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
             <Route path="/checkout" element={<CheckoutPage />} />
             {/* Responsável: Luiz Lobato */}
             <Route path="/account" element={<MyAccount />} />
+            <Route path="/payment" element={<MyPayment />} />
             {/* Responsável: Gabriel Bertollo*/}
             <Route path="/category/:category" element={<CategoryPage />} />
             <Route path="/category/explore" element={<CategoryPage />} />
