@@ -30,7 +30,12 @@ const PreviewProduct = ({ name, price, cover }) => {
 
   product["name"] = name;
   product["price"] = price ? `${price}`.replace(",", ".") : "999.99";
-  let array = [cover];
+  let array;
+  if (!cover || cover == false) {
+    array = null;
+  } else {
+    array = [cover];
+  }
   product["images"] = array;
 
   console.log(price);

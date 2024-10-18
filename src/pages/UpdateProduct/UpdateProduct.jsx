@@ -6,6 +6,10 @@ import CircularProgressBar from "../RegisterProduct/CircularProgressBar";
 import PreviewProduct from "../RegisterProduct/PreviewProduct";
 import CurrencyInput from 'react-currency-input-field';
 import CardUpdateImage from "./CardUpdateImage";
+import { deleteImageByUrl, addCoverImage } from "../../services/ImageService";
+import { deleteImagesFirebase } from "../../services/DeleteImageFirebase";
+import { uploadImage } from "../../services/UploadImageService";
+import { categories, opcoesDeCores } from "../../utils/ProductOptions";
 
 const Container = styled.div`
   display: flex;
@@ -104,6 +108,10 @@ const ImageDetails = styled.div`
     padding: 10px;
     `
 
+const UploadFile = styled.div`
+    
+`
+
 const ContainerAddImage = styled.div`
     box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
     width: 200px;
@@ -119,6 +127,49 @@ const ImageWrapper = styled.div`
     align-items: center;
 `
 
+const PopUpDeleteImage = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    padding: 10px;
+    width: 350px;
+    height: 150px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    color: #333;
+    p{
+        font-weight: 400;
+
+    }
+    p span {
+    color: #a00606;
+    font-weight: 700;
+    font-size: 15px;
+    }
+`
+
+const ButtonsDeleteImage = styled.div`
+  display: flex;
+  gap: 40px;
+  margin-top: 10px;
+  button {
+    padding: 5px 20px 5px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+  .yes {
+    background-color: #0765bd;
+    color: white
+  }
+  .no {
+    background-color: #e02108;
+    color: white;
+  }
+`;
+
 
 function UpdateProduct() {
     const { id } = useParams();
@@ -126,12 +177,22 @@ function UpdateProduct() {
 
     const [nome, setNome] = useState();
     const [preco, setPreco] = useState(999.99);
-    /* const [image, setImage] = useState([]); */
+
+    const [images, setImages] = useState();
     const [cor, setCor] = useState('Preto');
+
     const [descricao, setDescricao] = useState();
     const [estoque, setEstoque] = useState();
-
     const [newImages, setNewImages] = useState();
+
+    const [cover, setCover] = useState();
+
+
+    const [deleteImage, setDeleteImage] = useState(false);
+    const [deleteCoverImage, setDeleteCover] = useState(false);
+
+
+    // ADICIONA IMAGEM PARA OS DETALHES
 
     const handleAddImage = (event) => {
         const file = event.target.files[0];
@@ -147,18 +208,79 @@ function UpdateProduct() {
         }
     };
 
+    
+    // ADICIONAR NOVA CAPA NO BANCO
 
+    const handleAddCoverInDB = async (image) => {
+        let url;
+        try {
+            url = await uploadImage(image);
+            console.log(url);
+            await addCoverImage(product.id, url);
+            setCover(url);
+        } catch (error) {
+            console.log(error)
+            return ;
+        }
+    }
+
+    // ADICIONA IMAGEM DE CAPA
+
+
+    // const handleFile = (event) => {
+    //     const file = event.target.files[0];
+    //     if (file) {
+    //       const reader = new FileReader();
+    //       reader.onloadend = () => {
+    //         setValues(reader.result, "cover");
+    //       };
+    //       reader.readAsDataURL(file);
+    //     } else {
+    //       setValues("", "cover");
+    //     }
+    //   };
+    
+
+    
+    
+    const handleAddCoverImage = async (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                handleAddCoverInDB(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    // DELETAR A IMAGEM DE CAPA //
+
+    const getNameImage = (imageUrl) => {
+        const url = imageUrl;
+        // Extrair o nome da imagem
+        const imageName = decodeURIComponent(url.split('/').pop().split('?')[0]);
+        return (imageName);
+    }
+
+    const handleDeleteCover = async () => {
+        // let nameImage = getNameImage(cover);
+        // let url = cover;
+
+        // await deleteImageByUrl(url);
+        // await deleteImagesFirebase(nameImage);
+        // console.log(nameImage);
+        setCover(false);
+        setDeleteCover(false);
+    }
+
+
+
+    // Usado duas vezes em componetes diferentes
 
     const [categoria, setCategoria] = useState();
 
-    const categories = [
-        { value: "", label: "Categories", disabled: true },
-        { value: "Phones", label: "Phones" },
-        { value: "Computers", label: "Computers" },
-        { value: "SmartWatches", label: "SmartWatches" },
-        { value: "Cameras", label: "Cameras" },
-        { value: "Headphones", label: "Headphones" },
-    ];
+
 
     // Muda a categoria selecionada
     const handleChangeCategory = (event) => {
@@ -167,14 +289,9 @@ function UpdateProduct() {
     };
 
     // cor 
+    // também usado duas vezes em componentes diferentes
 
     const [corSelecionada, setCorSelecionada] = useState("#000000");
-
-    const opcoesDeCores = [
-        { nome: "Preto", valor: "#000000" },
-        { nome: "Branco", valor: "#ffffff" },
-    ];
-
 
     const handleChangeColor = (event) => {
         setCorSelecionada(event.target.value);
@@ -205,6 +322,8 @@ function UpdateProduct() {
             setEstoque(result.estoque);
             setCategoria(result.categoria);
             setProduct(result);
+            setCover(result.images[0]);
+            setImages(result.images.slice(1));
         });
         console.log(product);
     }, []);
@@ -212,6 +331,7 @@ function UpdateProduct() {
     const handleSubmit = (event) => {
         event.preventDefault();
     };
+
 
     if (!product) {
         return (
@@ -229,7 +349,7 @@ function UpdateProduct() {
         <>
             <Container>
                 <SidePreview>
-                    <PreviewProduct name={nome} price={preco} cover={product.images[0]} />
+                    <PreviewProduct name={nome} price={preco} cover={cover} />
                 </SidePreview>
                 <SideForm>
                     <div className="title">
@@ -321,15 +441,44 @@ function UpdateProduct() {
                             <label >Cover Image:</label>
                             <br />
                             <ImageCover>
-                                <CardUpdateImage url={product.images[0]} />
+                                {cover ?
+                                    <CardUpdateImage url={cover} deleteImage={setDeleteCover} />
+                                    :
+                                    <UploadFile>
+                                        <label htmlFor="upload-button" style={{ cursor: 'pointer' }}>
+                                            <ContainerAddImage>
+                                                <ImageWrapper>
+                                                    <span>Adicionar imagem</span>
+                                                </ImageWrapper>
+                                            </ContainerAddImage>
+                                        </label>
+                                        <input
+                                            id="upload-button"
+                                            type="file"
+                                            accept="image/*"
+                                            style={{ display: 'none' }}
+                                            onChange={handleAddCoverImage}
+                                        />
+                                    </UploadFile>
+                                }
+                                {deleteCoverImage &&
+                                    <PopUpDeleteImage>
+                                        <p>Deseja realmente deletar esta imagem ?</p>
+                                        <p><span>A alteraçao é aplicada imediatamente</span></p>
+                                        <ButtonsDeleteImage>
+                                            <button className="yes" onClick={handleDeleteCover}>Sim</button>
+                                            <button className="no" onClick={() => setDeleteCover(false)}>Não</button>
+                                        </ButtonsDeleteImage>
+                                    </PopUpDeleteImage>
+                                }
                             </ImageCover>
                         </div>
                         <div>
                             <label>Image Details:</label>
                             <br />
                             <ImageDetails>
-                                {product.images.slice(1, product.images.length).map((img) => <CardUpdateImage url={img} />)}
-                                <div>
+                                {images.map((img) => <CardUpdateImage url={img} deleteImage={setDeleteImage} />)}
+                                <UploadFile>
                                     <label htmlFor="upload-button" style={{ cursor: 'pointer' }}>
                                         <ContainerAddImage>
                                             <ImageWrapper>
@@ -344,7 +493,17 @@ function UpdateProduct() {
                                         style={{ display: 'none' }}
                                         onChange={handleAddImage}
                                     />
-                                </div>
+                                </UploadFile>
+                                {deleteImage &&
+                                    <PopUpDeleteImage>
+                                        <p>Deseja realmente deletar esta imagem ?</p>
+                                        <p><span>A alteraçao é aplicada imediatamente</span></p>
+                                        <ButtonsDeleteImage>
+                                            <button className="yes">Sim</button>
+                                            <button className="no" onClick={() => setDeleteImage(false)}>Não</button>
+                                        </ButtonsDeleteImage>
+                                    </PopUpDeleteImage>
+                                }
                             </ImageDetails>
                         </div>
                         <div className="button_submit">

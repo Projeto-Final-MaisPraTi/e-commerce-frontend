@@ -28,11 +28,11 @@ const Header = styled.div`
     margin-right: 35px;
 `
 
-const CardUpdateImage = ({ url }) => {
+const CardUpdateImage = ({ url, deleteImage }) => {
     return (
         <Container>
             <Header>
-                <CiSquareRemove style={{ color: 'red', fontSize: '30px', cursor: 'pointer' }} />
+                <CiSquareRemove onClick={() => deleteImage(url)} style={{ color: 'red', fontSize: '30px', cursor: 'pointer' }} />
             </Header>
             <div>
                 <img src={url} alt="" />

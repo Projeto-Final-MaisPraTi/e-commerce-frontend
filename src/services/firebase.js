@@ -32,6 +32,7 @@ const authenticateUser = async (email, password) => {
   }
 };
 
+
 // const email = import.meta.env.VITE_TEST_EMAIL; // Substitua pelo seu e-mail
 // const password = import.meta.env.VITE_TEST_PASSWORD; // Substitua pela sua senha
 // authenticateUser(email, password);
