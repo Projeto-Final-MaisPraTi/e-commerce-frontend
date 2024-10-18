@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import { styled as muiStyled } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
 import PreviewProduct from "./PreviewProduct";
+import { categories, opcoesDeCores } from "../../utils/ProductOptions";
 
 // Progesso do banco de dados
 const Root = muiStyled(Box)(({ theme }) => ({
@@ -102,14 +103,6 @@ const Register = () => {
   const [progressBar, setProgressBar] = useState(null);
   const [progressInsertDB, setProgressInsertDB] = useState(null);
 
-  const categories = [
-    { value: "", label: "Categories", disabled: true },
-    { value: "Phones", label: "Phones" },
-    { value: "Computers", label: "Computers" },
-    { value: "SmartWatches", label: "SmartWatches" },
-    { value: "Cameras", label: "Cameras" },
-    { value: "Headphones", label: "Headphones" },
-  ];
 
   // Muda a categoria selecionada
   const handleChangeCategory = (event) => {
@@ -158,11 +151,6 @@ const Register = () => {
   };
   //Seleciona a cor (Precisa colocar a logica para quando o produto não tiver uma cor)
   const [corSelecionada, setCorSelecionada] = useState("#000000");
-
-  const opcoesDeCores = [
-    { nome: "Preto", valor: "#000000" },
-    { nome: "Branco", valor: "#ffffff" },
-  ];
 
 
   const handleChangeColor = (event) => {

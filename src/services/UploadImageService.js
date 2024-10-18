@@ -1,5 +1,5 @@
 import { storage } from "./firebase";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL, uploadBytes } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 
 const base64ToBlob = (base64Data, contentType) => {
@@ -21,6 +21,7 @@ const base64ToBlob = (base64Data, contentType) => {
 };
 
 const extractBase64Data = (base64String) => {
+  console.log(base64String);
   const [prefix, base64Data] = base64String.split(",");
   const contentType = prefix.match(/data:(.*);base64/)[1]; // Extraímos o tipo de conteúdo (ex: "image/png")
   return { base64Data, contentType };
@@ -72,4 +73,29 @@ export const uploadImages = async (images) => {
 
   // Espera até que todos os uploads estejam concluídos e retorna as URLs
   return Promise.all(uploadPromises);
+};
+
+
+// UMA UNICA IMAGEM
+export const uploadImage = async (image) => {
+  // Extraia os dados da imagem Base64
+  const { base64Data, contentType } = extractBase64Data(image);
+
+  // Converta os dados em Blob
+  const blob = base64ToBlob(base64Data, contentType);
+
+  // Crie uma referência no Firebase Storage
+  const fileName = `images/${Date.now()}.jpg`; // Altere a extensão conforme necessário
+  const storageRef = ref(storage, fileName);
+
+  try {
+    // Faça o upload do Blob
+    await uploadBytes(storageRef, blob);
+    // Obtenha a URL de download da imagem
+    const downloadURL = await getDownloadURL(storageRef);
+    console.log("Imagem enviada com sucesso! URL:", downloadURL);
+    return downloadURL; // Retorne a URL para uso posterior
+  } catch (error) {
+    console.error("Erro ao fazer o upload da imagem:", error);
+  }
 };
