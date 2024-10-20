@@ -11,11 +11,11 @@ const Container = styled.div`
   display: flex;
   gap: 20px;
   width: 100%;
-`
+`;
 
 const SidePreview = styled.div`
   height: 100%;
-`
+`;
 
 const SideForm = styled.div`
   flex: 2;
@@ -74,7 +74,7 @@ const CorAtualSelecionada = styled.span`
   border: 2px solid black;
   border-radius: 5px;
   padding: 15px;
-  margin-left: 10px; 
+  margin-left: 10px;
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -168,11 +168,10 @@ const Register = () => {
   };
   // A maioria dos inputs ainda precisam de validação
 
-
   return (
     <Container>
       <SidePreview>
-        <PreviewProduct name={data.name} price={data.price} cover={data.cover}/>
+        <PreviewProduct name={data.name} price={data.price} cover={data.cover} />
       </SidePreview>
       <SideForm>
         <div className="title">

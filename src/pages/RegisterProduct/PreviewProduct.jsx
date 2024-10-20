@@ -25,8 +25,7 @@ const StyProduct = styled(ProductCard)`
   width: 100%;
 `;
 
-const PreviewProduct = ({name, price, cover}) => {
-
+const PreviewProduct = ({ name, price, cover }) => {
   let product = {};
 
   product["name"] = name;
