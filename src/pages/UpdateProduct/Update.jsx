@@ -104,36 +104,47 @@ const Update = () => {
 
   const navigate = useNavigate();
 
+  // AO CLICAR NO ICONE DE EDIÇÃO E REDIRECIONADO PARA OUTRA PAGINA QUE E CARREGADA TODAS AS INFORMAÇÕES DO PRODUTO PARA EDIÇÃO
   const handlerEditProduct = () => {
       navigate("/manager/update/" + itemUpdate['id']);
   }
 
+  // FUNÇÃO PARA BUSCAR O PRODUTO COM O TEXTO INSERIDO
   const buscarProduto = async (textoBusca) => {
+    // SE JA TIVER OUTRA BUSCA FINALIZA ELA
     setResultadoBusca(null);
     setNotFound(null);
     let resultado;
     try {
+      // FAZ O LOADING APARECER NA TELA
       setLoad(true);
+      // FAZ A BUSCA NO BANCO PELO NOME DO PRODUTO USANDO ILIKE
       resultado = await findProductByName(textoBusca);
+      // REMOVE O LOADING DA TELA
       setLoad(false);
+      // SE O RESUTADO ESTIVER VAZIO ENTÃO O PRODUTO NÃO FOI ENCONTRADO
       if (resultado.length == 0) {
         setNotFound(true);
         return;
       }
+      // SE NÃO A VARIAVEL ONDE OS PRODUTOS FICAR E SETADA COM O RESULTADO E OS PRODUTOS SÃO REDENRIZADOS NA TELA
       setResultadoBusca(resultado);
-      console.log(resultado);
     } catch (error) {
+      alert("Erro ao buscar o produto");
       console.log(error);
     }
   };
 
+  // FUNÇÃO PARA REPRODUZIR O SLEEP (UMA PAUSA)
   const sleep = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
+  // DELETA O PRODUTO IMEDIATAMENTE
   const deleteProduct = async (id) => {
     let divUpdate = document.getElementById('popup_delete');
     let res;
+    // TENTA REESCREVER O QUE TEM DENTRO DA DIV DE POPUP
     const root = createRoot(divUpdate);
     root.render(<CircularProgressBar />);
     try {
@@ -142,26 +153,34 @@ const Update = () => {
       <div> 
         <p>Produto excuido com sucesso !</p>
       </div>);
+      // DA UMA PAUSA PARA MOSTRAR O QUE FOI REDENRIZADO DENTRO DO POPUP
       await sleep(3000);
+      // FAZ NOVAMENTE A BUSCA ANTERIOR PARA MOSTRAR OS MESMOS PRODUTOS MAS SEM O PRODUTO DELETADO
       buscarProduto(textoBusca);
     } catch (error) {
+      alert("Falha ao deletar o produto!")
       console.log(error);
     }
+    // FECHA O POPUP DE DELETAR O PRODUTO
     setDeleteItem(null);
     console.log(res);
   }
 
   return (
     <Container>
+      {/* BARRA DE PERQUISA */}
       <SearchBar>
         <input
           value={textoBusca}
           type="text"
           onChange={(event) => setTextoBusca(event.target.value)}
         />
+        {/* AO CLICAR EM BUSCAR E CHAMADA UM FUNÇAO PARA BUSCAR OS PRODUTOS NO BANCO E COLOCAR TODOS OS PRODUTOS ENCONTRADOS EM UMA VARIAVEL */}
         <button onClick={() => buscarProduto(textoBusca)}>Search</button>
       </SearchBar>
+      {/* QUADRANTE ONDE E MOSTRADO O RESUTADO DE UMA BUSCA */}
       <ShowProducts>
+        {/* ENQUANTO ESTA BUCANDO O PRODUTO MOSTAR UM ICONE DE LOADING */}
         {load &&
           <Loading>
             <h3>Buscando produtos</h3>
@@ -170,11 +189,13 @@ const Update = () => {
             </Root>
           </Loading>
         }
+        {/* SE O PRODUTO NÃO FOR ENCONTRARDO MOSTRAR NA TELA QUE O PRODUTO NÃO FOI ENCONTRADO */}
         {notFound &&
           <Loading>
             <h3>Nenhum resultado encontrado</h3>
           </Loading>
         }
+        {/* MOSTRAR RESULTADO DA BUSCA DE PRODUTOS */}
         {resultadoBusca && resultadoBusca.map((p) => {
           const produto = {
             id: p.id,
@@ -184,6 +205,7 @@ const Update = () => {
             images: [p.images]
           }; return <CardUpdateProduct product={produto} update={setItemUpdate} delete={setDeleteItem}/>;
         })}
+        {/* ATUALIZAÇÕES DO PRODUTO, DELETAR OU EDITAR */}
         { itemUpdate &&
         <PopupUpdate>
           <p>Deseja alterar o produto {itemUpdate['nome']} ?</p>

@@ -11,14 +11,16 @@ const Container = styled.div`
     height: 250px;
     box-shadow: 0 0 5px rgba(3, 0, 0, 0.3);
     border-radius: 10px;
-    div {
-    }
     img{
         height: 13rem;
         max-width: 200px;
         padding: 10px;
         object-fit: contain;
     }
+`
+
+const Image = styled.div`
+     height: 85%;
 `
 
 const Header = styled.div`
@@ -34,9 +36,9 @@ const CardUpdateImage = ({ url, deleteImage }) => {
             <Header>
                 <CiSquareRemove onClick={() => deleteImage(url)} style={{ color: 'red', fontSize: '30px', cursor: 'pointer' }} />
             </Header>
-            <div>
+            <Image>
                 <img src={url} alt="" />
-            </div>
+            </Image>
         </Container>
     )
 }
