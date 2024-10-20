@@ -3,20 +3,9 @@ import useRegister from "./useRegister";
 import { useState } from "react";
 import { submitProduct } from "../../services/ProductSubmission";
 import Box from "@mui/material/Box";
-import { styled as muiStyled } from "@mui/material/styles";
-import CircularProgress from "@mui/material/CircularProgress";
 import PreviewProduct from "./PreviewProduct";
 import { categories, opcoesDeCores } from "../../utils/ProductOptions";
-
-// Progesso do banco de dados
-const Root = muiStyled(Box)(({ theme }) => ({
-  display: "flex",
-  "& > * + *": {
-    // Não sei
-    marginLeft: theme.spacing(3),
-  },
-  justifyContent: "center",
-}));
+import CircularProgressBar from "./CircularProgressBar";
 
 const Container = styled.div`
   display: flex;
@@ -89,10 +78,8 @@ const CorAtualSelecionada = styled.span`
   width: 20px;
   height: 20px;
   display: inline-block;
-  background-color: ${(props) => props.cor};
-`;
-
-const Cor = ({ corAtual }) => <CorAtualSelecionada cor={corAtual} />;
+  background-color: ${props => props.cor};
+`
 
 const Register = () => {
   const { setValues, data } = useRegister();
@@ -110,7 +97,7 @@ const Register = () => {
   };
 
   // Pega o primeiro indice para a imagem de capa
-  const handleFile = (event) => {
+  const handleCoverFile = (event) => {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -262,7 +249,7 @@ const Register = () => {
           <div>
             <label htmlFor="">Cover Image:</label>
             <br />
-            <input className="img-input" type="file" accept="image/*" onChange={handleFile} />
+            <input className="img-input" type="file" accept="image/*" onChange={handleCoverFile} />
           </div>
           <div>
             <label htmlFor="">Image Details:</label>
@@ -281,17 +268,13 @@ const Register = () => {
           {progressBar && (
             <Box sx={{ width: "100%", marginTop: "8px" }}>
               <h5>Fazendo upload das imagens</h5>
-              <Root>
-                <CircularProgress />
-              </Root>
+                <CircularProgressBar />
             </Box>
           )}
           {progressInsertDB && (
             <div className="loading_banco_de_dados">
               <h5>Fazendo upload no banco de dados</h5>
-              <Root>
-                <CircularProgress />
-              </Root>
+                <CircularProgressBar />
             </div>
           )}
         </form>

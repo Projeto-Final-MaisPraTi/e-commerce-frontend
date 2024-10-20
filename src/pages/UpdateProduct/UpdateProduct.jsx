@@ -45,9 +45,6 @@ const SideForm = styled.div`
     form{
         text-align: center;
         width: 100%;
-        label {
-            margin-top: 10px;
-        }
         .description {
             padding: 10px;
             width: 80%;
@@ -59,19 +56,19 @@ const SideForm = styled.div`
             line-height: 100%;
          }
     }
-    input {
+    .disabled {
+    pointer-events: none; 
+    opacity: 0.5; 
+    }
+}
+`
+
+const InputArea = styled.input`
     width: 80%;
     height: 35px;
     font-size: 20px;
     padding: 5px;
     margin: auto;
-    }
-}
-`
-
-const InputArea = styled.div`
-    display: flex;
-    justify-content: center;
 `
 
 const OptionColors = styled.div`
@@ -170,26 +167,89 @@ const ButtonsDeleteImage = styled.div`
   }
 `;
 
+const Label = styled.label`
+    
+`
+
+
+const SelectBox = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px auto 5px auto;
+    label {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 0px;
+    }
+    input {
+        margin-left: 10px;
+        width: 18px;
+        height: 18px;
+        padding: 0;
+    }
+    span {
+        color: gray;
+        font-size: 15px;
+        margin-left: 5px;
+    }
+`
+
 
 function UpdateProduct() {
     const { id } = useParams();
-    const [product, setProduct] = useState();
 
-    const [nome, setNome] = useState();
-    const [preco, setPreco] = useState(999.99);
-
-    const [images, setImages] = useState();
-    const [cor, setCor] = useState('Preto');
-
-    const [descricao, setDescricao] = useState();
-    const [estoque, setEstoque] = useState();
+    const [produto, setProduto] = useState();
     const [newImages, setNewImages] = useState();
-
-    const [cover, setCover] = useState();
-
-
     const [deleteImage, setDeleteImage] = useState(false);
     const [deleteCoverImage, setDeleteCover] = useState(false);
+
+    const handleChange = (key, value) => {
+        setProduto(prevState => ({
+            ...prevState,
+            [key]: { ...prevState[key], value }
+        }));
+    };
+
+    const toggleEdit = (key) => {
+        setProduto(prevState => ({
+            ...prevState,
+            [key]: { ...prevState[key], edit: !prevState[key].edit }
+        }));
+    };
+
+    const getProduct = async (id) => {
+        let product;
+        try {
+            product = await findProductById(id);
+        } catch (error) {
+            console.log(error);
+            return;
+        }
+        return (product);
+    }
+
+    useEffect(() => {
+        getProduct(id).then(result => {
+            setProduto({
+                id: id,
+                nome: { value: result.nome, edit: false },
+                preco: { value: result.preco, edit: false },
+                cor: { value: result.cor, edit: false },
+                descricao: { value: result.descricao, edit: false },
+                estoque: { value: result.estoque, edit: false },
+                categoria: { value: result.categoria, edit: false },
+                images: { value: result.images.slice(1), edit: false },
+                cover: { value: result.images[0], edit: false }
+            })
+        });
+        console.log(product);
+    }, []);
+
+
+
+    const [product, setProduct] = useState();
+
 
 
     // ADICIONA IMAGEM PARA OS DETALHES
@@ -211,44 +271,26 @@ function UpdateProduct() {
     
     // ADICIONAR NOVA CAPA NO BANCO
 
-    const handleAddCoverInDB = async (image) => {
+    const handleAddCoverInFirebase = async (image) => {
         let url;
         try {
             url = await uploadImage(image);
             console.log(url);
-            await addCoverImage(product.id, url);
-            setCover(url);
+            handleChange('cover', url);
         } catch (error) {
             console.log(error)
             return ;
         }
     }
 
-    // ADICIONA IMAGEM DE CAPA
-
-
-    // const handleFile = (event) => {
-    //     const file = event.target.files[0];
-    //     if (file) {
-    //       const reader = new FileReader();
-    //       reader.onloadend = () => {
-    //         setValues(reader.result, "cover");
-    //       };
-    //       reader.readAsDataURL(file);
-    //     } else {
-    //       setValues("", "cover");
-    //     }
-    //   };
-    
-
-    
+    // ADICIONA IMAGEM DE CAPA    
     
     const handleAddCoverImage = async (event) => {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                handleAddCoverInDB(reader.result);
+                handleChange('cover', reader.result);
             };
             reader.readAsDataURL(file);
         }
@@ -264,28 +306,22 @@ function UpdateProduct() {
     }
 
     const handleDeleteCover = async () => {
-        // let nameImage = getNameImage(cover);
-        // let url = cover;
-
-        // await deleteImageByUrl(url);
-        // await deleteImagesFirebase(nameImage);
-        // console.log(nameImage);
-        setCover(false);
+        if (produto.cover.value.includes('https:')){
+            let nameImage = getNameImage(produto.cover.value);
+            let url = produto.cover.value;
+            await deleteImageByUrl(url);
+            await deleteImagesFirebase(nameImage);
+            console.log(nameImage);
+        }
+        handleChange('cover', null);
         setDeleteCover(false);
     }
-
-
-
-    // Usado duas vezes em componetes diferentes
-
-    const [categoria, setCategoria] = useState();
-
 
 
     // Muda a categoria selecionada
     const handleChangeCategory = (event) => {
         const selectedValue = event.target.value;
-        setCategoria(selectedValue);
+        handleChange('categoria', selectedValue);
     };
 
     // cor 
@@ -298,42 +334,18 @@ function UpdateProduct() {
 
         const corEncontrada = opcoesDeCores.find((opcao) => opcao.valor === event.target.value);
         if (corEncontrada) {
-            setCor(corEncontrada.nome);
+            handleChange('cor', corEncontrada.nome);
         }
     };
 
-    const getProduct = async (id) => {
-        let product;
-        try {
-            product = await findProductById(id);
-        } catch (error) {
-            console.log(error);
-            return;
-        }
-        return (product);
-    }
-
-    useEffect(() => {
-        getProduct(id).then(result => {
-            setNome(result.nome);
-            setPreco(result.preco);
-            setCor(result.cor);
-            setDescricao(result.descricao);
-            setEstoque(result.estoque);
-            setCategoria(result.categoria);
-            setProduct(result);
-            setCover(result.images[0]);
-            setImages(result.images.slice(1));
-        });
-        console.log(product);
-    }, []);
+    
 
     const handleSubmit = (event) => {
         event.preventDefault();
     };
 
 
-    if (!product) {
+    if (!produto) {
         return (
             <>
                 <Container>
@@ -349,7 +361,7 @@ function UpdateProduct() {
         <>
             <Container>
                 <SidePreview>
-                    <PreviewProduct name={nome} price={preco} cover={cover} />
+                    <PreviewProduct name={produto.nome.value} price={produto.preco.value} cover={produto.cover.value} />
                 </SidePreview>
                 <SideForm>
                     <div className="title">
@@ -357,26 +369,34 @@ function UpdateProduct() {
                     </div>
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <label>Name:</label>
-                            <br />
-                            <input type="text" value={nome} onChange={(event) => setNome(event.target.value)} />
-                            {/* <input type="checkbox" /> */}
+                            <SelectBox>
+                                <Label>Name:</Label>
+                                <input type="checkbox" onChange={() => toggleEdit('nome')}/>
+                                <span>( Edit name ? )</span>
+                            </SelectBox>
+                            <InputArea disabled={!produto.nome.edit} type="text" value={produto.nome.value} onChange={(event) => handleChange('nome', event.target.value)} />
                         </div>
                         <div>
-                            <label>Description:</label>
-                            <br />
+                            <SelectBox>
+                                <Label>Description:</Label>
+                                <input type="checkbox" onChange={() => toggleEdit('descricao')}/>
+                                <span>( Edit description ? )</span>
+                            </SelectBox>
                             <textarea
                                 className="description"
                                 type="text"
-                                value={descricao}
-                                onChange={(event) => setDescricao(event.target.value)}
+                                disabled={!produto.descricao.edit}
+                                value={produto.descricao.value}
+                                onChange={(event) => handleChange('descricao', event.target.value)}
                             />
-                            {/* <input type="checkbox" /> */}
                         </div>
                         <div>
-                            <label htmlFor="">Category:</label>
-                            <br />
-                            <select name="" id="" onChange={handleChangeCategory} value={categoria}>
+                        <SelectBox>
+                            <Label>Category:</Label>
+                            <input type="checkbox" onChange={() => toggleEdit('categoria')}/>
+                            <span>( Edit category ? )</span>
+                        </SelectBox>
+                            <select disabled={!produto.categoria.edit} onChange={handleChangeCategory} value={produto.categoria.value}>
                                 {categories.map((cat, index) => (
                                     <option key={index} value={cat.value} disabled={cat.disabled}>
                                         {cat.label}
@@ -385,38 +405,48 @@ function UpdateProduct() {
                             </select>
                         </div>
                         <div>
-                            <label>Quantity:</label>
-                            <br />
-                            <input
+                            <SelectBox>
+                                <Label>Quantity:</Label>
+                                <input type="checkbox" onChange={() => toggleEdit('estoque')}/>
+                                <span>( Edit quantity ? )</span>
+                            </SelectBox>
+                            <InputArea
                                 type="number"
                                 min={0}
+                                disabled={!produto.estoque.edit}
                                 placeholder="0"
-                                value={estoque}
-                                onChange={(event) => setEstoque(event.target.value)}
+                                value={produto.estoque.value}
+                                onChange={(event) => handleChange('estoque', event.target.value)}
                             />
-                            {/* <input type="checkbox" /> */}
                         </div>
                         <div>
-                            <label >Value:</label>
-                            <br />
+                            <SelectBox>
+                                <label >Value:</label>
+                                <input type="checkbox" onChange={() => toggleEdit('preco')}/>
+                                <span>( Edit value ? )</span>
+                            </SelectBox>
                             <CurrencyInput
-                                value={preco}
+                                value={produto.preco.value}
                                 placeholder="R$ 0,00"
                                 decimalSeparator=","
                                 groupSeparator="."
+                                disabled={!produto.preco.edit}
                                 prefix="R$ "
                                 intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
                                 decimalsLimit={2}
                                 onValueChange={(value) => {
-                                    setPreco(value)
-                                    console.log(value);
+                                    handleChange('preco', value)
                                 }}
                             />
                         </div>
                         <OptionColors>
-                            <label>Cor</label>
+                            <SelectBox>
+                                <label>Color:</label>
+                                <input type="checkbox" onChange={() => toggleEdit('cor')}/>
+                                <span>( Edit color ? )</span>
+                            </SelectBox>
                             <SelectColor>
-                                <select value={corSelecionada} onChange={handleChangeColor}>
+                                <select disabled={!produto.cor.edit} value={corSelecionada} onChange={handleChangeColor}>
                                     {opcoesDeCores.map((opcao, index) => (
                                         <option key={index} value={opcao.valor}>
                                             {opcao.nome}
@@ -438,11 +468,14 @@ function UpdateProduct() {
                             </SelectColor>
                         </OptionColors>
                         <div>
-                            <label >Cover Image:</label>
-                            <br />
-                            <ImageCover>
-                                {cover ?
-                                    <CardUpdateImage url={cover} deleteImage={setDeleteCover} />
+                            <SelectBox>
+                                <label >Cover Image:</label>
+                                <input type="checkbox" onChange={() => toggleEdit('cover')}/>
+                                <span>( Edit image cover ? )</span>
+                            </SelectBox>
+                            <ImageCover className={produto.cover.edit ? '' : 'disabled'}>
+                                {produto.cover.value ?
+                                    <CardUpdateImage url={produto.cover.value} deleteImage={setDeleteCover} />
                                     :
                                     <UploadFile>
                                         <label htmlFor="upload-button" style={{ cursor: 'pointer' }}>
@@ -452,7 +485,7 @@ function UpdateProduct() {
                                                 </ImageWrapper>
                                             </ContainerAddImage>
                                         </label>
-                                        <input
+                                        <InputArea
                                             id="upload-button"
                                             type="file"
                                             accept="image/*"
@@ -474,10 +507,14 @@ function UpdateProduct() {
                             </ImageCover>
                         </div>
                         <div>
-                            <label>Image Details:</label>
-                            <br />
-                            <ImageDetails>
-                                {images.map((img) => <CardUpdateImage url={img} deleteImage={setDeleteImage} />)}
+                            <SelectBox>
+                                <label>Image Details:</label>
+                                <input type="checkbox" onChange={() => toggleEdit('images')}/>
+                                <span>( Edit image details ? )</span>
+                            </SelectBox>
+                            <ImageDetails className={produto.images.edit ? '' : 'disabled'}>
+                                {produto.images.value.map((img) => <CardUpdateImage url={img} deleteImage={setDeleteImage} />)}
+                                {newImages ? newImages.map((img) =>  <CardUpdateImage url={img} />) : ''}
                                 <UploadFile>
                                     <label htmlFor="upload-button" style={{ cursor: 'pointer' }}>
                                         <ContainerAddImage>
@@ -486,7 +523,7 @@ function UpdateProduct() {
                                             </ImageWrapper>
                                         </ContainerAddImage>
                                     </label>
-                                    <input
+                                    <InputArea
                                         id="upload-button"
                                         type="file"
                                         accept="image/*"
@@ -507,7 +544,7 @@ function UpdateProduct() {
                             </ImageDetails>
                         </div>
                         <div className="button_submit">
-                            <input type="submit" value={"Update"} />
+                            <InputArea type="submit" value={"Update"} />
                         </div>
                         {/* {progressBar && (
                     <Box sx={{ width: "100%", marginTop: "8px" }}>
