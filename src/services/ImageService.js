@@ -4,7 +4,11 @@ const API_URL = "http://localhost:8080/api/images";
 
 export const deleteImageByUrl = async (url) => {
     try {
-        const response = await axios.delete(API_URL + '/delete-image?imageUrl=' + url, {
+        const response = await axios.delete(API_URL + '/delete-image',
+            {
+                imageUrl: url
+            },
+            {
             headers: {
             'Content-Type': 'application/json'
             }
@@ -22,7 +26,7 @@ export const addCoverImage = async (id ,url) => {
             {
                 idProduct: id,
                 imageUrl: url
-            }, 
+            },
             {
                 headers: {
                 'Content-Type': 'application/json'

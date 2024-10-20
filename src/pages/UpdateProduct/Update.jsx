@@ -93,7 +93,7 @@ const ButtonsUpdate = styled.div`
 `;
 
 const Update = () => {
-  const [textoBusca, setTextoBusca] = useState();
+  const [textoBusca, setTextoBusca] = useState('');
   const [resultadoBusca, setResultadoBusca] = useState();
   const [load, setLoad] = useState(null);
   const [notFound, setNotFound] = useState(null);
@@ -131,6 +131,7 @@ const Update = () => {
       setResultadoBusca(resultado);
     } catch (error) {
       alert("Erro ao buscar o produto");
+      setNotFound(true);
       console.log(error);
     }
   };

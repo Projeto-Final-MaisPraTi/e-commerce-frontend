@@ -16,6 +16,35 @@ export const createProduct = async (productData) => {
   }
 };
 
+export const updateProduct = async (productData) => {
+  try {
+    const response = await axios.put(API_URL + '/update', productData,
+      {
+      headers: {
+        "Content-Type": "application/json",
+      }}
+    );
+    return response.data; // Retorna os dados do produto atualizados
+  } catch (error) {
+    console.error("Error ao atualizar produto:", error);
+    throw error; // Repassa o erro
+  }
+};
+
+export const deleteProductById = async (id) => {
+  try {
+      const response = await axios.delete(API_URL + '/' + id, {
+          headers: {
+          'Content-Type': 'application/json'
+          }
+      });
+      return response.data;
+  } catch (error) {
+      console.error('Error ao deletar produto:', error);
+      throw error; // Repassa o erro
+  }
+};
+
 export const findProductByName = async (name) => {
   try {
     const response = await axios.get(API_URL + "/search?name=" + name, {
@@ -42,18 +71,5 @@ export const findProductById = async (id) => {
         console.error('Error ao procurar produto:', error);
         throw error; // Repassa o erro
     }
-}
+};
 
-export const deleteProductById = async (id) => {
-    try {
-        const response = await axios.delete(API_URL + '/' + id, {
-            headers: {
-            'Content-Type': 'application/json'
-            }
-        });
-        return response.data;
-    } catch (error) {
-        console.error('Error ao deletar produto:', error);
-        throw error; // Repassa o erro
-    }
-}
