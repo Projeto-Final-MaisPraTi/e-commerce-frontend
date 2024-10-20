@@ -100,7 +100,7 @@
 .box2 {
   grid-column: 2 / 4;
   grid-row: 1 / 2;
-  background-color: #000;
+  background-color: rgba(12,12,12,255);
 }
 
 .box2 img {
