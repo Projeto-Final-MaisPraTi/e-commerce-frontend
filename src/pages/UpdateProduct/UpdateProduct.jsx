@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { findProductById } from "../../services/ProductService";
+import { findProductById, updateProduct } from "../../services/ProductService";
 import React, { useEffect, useState } from "react";
 import CircularProgressBar from "../RegisterProduct/CircularProgressBar";
 import PreviewProduct from "../RegisterProduct/PreviewProduct";
@@ -8,7 +8,7 @@ import CurrencyInput from 'react-currency-input-field';
 import CardUpdateImage from "./CardUpdateImage";
 import { deleteImageByUrl, addCoverImage } from "../../services/ImageService";
 import { deleteImagesFirebase } from "../../services/DeleteImageFirebase";
-import { uploadImage } from "../../services/UploadImageService";
+import { uploadImage, uploadImages } from "../../services/UploadImageService";
 import { categories, opcoesDeCores } from "../../utils/ProductOptions";
 
 const Container = styled.div`
@@ -201,6 +201,7 @@ function UpdateProduct() {
 
     const [produto, setProduto] = useState();
     const [newImages, setNewImages] = useState();
+    const [cover, setCover] = useState();
     const [deleteImage, setDeleteImage] = useState(false);
     const [deleteCoverImage, setDeleteCover] = useState(false);
 
@@ -243,13 +244,8 @@ function UpdateProduct() {
                 cover: { value: result.images[0], edit: false }
             })
         });
-        console.log(product);
+        console.log(produto);
     }, []);
-
-
-
-    const [product, setProduct] = useState();
-
 
 
     // ADICIONA IMAGEM PARA OS DETALHES
@@ -264,7 +260,6 @@ function UpdateProduct() {
                 setNewImages([newImageUrl]);
             }
             console.log(newImages);
-            product.images = [...product.images, newImageUrl];
         }
     };
 
@@ -277,6 +272,7 @@ function UpdateProduct() {
             url = await uploadImage(image);
             console.log(url);
             handleChange('cover', url);
+            return url;
         } catch (error) {
             console.log(error)
             return ;
@@ -291,6 +287,7 @@ function UpdateProduct() {
             const reader = new FileReader();
             reader.onloadend = () => {
                 handleChange('cover', reader.result);
+
             };
             reader.readAsDataURL(file);
         }
@@ -306,7 +303,7 @@ function UpdateProduct() {
     }
 
     const handleDeleteCover = async () => {
-        if (produto.cover.value.includes('https:')){
+        if (produto.cover.value && produto.cover.value.includes('https:')){
             let nameImage = getNameImage(produto.cover.value);
             let url = produto.cover.value;
             await deleteImageByUrl(url);
@@ -338,10 +335,52 @@ function UpdateProduct() {
         }
     };
 
+    const createUpdateProdutoData = async () => {
+        const data = {};
+        data['id'] = produto.id;
+        if (produto.nome.edit) {
+            data['nome'] = produto.nome.value;
+        }
+        if (produto.cor.edit) {
+            data['cor'] = produto.cor.value;
+        }
+        if (produto.descricao.edit) {
+            data['descricao'] = produto.descricao.value;
+        }
+        if (produto.estoque.edit) {
+            data['estoque'] = produto.estoque.value;
+        }
+        if (produto.categoria.edit) {
+            data['categoria'] = produto.estoque.value;
+        }
+        if (produto.images.edit && newImages.length > 0) {
+            const urlImages = await uploadImages(newImages);
+            data['images'] = urlImages;
+        }
+        if (produto.cover.edit) {
+            if (!produto.cover.value.includes('https:')) {
+                const urlCover = await uploadImage(produto.cover.value);
+                data['cover'] = urlCover;
+            }
+        }
+        return data;
+    }
+
     
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        try {
+            const data = await createUpdateProdutoData();
+            const resp = await updateProduct(data);
+            console.log(resp);
+            alert("Produto atualizado com sucesso!");
+            window.location.reload();
+            return;
+        } catch (error) {
+            alert("Erro ao atualizar produto");
+            console.log(error);
+        }
     };
 
 
