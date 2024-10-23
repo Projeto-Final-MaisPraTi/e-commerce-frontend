@@ -1,8 +1,8 @@
 import styles from "./NewArrival.module.css";
-import Ps5 from "../../assets/PS5slim.png";
-import Mulher from "../../assets/mulher.png";
-import Speakers from "../../assets/speakers.png";
-import Perfume from "../../assets/Perfume.png";
+import G933 from "../../assets/headphones/Logitech_G933_black_1.png";
+import Ultra from "../../assets/smartwatches/Apple_Watch_Series_Ultra_orange_1.png";
+import Zenbook from "../../assets/computers/Asus_Zenbook_S14_black_1.png";
+import Iphone15 from "../../assets/phones/Apple_Iphone_15_pro_grey_1.png";
 import { Link } from "react-router-dom";
 
 const NewArrival = () => {
@@ -18,34 +18,34 @@ const NewArrival = () => {
       {/* Grid de Produtos */}
       <div className={styles.gridContainer}>
         <div className={`${styles.box} ${styles.box1}`}>
-          <img src={Ps5} alt="PlayStation 5" />
+          <img src={G933} alt="Logitech G933" />
           <div className={styles.productInfo}>
-            <h2>PlayStation 5</h2>
-            <p>Black and White version of the PS5 coming out on sale.</p>
+            <h2>Logitech G933</h2>
+            <p>One of the best gaming headsets on the market.</p>
             <Link to="/" className={styles.shopButton}>Shop Now</Link>
           </div>
         </div>
         <div className={`${styles.box} ${styles.box2}`}>
-          <img src={Mulher} alt="Women's Collection" />
+          <img src={Ultra} alt="Apple Watch Ultra" />
           <div className={styles.productInfo}>
-            <h2>Women's Collections</h2>
-            <p>Featured women collections that give you another vibe.</p>
+            <h2>Apple Watch Ultra</h2>
+            <p>The Best in smartwatches, it can do everything.</p>
             <Link to="/" className={styles.shopButton}>Shop Now</Link>
           </div>
         </div>
         <div className={`${styles.box} ${styles.box3}`}>
-          <img src={Speakers} alt="Speakers" />
+          <img src={Zenbook} alt="Zenbook" />
           <div className={styles.productInfo}>
-            <h2>Speakers</h2>
-            <p>Amazon wireless speakers.</p>
+            <h2>Asus Zenbook S14</h2>
+            <p>Thin, fast, lightweight, the best of Asus.</p>
             <Link to="/" className={styles.shopButton}>Shop Now</Link>
           </div>
         </div>
         <div className={`${styles.box} ${styles.box4}`}>
-          <img src={Perfume} alt="Gucci Perfume" />
+          <img src={Iphone15} alt="Iphone 15 Pro" />
           <div className={styles.productInfo}>
-            <h2>Gucci Perfume</h2>
-            <p>Gucci Intense Oud.</p>
+            <h2>Apple Iphone 15 Pro</h2>
+            <p>Iphone 15 Pro the best among others.</p>
             <Link to="/" className={styles.shopButton}>Shop Now</Link>
           </div>
         </div>
