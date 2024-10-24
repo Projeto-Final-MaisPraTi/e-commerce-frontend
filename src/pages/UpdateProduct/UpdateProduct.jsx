@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { findProductById, updateProduct } from "../../services/ProductService";
+import { getUpdateProduct, updateProduct } from "../../services/ProductService";
 import React, { useEffect, useState } from "react";
 import CircularProgressBar from "../RegisterProduct/CircularProgressBar";
 import PreviewProduct from "../RegisterProduct/PreviewProduct";
 import CurrencyInput from 'react-currency-input-field';
 import CardUpdateImage from "./CardUpdateImage";
-import { deleteImageByUrl, addCoverImage } from "../../services/ImageService";
+import { deleteImageByUrl } from "../../services/ImageService";
 import { deleteImagesFirebase } from "../../services/DeleteImageFirebase";
 import { uploadImage, uploadImages } from "../../services/UploadImageService";
 import { categories, opcoesDeCores } from "../../utils/ProductOptions";
@@ -59,6 +59,13 @@ const SideForm = styled.div`
     .disabled {
     pointer-events: none; 
     opacity: 0.5; 
+    }
+    .currency-input {
+        width: 80%;
+        height: 35px;
+        font-size: 20px;
+        padding: 5px;
+        margin: auto;
     }
 }
 `
@@ -222,7 +229,7 @@ function UpdateProduct() {
     const getProduct = async (id) => {
         let product;
         try {
-            product = await findProductById(id);
+            product = await getUpdateProduct(id);
         } catch (error) {
             console.log(error);
             return;
@@ -240,8 +247,8 @@ function UpdateProduct() {
                 descricao: { value: result.descricao, edit: false },
                 estoque: { value: result.estoque, edit: false },
                 categoria: { value: result.categoria, edit: false },
-                images: { value: result.images.slice(1), edit: false },
-                cover: { value: result.images[0], edit: false }
+                images: { value: result.images, edit: false },
+                cover: { value: result.cover, edit: false }
             })
         });
         console.log(produto);
@@ -253,31 +260,21 @@ function UpdateProduct() {
     const handleAddImage = (event) => {
         const file = event.target.files[0];
         if (file) {
-            const newImageUrl = URL.createObjectURL(file);
-            if (newImages) {
-                setNewImages([...newImages, newImageUrl]);
-            } else {
-                setNewImages([newImageUrl]);
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const newImageUrl = reader.result;
+
+                if (newImages) {
+                    setNewImages([...newImages, newImageUrl]);
+                } else {
+                    setNewImages([newImageUrl]);
+                }
             }
             console.log(newImages);
+            reader.readAsDataURL(file);
         }
     };
 
-    
-    // ADICIONAR NOVA CAPA NO BANCO
-
-    const handleAddCoverInFirebase = async (image) => {
-        let url;
-        try {
-            url = await uploadImage(image);
-            console.log(url);
-            handleChange('cover', url);
-            return url;
-        } catch (error) {
-            console.log(error)
-            return ;
-        }
-    }
 
     // ADICIONA IMAGEM DE CAPA    
     
@@ -287,7 +284,7 @@ function UpdateProduct() {
             const reader = new FileReader();
             reader.onloadend = () => {
                 handleChange('cover', reader.result);
-
+                setCover(reader.result);
             };
             reader.readAsDataURL(file);
         }
@@ -311,7 +308,26 @@ function UpdateProduct() {
             console.log(nameImage);
         }
         handleChange('cover', null);
+        setCover(false);
         setDeleteCover(false);
+    }
+
+    const handleDeleteImageDetails = async () => {
+        if (deleteImage.includes("https:")) {
+            let nameImage = getNameImage(deleteImage);
+            let url = deleteImage;
+            await deleteImageByUrl(url);
+            // await deleteImagesFirebase(nameImage);
+        }
+        if (produto.images.value != null) {
+            const updatedImages = produto.images.value.filter(image => image !== deleteImage);
+            handleChange('images', updatedImages);
+        }
+        if (newImages) {
+            const prevImages = newImages.filter(image => image !== deleteImage);
+            setNewImages(prevImages);
+        }
+        setDeleteImage(false);
     }
 
 
@@ -354,12 +370,14 @@ function UpdateProduct() {
             data['categoria'] = produto.estoque.value;
         }
         if (produto.images.edit && newImages.length > 0) {
+            console.log(newImages);
             const urlImages = await uploadImages(newImages);
             data['images'] = urlImages;
         }
         if (produto.cover.edit) {
-            if (!produto.cover.value.includes('https:')) {
-                const urlCover = await uploadImage(produto.cover.value);
+            if (!cover.includes('https:')) {
+                const urlCover = await uploadImage(cover);
+                setCover(urlCover);
                 data['cover'] = urlCover;
             }
         }
@@ -465,6 +483,7 @@ function UpdateProduct() {
                                 <span>( Edit value ? )</span>
                             </SelectBox>
                             <CurrencyInput
+                                className="currency-input"
                                 value={produto.preco.value}
                                 placeholder="R$ 0,00"
                                 decimalSeparator=","
@@ -538,8 +557,8 @@ function UpdateProduct() {
                                         <p>Deseja realmente deletar esta imagem ?</p>
                                         <p><span>A alteraçao é aplicada imediatamente</span></p>
                                         <ButtonsDeleteImage>
-                                            <button className="yes" onClick={handleDeleteCover}>Sim</button>
-                                            <button className="no" onClick={() => setDeleteCover(false)}>Não</button>
+                                            <button type="button" className="yes" onClick={handleDeleteCover}>Sim</button>
+                                            <button type="button" className="no" onClick={() => setDeleteCover(false)}>Não</button>
                                         </ButtonsDeleteImage>
                                     </PopUpDeleteImage>
                                 }
@@ -553,7 +572,7 @@ function UpdateProduct() {
                             </SelectBox>
                             <ImageDetails className={produto.images.edit ? '' : 'disabled'}>
                                 {produto.images.value.map((img) => <CardUpdateImage url={img} deleteImage={setDeleteImage} />)}
-                                {newImages ? newImages.map((img) =>  <CardUpdateImage url={img} />) : ''}
+                                {newImages ? newImages.map((img) =>  <CardUpdateImage url={img} deleteImage={setDeleteImage}/>) : ''}
                                 <UploadFile>
                                     <label htmlFor="upload-button" style={{ cursor: 'pointer' }}>
                                         <ContainerAddImage>
@@ -575,8 +594,8 @@ function UpdateProduct() {
                                         <p>Deseja realmente deletar esta imagem ?</p>
                                         <p><span>A alteraçao é aplicada imediatamente</span></p>
                                         <ButtonsDeleteImage>
-                                            <button className="yes">Sim</button>
-                                            <button className="no" onClick={() => setDeleteImage(false)}>Não</button>
+                                            <button type="button" className="yes" onClick={handleDeleteImageDetails}>Sim</button>
+                                            <button type="button" className="no" onClick={() => setDeleteImage(false)}>Não</button>
                                         </ButtonsDeleteImage>
                                     </PopUpDeleteImage>
                                 }

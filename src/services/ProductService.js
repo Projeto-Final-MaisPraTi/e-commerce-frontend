@@ -31,6 +31,20 @@ export const updateProduct = async (productData) => {
   }
 };
 
+export const getUpdateProduct = async (id) => {
+  try {
+    const response = await axios.get(API_URL + '/' + id + '/update', {
+        headers: {
+        'Content-Type': 'application/json'
+        }
+    });
+    return response.data;
+} catch (error) {
+    console.error('Error ao procurar produto:', error);
+    throw error; // Repassa o erro
+}
+}
+
 export const deleteProductById = async (id) => {
   try {
       const response = await axios.delete(API_URL + '/' + id, {
