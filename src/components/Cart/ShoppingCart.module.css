@@ -1,0 +1,190 @@
+.shoppingCart {
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+  margin: 5% 0 15% 0;
+  justify-content: center;
+  max-height: 450px;
+}
+
+.cartItemsContainer {
+  overflow-y: auto;
+  border-radius: 8px;
+  max-height: 450px; /* Define a altura máxima */
+}
+
+.cartItems {
+  border-collapse: collapse;
+  background-color: #fff;
+  width: 100%; /* Garante que a tabela ocupe toda a largura */
+}
+
+tr {
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.cartItems th,
+.cartItems td {
+  padding: 1rem;
+  text-align: left;
+}
+
+.cartItems th {
+  background-color: white;
+}
+
+.cartItems td {
+  vertical-align: middle;
+}
+
+.productInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cartProductImage {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.removeItem {
+  cursor: pointer;
+}
+
+.quantitySelector {
+  padding: 0.4rem;
+  border: 1px solid dodgerblue;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.quantitySelector option {
+  background-color: #fff;
+}
+
+.quantitySelector:hover {
+  background-color: dodgerblue;
+}
+
+.cartSummary {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 10px 24px;
+  justify-content: space-between;
+  background-color: #fff;
+  font-weight: bold;
+  min-width: 200px;
+}
+
+.cartSummary h5 {
+  font-weight: bold;
+}
+
+.cartSummary p {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cartCheckoutButton {
+  background-color: dodgerblue;
+  color: white;
+  padding: 10px 48px;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.cartCheckoutButton:hover {
+  background-color: #1f81e2;
+}
+
+.couponSection {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 1rem;
+}
+
+.couponSection input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+.couponSection input:focus {
+  border: 1px solid dodgerblue;
+  outline: none;
+}
+
+.couponSection button {
+  padding: 0.5rem 1rem;
+  background-color: dodgerblue;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.couponSection button:hover {
+  background-color: #1f81e2;
+}
+
+/* Ajustes para tablets e telas menores */
+@media (max-width: 768px) {
+  .shoppingCart {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 10% 0; /* Reduz margens para melhorar o espaço na tela */
+    max-height: none; /* Permite que o conteúdo expanda verticalmente */
+  }
+
+  .cartItemsContainer {
+    max-height: 60vh; /* Ajusta a altura máxima para 60% da tela */
+  }
+
+  .cartSummary {
+    align-self: center;
+    width: 100%;
+  }
+
+  .cartCheckoutButton {
+    width: 100%; /* Expande o botão no mobile */
+    padding: 10px 0;
+  }
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 480px) {
+  .cartItems th,
+  .cartItems td {
+    padding: 0.5rem;
+    font-size: 0.9rem; /* Reduz o tamanho da fonte */
+  }
+
+  .cartSummary {
+    padding: 10px 16px;
+    font-size: 0.9rem; /* Reduz o tamanho da fonte para o resumo */
+  }
+
+  .couponSection {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .couponSection input,
+  .couponSection button {
+    width: 100%;
+    padding: 0.4rem; /* Ajusta o padding no mobile */
+  }
+
+  .cartProductImage {
+    width: 24px;
+    height: 24px; /* Reduz o tamanho da imagem */
+  }
+}

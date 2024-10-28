@@ -4,8 +4,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import ProductsData from "../../utils/ProductsData";
 
 const FlashSalesContainer = styled.div`
-  width: 80%;
-  margin: 0 auto;
+  padding: 20px 10%;
   background-color: #fff;
   position: relative;
   overflow: hidden;
@@ -14,74 +13,102 @@ const FlashSalesContainer = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+
     p {
-      color: #db4444;
+      color: dodgerblue;
       font-weight: bold;
       margin: 0;
     }
   }
+
   .color {
     margin-right: 10px;
     height: 30px;
     width: 18px;
-    background-color: #db4444;
+    background-color: dodgerblue;
     border-radius: 5px;
   }
 `;
 
 const Header = styled.div`
   display: flex;
-  justify-content: space-between; /* Distribui espaço entre os elementos */
-  align-items: center; /* Centraliza verticalmente os elementos */
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
 
   @media (max-width: 766px) {
-    flex-direction: column; /* Torna o header do componente vertical em telas menores */
-    gap: 15px; /* Da um espaço entre os itens na vertical*/
-    align-items: flex-start; /* Alinha os itens na esquerda*/
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
   }
 `;
 
 const TitleTimerWrapper = styled.div`
   display: flex;
-  align-items: flex-start; /* Alinha os itens no início */
-  gap: 20px; /* Espaço entre o título e o bloco do timer    */
+  align-items: flex-start;
+  gap: 20px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 `;
 
 const Title = styled.h2`
   margin: 0;
   font-size: 34px;
+
+  @media (max-width: 480px) {
+    font-size: 28px; /* Reduz o título para telas pequenas */
+  }
 `;
 
 const TimerWrapper = styled.div`
   display: flex;
-  flex-direction: column; /* Alinha o título e o timer verticalmente */
+  flex-direction: column;
+
+  @media (max-width: 480px) {
+    align-items: center;
+  }
 `;
 
 const LabelWrapper = styled.div`
   display: flex;
-  justify-content: space-between; /* Distribui os rótulos uniformemente */
-  width: 100%; /* Garante que os rótulos ocupem a mesma largura do timer */
-  margin-bottom: 5px; /* Espaçamento entre os rótulos e o timer */
-  font-size: 14px; /* Tamanho menor para os rótulos */
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 5px;
+  font-size: 14px;
+
+  @media (max-width: 480px) {
+    font-size: 12px; /* Reduz o tamanho dos rótulos em telas pequenas */
+  }
 `;
 
 const Timer = styled.div`
   font-size: 34px;
+
+  @media (max-width: 480px) {
+    font-size: 24px; /* Reduz o tamanho do timer em telas pequenas */
+  }
 `;
 
 const ArrowsWrapper = styled.div`
-  display: flex; /* Coloca as setas lado a lado */
-  gap: 10px; /* Adiciona espaço entre as setas */
-  /* padding-right: 200px; Afasta as setas do canto direito */
+  display: flex;
+  gap: 10px;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: space-around; /* Distribui as setas igualmente em telas pequenas */
+  }
 `;
 
 const ArrowButton = styled.button`
-  background-color: #ccc; /* Fundo cinza */
+  background-color: #ccc;
   color: #000;
   border: none;
-  border-radius: 50%; /* Torna o botão redondo */
-  width: 40px; /* Ajusta o tamanho do botão */
+  border-radius: 50%;
+  width: 40px;
   height: 40px;
   display: flex;
   align-items: center;
@@ -90,13 +117,18 @@ const ArrowButton = styled.button`
   z-index: 2;
 
   &:hover {
-    background-color: #bbb; /* Cor de fundo ao passar o mouse */
+    background-color: #bbb;
   }
 
   svg {
     width: 16px;
     height: 16px;
-    fill: #000; /* Cor preta para a seta */
+    fill: #000;
+  }
+
+  @media (max-width: 480px) {
+    width: 35px; /* Reduz o tamanho dos botões em telas menores */
+    height: 35px;
   }
 `;
 
@@ -104,27 +136,33 @@ const ProductsCarousel = styled.div`
   display: flex;
   overflow-x: scroll;
   scroll-behavior: smooth;
-  -ms-overflow-style: none; /* Oculta a barra de rolagem no IE e Edge */
-  scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   padding: 10px;
+  scroll-snap-type: x mandatory;
 
   &::-webkit-scrollbar {
-    display: none; /* Oculta a barra de rolagem no Chrome, Safari e Opera */
+    display: none;
   }
-  /* Adicionar comportamento de snap ao rolar */
-  scroll-snap-type: x mandatory;
 `;
 
 const ProductWrapper = styled.div`
   flex: 0 0 270px;
   margin: 10px;
+
+  @media (max-width: 768px) {
+    flex: 0 0 220px; /* Reduz a largura dos produtos em tablets */
+  }
+
+  @media (max-width: 480px) {
+    flex: 0 0 180px; /* Reduz a largura dos produtos em dispositivos móveis */
+  }
 `;
 
 const FlashSales = () => {
   const [timeLeft, setTimeLeft] = useState(116196); // 03:23:19:56 em segundos
   const carouselRef = useRef(null);
 
-  // Filtrar produtos com desconto
   const filteredProducts = ProductsData.filter((product) => product.discount === 35);
 
   const scroll = (direction) => {
@@ -142,7 +180,7 @@ const FlashSales = () => {
       setTimeLeft((prevTimeLeft) => (prevTimeLeft > 0 ? prevTimeLeft - 1 : 0));
     }, 1000);
 
-    return () => clearInterval(interval); // Limpa o intervalo ao desmontar o componente
+    return () => clearInterval(interval);
   }, []);
 
   const formatTime = (seconds) => {
@@ -160,17 +198,17 @@ const FlashSales = () => {
     <FlashSalesContainer>
       <div className="title">
         <span className="color"></span>
-        <p>Today&apos;s</p>
+        <p>Hoje</p>
       </div>
       <Header>
-        <Title>Flash Sales</Title>
+        <Title>Desconto Relâmpago</Title>
         <TitleTimerWrapper>
           <TimerWrapper>
             <LabelWrapper>
-              <div>Days</div>
-              <div>Hours</div>
-              <div>Minutes</div>
-              <div>Seconds</div>
+              <div>Dias</div>
+              <div>Horas</div>
+              <div>Minutos</div>
+              <div>Segundos</div>
             </LabelWrapper>
             <Timer>{formatTime(timeLeft)}</Timer>
           </TimerWrapper>

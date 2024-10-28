@@ -1,10 +1,8 @@
 import "./Payment.css";
-import useLanguage from "../../utils/useLanguage";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Payment = () => {
-  const { translations } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -82,7 +80,7 @@ const Payment = () => {
     const isValidCardHolder =
       /^[A-Za-zÀ-ÿ\s]+$/.test(formData.cardHolder) && formData.cardHolder.trim().length >= 3;
     if (!isValidCardHolder) {
-      newErrors.cardHolder = "O nome do titular deve conter pelo menos 3 letras e apenas letras.";
+      newErrors.cardHolder = "O nome do titular deve conter pelo menos 3 letras.";
     }
 
     // Validação da data de validade
@@ -211,7 +209,7 @@ const Payment = () => {
         <div className="payment-card">
           <div className="payment-method">
             <h6>
-              <strong>{translations.account.account}</strong>
+              <strong>Gerenciar Minha Conta</strong>
             </h6>
             <div className="payment-p">
               <p
@@ -224,9 +222,9 @@ const Payment = () => {
                   fontWeight: isProfileTitleHovered ? "bold" : "normal",
                 }}
               >
-                {translations.account.profile}
+                Meu Perfil
               </p>
-              <p>{translations.account.address}</p>
+              <p>Livro de Endereços</p>
               <p
                 className="payment-option"
                 onClick={handlePaymentClick}
@@ -242,7 +240,7 @@ const Payment = () => {
                   color: isOnPaymentPage ? "red" : "black",
                 }}
               >
-                {translations.account.payment}
+                Minhas Opções de Pagamento
               </p>
             </div>
             <br />
@@ -250,11 +248,11 @@ const Payment = () => {
 
           <div className="payment-method">
             <h6>
-              <strong>{translations.account.orders}</strong>
+              <strong>Meus Pedidos</strong>
             </h6>
             <div className="payment-p">
-              <p>{translations.account.returns}</p>
-              <p>{translations.account.cancellations}</p>
+              <p>Minhas Devoluções</p>
+              <p>Meus Cancelamentos</p>
             </div>
           </div>
         </div>

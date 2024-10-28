@@ -6,8 +6,13 @@ import styled from "styled-components";
 
 const Container = styled.div`
   margin: 0 10% 50px 10%;
-  width: 80vw;
+  width: 90vw;
   padding-left: 0;
+
+  @media (max-width: 767px) {
+    margin: 0; /* Remove margens em telas menores */
+    width: 100%; /* Faz o container ocupar toda a largura */
+  }
 `;
 
 function CategoryWithCarousel() {

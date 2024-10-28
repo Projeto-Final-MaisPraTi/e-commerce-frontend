@@ -1,7 +1,5 @@
-/* Estilos Gerais do SuperHeader */
-
 .super-header {
-  background-color: black;
+  background-color: dodgerblue;
   height: 3rem;
   color: white;
   display: flex;

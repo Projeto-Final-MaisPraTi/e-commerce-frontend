@@ -3,7 +3,7 @@
   width: 100%;
   background-color: #fff;
   padding: 20px 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #ddd;
 }
 
 /* Conteúdo centralizado e distribuído da navbar */
@@ -38,10 +38,12 @@
   font-size: 16px;
   color: #000;
   font-weight: 500;
+  transition: color 0.7s ease;
 }
 
 .links-container a:hover {
   text-decoration: underline;
+  color: dodgerblue;
 }
 
 /* Barra de busca e ícones de ações alinhados à direita */
@@ -56,7 +58,6 @@
 .search-bar {
   display: flex;
   align-items: center;
-  /* margin-right: 20px; */
   background-color: #f5f5f5;
   border-radius: 5px;
   padding: 5px;
@@ -74,7 +75,6 @@
 .search-button {
   background-color: transparent;
   border: none;
-  /* margin-left: 5px; */
   cursor: pointer;
 }
 
@@ -113,7 +113,7 @@
   border-radius: 5px;
   padding: 10px;
   z-index: 1000;
-  background: linear-gradient(to right, #ed2e7e, #ffd789);
+  background-color: dodgerblue;
   min-width: 220px;
 }
 
@@ -126,6 +126,7 @@
 
 .user-menu-item:hover {
   text-decoration: underline;
+  color: white;
 }
 
 .user-menu-item a {
@@ -145,45 +146,45 @@
 /* Tablets (768px - 1024px) */
 @media (max-width: 1024px) {
   .navbar-content {
-    max-width: 85vw; /* Aumenta a largura da navbar para se ajustar a telas menores */
+    max-width: 85vw;
   }
 
   .links-container a {
-    margin: 0 15px; /* Reduz o espaçamento entre os links */
-    font-size: 14px; /* Reduz o tamanho da fonte */
+    margin: 0 15px;
+    font-size: 14px;
   }
 
   .search-input {
-    min-width: 180px; /* Reduz a largura mínima da barra de busca */
+    min-width: 180px;
   }
 }
 
 /* Tablets em modo retrato ou celulares grandes (768px - 480px) */
 @media (max-width: 768px) {
   .navbar-content {
-    flex-direction: column; /* Alinha os itens da navbar em coluna */
-    max-width: 90vw; /* Ajusta a largura para 90% da tela */
+    flex-direction: column;
+    max-width: 90vw;
   }
 
   .logo-container {
-    margin-bottom: 10px; /* Adiciona espaçamento entre o logo e o resto da navbar */
+    margin-bottom: 10px;
   }
 
   .links-container {
-    margin-bottom: 15px; /* Espaçamento entre os links e a barra de busca/ícones */
+    margin-bottom: 15px;
   }
 
   .search-bar {
-    margin-bottom: 10px; /* Adiciona espaçamento abaixo da barra de busca */
+    margin-bottom: 10px;
   }
 
   .icon-button {
-    margin-left: 8px; /* Reduz o espaçamento entre os ícones */
+    margin-left: 8px;
   }
 
   .user-menu {
-    right: 5px; /* Reposiciona o menu do usuário */
-    top: calc(100% + 10px); /* Ajusta a posição do menu do usuário */
+    right: 5px;
+    top: calc(100% + 10px);
   }
 }
 
@@ -191,32 +192,33 @@
 @media (max-width: 480px) {
   .navbar-content {
     flex-direction: column;
-    max-width: 95vw; /* Ainda maior para telas pequenas */
+    max-width: 95vw;
   }
 
   .links-container {
-    flex-direction: column; /* Coloca os links em coluna */
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
 
   .links-container a {
-    margin: 10px 0; /* Adiciona mais espaçamento entre os links na coluna */
-    font-size: 12px; /* Reduz o tamanho da fonte dos links */
+    margin: 10px 0;
+    font-size: 12px;
   }
 
   .search-input {
-    min-width: 140px; /* Ainda menor em smartphones */
-    font-size: 12px; /* Reduz o tamanho da fonte da barra de busca */
+    min-width: 140px;
+    font-size: 12px;
   }
 
   .icon-button img {
     width: 20px;
-    height: 20px; /* Reduz o tamanho dos ícones */
+    height: 20px;
   }
 
   .user-menu-item img {
     width: 16px;
-    height: 16px; /* Reduz o tamanho dos ícones do menu do usuário */
+    height: 16px;
   }
 }
 
@@ -224,16 +226,16 @@
 @media (max-width: 320px) {
   .links-container a {
     margin: 5px 0;
-    font-size: 10px; /* Ainda menor para caber em telas pequenas */
+    font-size: 0.9rem;
   }
 
   .search-input {
-    min-width: 120px; /* Largura mínima da barra de busca ainda menor */
-    padding: 3px 8px; /* Ajusta o padding */
+    min-width: 120px;
+    padding: 3px 8px;
   }
 
   .icon-button img {
     width: 18px;
-    height: 18px; /* Menores ícones */
+    height: 18px;
   }
 }

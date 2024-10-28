@@ -2,33 +2,35 @@ import styled from "styled-components";
 import ProductsData from "../../utils/ProductsData";
 import ProductCard from "../ProductCard/ProductCard";
 import { useState, useEffect } from "react";
-import useLanguage from "../../utils/useLanguage";
 import { useNavigate } from "react-router-dom";
-// import Buttons from "../Buttons/Buttons";
 
 // Styled components
 const Container = styled.div`
-  width: 80%;
+  padding: 20px 10%;
   margin: auto;
   margin-top: 20px;
   margin-bottom: 50px;
+
   .title {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+
     p {
-      color: #db4444;
+      color: dodgerblue;
       font-weight: bold;
       margin: 0;
     }
   }
+
   .color {
     margin-right: 10px;
     height: 30px;
     width: 18px;
-    background-color: #db4444;
+    background-color: dodgerblue;
     border-radius: 5px;
   }
+
   .produtos {
     display: flex;
     flex-wrap: wrap;
@@ -42,21 +44,24 @@ const Container = styled.div`
     box-sizing: border-box;
   }
 
+  /* Responsividade para telas médias */
   @media (max-width: 1200px) {
     .produtos > * {
-      flex: 0 1 calc(33.33% - 15px); /* 3 colunas em telas médias */
+      flex: 0 1 calc(33.33% - 15px); /* 3 colunas */
     }
   }
 
+  /* Responsividade para tablets */
   @media (max-width: 768px) {
     .produtos > * {
-      flex: 0 1 calc(50% - 15px); /* 2 colunas em telas pequenas */
+      flex: 0 1 calc(50% - 15px); /* 2 colunas */
     }
   }
 
+  /* Responsividade para telas pequenas */
   @media (max-width: 480px) {
     .produtos > * {
-      flex: 0 1 100%; /* 1 coluna em telas muito pequenas */
+      flex: 0 1 100%; /* 1 coluna */
     }
   }
 `;
@@ -65,20 +70,22 @@ const SecTitle = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
+
   button {
     color: white;
     border: none;
     border-radius: 5px;
-    background-color: #db4444;
+    background-color: dodgerblue;
     width: 120px;
+    transition: background-color 0.3s ease;
+
     &:hover {
-      background-color: #da5151;
+      background-color: #1f81e2;
     }
   }
 `;
 
 const ExploreProducts = () => {
-  const { translations } = useLanguage();
   const [maxProducts, setMaxProducts] = useState(8);
   const [randomProducts, setRandomProducts] = useState([]);
   const navigate = useNavigate();
@@ -88,25 +95,19 @@ const ExploreProducts = () => {
     const width = window.innerWidth;
 
     if (width >= 2560) {
-      // 2K resolution
-      setMaxProducts(12);
+      setMaxProducts(12); // Telas 2K e superiores
     } else if (width >= 1200) {
-      // Full HD and larger screens
-      setMaxProducts(8);
+      setMaxProducts(8); // Full HD e maiores
     } else if (width >= 768) {
-      // Tablets and medium screens
-      setMaxProducts(6);
+      setMaxProducts(6); // Tablets e telas médias
     } else if (width >= 480) {
-      // Small screens like phones
-      setMaxProducts(4);
+      setMaxProducts(4); // Telas pequenas
     } else {
-      // Very small screens
-      setMaxProducts(2);
+      setMaxProducts(2); // Telas muito pequenas
     }
   };
 
   useEffect(() => {
-    // Filtrar produtos sem desconto e embaralhar uma única vez
     const filteredProducts = ProductsData.filter((product) => !product.isBestSelling);
     const shuffledProducts = filteredProducts.sort(() => 0.5 - Math.random());
     setRandomProducts(shuffledProducts);
@@ -119,25 +120,18 @@ const ExploreProducts = () => {
   }, []);
 
   const handleViewAllClick = () => {
-    // Redireciona para a página /category/explore, com os produtos randomProducts no state
     navigate("/category/explore", { state: { products: randomProducts } });
   };
+
   return (
     <Container>
       <div className="title">
         <span className="color"></span>
-        <p>{translations.home.ExploreProducts.p}</p>
+        <p>Nossos Produtos</p>
       </div>
       <SecTitle>
-        <h2>{translations.home.ExploreProducts.h2}</h2>
-        <button onClick={() => handleViewAllClick()}>{translations.home.ExploreProducts.viewer}</button>
-        {/* <Buttons
-          type={1}
-          text="View all"
-          paddingX={48}
-          paddingY={16}
-          onClick={() => handleViewAllClick()}
-        /> */}
+        <h2>Explore Nossos Produtos</h2>
+        <button onClick={handleViewAllClick}>Ver Todos</button>
       </SecTitle>
       <div className="produtos">
         {randomProducts.slice(0, maxProducts).map((product) => (
