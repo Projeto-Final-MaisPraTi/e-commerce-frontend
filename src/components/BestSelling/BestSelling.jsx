@@ -2,47 +2,55 @@ import styled from "styled-components";
 import ProductCard from "../ProductCard/ProductCard";
 import ProductsData from "../../utils/ProductsData";
 import { useState, useEffect } from "react";
-import useLanguage from "../../utils/useLanguage";
 import { useNavigate } from "react-router-dom";
-// import Buttons from "../Buttons/Buttons";
 
 const Container = styled.div`
-  width: 80%;
+  padding: 20px 10%;
   margin: auto;
   margin-top: 20px;
   margin-bottom: 50px;
+  background-color: white;
+
   .title {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+
     p {
-      color: #db4444;
+      color: dodgerblue;
       font-weight: bold;
       margin: 0;
     }
   }
+
   .color {
     margin-right: 10px;
     height: 30px;
     width: 18px;
-    background-color: #db4444;
+    background-color: dodgerblue;
     border-radius: 5px;
   }
+
   .produtos {
     display: flex;
     gap: 15px;
     padding: 15px;
     width: 100%;
-    overflow-x: scroll;
+    overflow-x: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    & > * {
+      flex: 0 1 calc(25% - 15px); /* 4 colunas por linha */
+      box-sizing: border-box;
+    }
   }
 
-  .produtos > * {
-    flex: 0 1 calc(25% - 15px); /* 4 produtos por linha */
-    box-sizing: border-box;
-  }
-
+  /* Estilos responsivos */
   @media (max-width: 1200px) {
     .produtos > * {
       flex: 0 1 calc(33.33% - 15px); /* 3 colunas em telas médias */
@@ -56,6 +64,13 @@ const Container = styled.div`
   }
 
   @media (max-width: 480px) {
+    padding: 20px 5%; /* Reduzindo o padding em telas muito pequenas */
+
+    .title {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
     .produtos > * {
       flex: 0 1 100%; /* 1 coluna em telas muito pequenas */
     }
@@ -65,49 +80,60 @@ const Container = styled.div`
 const SecTitle = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 15px;
+
+  h2 {
+    font-size: 1.5em;
+  }
+
   button {
     color: white;
     border: none;
     border-radius: 5px;
-    background-color: #db4444;
+    background-color: dodgerblue;
     width: 120px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
     &:hover {
-      background-color: #da5151;
+      background-color: #1f81e2;
+    }
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    button {
+      width: 100%; /* Botão ocupa toda a largura em telas pequenas */
+      margin-top: 10px;
+      padding: 8px;
     }
   }
 `;
 
 const BestSelling = () => {
-  const { translations } = useLanguage();
   const [maxProducts, setMaxProducts] = useState(7);
   const [randomProducts, setRandomProducts] = useState([]);
   const navigate = useNavigate();
 
-  // Função para ajustar o número de produtos conforme a largura da tela
   const handleMaxProducts = () => {
     const width = window.innerWidth;
 
     if (width >= 2560) {
-      // 2K resolution - Mostrar no máximo 7 produtos, já que são os disponíveis
       setMaxProducts(8);
     } else if (width >= 1200) {
-      // Full HD and larger screens
-      setMaxProducts(4);
-    } else if (width >= 768) {
-      // Tablets and medium screens
       setMaxProducts(6);
-    } else if (width >= 480) {
-      // Small screens like phones
+    } else if (width >= 768) {
       setMaxProducts(4);
     } else {
-      // Very small screens
       setMaxProducts(2);
     }
   };
 
   useEffect(() => {
-    // Filtrar produtos sem desconto e embaralhar uma única vez
     const filteredProducts = ProductsData.filter((product) => product.isBestSelling);
     const shuffledProducts = filteredProducts.sort(() => 0.5 - Math.random());
     setRandomProducts(shuffledProducts);
@@ -122,22 +148,16 @@ const BestSelling = () => {
   const handleViewAllClick = () => {
     navigate("/category/bestselling", { state: { products: randomProducts } });
   };
+
   return (
     <Container>
       <div className="title">
         <span className="color"></span>
-        <p>{translations.home.BestSelling.p}</p>
+        <p>Este Mês</p>
       </div>
       <SecTitle>
-        <h2>{translations.home.BestSelling.h2}</h2>
-        <button onClick={handleViewAllClick}>{translations.home.BestSelling.viewer}</button>
-        {/* <Buttons
-          type={1}
-          text="View all"
-          paddingX={48}
-          paddingY={16}
-          onClick={handleBestSellingClick}
-        /> */}
+        <h2>Produtos Mais Vendidos</h2>
+        <button onClick={handleViewAllClick}>Ver Todos</button>
       </SecTitle>
       <div className="produtos">
         {randomProducts.slice(0, maxProducts).map((product) => (

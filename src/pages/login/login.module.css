@@ -34,10 +34,16 @@
   border-radius: 10px;
 }
 
+.loginInput:focus, 
+.loginInputPassword:focus {
+  outline: none;
+  border: 1px solid dodgerblue;
+}
+
 .loginButton {
   width: 100%;
   padding: 10px;
-  background-color: #db4444;
+  background-color: dodgerblue;
   color: white;
   border: none;
   border-radius: 10px;
@@ -47,7 +53,7 @@
 }
 
 .loginButton:hover {
-  background-color: #cc4646;
+  background-color: #1f81e2;
 }
 
 .divider {

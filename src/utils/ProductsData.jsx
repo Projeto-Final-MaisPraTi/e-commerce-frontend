@@ -1,37 +1,37 @@
-import iPhone14Black1 from "../assets/phones/iphone_14_black_1.jpg";
-import iPhone14Black2 from "../assets/phones/iphone_14_black_2.jpg";
-import iPhone14Black3 from "../assets/phones/iphone_14_black_3.jpg";
-import iPhone14Black4 from "../assets/phones/iphone_14_black_4.jpg";
+import iPhone14Black1 from "../assets/phones/iphone_14_black_1.png";
+import iPhone14Black2 from "../assets/phones/iphone_14_black_2.png";
+import iPhone14Black3 from "../assets/phones/iphone_14_black_3.png";
+import iPhone14Black4 from "../assets/phones/iphone_14_black_4.png";
 
-import SamsungGalaxyS23Black1 from "../assets/phones/Samsung_Galaxy_S23_black_1.jpg";
-import SamsungGalaxyS23Black2 from "../assets/phones/Samsung_Galaxy_S23_black_2.jpg";
-import SamsungGalaxyS23Black3 from "../assets/phones/Samsung_Galaxy_S23_black_3.jpg";
-import SamsungGalaxyS23Black4 from "../assets/phones/Samsung_Galaxy_S23_black_4.jpg";
+import SamsungGalaxyS23Black1 from "../assets/phones/Samsung_Galaxy_S23_black_1.png";
+import SamsungGalaxyS23Black2 from "../assets/phones/Samsung_Galaxy_S23_black_2.png";
+import SamsungGalaxyS23Black3 from "../assets/phones/Samsung_Galaxy_S23_black_3.png";
+import SamsungGalaxyS23Black4 from "../assets/phones/Samsung_Galaxy_S23_black_4.png";
 
-import GooglePixel7ProBlack1 from "../assets/phones/Google_Pixel_7_black_1.jpg";
-import GooglePixel7ProBlack2 from "../assets/phones/Google_Pixel_7_black_2.jpg";
-import GooglePixel7ProBlack3 from "../assets/phones/Google_Pixel_7_black_3.jpg";
-import GooglePixel7ProBlack4 from "../assets/phones/Google_Pixel_7_black_4.jpg";
+import GooglePixel7ProBlack1 from "../assets/phones/Google_Pixel_7_black_1.png";
+import GooglePixel7ProBlack2 from "../assets/phones/Google_Pixel_7_black_2.png";
+import GooglePixel7ProBlack3 from "../assets/phones/Google_Pixel_7_black_3.png";
+import GooglePixel7ProBlack4 from "../assets/phones/Google_Pixel_7_black_4.png";
 
-import OnePlus12Black1 from "../assets/phones/OnePlus_12_black_1.jpg";
-import OnePlus12Black2 from "../assets/phones/OnePlus_12_black_2.jpg";
-import OnePlus12Black3 from "../assets/phones/OnePlus_12_black_3.jpg";
+import OnePlus12Black1 from "../assets/phones/OnePlus_12_black_1.png";
+import OnePlus12Black2 from "../assets/phones/OnePlus_12_black_2.png";
+import OnePlus12Black3 from "../assets/phones/OnePlus_12_black_3.png";
 import OnePlus12Black4 from "../assets/phones/OnePlus_12_black_4.jpg";
 
-import Xiaomi13TBlack1 from "../assets/phones/MI_Xiaomi_13T_black_1.jpg";
-import Xiaomi13TBlack2 from "../assets/phones/MI_Xiaomi_13T_black_2.jpg";
-import Xiaomi13TBlack3 from "../assets/phones/MI_Xiaomi_13T_black_3.jpg";
-import Xiaomi13TBlack4 from "../assets/phones/MI_Xiaomi_13T_black_4.jpg";
+import Xiaomi13TBlack1 from "../assets/phones/MI_Xiaomi_13T_black_1.png";
+import Xiaomi13TBlack2 from "../assets/phones/MI_Xiaomi_13T_black_2.png";
+import Xiaomi13TBlack3 from "../assets/phones/MI_Xiaomi_13T_black_3.png";
+import Xiaomi13TBlack4 from "../assets/phones/MI_Xiaomi_13T_black_4.png";
 
 import MacBookAirM2Black1 from "../assets/computers/MacBook_Air_M2_black_1.png";
 import MacBookAirM2Black2 from "../assets/computers/MacBook_Air_M2_black_2.png";
 import MacBookAirM2Black3 from "../assets/computers/MacBook_Air_M2_black_3.png";
 import MacBookAirM2Black4 from "../assets/computers/MacBook_Air_M2_black_4.png";
 
-import MacBookProM2White1 from "../assets/computers/MacBook_Pro_M2_white_1.jpg";
-import MacBookProM2White2 from "../assets/computers/MacBook_Pro_M2_white_2.jpg";
-import MacBookProM2White3 from "../assets/computers/MacBook_Pro_M2_white_3.jpg";
-import MacBookProM2White4 from "../assets/computers/MacBook_Pro_M2_white_4.jpg";
+import MacBookProM2White1 from "../assets/computers/MacBook_Pro_M2_white_1.png";
+import MacBookProM2White2 from "../assets/computers/MacBook_Pro_M2_white_2.png";
+import MacBookProM2White3 from "../assets/computers/MacBook_Pro_M2_white_3.png";
+import MacBookProM2White4 from "../assets/computers/MacBook_Pro_M2_white_4.png";
 
 import DellXPS13White1 from "../assets/computers/Dell_XPS_13_white_1.png";
 import DellXPS13White2 from "../assets/computers/Dell_XPS_13_white_2.png";
@@ -53,10 +53,10 @@ import AppleWatchSeries7Black2 from "../assets/smartwatches/Apple_Watch_Series_7
 import AppleWatchSeries7Black3 from "../assets/smartwatches/Apple_Watch_Series_7_black_3.png";
 import AppleWatchSeries7Black4 from "../assets/smartwatches/Apple_Watch_Series_7_black_4.png";
 
-import SamsungGalaxyWatch4ClassicBlack1 from "../assets/smartwatches/Samsung_Galaxy_Watch4_Classic_black_1.jpg";
-import SamsungGalaxyWatch4ClassicBlack2 from "../assets/smartwatches/Samsung_Galaxy_Watch4_Classic_black_2.jpg";
-import SamsungGalaxyWatch4ClassicBlack3 from "../assets/smartwatches/Samsung_Galaxy_Watch4_Classic_black_3.jpg";
-import SamsungGalaxyWatch4ClassicBlack4 from "../assets/smartwatches/Samsung_Galaxy_Watch4_Classic_black_4.jpg";
+import SamsungGalaxyWatch4ClassicBlack1 from "../assets/smartwatches/Samsung_Galaxy_Watch4_Classic_black_1.png";
+import SamsungGalaxyWatch4ClassicBlack2 from "../assets/smartwatches/Samsung_Galaxy_Watch4_Classic_black_2.png";
+import SamsungGalaxyWatch4ClassicBlack3 from "../assets/smartwatches/Samsung_Galaxy_Watch4_Classic_black_3.png";
+import SamsungGalaxyWatch4ClassicBlack4 from "../assets/smartwatches/Samsung_Galaxy_Watch4_Classic_black_4.png";
 
 import GarminVenu2Black1 from "../assets/smartwatches/Garmin_Venu2_black_1.png";
 import GarminVenu2Black2 from "../assets/smartwatches/Garmin_Venu2_black_2.png";
@@ -78,10 +78,10 @@ import CanonEOSR6Black2 from "../assets/cameras/Canon_EOS_R6_black_2.png";
 import CanonEOSR6Black3 from "../assets/cameras/Canon_EOS_R6_black_3.png";
 import CanonEOSR6Black4 from "../assets/cameras/Canon_EOS_R6_black_4.png";
 
-import NikonZ6LiBlack1 from "../assets/cameras/Nikon_Z6_Li_black_1.jpg";
-import NikonZ6LiBlack2 from "../assets/cameras/Nikon_Z6_Li_black_2.jpg";
-import NikonZ6LiBlack3 from "../assets/cameras/Nikon_Z6_Li_black_3.jpg";
-import NikonZ6LiBlack4 from "../assets/cameras/Nikon_Z6_Li_black_4.jpg";
+import NikonZ6LiBlack1 from "../assets/cameras/Nikon_Z6_Li_black_1.png";
+import NikonZ6LiBlack2 from "../assets/cameras/Nikon_Z6_Li_black_2.png";
+import NikonZ6LiBlack3 from "../assets/cameras/Nikon_Z6_Li_black_3.png";
+import NikonZ6LiBlack4 from "../assets/cameras/Nikon_Z6_Li_black_4.png";
 
 import SonyAlphaA7IIIBlack1 from "../assets/cameras/Sony_Alpha_A7_III_black_1.png";
 import SonyAlphaA7IIIBlack2 from "../assets/cameras/Sony_Alpha_A7_III_black_2.png";
@@ -93,35 +93,35 @@ import FujifilmXT4Black2 from "../assets/cameras/Fujifilm_XT4_black_2.png";
 import FujifilmXT4Black3 from "../assets/cameras/Fujifilm_XT4_black_3.png";
 import FujifilmXT4Black4 from "../assets/cameras/Fujifilm_XT4_black_4.png";
 
-import PanasonicLumixGH5II1 from "../assets/cameras/Panasonic_Lumix_GH5II_1.jpg";
-import PanasonicLumixGH5II2 from "../assets/cameras/Panasonic_Lumix_GH5II_2.jpg";
-import PanasonicLumixGH5II3 from "../assets/cameras/Panasonic_Lumix_GH5II_3.jpg";
-import PanasonicLumixGH5II4 from "../assets/cameras/Panasonic_Lumix_GH5II_4.jpg";
+import PanasonicLumixGH5II1 from "../assets/cameras/Panasonic_Lumix_GH5II_1.png";
+import PanasonicLumixGH5II2 from "../assets/cameras/Panasonic_Lumix_GH5II_2.png";
+import PanasonicLumixGH5II3 from "../assets/cameras/Panasonic_Lumix_GH5II_3.png";
+import PanasonicLumixGH5II4 from "../assets/cameras/Panasonic_Lumix_GH5II_4.png";
 
-import SonyWH1000XM51 from "../assets/headphones/Sony_WH_1000XM5_black_1.jpg";
-import SonyWH1000XM52 from "../assets/headphones/Sony_WH_1000XM5_black_2.jpg";
-import SonyWH1000XM53 from "../assets/headphones/Sony_WH_1000XM5_black_3.jpg";
-import SonyWH1000XM54 from "../assets/headphones/Sony_WH_1000XM5_black_4.jpg";
+import SonyWH1000XM51 from "../assets/headphones/Sony_WH_1000XM5_black_1.png";
+import SonyWH1000XM52 from "../assets/headphones/Sony_WH_1000XM5_black_2.png";
+import SonyWH1000XM53 from "../assets/headphones/Sony_WH_1000XM5_black_3.png";
+import SonyWH1000XM54 from "../assets/headphones/Sony_WH_1000XM5_black_4.png";
 
-import BoseQuietComfort1 from "../assets/headphones/Bose_QuietComfort45_black_1.jpg";
-import BoseQuietComfort2 from "../assets/headphones/Bose_QuietComfort45_black_2.jpg";
-import BoseQuietComfort3 from "../assets/headphones/Bose_QuietComfort45_black_3.jpg";
-import BoseQuietComfort4 from "../assets/headphones/Bose_QuietComfort45_black_4.jpg";
+import BoseQuietComfort1 from "../assets/headphones/Bose_QuietComfort45_black_1.png";
+import BoseQuietComfort2 from "../assets/headphones/Bose_QuietComfort45_black_2.png";
+import BoseQuietComfort3 from "../assets/headphones/Bose_QuietComfort45_black_3.png";
+import BoseQuietComfort4 from "../assets/headphones/Bose_QuietComfort45_black_4.png";
 
-import AppleAirPodsMax1 from "../assets/headphones/Apple_AirPods_Max_white_1.jpg";
-import AppleAirPodsMax2 from "../assets/headphones/Apple_AirPods_Max_white_2.jpg";
-import AppleAirPodsMax3 from "../assets/headphones/Apple_AirPods_Max_white_3.jpg";
-import AppleAirPodsMax4 from "../assets/headphones/Apple_AirPods_Max_white_4.jpg";
+import AppleAirPodsMax1 from "../assets/headphones/Apple_AirPods_Max_white_1.png";
+import AppleAirPodsMax2 from "../assets/headphones/Apple_AirPods_Max_white_2.png";
+import AppleAirPodsMax3 from "../assets/headphones/Apple_AirPods_Max_white_3.png";
+import AppleAirPodsMax4 from "../assets/headphones/Apple_AirPods_Max_white_4.png";
 
-import SennheiserHD660S1 from "../assets/headphones/Sennheiser_HD_660S_black_1.jpg";
-import SennheiserHD660S2 from "../assets/headphones/Sennheiser_HD_660S_black_2.jpg";
-import SennheiserHD660S3 from "../assets/headphones/Sennheiser_HD_660S_black_3.jpg";
-import SennheiserHD660S4 from "../assets/headphones/Sennheiser_HD_660S_black_4.jpg";
+import SennheiserHD660S1 from "../assets/headphones/Sennheiser_HD_660S_black_1.png";
+import SennheiserHD660S2 from "../assets/headphones/Sennheiser_HD_660S_black_2.png";
+import SennheiserHD660S3 from "../assets/headphones/Sennheiser_HD_660S_black_3.png";
+import SennheiserHD660S4 from "../assets/headphones/Sennheiser_HD_660S_black_4.png";
 
-import AkgPro1 from "../assets/headphones/AKG_Pro_K702_black_1.jpg";
-import AkgPro2 from "../assets/headphones/AKG_Pro_K702_black_2.jpg";
-import AkgPro3 from "../assets/headphones/AKG_Pro_K702_black_3.jpg";
-import AkgPro4 from "../assets/headphones/AKG_Pro_K702_black_4.jpg";
+import AkgPro1 from "../assets/headphones/AKG_Pro_K702_black_1.png";
+import AkgPro2 from "../assets/headphones/AKG_Pro_K702_black_2.png";
+import AkgPro3 from "../assets/headphones/AKG_Pro_K702_black_3.png";
+import AkgPro4 from "../assets/headphones/AKG_Pro_K702_black_4.png";
 
 const ProductsData = [
   {
@@ -147,7 +147,7 @@ const ProductsData = [
     price: 849.99,
     description: {
       en: "Galaxy AI is here. Search like never before, get real-time interpretation on a call, format your notes into a clear summary, and effortlessly edit your photos - all from your smartphone, all with AI. Get more out of your passions with the phone that is designed to elevate your everyday. Whether you are binge-watching shows or capturing shots for social, Galaxy S23 FE is jam-packed with features that help you get more out of whatever you are into including a long-lasting battery, a premium processor, a smooth and strong display, a triple-lens camera and more. ",
-      pt: "O Galaxy AI está aqui. Pesquise como nunca antes, obtenha interpretação em tempo real em uma chamada, formate suas anotações em um resumo claro e edite suas fotos sem esforço - tudo a partir do seu smartphone, tudo com IA. Aproveite ao máximo suas paixões com o telefone projetado para elevar seu dia a dia. Esteja você assistindo a programas ou capturando fotos para redes sociais, o Galaxy S23 FE está repleto de recursos que ajudam você a aproveitar melhor o que quiser, incluindo uma bateria de longa duração, um processador premium, uma tela suave e forte, uma câmera de lente tripla e muito mais.",
+      pt: "Smartphone topo de linha da Samsung, com display de 6.1, processador Snapdragon 8 Gen 2 e câmera tripla de 50 MP",
     },
     discount: 0, // Produto sem desconto
     isBestSelling: true,
@@ -167,7 +167,7 @@ const ProductsData = [
     price: 599.99,
     description: {
       en: "Introducing Pixel 7 Pro, Google is best-of-everything phone. Powered by Google Tensor G2, it is fast and secure, with an immersive display and amazing battery life. The best Pixel camera yet includes a telephoto lens and pro-level features like Macro Focus. And with the certified Titan M2 security chip and a built-in VPN, Pixel helps protect your personal data.",
-      pt: "Apresentando o Pixel 7 Pro, o melhor telefone do Google. Alimentado pelo Google Tensor G2, é rápido e seguro, com uma tela imersiva e incrível duração da bateria. A melhor câmera Pixel até agora inclui uma lente telefoto e recursos de nível profissional, como Macro Focus. E com o chip de segurança certificado Titan M2 e uma VPN integrada, o Pixel ajuda a proteger seus dados pessoais.",
+      pt: "Modelo premium do Google, com tela OLED de 6.7, chip Google Tensor G2 e câmeras potentes com recursos avançados de IA",
     },
     discount: 35, // Produto com desconto
     isBestSelling: false,
@@ -187,7 +187,7 @@ const ProductsData = [
     price: 799.99,
     description: {
       en: "The NEW OnePlus 12 is powered by Snapdragon 8 Gen 3, with up to 16GB of RAM. With the fastest wireless charging in North America, it powers through everything effortlessly. Enjoy all your content on a brilliant 120Hz Super Fluid AMOLED display, with dynamic refresh rate. The 4th Generation Hasselblad Camera System for Mobile captures incredible photos & videos, making the OnePlus 12 the perfect everyday companion for capturing your favorite memories. Packed with premium hardware specs & intuitive OxygenOS 14 software, the OnePlus 12 is our most complete smartphone experience. Only when using the 50W AIRVOOC Charger by OnePlus. ",
-      pt: "O NOVO OnePlus 12 é alimentado pelo Snapdragon 8 Gen 3, com até 16 GB de RAM. Com o carregamento sem fio mais rápido da América do Norte, ele passa por tudo sem esforço. Desfrute de todo o seu conteúdo em uma tela AMOLED Super Fluid de 120 Hz brilhante, com taxa de atualização dinâmica. O Sistema de Câmera Hasselblad de 4ª Geração para Celular captura fotos e vídeos incríveis, tornando o OnePlus 12 o companheiro perfeito para o dia a dia para capturar suas memórias favoritas. Embalado com especificações de hardware premium e software intuitivo OxygenOS 14, o OnePlus 12 é a nossa experiência de smartphone mais completa. Somente ao usar o carregador AIRVOOC de 50 W da OnePlus. ",
+      pt: "Flagship da OnePlus com Snapdragon 8 Gen 3, tela AMOLED de 6.7 e sistema de câmeras aprimorado com Hasselblad",
     },
     discount: 0, // Produto sem desconto
     isBestSelling: false,
@@ -202,7 +202,7 @@ const ProductsData = [
     price: 749.99,
     description: {
       en: "The Xiaomi 13T is an advanced and comprehensive Android smartphone in all points of view with some excellent features. It has a large display of 6.67 inches with a resolution of 2712x1220 pixels. The features offered by the Xiaomi 13T are many and innovative. Starting with 5G that allows data transfer and excellent internet browsing. We emphasize the excellent internal memory of 256 GB but without the possibility of expansion. The Xiaomi 13T is a product with few competitors in terms of multimedia thanks to the 50-megapixel camera that allows the Xiaomi 13T to take fantastic photos with a resolution of 8165x6124 pixels and record videos in 4K at the astonishing resolution of 3840x2160 pixels. Very thin, 8.5 millimeters, which makes the Xiaomi 13T really interesting.",
-      pt: "O Xiaomi 13T é um smartphone Android avançado e abrangente em todos os pontos de vista com algumas características excelentes. Tem uma grande tela de 6.67 polegadas com uma resolução de 2712x1220 pixels. As funcionalidades oferecidas pelo Xiaomi 13T são muitas e inovadoras. Começando pelo 5G que permite a transferência de dados e excelente navegação na internet. Enfatizamos a excelente memória interna de 256 GB mas sem a possibilidade de expansão. O Xiaomi 13T é um produto com poucos concorrentes em termos de multimídia graças à câmera de 50 megapixels que permite ao Xiaomi 13T tirar fotos fantásticas com uma resolução de 8165x6124 pixels e gravar vídeos em 4K a espantosa resolução de 3840x2160 pixels. Muito fino, 8.5 milímetros, o que torna o Xiaomi 13T realmente interessante.",
+      pt: "Smartphone intermediário premium da Xiaomi, equipado com chip MediaTek Dimensity 8200 Ultra, tela AMOLED de 6.67 e câmera tripla de 50 MP",
     },
     discount: 0, // Produto sem desconto
     isBestSelling: false,

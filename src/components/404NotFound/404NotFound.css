@@ -1,7 +1,6 @@
-/* 404 Page Styles */
 .page-not-found {
   text-align: center;
-  margin: 241px 305px 140px 305px;
+  margin: 100px 20px; /* Ajuste geral */
 }
 
 .page-not-found h1 {
@@ -17,7 +16,7 @@
 }
 
 .back-home-button {
-  background-color: #db4444;
+  background-color: dodgerblue;
   color: white;
   padding: 16px 48px;
   border: none;
@@ -28,11 +27,37 @@
 }
 
 .back-home-button:hover {
-  background-color: #e04e53;
+  background-color: #1f81e2;
 }
 
-/* Responsiveness */
+/* Responsividade */
+
+/* Tela pequena (até 480px) */
+@media (max-width: 480px) {
+  .page-not-found {
+    margin: 50px 10px;
+  }
+
+  .page-not-found h1 {
+    font-size: 28px;
+  }
+
+  .page-not-found p {
+    font-size: 14px;
+  }
+
+  .back-home-button {
+    padding: 10px 30px;
+    font-size: 12px;
+  }
+}
+
+/* Tela média (até 768px) */
 @media (max-width: 768px) {
+  .page-not-found {
+    margin: 80px 20px;
+  }
+
   .page-not-found h1 {
     font-size: 36px;
   }
@@ -47,7 +72,12 @@
   }
 }
 
+/* Tela grande (acima de 1920px) */
 @media (min-width: 1920px) {
+  .page-not-found {
+    margin: 300px 350px;
+  }
+
   .page-not-found h1 {
     font-size: 60px;
   }

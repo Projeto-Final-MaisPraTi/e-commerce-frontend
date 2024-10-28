@@ -30,7 +30,7 @@
 }
 
 .iconContainer::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 58px;
   height: 58px;
@@ -40,7 +40,7 @@
 }
 
 .iconContainer::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 80px;
   height: 80px;
@@ -60,9 +60,95 @@
   color: black;
 }
 
+/* MEDIA QUERIES */
+
+/* Telas 4K (2560px e mais) */
+@media (min-width: 2560px) {
+  .featuresSection {
+    gap: 120px; /* Aumenta o espaço entre os itens */
+    margin: 180px auto; /* Ajusta a margem superior */
+  }
+
+  .iconContainer {
+    height: 100px; /* Aumenta o tamanho do container do ícone */
+    width: 100px;
+    margin-bottom: 30px;
+  }
+
+  .iconContainer img {
+    width: 50px; /* Aumenta o tamanho da imagem do ícone */
+    height: 50px;
+  }
+
+  .iconContainer::before {
+    width: 72px; /* Ajusta o tamanho do círculo preto */
+    height: 72px;
+  }
+
+  .iconContainer::after {
+    width: 100px; /* Ajusta o tamanho do círculo cinza */
+    height: 100px;
+  }
+
+  .featureItem h3 {
+    font-size: 22px; /* Aumenta o tamanho da fonte do título */
+  }
+
+  .featureItem p {
+    font-size: 20px; /* Aumenta o tamanho da fonte da descrição */
+  }
+}
+
+/* Tablets e dispositivos menores (768px e menos) */
 @media (max-width: 768px) {
   .featuresSection {
-    flex-direction: column;
-    padding: 0 20px;
+    flex-direction: column; /* Alinha os itens em coluna */
+    padding: 0 20px; /* Adiciona padding lateral */
+    margin: 70px auto; /* Ajusta a margem superior */
+    gap: 40px; /* Reduz o espaço entre os itens */
+  }
+
+  .iconContainer {
+    height: 60px; /* Reduz a altura do container do ícone */
+    width: 60px; /* Reduz a largura do container do ícone */
+    margin-bottom: 16px; /* Ajusta a margem inferior */
+  }
+
+  .iconContainer img {
+    width: 30px; /* Reduz o tamanho da imagem do ícone */
+    height: 30px;
+  }
+
+  .featureItem h3 {
+    font-size: 16px; /* Reduz o tamanho da fonte do título */
+  }
+
+  .featureItem p {
+    font-size: 14px; /* Reduz o tamanho da fonte da descrição */
+  }
+}
+
+/* Smartphones (480px e menos) */
+@media (max-width: 480px) {
+  .featuresSection {
+    margin: 50px auto; /* Ajusta a margem superior */
+  }
+
+  .iconContainer {
+    height: 50px; /* Reduz ainda mais a altura do container do ícone */
+    width: 50px; /* Reduz ainda mais a largura do container do ícone */
+  }
+
+  .iconContainer img {
+    width: 25px; /* Reduz o tamanho da imagem do ícone */
+    height: 25px;
+  }
+
+  .featureItem h3 {
+    font-size: 14px; /* Reduz ainda mais o tamanho da fonte do título */
+  }
+
+  .featureItem p {
+    font-size: 12px; /* Reduz ainda mais o tamanho da fonte da descrição */
   }
 }

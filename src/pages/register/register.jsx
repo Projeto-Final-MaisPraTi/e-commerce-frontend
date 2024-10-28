@@ -1,14 +1,10 @@
 import { useState } from "react";
 // import { googleLogout, useGoogleLogin } from '@react-oauth/google';
-
 import styles from "./register.module.css";
-import useLanguage from "../../utils/useLanguage.jsx";
 import Header from "../../components/Header/Header.jsx";
 import Footer from "../../components/Footer/ComponentFooter.jsx";
 
 const Register = () => {
-  const { translations } = useLanguage();
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,20 +15,20 @@ const Register = () => {
     const newErrors = { name: "", email: "", password: "" };
 
     if (!name) {
-      newErrors.name = translations.register.nameRequired;
+      newErrors.name = "Nome obrigatório!";
       valid = false;
     }
 
     if (!email) {
-      newErrors.email = translations.register.emailRequired;
+      newErrors.email = "E-mail obrigatório!";
       valid = false;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-      newErrors.email = translations.login.emailInvalid;
+      newErrors.email = "E-mail inválido!";
       valid = false;
     }
 
     if (!password) {
-      newErrors.password = translations.register.passwordRequired;
+      newErrors.password = "Senha obrigatória!";
       valid = false;
     }
 
@@ -54,13 +50,13 @@ const Register = () => {
 
       <div className={styles.registerContainer}>
         <div className={styles.registerBox}>
-          <h2 className={styles.createAccount}>{translations.register.createAccount}</h2>
-          <p className={styles.enterDetails}>{translations.register.enterDetails}</p>
+          <h2 className={styles.createAccount}>Crie uma conta</h2>
+          <p className={styles.enterDetails}>Insira seus dados abaixo</p>
 
           <form onSubmit={handleSubmit} className={styles.registerForm}>
             <input
               type="name"
-              placeholder="Name"
+              placeholder="Nome"
               className={styles.loginName}
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -78,7 +74,7 @@ const Register = () => {
 
             <input
               type="password"
-              placeholder={translations.login.password}
+              placeholder="Senha"
               className={styles.loginInputPassword}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -86,13 +82,12 @@ const Register = () => {
             {errors.password && <p className={styles.error}>{errors.password}</p>}
 
             <button type="submit" className={styles.buttonCreateAccount}>
-              {translations.register.buttonCreateAccount}
+              Criar Conta
             </button>
           </form>
 
           <p className={styles.haveAccount}>
-            {translations.register.haveAccount}
-            <a href="/login">{translations.register.login}</a>
+            Já tem uma conta? <a href="/login">Entrar</a>
           </p>
         </div>
       </div>
