@@ -105,7 +105,7 @@
 .box2 img {
   height: 286px;
   width: 432px;
-  align-self: flex-end;
+  align-self: center;
   object-fit: contain;
 }
 

@@ -1,6 +1,6 @@
 import styles from "./NewArrival.module.css";
 import G933 from "../../assets/headphones/Logitech_G933_black_1.png";
-import Ultra from "../../assets/smartwatches/Apple_Watch_Series_Ultra_orange_1.png";
+import Ultra from "../../assets/smartwatches/Apple_Watch_Series_Ultra_black_1.png";
 import Zenbook from "../../assets/computers/Asus_Zenbook_S14_black_1.png";
 import Iphone15 from "../../assets/phones/Apple_Iphone_15_pro_grey_1.png";
 import { Link } from "react-router-dom";
