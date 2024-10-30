@@ -444,7 +444,7 @@ const ProductsData = [
     name: "Sony Alpha A7 III",
     category: "Cameras",
     color: "Preto",
-    price: 10.6,
+    price: 10.600,
     description: "Câmera mirrorless full-frame de 24.2MP com estabilização de 5 eixos.",
     discount: 35, // Produto com desconto
     isBestSelling: false,
@@ -461,7 +461,7 @@ const ProductsData = [
     name: "Fujifilm X-T4",
     category: "Cameras",
     color: "Preto",
-    price: 14.4,
+    price: 14.440,
     description: "Câmera mirrorless APS-C de 26.1MP com estabilização no corpo.",
     discount: 0, // Produto sem desconto
     isBestSelling: false,
@@ -473,7 +473,7 @@ const ProductsData = [
     name: "Panasonic Lumix GH5 II",
     category: "Cameras",
     color: "Preto",
-    price: 7.72,
+    price: 7.720,
     description: "Câmera Micro Four Thirds de 20.3MP com gravação 4K ilimitada.",
     discount: 35, // Produto com desconto
     isBestSelling: false,
@@ -526,7 +526,7 @@ const ProductsData = [
     name: "Sennheiser HD 660 S",
     category: "Headphones",
     color: "Preto",
-    price: 4.88,
+    price: 4.880,
     description: "Headphones open-back para audiófilos com som de qualidade de referência.",
     discount: 35, // Produto com desconto
     isBestSelling: false,

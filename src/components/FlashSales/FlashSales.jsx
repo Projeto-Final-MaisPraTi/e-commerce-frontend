@@ -201,7 +201,7 @@ const FlashSales = () => {
         <p>Hoje</p>
       </div>
       <Header>
-        <Title>Desconto Relâmpago</Title>
+        <Title>Ofertas Relâmpago</Title>
         <TitleTimerWrapper>
           <TimerWrapper>
             <LabelWrapper>

@@ -46,14 +46,14 @@ const DetalhesProduto = () => {
           ) : (
             <div className={styles.discount}>
               <p className={styles.discountPrice}>
-                R$ {(product.price - (product.price / 100) * product.discount).toFixed(2)}
+                R$ {(product.price - (product.price / 100) * product.discount).toFixed(3)}
                 <span className={styles.badge}>{product.discount}% off</span>
               </p>
             </div>
           )}
           {/* R$ {product.price} {product.discount === 35 && <span className={styles.badge}>-{product.discount}%</span>} */}
         </p>
-        <p className={styles.description}>{product.description.pt}</p>
+        <p className={styles.description}>{product.description}</p>
 
         <p className={styles.colorSelection}>Cor disponível: {product.color}</p>
         <div className={styles.reviews}>
