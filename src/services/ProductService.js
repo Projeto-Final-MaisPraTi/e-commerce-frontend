@@ -87,3 +87,31 @@ export const findProductById = async (id) => {
     }
 };
 
+export const findProductByCategory = async (category) => {
+  try {
+      const response = await axios.get(API_URL + '/search?category=' + category, {
+          headers: {
+          'Content-Type': 'application/json'
+          }
+      });
+      return response.data;
+  } catch (error) {
+      console.error('Error ao procurar categoria:', error);
+      throw error; // Repassa o erro
+  }
+};
+
+export const getProductDetails = async (id) => {
+  try {
+      const response = await axios.get(API_URL +'/'+ id + '/details', {
+          headers: {
+          'Content-Type': 'application/json'
+          }
+      });
+      return response.data;
+  } catch (error) {
+      console.error('Error ao procurar detalhes do produto:', error);
+      throw error; // Repassa o erro
+  }
+};
+
