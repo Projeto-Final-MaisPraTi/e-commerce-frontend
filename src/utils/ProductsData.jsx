@@ -23,6 +23,11 @@ import Xiaomi13TBlack2 from "../assets/phones/MI_Xiaomi_13T_black_2.png";
 import Xiaomi13TBlack3 from "../assets/phones/MI_Xiaomi_13T_black_3.png";
 import Xiaomi13TBlack4 from "../assets/phones/MI_Xiaomi_13T_black_4.png";
 
+import AppleIphone15ProGrey1 from "../assets/phones/Apple_Iphone_15_pro_grey_1.png";
+import AppleIphone15ProGrey2 from "../assets/phones/Apple_Iphone_15_pro_grey_2.png";
+import AppleIphone15ProGrey3 from "../assets/phones/Apple_Iphone_15_pro_grey_3.png";
+import AppleIphone15ProGrey4 from "../assets/phones/Apple_Iphone_15_pro_grey_4.png";
+
 import MacBookAirM2Black1 from "../assets/computers/MacBook_Air_M2_black_1.png";
 import MacBookAirM2Black2 from "../assets/computers/MacBook_Air_M2_black_2.png";
 import MacBookAirM2Black3 from "../assets/computers/MacBook_Air_M2_black_3.png";
@@ -48,6 +53,11 @@ import LenovoThinkPadX1Black2 from "../assets/computers/Lenovo_ThinkPad_X1_black
 import LenovoThinkPadX1Black3 from "../assets/computers/Lenovo_ThinkPad_X1_black_3.png";
 import LenovoThinkPadX1Black4 from "../assets/computers/Lenovo_ThinkPad_X1_black_4.png";
 
+import AsusZenbookS14Black1 from "../assets/computers/Asus_Zenbook_S14_black_1.png";
+import AsusZenbookS14Black2 from "../assets/computers/Asus_Zenbook_S14_black_2.png";
+import AsusZenbookS14Black3 from "../assets/computers/Asus_Zenbook_S14_black_3.png";
+import AsusZenbookS14Black4 from "../assets/computers/Asus_Zenbook_S14_black_4.png";
+
 import AppleWatchSeries7Black1 from "../assets/smartwatches/Apple_Watch_Series_7_black_1.png";
 import AppleWatchSeries7Black2 from "../assets/smartwatches/Apple_Watch_Series_7_black_2.png";
 import AppleWatchSeries7Black3 from "../assets/smartwatches/Apple_Watch_Series_7_black_3.png";
@@ -72,6 +82,11 @@ import HuaweiWatchGT3Black1 from "../assets/smartwatches/Huawei_Watch_GT3_black_
 import HuaweiWatchGT3Black2 from "../assets/smartwatches/Huawei_Watch_GT3_black_2.png";
 import HuaweiWatchGT3Black3 from "../assets/smartwatches/Huawei_Watch_GT3_black_3.png";
 import HuaweiWatchGT3Black4 from "../assets/smartwatches/Huawei_Watch_GT3_black_4.png";
+
+import AppleWatchSeriesUltraBlack1 from "../assets/smartwatches/Apple_Watch_Series_Ultra_black_1.png";
+import AppleWatchSeriesUltraBlack2 from "../assets/smartwatches/Apple_Watch_Series_Ultra_black_2.png";
+import AppleWatchSeriesUltraBlack3 from "../assets/smartwatches/Apple_Watch_Series_Ultra_black_3.png";
+import AppleWatchSeriesUltraBlack4 from "../assets/smartwatches/Apple_Watch_Series_Ultra_black_4.png";
 
 import CanonEOSR6Black1 from "../assets/cameras/Canon_EOS_R6_black_1.png";
 import CanonEOSR6Black2 from "../assets/cameras/Canon_EOS_R6_black_2.png";
@@ -123,17 +138,20 @@ import AkgPro2 from "../assets/headphones/AKG_Pro_K702_black_2.png";
 import AkgPro3 from "../assets/headphones/AKG_Pro_K702_black_3.png";
 import AkgPro4 from "../assets/headphones/AKG_Pro_K702_black_4.png";
 
+import LogitcehG933Black1 from "../assets/headphones/Logitech_G933_black_1.png";
+import LogitcehG933Black2 from "../assets/headphones/Logitech_G933_black_2.png";
+import LogitcehG933Black3 from "../assets/headphones/Logitech_G933_black_3.png";
+import LogitcehG933Black4 from "../assets/headphones/Logitech_G933_black_4.png";
+
 const ProductsData = [
   {
     id: 1,
     name: "iPhone 14 Pro 128GB",
     category: "Phones",
-    color: "Black",
-    price: 999.99,
-    description: {
-      en: "iPhone 14 Pro. Capture incredible detail with a 48MP Main camera. Experience iPhone in a whole new way with Dynamic Island and Always-On display. And get peace of mind with groundbreaking safety features.",
-      pt: "iPhone 14 Pro. Capture detalhes incríveis com uma câmera principal de 48MP. Experimente o iPhone de uma maneira totalmente nova com a Ilha Dinâmica e a tela Sempre Ativa. E fique tranquilo com recursos de segurança inovadores.",
-    },
+    color: "Preto",
+    price: 7.261,
+    description:
+      "iPhone 14 Pro. Capture detalhes incríveis com uma câmera principal de 48MP. Experimente o iPhone de uma maneira totalmente nova com a Ilha Dinâmica e a tela Sempre Ativa. E fique tranquilo com recursos de segurança inovadores.",
     discount: 35, // Produto com desconto
     isBestSelling: false,
     rating: 4,
@@ -143,12 +161,10 @@ const ProductsData = [
     id: 2,
     name: "Samsung Galaxy S23",
     category: "Phones",
-    color: "Black",
-    price: 849.99,
-    description: {
-      en: "Galaxy AI is here. Search like never before, get real-time interpretation on a call, format your notes into a clear summary, and effortlessly edit your photos - all from your smartphone, all with AI. Get more out of your passions with the phone that is designed to elevate your everyday. Whether you are binge-watching shows or capturing shots for social, Galaxy S23 FE is jam-packed with features that help you get more out of whatever you are into including a long-lasting battery, a premium processor, a smooth and strong display, a triple-lens camera and more. ",
-      pt: "Smartphone topo de linha da Samsung, com display de 6.1, processador Snapdragon 8 Gen 2 e câmera tripla de 50 MP",
-    },
+    color: "Preto",
+    price: 2.998,
+    description:
+      "Smartphone topo de linha da Samsung, com display de 6.1, processador Snapdragon 8 Gen 2 e câmera tripla de 50 MP",
     discount: 0, // Produto sem desconto
     isBestSelling: true,
     rating: 4,
@@ -163,12 +179,10 @@ const ProductsData = [
     id: 3,
     name: "Google Pixel 7 Pro",
     category: "Phones",
-    color: "Black",
-    price: 599.99,
-    description: {
-      en: "Introducing Pixel 7 Pro, Google is best-of-everything phone. Powered by Google Tensor G2, it is fast and secure, with an immersive display and amazing battery life. The best Pixel camera yet includes a telephoto lens and pro-level features like Macro Focus. And with the certified Titan M2 security chip and a built-in VPN, Pixel helps protect your personal data.",
-      pt: "Modelo premium do Google, com tela OLED de 6.7, chip Google Tensor G2 e câmeras potentes com recursos avançados de IA",
-    },
+    color: "Preto",
+    price: 3.344,
+    description:
+      "Modelo premium do Google, com tela OLED de 6.7, chip Google Tensor G2 e câmeras potentes com recursos avançados de IA",
     discount: 35, // Produto com desconto
     isBestSelling: false,
     rating: 4,
@@ -183,12 +197,10 @@ const ProductsData = [
     id: 4,
     name: "OnePlus 12",
     category: "Phones",
-    color: "Black",
-    price: 799.99,
-    description: {
-      en: "The NEW OnePlus 12 is powered by Snapdragon 8 Gen 3, with up to 16GB of RAM. With the fastest wireless charging in North America, it powers through everything effortlessly. Enjoy all your content on a brilliant 120Hz Super Fluid AMOLED display, with dynamic refresh rate. The 4th Generation Hasselblad Camera System for Mobile captures incredible photos & videos, making the OnePlus 12 the perfect everyday companion for capturing your favorite memories. Packed with premium hardware specs & intuitive OxygenOS 14 software, the OnePlus 12 is our most complete smartphone experience. Only when using the 50W AIRVOOC Charger by OnePlus. ",
-      pt: "Flagship da OnePlus com Snapdragon 8 Gen 3, tela AMOLED de 6.7 e sistema de câmeras aprimorado com Hasselblad",
-    },
+    color: "Preto",
+    price: 1.67,
+    description:
+      "Flagship da OnePlus com Snapdragon 8 Gen 3, tela AMOLED de 6.7 e sistema de câmeras aprimorado com Hasselblad",
     discount: 0, // Produto sem desconto
     isBestSelling: false,
     rating: 4,
@@ -198,12 +210,10 @@ const ProductsData = [
     id: 5,
     name: "Xiaomi 13T",
     category: "Phones",
-    color: "Black",
-    price: 749.99,
-    description: {
-      en: "The Xiaomi 13T is an advanced and comprehensive Android smartphone in all points of view with some excellent features. It has a large display of 6.67 inches with a resolution of 2712x1220 pixels. The features offered by the Xiaomi 13T are many and innovative. Starting with 5G that allows data transfer and excellent internet browsing. We emphasize the excellent internal memory of 256 GB but without the possibility of expansion. The Xiaomi 13T is a product with few competitors in terms of multimedia thanks to the 50-megapixel camera that allows the Xiaomi 13T to take fantastic photos with a resolution of 8165x6124 pixels and record videos in 4K at the astonishing resolution of 3840x2160 pixels. Very thin, 8.5 millimeters, which makes the Xiaomi 13T really interesting.",
-      pt: "Smartphone intermediário premium da Xiaomi, equipado com chip MediaTek Dimensity 8200 Ultra, tela AMOLED de 6.67 e câmera tripla de 50 MP",
-    },
+    color: "Preto",
+    price: 3.012,
+    description:
+      "Smartphone intermediário premium da Xiaomi, equipado com chip MediaTek Dimensity 8200 Ultra, tela AMOLED de 6.67 e câmera tripla de 50 MP",
     discount: 0, // Produto sem desconto
     isBestSelling: false,
     rating: 4,
@@ -211,40 +221,52 @@ const ProductsData = [
   },
   {
     id: 6,
+    name: "iPhone 15 Pro",
+    category: "Phones",
+    color: "Preto",
+    price: 6.699,
+    description:
+      "Smartphone da Apple, equipado com chip da Apple A16, 5G, 6-core CPU, 8-core GPU, 6GB de RAM e 512GB de armazenamento",
+    discount: 0, // Produto sem desconto
+    isBestSelling: false,
+    rating: 4,
+    images: [
+      AppleIphone15ProGrey1,
+      AppleIphone15ProGrey2,
+      AppleIphone15ProGrey3,
+      AppleIphone15ProGrey4,
+    ],
+  },
+  {
+    id: 7,
     name: "MacBook Air M2",
     category: "Computers",
-    color: "Black",
-    price: 1199.99,
-    description: {
-      en: "Apple M2 chip with 10-core CPU.",
-      pt: "Chip Apple M2 com CPU de 10 núcleos.",
-    },
+    color: "Preto",
+    price: 7.559,
+    description: "Chip Apple M2 com CPU de 10 núcleos.",
     discount: 35, // Produto com desconto
     isBestSelling: false,
     rating: 4,
     images: [MacBookAirM2Black1, MacBookAirM2Black2, MacBookAirM2Black3, MacBookAirM2Black4],
   },
   {
-    id: 7,
+    id: 8,
     name: "MacBook Pro M2",
     category: "Computers",
     color: "Silver",
-    price: 1599.99,
-    description: {
-      en: "14.2-inch model with Apple M2 Pro chip and 16-core GPU.",
-      pt: "Modelo de 14.2 polegadas com chip Apple M2 Pro e GPU de 16 núcleos.",
-    },
+    price: 16.399,
+    description: "Modelo de 14.2 polegadas com chip Apple M2 Pro e GPU de 16 núcleos.",
     discount: 0, // Produto sem desconto
     isBestSelling: true,
     rating: 5,
     images: [MacBookProM2White1, MacBookProM2White2, MacBookProM2White3, MacBookProM2White4],
   },
   {
-    id: 8,
+    id: 9,
     name: "Dell XPS 13",
     category: "Computers",
-    color: "White",
-    price: 999.99,
+    color: "Branco",
+    price: 13.399,
     description: {
       en: "13.4-inch laptop with Intel Core i7 and 16GB RAM.",
       pt: "Notebook de 13.4 polegadas com Intel Core i7 e 16GB de RAM.",
@@ -255,30 +277,24 @@ const ProductsData = [
     images: [DellXPS13White1, DellXPS13White2, DellXPS13White3, DellXPS13White4],
   },
   {
-    id: 9,
+    id: 10,
     name: "HP Spectre x360",
     category: "Computers",
-    color: "Black",
-    price: 1249.99,
-    description: {
-      en: "Convertible laptop with Intel Evo Core i7 and touchscreen.",
-      pt: "Notebook conversível com Intel Evo Core i7 e tela sensível ao toque.",
-    },
+    color: "Preto",
+    price: 6.99,
+    description: "Notebook conversível com Intel Evo Core i7 e tela sensível ao toque.",
     discount: 35, // Produto com desconto
     isBestSelling: false,
     rating: 4,
     images: [HPSpectreX360Black1, HPSpectreX360Black2, HPSpectreX360Black3, HPSpectreX360Black4],
   },
   {
-    id: 10,
+    id: 11,
     name: "Lenovo ThinkPad X1 Carbon",
     category: "Computers",
-    color: "Black",
-    price: 1399.99,
-    description: {
-      en: "Ultra-light laptop with Intel Core i7 and 1TB SSD.",
-      pt: "Notebook ultraleve com Intel Core i7 e SSD de 1TB.",
-    },
+    color: "Preto",
+    price: 4.049,
+    description: "Notebook ultraleve com Intel Core i7 e SSD de 1TB.",
     discount: 0, // Produto sem desconto
     isBestSelling: true,
     rating: 4,
@@ -290,16 +306,30 @@ const ProductsData = [
     ],
   },
   {
-    id: 11,
+    id: 12,
+    name: "Asus Zenbook S14",
+    category: "Computers",
+    color: "Preto",
+    price: 7.856,
+    description: "Notebook ultraleve com Intel Core i7 e SSD de 1TB.",
+    discount: 0, // Produto sem desconto
+    isBestSelling: false,
+    rating: 4,
+    images: [
+      AsusZenbookS14Black1,
+      AsusZenbookS14Black2,
+      AsusZenbookS14Black3,
+      AsusZenbookS14Black4,
+    ],
+  },
+  {
+    id: 13,
     name: "Apple Watch Series 7",
     category: "Smartwatches",
-    color: "Black",
-    price: 399.99,
-    description: {
-      en: "Smartwatch with 41mm Retina display and GPS.",
-      pt: "Smartwatch com display Retina de 41mm e GPS.",
-    },
-    discount: 35, // Produto
+    color: "Preto",
+    price: 7.019,
+    description: "Smartwatch com display Retina de 41mm e GPS.",
+    discount: 0, // Produto sem desconto
     isBestSelling: false,
     rating: 4,
     images: [
@@ -310,15 +340,13 @@ const ProductsData = [
     ],
   },
   {
-    id: 12,
+    id: 14,
     name: "Samsung Galaxy Watch 4 Classic",
     category: "Smartwatches",
-    color: "Black",
-    price: 349.99,
-    description: {
-      en: "Smartwatch with 1.4-inch AMOLED display and heart rate monitor.",
-      pt: "Smartwatch com display AMOLED de 1.4 polegadas e monitor de batimentos cardíacos.",
-    },
+    color: "Preto",
+    price: 2.849,
+    description:
+      "Smartwatch com display AMOLED de 1.4 polegadas e monitor de batimentos cardíacos.",
     discount: 0, // Produto sem desconto
     isBestSelling: true,
     rating: 5,
@@ -330,45 +358,36 @@ const ProductsData = [
     ],
   },
   {
-    id: 13,
+    id: 15,
     name: "Garmin Venu 2",
     category: "Smartwatches",
-    color: "Black",
-    price: 449.99,
-    description: {
-      en: "Advanced fitness tracking smartwatch with GPS and AMOLED display.",
-      pt: "Smartwatch de rastreamento avançado de fitness com GPS e display AMOLED.",
-    },
+    color: "Preto",
+    price: 3.1,
+    description: "Smartwatch de rastreamento avançado de fitness com GPS e display AMOLED.",
     discount: 35, // Produto com desconto
     isBestSelling: false,
     rating: 4,
     images: [GarminVenu2Black1, GarminVenu2Black2, GarminVenu2Black3, GarminVenu2Black4],
   },
   {
-    id: 14,
+    id: 16,
     name: "Fitbit Versa 3",
     category: "Smartwatches",
-    color: "Black",
-    price: 229.99,
-    description: {
-      en: "Smartwatch with built-in GPS and 24/7 heart rate tracking.",
-      pt: "Smartwatch com GPS integrado e monitoramento de batimentos cardíacos 24/7.",
-    },
+    color: "Preto",
+    price: 2.649,
+    description: "Smartwatch com GPS integrado e monitoramento de batimentos cardíacos 24/7.",
     discount: 0, // Produto sem desconto
     isBestSelling: false,
     rating: 4,
     images: [FitbitVersa3Black1, FitbitVersa3Black2, FitbitVersa3Black3, FitbitVersa3Black4],
   },
   {
-    id: 15,
+    id: 17,
     name: "Huawei Watch GT 3",
     category: "Smartwatches",
-    color: "Black",
-    price: 249.99,
-    description: {
-      en: "Smartwatch with 1.43-inch AMOLED display and GPS.",
-      pt: "Smartwatch com display AMOLED de 1.43 polegadas e GPS.",
-    },
+    color: "Preto",
+    price: 1.192,
+    description: "Smartwatch com display AMOLED de 1.43 polegadas e GPS.",
     discount: 0, // Produto sem desconto
     isBestSelling: true,
     rating: 4,
@@ -380,45 +399,53 @@ const ProductsData = [
     ],
   },
   {
-    id: 16,
+    id: 18,
+    name: "Apple Watch Series Ultra",
+    category: "Smartwatches",
+    color: "Preto",
+    price: 7.121,
+    description: "Smartwatch com display Retina de 44mm e GPS.",
+    discount: 0, // Produto sem desconto
+    isBestSelling: false,
+    rating: 4,
+    images: [
+      AppleWatchSeriesUltraBlack1,
+      AppleWatchSeriesUltraBlack2,
+      AppleWatchSeriesUltraBlack3,
+      AppleWatchSeriesUltraBlack4,
+    ],
+  },
+  {
+    id: 19,
     name: "Canon EOS R6",
     category: "Cameras",
-    color: "Black",
-    price: 2499.99,
-    description: {
-      en: "Full-frame mirrorless camera with 20.1MP sensor and 4K video.",
-      pt: "Câmera mirrorless full-frame com sensor de 20.1MP e vídeo 4K.",
-    },
+    color: "Preto",
+    price: 17.012,
+    description: "Câmera mirrorless full-frame com sensor de 20.1MP e vídeo 4K.",
     discount: 35, // Produto com desconto
     isBestSelling: false,
     rating: 4,
     images: [CanonEOSR6Black1, CanonEOSR6Black2, CanonEOSR6Black3, CanonEOSR6Black4],
   },
   {
-    id: 17,
+    id: 20,
     name: "Nikon Z6 Li",
     category: "Cameras",
-    color: "Black",
-    price: 1999.99,
-    description: {
-      en: "24.5MP full-frame mirrorless camera with dual processors.",
-      pt: "Câmera mirrorless full-frame de 24.5MP com processadores duplos.",
-    },
+    color: "Preto",
+    price: 14.505,
+    description: "Câmera mirrorless full-frame de 24.5MP com processadores duplos.",
     discount: 0, // Produto sem desconto
     isBestSelling: true,
     rating: 4,
     images: [NikonZ6LiBlack1, NikonZ6LiBlack2, NikonZ6LiBlack3, NikonZ6LiBlack4],
   },
   {
-    id: 18,
+    id: 21,
     name: "Sony Alpha A7 III",
     category: "Cameras",
-    color: "Black",
-    price: 1999.99,
-    description: {
-      en: "24.2MP full-frame mirrorless camera with 5-axis stabilization.",
-      pt: "Câmera mirrorless full-frame de 24.2MP com estabilização de 5 eixos.",
-    },
+    color: "Preto",
+    price: 10.600,
+    description: "Câmera mirrorless full-frame de 24.2MP com estabilização de 5 eixos.",
     discount: 35, // Produto com desconto
     isBestSelling: false,
     rating: 4,
@@ -430,30 +457,24 @@ const ProductsData = [
     ],
   },
   {
-    id: 19,
+    id: 22,
     name: "Fujifilm X-T4",
     category: "Cameras",
-    color: "Black",
-    price: 1699.99,
-    description: {
-      en: "26.1MP APS-C mirrorless camera with in-body stabilization.",
-      pt: "Câmera mirrorless APS-C de 26.1MP com estabilização no corpo.",
-    },
+    color: "Preto",
+    price: 14.440,
+    description: "Câmera mirrorless APS-C de 26.1MP com estabilização no corpo.",
     discount: 0, // Produto sem desconto
     isBestSelling: false,
     rating: 4,
     images: [FujifilmXT4Black1, FujifilmXT4Black2, FujifilmXT4Black3, FujifilmXT4Black4],
   },
   {
-    id: 20,
+    id: 23,
     name: "Panasonic Lumix GH5 II",
     category: "Cameras",
-    color: "Black",
-    price: 1499.99,
-    description: {
-      en: "20.3MP Micro Four Thirds camera with unlimited 4K recording.",
-      pt: "Câmera Micro Four Thirds de 20.3MP com gravação 4K ilimitada.",
-    },
+    color: "Preto",
+    price: 7.720,
+    description: "Câmera Micro Four Thirds de 20.3MP com gravação 4K ilimitada.",
     discount: 35, // Produto com desconto
     isBestSelling: false,
     rating: 4,
@@ -465,79 +486,76 @@ const ProductsData = [
     ],
   },
   {
-    id: 21,
+    id: 24,
     name: "Sony WH-1000XM5",
     category: "Headphones",
-    color: "Black",
-    price: 349.99,
-    description: {
-      en: "Noise-canceling wireless headphones with 30-hour battery life.",
-      pt: "Fones de ouvido sem fio com cancelamento de ruído e 30 horas de bateria.",
-    },
+    color: "Preto",
+    price: 2.447,
+    description: "Fones de ouvido sem fio com cancelamento de ruído e 30 horas de bateria.",
     discount: 35, // Produto com desconto
     isBestSelling: false,
     rating: 5,
     images: [SonyWH1000XM51, SonyWH1000XM52, SonyWH1000XM53, SonyWH1000XM54],
   },
   {
-    id: 22,
+    id: 25,
     name: "Bose QuietComfort 45",
     category: "Headphones",
-    color: "Black",
-    price: 329.99,
-    description: {
-      en: "Premium wireless headphones with world-class noise cancellation.",
-      pt: "Fones de ouvido sem fio premium com cancelamento de ruído de classe mundial.",
-    },
+    color: "Preto",
+    price: 2.629,
+    description: "Fones de ouvido sem fio premium com cancelamento de ruído de classe mundial.",
     discount: 0, // Produto sem desconto
     isBestSelling: true,
     rating: 4.8,
     images: [BoseQuietComfort1, BoseQuietComfort2, BoseQuietComfort3, BoseQuietComfort4],
   },
   {
-    id: 23,
+    id: 26,
     name: "Apple AirPods Max",
     category: "Headphones",
-    color: "White",
-    price: 549.99,
-    description: {
-      en: "High-fidelity over-ear headphones with active noise cancellation.",
-      pt: "Fones de ouvido over-ear de alta fidelidade com cancelamento de ruído ativo.",
-    },
+    color: "Branco",
+    price: 3.999,
+    description: "Fones de ouvido over-ear de alta fidelidade com cancelamento de ruído ativo.",
     discount: 0, // Produto sem desconto
     isBestSelling: true,
     rating: 4.7,
     images: [AppleAirPodsMax1, AppleAirPodsMax2, AppleAirPodsMax3, AppleAirPodsMax4],
   },
   {
-    id: 24,
+    id: 27,
     name: "Sennheiser HD 660 S",
     category: "Headphones",
-    color: "Black",
-    price: 499.99,
-    description: {
-      en: "Open-back audiophile headphones with reference-grade sound.",
-      pt: "Headphones open-back para audiófilos com som de qualidade de referência.",
-    },
+    color: "Preto",
+    price: 4.880,
+    description: "Headphones open-back para audiófilos com som de qualidade de referência.",
     discount: 35, // Produto com desconto
     isBestSelling: false,
     rating: 4.6,
     images: [SennheiserHD660S1, SennheiserHD660S2, SennheiserHD660S3, SennheiserHD660S4],
   },
   {
-    id: 25,
+    id: 28,
     name: "AKG K702",
     category: "Headphones",
-    color: "Black",
-    price: 349.99,
-    description: {
-      en: "Professional open-back headphones for precision listening.",
-      pt: "Headphones open-back profissionais para escuta de precisão.",
-    },
+    color: "Preto",
+    price: 1.399,
+    description: "Headphones open-back profissionais para escuta de precisão.",
     discount: 0, // Produto sem desconto
     isBestSelling: false,
     rating: 4.5,
     images: [AkgPro1, AkgPro2, AkgPro3, AkgPro4],
+  },
+  {
+    id: 29,
+    name: "Logitceh G933",
+    category: "Headphones",
+    color: "Preto",
+    price: 783.64,
+    description: "Fones de ouvido sem fio com cancelamento de ruído ativo e corpo leve..",
+    discount: 0, // Produto sem desconto
+    isBestSelling: false,
+    rating: 4.4,
+    images: [LogitcehG933Black1, LogitcehG933Black2, LogitcehG933Black3, LogitcehG933Black4],
   },
 ];
 

@@ -38,7 +38,7 @@ const ProductCard = ({ product }) => {
                 De: <del>R$ {product.price}</del>
               </p>
               <p className={styles.discountPrice}>
-                Por: R$ {(product.price - (product.price / 100) * product.discount).toFixed(2)}
+                Por: R$ {(product.price - (product.price / 100) * product.discount).toFixed(3)}
               </p>
             </div>
           )}

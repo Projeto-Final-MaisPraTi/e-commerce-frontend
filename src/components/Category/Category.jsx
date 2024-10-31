@@ -27,7 +27,7 @@ function Category({ selectedCategory }) {
           <img src={product.images[0]} alt={product.name} className={styles.productImage} />
           <div className={styles.productInfo}>
             <h2 className={styles.productTitle}>{product.name}</h2>
-            <p className={styles.description}>{product.description.pt}</p>
+            <p className={styles.description}>{product.description}</p>
             <div className={styles.reviews}>
               <StarRating rating={product.rating} />
             </div>
@@ -41,7 +41,7 @@ function Category({ selectedCategory }) {
                 <span className={styles.badge}>{product.discount}% off</span>
               </p>
               <p className={styles.discountPrice}>
-                Por: R$ {(product.price - (product.price / 100) * product.discount).toFixed(2)}
+                Por: R$ {(product.price - (product.price / 100) * product.discount).toFixed(3)}
               </p>
             </div>
           )}
