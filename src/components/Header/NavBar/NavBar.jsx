@@ -54,7 +54,7 @@ const NavBar = ({ isUserLoggedIn }) => {
           <Link to="/">Início</Link>
           <Link to="/contact">Contato</Link>
           <Link to="/about">Sobre nós</Link>
-          {!isUserLoggedIn && <Link to="/signup">Entrar</Link>}
+          {!isUserLoggedIn && <Link to="/login">Entrar</Link>}
         </div>
 
         {/* Barra de busca e ícones de ações */}

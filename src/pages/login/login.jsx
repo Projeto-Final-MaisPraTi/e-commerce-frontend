@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import styles from "./login.module.css";
 import Header from "../../components/Header/Header.jsx";
 import Footer from "../../components/Footer/ComponentFooter.jsx";
@@ -8,6 +10,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: "", password: "" });
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const loginWithGoogle = useGoogleLogin({
     onSuccess: (tokenResponse) => console.log(tokenResponse),
@@ -19,7 +23,7 @@ const Login = () => {
     const newErrors = { email: "", password: "" };
 
     if (!email) {
-      newErrors.email = "E-mail obrigatório!";
+      newErrors.email = "E-mail é obrigatório!";
       valid = false;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
       newErrors.email = "E-mail inválido!";
@@ -27,7 +31,7 @@ const Login = () => {
     }
 
     if (!password) {
-      newErrors.password = "Senha obrigatória!";
+      newErrors.password = "Senha é obrigatória!";
       valid = false;
     }
 
@@ -35,11 +39,29 @@ const Login = () => {
     return valid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validate()) {
-      console.log({ email, password });
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_BACKEND_URL}/api/login`,
+          { email, password },
+          { headers: { "Content-Type": "application/json" } },
+        );
+
+        localStorage.setItem("jwt", JSON.stringify(response.data.token)); // Salva o token no localStorage
+        navigate("/"); // Redireciona para a página inicial
+      } catch (error) {
+        if (error.response) {
+          // Erros enviados pelo backend
+          setErrorMessage(error.response.data.message || "Erro no login.");
+        } else {
+          // Erros de conexão
+          console.error("Erro na requisição:", error);
+          setErrorMessage("Erro de conexão. Tente novamente mais tarde.");
+        }
+      }
     }
   };
 
@@ -49,9 +71,9 @@ const Login = () => {
 
       <div className={styles.loginContainer}>
         <div className={styles.loginBox}>
-          <h2 className={styles.welcomeBack}>Bem vindo de volta!</h2>
+          <h2 className={styles.welcomeBack}>Bem-vindo de volta!</h2>
           <p className={styles.dontHaveAccount}>
-            Ainda não tem uma conta? <a href="/register">Cadastre-se</a>
+            Ainda não tem uma conta? <Link to="/register">Cadastre-se</Link>
           </p>
 
           <form onSubmit={handleSubmit} className={styles.loginForm}>
@@ -73,6 +95,8 @@ const Login = () => {
             />
             {errors.password && <p className={styles.error}>{errors.password}</p>}
 
+            {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+
             <button type="submit" className={styles.loginButton}>
               Entrar
             </button>
@@ -83,6 +107,7 @@ const Login = () => {
           </div>
 
           <button onClick={() => loginWithGoogle()} className={styles.googleButton}>
+            {/* Google SVG */}
             <svg
               className={styles.googleIcon}
               xmlns="http://www.w3.org/2000/svg"
