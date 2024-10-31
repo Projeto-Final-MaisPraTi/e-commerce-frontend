@@ -1,12 +1,12 @@
 import SuperHeader from "./SuperHeader/SuperHeader";
 import NavBar from "./NavBar/NavBar";
+import { isAuthenticated } from "../../auth";
 
 const Header = () => {
-  const isUserLogged = true;
   return (
     <>
       <SuperHeader />
-      <NavBar isUserLoggedIn={isUserLogged} />
+      <NavBar isUserLoggedIn={isAuthenticated} />
     </>
   );
 };
