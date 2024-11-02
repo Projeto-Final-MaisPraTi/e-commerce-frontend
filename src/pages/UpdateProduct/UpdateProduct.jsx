@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { getUpdateProduct, updateProduct } from "../../services/ProductService";
 import React, { useEffect, useState } from "react";
-import CircularProgressBar from "../RegisterProduct/CircularProgressBar";
-import PreviewProduct from "../RegisterProduct/PreviewProduct";
+import LoadingSpinner from "../../components/SpinnerComponent/LoadingSpinner";
+import PreviewProduct from "../../components/PreviewProduct/PreviewProduct";
 import CurrencyInput from 'react-currency-input-field';
 import CardUpdateImage from "./CardUpdateImage";
 import { deleteImageByUrl } from "../../services/ImageService";
@@ -37,6 +37,8 @@ const SideForm = styled.div`
     flex-direction: column;
     align-items: center;
     box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
+    background-color: white;
+    border-radius: 5px;
     width: 100%;
     .title {
         text-align: center;
@@ -51,9 +53,17 @@ const SideForm = styled.div`
             height: 100px;
         }
         .button_submit {
-            margin-top: 10px;
+            margin-top: 15px;
             input[type="submit"] {
-            line-height: 100%;
+                line-height: 100%;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                background-color: dodgerblue;
+
+                &:hover {
+                background-color: #3a9afa;
+                }
          }
     }
     .disabled {
@@ -277,7 +287,7 @@ function UpdateProduct() {
 
 
     // ADICIONA IMAGEM DE CAPA    
-    
+
     const handleAddCoverImage = async (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -300,7 +310,7 @@ function UpdateProduct() {
     }
 
     const handleDeleteCover = async () => {
-        if (produto.cover.value && produto.cover.value.includes('https:')){
+        if (produto.cover.value && produto.cover.value.includes('https:')) {
             let nameImage = getNameImage(produto.cover.value);
             let url = produto.cover.value;
             await deleteImageByUrl(url);
@@ -384,7 +394,7 @@ function UpdateProduct() {
         return data;
     }
 
-    
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -407,7 +417,7 @@ function UpdateProduct() {
             <>
                 <Container>
                     <WaitProduct>
-                        <CircularProgressBar size={80} />
+                        <LoadingSpinner size={80} />
                     </WaitProduct>
                 </Container>
             </>
@@ -422,22 +432,22 @@ function UpdateProduct() {
                 </SidePreview>
                 <SideForm>
                     <div className="title">
-                        <h2>Update Product</h2>
+                        <h2>Editar Produto</h2>
                     </div>
                     <form onSubmit={handleSubmit}>
                         <div>
                             <SelectBox>
-                                <Label>Name:</Label>
-                                <input type="checkbox" onChange={() => toggleEdit('nome')}/>
-                                <span>( Edit name ? )</span>
+                                <Label>Nome:</Label>
+                                <input type="checkbox" onChange={() => toggleEdit('nome')} />
+                                <span>( Editar nome ? )</span>
                             </SelectBox>
                             <InputArea disabled={!produto.nome.edit} type="text" value={produto.nome.value} onChange={(event) => handleChange('nome', event.target.value)} />
                         </div>
                         <div>
                             <SelectBox>
-                                <Label>Description:</Label>
-                                <input type="checkbox" onChange={() => toggleEdit('descricao')}/>
-                                <span>( Edit description ? )</span>
+                                <Label>Descrição:</Label>
+                                <input type="checkbox" onChange={() => toggleEdit('descricao')} />
+                                <span>( Editar descrição ? )</span>
                             </SelectBox>
                             <textarea
                                 className="description"
@@ -448,11 +458,11 @@ function UpdateProduct() {
                             />
                         </div>
                         <div>
-                        <SelectBox>
-                            <Label>Category:</Label>
-                            <input type="checkbox" onChange={() => toggleEdit('categoria')}/>
-                            <span>( Edit category ? )</span>
-                        </SelectBox>
+                            <SelectBox>
+                                <Label>Categoria:</Label>
+                                <input type="checkbox" onChange={() => toggleEdit('categoria')} />
+                                <span>( Editar categoria ? )</span>
+                            </SelectBox>
                             <select disabled={!produto.categoria.edit} onChange={handleChangeCategory} value={produto.categoria.value}>
                                 {categories.map((cat, index) => (
                                     <option key={index} value={cat.value} disabled={cat.disabled}>
@@ -463,9 +473,9 @@ function UpdateProduct() {
                         </div>
                         <div>
                             <SelectBox>
-                                <Label>Quantity:</Label>
-                                <input type="checkbox" onChange={() => toggleEdit('estoque')}/>
-                                <span>( Edit quantity ? )</span>
+                                <Label>Quantidade:</Label>
+                                <input type="checkbox" onChange={() => toggleEdit('estoque')} />
+                                <span>( Editar quantidade ? )</span>
                             </SelectBox>
                             <InputArea
                                 type="number"
@@ -478,9 +488,9 @@ function UpdateProduct() {
                         </div>
                         <div>
                             <SelectBox>
-                                <label >Value:</label>
-                                <input type="checkbox" onChange={() => toggleEdit('preco')}/>
-                                <span>( Edit value ? )</span>
+                                <label >Preço:</label>
+                                <input type="checkbox" onChange={() => toggleEdit('preco')} />
+                                <span>( Editar preço ? )</span>
                             </SelectBox>
                             <CurrencyInput
                                 className="currency-input"
@@ -499,9 +509,9 @@ function UpdateProduct() {
                         </div>
                         <OptionColors>
                             <SelectBox>
-                                <label>Color:</label>
-                                <input type="checkbox" onChange={() => toggleEdit('cor')}/>
-                                <span>( Edit color ? )</span>
+                                <label>Cor:</label>
+                                <input type="checkbox" onChange={() => toggleEdit('cor')} />
+                                <span>( Editar cor ? )</span>
                             </SelectBox>
                             <SelectColor>
                                 <select disabled={!produto.cor.edit} value={corSelecionada} onChange={handleChangeColor}>
@@ -527,9 +537,9 @@ function UpdateProduct() {
                         </OptionColors>
                         <div>
                             <SelectBox>
-                                <label >Cover Image:</label>
-                                <input type="checkbox" onChange={() => toggleEdit('cover')}/>
-                                <span>( Edit image cover ? )</span>
+                                <label >Imagem de capa:</label>
+                                <input type="checkbox" onChange={() => toggleEdit('cover')} />
+                                <span>( Editar imagem de capa ? )</span>
                             </SelectBox>
                             <ImageCover className={produto.cover.edit ? '' : 'disabled'}>
                                 {produto.cover.value ?
@@ -566,13 +576,13 @@ function UpdateProduct() {
                         </div>
                         <div>
                             <SelectBox>
-                                <label>Image Details:</label>
-                                <input type="checkbox" onChange={() => toggleEdit('images')}/>
-                                <span>( Edit image details ? )</span>
+                                <label>Imagem de detalhes:</label>
+                                <input type="checkbox" onChange={() => toggleEdit('images')} />
+                                <span>( Editar imagem de detalhes ? )</span>
                             </SelectBox>
                             <ImageDetails className={produto.images.edit ? '' : 'disabled'}>
                                 {produto.images.value.map((img) => <CardUpdateImage url={img} deleteImage={setDeleteImage} />)}
-                                {newImages ? newImages.map((img) =>  <CardUpdateImage url={img} deleteImage={setDeleteImage}/>) : ''}
+                                {newImages ? newImages.map((img) => <CardUpdateImage url={img} deleteImage={setDeleteImage} />) : ''}
                                 <UploadFile>
                                     <label htmlFor="upload-button" style={{ cursor: 'pointer' }}>
                                         <ContainerAddImage>
@@ -602,7 +612,7 @@ function UpdateProduct() {
                             </ImageDetails>
                         </div>
                         <div className="button_submit">
-                            <InputArea type="submit" value={"Update"} />
+                            <InputArea type="submit" value={"Atualizar produto"} />
                         </div>
                         {/* {progressBar && (
                     <Box sx={{ width: "100%", marginTop: "8px" }}>

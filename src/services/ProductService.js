@@ -2,6 +2,8 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8080/api/product"; // URL para criar produtos
 
+// rota para criar os produtos
+
 export const createProduct = async (productData) => {
   try {
     const response = await axios.post(API_URL, productData, {
@@ -15,6 +17,8 @@ export const createProduct = async (productData) => {
     throw error; // Repassa o erro
   }
 };
+
+// rota para atualizar o produto com os novos dados
 
 export const updateProduct = async (productData) => {
   try {
@@ -31,6 +35,8 @@ export const updateProduct = async (productData) => {
   }
 };
 
+// pega o produto com as informações para preencher o input da pagina de atualização de produtos
+
 export const getUpdateProduct = async (id) => {
   try {
     const response = await axios.get(API_URL + '/' + id + '/update', {
@@ -44,6 +50,8 @@ export const getUpdateProduct = async (id) => {
     throw error; // Repassa o erro
 }
 }
+
+// deleta o produto pelo id
 
 export const deleteProductById = async (id) => {
   try {
@@ -59,6 +67,8 @@ export const deleteProductById = async (id) => {
   }
 };
 
+// retorna uma lista de produtos que buscada pelo nome
+
 export const findProductByName = async (name) => {
   try {
     const response = await axios.get(API_URL + "/search?name=" + name, {
@@ -72,6 +82,8 @@ export const findProductByName = async (name) => {
     throw error; // Repassa o erro
   }
 };
+
+// pegar produtos pelo id, retorna só o simples
 
 export const findProductById = async (id) => {
     try {
@@ -87,6 +99,8 @@ export const findProductById = async (id) => {
     }
 };
 
+// procurar por uma categoria
+
 export const findProductByCategory = async (category) => {
   try {
       const response = await axios.get(API_URL + '/search?category=' + category, {
@@ -100,6 +114,8 @@ export const findProductByCategory = async (category) => {
       throw error; // Repassa o erro
   }
 };
+
+// pegar o produtos com todos os detalhes pelo id
 
 export const getProductDetails = async (id) => {
   try {
@@ -115,3 +131,24 @@ export const getProductDetails = async (id) => {
   }
 };
 
+
+/*
+  procurar o produto por fitros, o objeto pode ter um unico filtro ou todos os filtros
+  Ex:
+  data = {
+    nome:
+    categoria:
+    minPrice:
+    maxPrice:
+    color:
+  }
+*/
+
+export const getFilteredProducts = async (filters) => {
+  try {
+    const response = await axios.get(API_URL + '/busca', { params: filters });
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao buscar produtos:', error);
+  }
+}

@@ -77,17 +77,14 @@ const Rotas = () => (
         />
         {/* Responsável: Erick */}
         <Route
-          exact
           path="/manager"
-          element={
-            <PrivateRoute element={<ManagerProduct />}>
-              <Route index element={<PrivateRoute element={<HomeManager />} />} />
-              <Route path="register" element={<PrivateRoute element={<RegisterProduct />} />} />
-              <Route path="update" element={<PrivateRoute element={<SearchUpdateProduct />} />} />
-              <Route path="update/:id" element={<PrivateRoute element={<UpdateProduct />} />} />
-            </PrivateRoute>
-          }
-        />
+          element={<ManagerProduct />}
+        >
+          <Route index element={<HomeManager />} />
+          <Route path="register" element={<RegisterProduct />} />
+          <Route path="update" element={<SearchUpdateProduct />} />
+          <Route path="update/:id" element={<UpdateProduct />} />
+        </Route>
         {/* Rota para capturar qualquer caminho inválido */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>

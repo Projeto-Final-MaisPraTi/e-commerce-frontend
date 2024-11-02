@@ -1,10 +1,10 @@
 export const categories = [
-    { value: "", label: "Categories", disabled: true },
-    { value: "Phones", label: "Phones" },
-    { value: "Computers", label: "Computers" },
+    { value: "Phones", label: "Telefones" },
+    { value: "Computers", label: "Computadores" },
     { value: "SmartWatches", label: "SmartWatches" },
-    { value: "Cameras", label: "Cameras" },
-    { value: "Headphones", label: "Headphones" },
+    { value: "Cameras", label: "Câmeras" },
+    { value: "Headphones", label: "Fones de ouvido" },
+    { value: "", label: "Categorias", disabled: true }
 ];
 
 export const opcoesDeCores = [

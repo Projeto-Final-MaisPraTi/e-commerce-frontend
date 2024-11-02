@@ -6,6 +6,8 @@ const Nav = styled.nav`
   margin: auto;
   margin-top: 30px;
   box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
+  background-color: white;
+  border-radius: 5px;
   .nav-links {
     display: flex;
     list-style-type: none;
@@ -29,9 +31,9 @@ const NavManage = () => {
   return (
     <Nav>
       <ul className="nav-links">
-        <li onClick={() => navigate("/manager")} >Manage Home</li>
-        <li onClick={() => navigate("register")} >Register Product</li>
-        <li onClick={() => navigate("update")} >Update Product</li>
+        <li onClick={() => navigate("/manager")} >Início | Visão Geral</li>
+        <li onClick={() => navigate("register")} >Registrar Produto</li>
+        <li onClick={() => navigate("update")} >Atualizar Produto</li>
       </ul>
     </Nav>
   );

@@ -8,14 +8,16 @@ const Container = styled.div`
   margin: 30px auto;
   padding: 30px;
   box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
+  background-color: white;
   gap: 20px;
+  border-radius: 5px;
   transition: 0.5s;
 `;
 
 const HomeManager = () => {
   return (
     <Container>
-      <h1>Welcome to Product Management</h1>
+      <h1>Bem-vindo ao Gerenciamento de Produtos</h1>
     </Container>
   );
 };

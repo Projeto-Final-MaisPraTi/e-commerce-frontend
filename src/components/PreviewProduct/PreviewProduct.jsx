@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import ProductCard from "../../components/ProductCard/ProductCard";
-// import produtos from "../../utils/ProductsData";
+import ProductCard from "../ProductCard/ProductCard";
 
 const Container = styled.div`
   width: 300px;
   box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
   padding: 10px;
+  background-color: white;
+  border-radius: 4px;
   h2 {
     text-align: center;
   }
@@ -42,7 +43,7 @@ const PreviewProduct = ({ name, price, cover }) => {
   return (
     <Container>
       <div>
-        <h2>Preview</h2>
+        <h2>Pré-visualização</h2>
       </div>
       <div className="product">
         <StyProduct product={product} />

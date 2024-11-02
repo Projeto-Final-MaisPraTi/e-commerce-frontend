@@ -9,4 +9,4 @@
 //   }
 // };
 
-export const isAuthenticated = false;
+export const isAuthenticated = true;

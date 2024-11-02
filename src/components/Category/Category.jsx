@@ -5,43 +5,43 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation } from "react-router-dom";
 
 function Category({ selectedCategory }) {
-  const location = useLocation(); // Hook para acessar o state
-  let selectedElements = [];
+  // const location = useLocation(); // Hook para acessar o state
+  // let selectedElements = selectedCategory;
 
-  // Se houver produtos passados via state, exibi-los
-  if (location.state && location.state.products) {
-    selectedElements = location.state.products;
-  } else {
-    // Caso contrário, continue com a lógica de categoria selecionada
-    for (let i = 0; i < Products.length; i++) {
-      if (Products[i].category == selectedCategory) {
-        selectedElements.push(Products[i]);
-      }
-    }
-  }
+  // // Se houver produtos passados via state, exibi-los
+  // if (location.state && location.state.products) {
+  //   selectedElements = location.state.products;
+  // } else {
+  //   // Caso contrário, continue com a lógica de categoria selecionada
+  //   for (let i = 0; i < Products.length; i++) {
+  //     if (Products[i].category == selectedCategory) {
+  //       selectedElements.push(Products[i]);
+  //     }
+  //   }
+  // }
 
   return (
     <section className={styles.productList}>
-      {selectedElements.map((product) => (
+      {selectedCategory.map((product) => (
         <div className={styles.productCard} key={product.id}>
-          <img src={product.images[0]} alt={product.name} className={styles.productImage} />
+          <img src={product.images} alt={product.nome} className={styles.productImage} />
           <div className={styles.productInfo}>
-            <h2 className={styles.productTitle}>{product.name}</h2>
-            <p className={styles.description}>{product.description}</p>
+            <h2 className={styles.productTitle}>{product.nome}</h2>
+            <p className={styles.description}>{product.descricao}</p>
             <div className={styles.reviews}>
-              <StarRating rating={product.rating} />
+              <StarRating rating={product.nota} />
             </div>
           </div>
           {product.discount === 0 ? (
-            <p className={styles.price}>R$ {product.price}</p>
+            <p className={styles.price}>R$ {product.preco}</p>
           ) : (
             <div className={styles.discount}>
               <p className={styles.noDiscountPrice}>
-                De: <del>R$ {product.price}</del>{" "}
-                <span className={styles.badge}>{product.discount}% off</span>
+                De: <del>R$ {product.preco}</del>{" "}
+                <span className={styles.badge}>10% off</span>
               </p>
               <p className={styles.discountPrice}>
-                Por: R$ {(product.price - (product.price / 100) * product.discount).toFixed(3)}
+                Por: R$ {(product.preco - (product.preco / 100) * 10).toFixed(3)}
               </p>
             </div>
           )}

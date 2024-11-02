@@ -3,9 +3,9 @@ import useRegister from "./useRegister";
 import { useState } from "react";
 import { submitProduct } from "../../services/ProductSubmission";
 import Box from "@mui/material/Box";
-import PreviewProduct from "./PreviewProduct";
+import PreviewProduct from "../../components/PreviewProduct/PreviewProduct";
 import { categories, opcoesDeCores } from "../../utils/ProductOptions";
-import CircularProgressBar from "./CircularProgressBar";
+import LoadingSpinner from "../../components/SpinnerComponent/LoadingSpinner";
 
 const Container = styled.div`
   display: flex;
@@ -22,6 +22,8 @@ const SideForm = styled.div`
   box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
   width: 100%;
   text-align: center;
+  background-color: white;
+  border-radius: 5px;
   h2 {
     text-align: center;
     margin: auto;
@@ -66,20 +68,29 @@ const SideForm = styled.div`
   .button_submit {
     input[type="submit"] {
       line-height: 100%;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      background-color: dodgerblue;
+
+      &:hover {
+        background-color: #3a9afa;
+      }
     }
+    margin-top: 10px;
   }
 `;
 
-const CorAtualSelecionada = styled.span`
-  border: 2px solid black;
-  border-radius: 5px;
-  padding: 15px;
-  margin-left: 10px;
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  background-color: ${props => props.cor};
-`
+// const CorAtualSelecionada = styled.span`
+//   border: 2px solid black;
+//   border-radius: 5px;
+//   padding: 15px;
+//   margin-left: 10px;
+//   width: 20px;
+//   height: 20px;
+//   display: inline-block;
+//   background-color: ${(props) => props.cor};
+// `;
 
 const Register = () => {
   const { setValues, data } = useRegister();
@@ -87,7 +98,6 @@ const Register = () => {
   const [category, setCategory] = useState("");
   const [progressBar, setProgressBar] = useState(null);
   const [progressInsertDB, setProgressInsertDB] = useState(null);
-
 
   // Muda a categoria selecionada
   const handleChangeCategory = (event) => {
@@ -137,11 +147,12 @@ const Register = () => {
   //Seleciona a cor (Precisa colocar a logica para quando o produto não tiver uma cor)
   const [corSelecionada, setCorSelecionada] = useState("#000000");
 
-
   const handleChangeColor = (event) => {
     setCorSelecionada(event.target.value);
 
-    const corEncontrada = opcoesDeCores.find((opcao) => opcao.valor === event.target.value);
+    const corEncontrada = opcoesDeCores.find(
+      (opcao) => opcao.valor === event.target.value
+    );
     if (corEncontrada) {
       setValues(corEncontrada.nome, "color");
     }
@@ -158,7 +169,12 @@ const Register = () => {
     imagens = [...imagens, ...data.images.flat()];
 
     try {
-      let result = await submitProduct(data, imagens, setProgressBar, setProgressInsertDB);
+      let result = await submitProduct(
+        data,
+        imagens,
+        setProgressBar,
+        setProgressInsertDB
+      );
       alert("Produto cadastrado!");
       console.log(result);
     } catch (error) {
@@ -171,20 +187,27 @@ const Register = () => {
   return (
     <Container>
       <SidePreview>
-        <PreviewProduct name={data.name} price={data.price} cover={data.cover} />
+        <PreviewProduct
+          name={data.name}
+          price={data.price}
+          cover={data.cover}
+        />
       </SidePreview>
       <SideForm>
         <div className="title">
-          <h2>Register Product</h2>
+          <h2>Registrar Produto</h2>
         </div>
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="">Name:</label>
+            <label htmlFor="">Nome:</label>
             <br />
-            <input type="text" onChange={(event) => setValues(event.target.value, "name")} />
+            <input
+              type="text"
+              onChange={(event) => setValues(event.target.value, "name")}
+            />
           </div>
           <div>
-            <label htmlFor="">Description:</label>
+            <label htmlFor="">Descrição:</label>
             <br />
             <textarea
               className="description"
@@ -193,9 +216,14 @@ const Register = () => {
             />
           </div>
           <div>
-            <label htmlFor="">Category:</label>
+            <label htmlFor="">Categoria:</label>
             <br />
-            <select name="" id="" onChange={handleChangeCategory} value={category}>
+            <select
+              name=""
+              id=""
+              onChange={handleChangeCategory}
+              value={category}
+            >
               {categories.map((cat, index) => (
                 <option key={index} value={cat.value} disabled={cat.disabled}>
                   {cat.label}
@@ -204,7 +232,7 @@ const Register = () => {
             </select>
           </div>
           <div>
-            <label htmlFor="">Quantity:</label>
+            <label htmlFor="">Quantidade:</label>
             <br />
             <input
               type="number"
@@ -214,7 +242,7 @@ const Register = () => {
             />
           </div>
           <div>
-            <label htmlFor="">Value:</label>
+            <label htmlFor="">Preço:</label>
             <br />
             <input
               type="text"
@@ -247,12 +275,17 @@ const Register = () => {
             </div>
           </div>
           <div>
-            <label htmlFor="">Cover Image:</label>
+            <label htmlFor="">Imagem de capa:</label>
             <br />
-            <input className="img-input" type="file" accept="image/*" onChange={handleCoverFile} />
+            <input
+              className="img-input"
+              type="file"
+              accept="image/*"
+              onChange={handleCoverFile}
+            />
           </div>
           <div>
-            <label htmlFor="">Image Details:</label>
+            <label htmlFor="">Imagem dos detalhes:</label>
             <br />
             <input
               className="img-input"
@@ -268,13 +301,13 @@ const Register = () => {
           {progressBar && (
             <Box sx={{ width: "100%", marginTop: "8px" }}>
               <h5>Fazendo upload das imagens</h5>
-                <CircularProgressBar />
+              <LoadingSpinner />
             </Box>
           )}
           {progressInsertDB && (
             <div className="loading_banco_de_dados">
               <h5>Fazendo upload no banco de dados</h5>
-                <CircularProgressBar />
+              <LoadingSpinner />
             </div>
           )}
         </form>

@@ -7,6 +7,8 @@ const Container = styled.div`
   margin: 30px auto;
   padding: 30px;
   box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
+  background-color: white;
+  border-radius: 5px;
   gap: 20px;
   transition: 0.3s;
 `;

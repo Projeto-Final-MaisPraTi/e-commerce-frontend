@@ -1,39 +1,74 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { findProductByName, deleteProductById } from "../../services/ProductService";
-import Box from '@mui/material/Box';
-import { styled as muiStyled } from '@mui/material/styles';
-import CircularProgress from '@mui/material/CircularProgress';
 import CardUpdateProduct from "./CardUpdateProduct";
-import CircularProgressBar from "../RegisterProduct/CircularProgressBar";
+import LoadingSpinner from '../../components/SpinnerComponent/LoadingSpinner';
+import { categories } from '../../utils/ProductOptions';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-
-// Progesso do banco de dados
-const Root = muiStyled(Box)(({ theme }) => ({
-  display: "flex",
-  "& > * + *": {
-    marginLeft: theme.spacing(3),
-  },
-  justifyContent: "center",
-}));
+import { getFilteredProducts } from '../../services/ProductService';
 
 const Container = styled.div`
-  flex: 2;
-  width: 800px;
-`;
+  display: flex;
+  flex-direction: column;
+  /* flex: 2; */
+  width: 90%;
+  margin: auto;
+  border-radius: 5px;
+`
 
 const SearchBar = styled.div`
-  margin: auto;
-  text-align: center;
-`;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  text-align: left;
+  label {
+    margin-right: 8px;
+    font-size: 18px;
+    margin-bottom: 0;
+  }
+  input {
+    padding: 5px;
+  }
+  button {
+    margin-left: 15px;
+    height: 100%;
+    border: none;
+    padding: 0 15px;
+    border-radius: 5px;
+    color: white;
+    background-color: dodgerblue;
+
+    &:hover {
+      background-color: #3a9afa;
+    }
+  }
+`
+
+const SelectCategorie = styled.div`
+  display: flex;
+  height: 100%;
+  align-items: center;
+`
+
+const SearchInput = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  height: 100%;
+  select {
+    height: 100%;
+  }
+  
+`
 
 const ShowProducts = styled.div`
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;
   box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
-  width: 90%;
+  background-color: #F3F3F3;
+  width: 100%;
   height: 500px;
   margin: 30px auto;
   padding: 30px;
@@ -100,6 +135,21 @@ const Update = () => {
   // vai receber um objeto com (id do produto)id: , (nome do produto)nome:
   const [itemUpdate, setItemUpdate] = useState(null);
   const [deleteItem, setDeleteItem] = useState(null);
+  const [categoria, setCategoria] = useState(null);
+  const [filtros, setFiltros] = useState({});
+
+  const handleFiltros = (key, value) => {
+    setFiltros((prevFiltros) => {
+      const novosFiltros = {...prevFiltros};
+
+      if (value) {
+        novosFiltros[key] = value;
+      } else {
+        delete novosFiltros[key];
+      }
+      return novosFiltros;
+    })
+  }
 
 
   const navigate = useNavigate();
@@ -109,9 +159,16 @@ const Update = () => {
       navigate("/manager/update/" + itemUpdate['id']);
   }
 
+  const handleChangeCategory = (event) => {
+    const selectedValue = event.target.value == "" ? null : event.target.value;
+    setCategoria(selectedValue);
+    handleFiltros("categoria", selectedValue);
+    console.log(categoria);
+  };
+
   // FUNÇÃO PARA BUSCAR O PRODUTO COM O TEXTO INSERIDO
   const buscarProduto = async (textoBusca) => {
-    // SE JA TIVER OUTRA BUSCA FINALIZA ELA
+    // SE JA TIVER OUTRA BUSCA, FINALIZA ELA
     setResultadoBusca(null);
     setNotFound(null);
     let resultado;
@@ -119,7 +176,7 @@ const Update = () => {
       // FAZ O LOADING APARECER NA TELA
       setLoad(true);
       // FAZ A BUSCA NO BANCO PELO NOME DO PRODUTO USANDO ILIKE
-      resultado = await findProductByName(textoBusca);
+      resultado = await getFilteredProducts(filtros);
       // REMOVE O LOADING DA TELA
       setLoad(false);
       // SE O RESUTADO ESTIVER VAZIO ENTÃO O PRODUTO NÃO FOI ENCONTRADO
@@ -147,7 +204,7 @@ const Update = () => {
     let res;
     // TENTA REESCREVER O QUE TEM DENTRO DA DIV DE POPUP
     const root = createRoot(divUpdate);
-    root.render(<CircularProgressBar />);
+    root.render(<LoadingSpinner />);
     try {
       res = await deleteProductById(id);
       root.render(
@@ -171,13 +228,29 @@ const Update = () => {
     <Container>
       {/* BARRA DE PERQUISA */}
       <SearchBar>
-        <input
-          value={textoBusca}
-          type="text"
-          onChange={(event) => setTextoBusca(event.target.value)}
-        />
+        <SearchInput>
+          <div>
+            <label>Nome:</label>
+            <input
+              value={filtros.nome ? filtros.nome : ""}
+              type="text"
+              onChange={(event) => handleFiltros("nome", event.target.value)}
+              />
+          </div>
+          <SelectCategorie>
+            <label>Categoria:</label>
+              <select name="" id="" onChange={handleChangeCategory} value={categoria}>
+              <option value="">Todas</option>
+                {categories.map((cat, index) => (
+                  <option key={index} value={cat.value} disabled={cat.disabled}>
+                    {cat.label}
+                  </option>
+                ))}
+              </select>
+            </SelectCategorie>
+          </SearchInput>
         {/* AO CLICAR EM BUSCAR E CHAMADA UM FUNÇAO PARA BUSCAR OS PRODUTOS NO BANCO E COLOCAR TODOS OS PRODUTOS ENCONTRADOS EM UMA VARIAVEL */}
-        <button onClick={() => buscarProduto(textoBusca)}>Search</button>
+        <button onClick={() => buscarProduto(textoBusca)}>Buscar</button>
       </SearchBar>
       {/* QUADRANTE ONDE E MOSTRADO O RESUTADO DE UMA BUSCA */}
       <ShowProducts>
@@ -185,9 +258,7 @@ const Update = () => {
         {load &&
           <Loading>
             <h3>Buscando produtos</h3>
-            <Root>
-              <CircularProgress size={80} />
-            </Root>
+            <LoadingSpinner size={80}/>
           </Loading>
         }
         {/* SE O PRODUTO NÃO FOR ENCONTRARDO MOSTRAR NA TELA QUE O PRODUTO NÃO FOI ENCONTRADO */}
@@ -204,7 +275,7 @@ const Update = () => {
             price: p.preco,
             rating: p.nota,
             images: [p.images]
-          }; return <CardUpdateProduct product={produto} update={setItemUpdate} delete={setDeleteItem}/>;
+          }; return <CardUpdateProduct key={p.id} product={produto} update={setItemUpdate} delete={setDeleteItem}/>;
         })}
         {/* ATUALIZAÇÕES DO PRODUTO, DELETAR OU EDITAR */}
         { itemUpdate &&
