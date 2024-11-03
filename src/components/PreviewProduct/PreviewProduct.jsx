@@ -35,7 +35,13 @@ const PreviewProduct = ({ name, price, cover }) => {
   if (!cover || cover == false) {
     array = null;
   } else {
-    array = [cover];
+    let urlImg;
+    if (cover instanceof File) {
+      urlImg = URL.createObjectURL(cover);
+    } else {
+      urlImg = cover;
+    }
+    array = [urlImg];
   }
   product["images"] = array;
 

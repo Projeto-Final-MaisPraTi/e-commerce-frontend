@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import useRegister from "./useRegister";
-import { useState } from "react";
+import React, { useState } from "react";
 import { submitProduct } from "../../services/ProductSubmission";
 import Box from "@mui/material/Box";
 import PreviewProduct from "../../components/PreviewProduct/PreviewProduct";
 import { categories, opcoesDeCores } from "../../utils/ProductOptions";
 import LoadingSpinner from "../../components/SpinnerComponent/LoadingSpinner";
+import { supabase } from "../../services/supabaseClient";
 
 const Container = styled.div`
   display: flex;
@@ -110,11 +111,12 @@ const Register = () => {
   const handleCoverFile = (event) => {
     const file = event.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setValues(reader.result, "cover");
-      };
-      reader.readAsDataURL(file);
+      setValues(file, "cover");
+      // const reader = new FileReader();
+      // reader.onloadend = () => {
+      //   setValues(reader.result, "cover");
+      // };
+      // reader.readAsDataURL(file);
     } else {
       setValues("", "cover");
     }
@@ -125,21 +127,26 @@ const Register = () => {
     const files = event.target.files;
     if (files.length > 0) {
       const images = [];
-      let filesRead = 0;
+      console.log("Lista");
+      Array.from(files).forEach(file => {
+        images.push(file)
+      });
+      setValues(images, "img");
+      // let filesRead = 0;
 
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          images.push(reader.result);
-          filesRead++;
+      // for (let i = 0; i < files.length; i++) {
+      //   const file = files[i];
+      //   const reader = new FileReader();
+      //   reader.onloadend = () => {
+      //     images.push(reader.result);
+      //     filesRead++;
 
-          if (filesRead === files.length) {
-            setValues(images, "img");
-          }
-        };
-        reader.readAsDataURL(file);
-      }
+      //     if (filesRead === files.length) {
+      //       setValues(images, "img");
+      //     }
+      //   };
+      //   reader.readAsDataURL(file);
+      // }
     } else {
       setValues("", "img");
     }

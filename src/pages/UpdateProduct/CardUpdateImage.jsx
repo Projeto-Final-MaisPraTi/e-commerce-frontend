@@ -31,6 +31,11 @@ const Header = styled.div`
 `
 
 const CardUpdateImage = ({ url, deleteImage }) => {
+
+    if (url instanceof File) {
+        url = URL.createObjectURL(url)
+    }
+
     return (
         <Container>
             <Header>

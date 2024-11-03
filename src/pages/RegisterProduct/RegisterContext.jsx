@@ -10,7 +10,7 @@ export const RegisterProvider = ({ children }) => {
   const [description, setDescription] = useState();
   const [category, setCategory] = useState();
   const [quantity, setQuantity] = useState();
-  const [cover, setCover] = useState();
+  const [cover, setCover] = useState('');
 
   const setValues = (value, type) => {
     if (type == "name") {

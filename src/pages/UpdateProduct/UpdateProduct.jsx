@@ -8,8 +8,8 @@ import CurrencyInput from 'react-currency-input-field';
 import CardUpdateImage from "./CardUpdateImage";
 import { deleteImageByUrl } from "../../services/ImageService";
 import { deleteImagesFirebase } from "../../services/DeleteImageFirebase";
-import { uploadImage, uploadImages } from "../../services/UploadImageService";
 import { categories, opcoesDeCores } from "../../utils/ProductOptions";
+import { handleUpload, handleOneUpload } from "../../services/ProductSubmission";
 
 const Container = styled.div`
   display: flex;
@@ -212,15 +212,22 @@ const SelectBox = styled.div`
     }
 `
 
+const Loading = styled.div`
+    margin-top: 15px;
+`
+
 
 function UpdateProduct() {
     const { id } = useParams();
 
     const [produto, setProduto] = useState();
-    const [newImages, setNewImages] = useState();
+    const [newImages, setNewImages] = useState([]);
+    const [imageFiles, setImageFiles] = useState([]);
     const [cover, setCover] = useState();
     const [deleteImage, setDeleteImage] = useState(false);
     const [deleteCoverImage, setDeleteCover] = useState(false);
+    const [corSelecionada, setCorSelecionada] = useState("#000000");
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (key, value) => {
         setProduto(prevState => ({
@@ -267,21 +274,38 @@ function UpdateProduct() {
 
     // ADICIONA IMAGEM PARA OS DETALHES
 
-    const handleAddImage = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                const newImageUrl = reader.result;
+    // const handleAddImage = (event) => {
+    //     const file = event.target.files[0];
+    //     if (file) {
+    //         const reader = new FileReader();
+    //         reader.onloadend = () => {
+    //             const newImageUrl = reader.result;
 
-                if (newImages) {
-                    setNewImages([...newImages, newImageUrl]);
-                } else {
-                    setNewImages([newImageUrl]);
+    //             setNewImages(prevImages => [...prevImages, newImageUrl]);
+
+    //             setImageFiles(prevFiles => [...prevFiles, file]);
+    //         }
+    //         console.log(newImages);
+    //         reader.readAsDataURL(file);
+    //     }
+    // };
+    
+    const handleAddImages = (event) => {
+        const files = Array.from(event.target.files);
+        if (files) {
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    const newImageUrl = reader.result;
+    
+                    setNewImages(prevImages => [...prevImages, newImageUrl]);
+    
+                    setImageFiles(prevFiles => [...prevFiles, file]);
                 }
-            }
+                reader.readAsDataURL(file);
+            })
             console.log(newImages);
-            reader.readAsDataURL(file);
+            console.log(imageFiles);
         }
     };
 
@@ -293,7 +317,7 @@ function UpdateProduct() {
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                handleChange('cover', reader.result);
+                handleChange('cover', file);
                 setCover(reader.result);
             };
             reader.readAsDataURL(file);
@@ -310,7 +334,7 @@ function UpdateProduct() {
     }
 
     const handleDeleteCover = async () => {
-        if (produto.cover.value && produto.cover.value.includes('https:')) {
+        if (produto.cover.value && !(cover instanceof File) && produto.cover.value.includes('https:')) {
             let nameImage = getNameImage(produto.cover.value);
             let url = produto.cover.value;
             await deleteImageByUrl(url);
@@ -323,7 +347,7 @@ function UpdateProduct() {
     }
 
     const handleDeleteImageDetails = async () => {
-        if (deleteImage.includes("https:")) {
+        if (!(cover instanceof File) && deleteImage.includes("https:")) {
             let nameImage = getNameImage(deleteImage);
             let url = deleteImage;
             await deleteImageByUrl(url);
@@ -350,7 +374,6 @@ function UpdateProduct() {
     // cor 
     // também usado duas vezes em componentes diferentes
 
-    const [corSelecionada, setCorSelecionada] = useState("#000000");
 
     const handleChangeColor = (event) => {
         setCorSelecionada(event.target.value);
@@ -381,12 +404,13 @@ function UpdateProduct() {
         }
         if (produto.images.edit && newImages.length > 0) {
             console.log(newImages);
-            const urlImages = await uploadImages(newImages);
+            console.log(imageFiles);
+            const urlImages = await handleUpload(imageFiles);
             data['images'] = urlImages;
         }
         if (produto.cover.edit) {
-            if (!cover.includes('https:')) {
-                const urlCover = await uploadImage(cover);
+            if (produto.cover.value && produto.cover.value instanceof File) {
+                const urlCover = await handleOneUpload(produto.cover.value);
                 setCover(urlCover);
                 data['cover'] = urlCover;
             }
@@ -399,14 +423,17 @@ function UpdateProduct() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
+            setLoading(true);
             const data = await createUpdateProdutoData();
             const resp = await updateProduct(data);
             console.log(resp);
             alert("Produto atualizado com sucesso!");
+            setLoading(false);
             window.location.reload();
             return;
         } catch (error) {
             alert("Erro ao atualizar produto");
+            setLoading(false);
             console.log(error);
         }
     };
@@ -581,8 +608,8 @@ function UpdateProduct() {
                                 <span>( Editar imagem de detalhes ? )</span>
                             </SelectBox>
                             <ImageDetails className={produto.images.edit ? '' : 'disabled'}>
-                                {produto.images.value.map((img) => <CardUpdateImage url={img} deleteImage={setDeleteImage} />)}
-                                {newImages ? newImages.map((img) => <CardUpdateImage url={img} deleteImage={setDeleteImage} />) : ''}
+                                {produto.images.value.map((img, index) => <CardUpdateImage key={`Image${index}`} url={img} deleteImage={setDeleteImage} />)}
+                                {newImages ? newImages.map((img, index) => <CardUpdateImage key={`newImage${index}`} url={img} deleteImage={setDeleteImage} />) : ''}
                                 <UploadFile>
                                     <label htmlFor="upload-button" style={{ cursor: 'pointer' }}>
                                         <ContainerAddImage>
@@ -596,7 +623,8 @@ function UpdateProduct() {
                                         type="file"
                                         accept="image/*"
                                         style={{ display: 'none' }}
-                                        onChange={handleAddImage}
+                                        onChange={handleAddImages}
+                                        multiple
                                     />
                                 </UploadFile>
                                 {deleteImage &&
@@ -614,22 +642,14 @@ function UpdateProduct() {
                         <div className="button_submit">
                             <InputArea type="submit" value={"Atualizar produto"} />
                         </div>
-                        {/* {progressBar && (
-                    <Box sx={{ width: "100%", marginTop: "8px" }}>
-                        <h5>Fazendo upload das imagens</h5>
-                        <Root>
-                        <CircularProgress />
-                        </Root>
-                    </Box>
-                    )}
-                    {progressInsertDB && (
-                    <div className="loading_banco_de_dados">
-                        <h5>Fazendo upload no banco de dados</h5>
-                        <Root>
-                        <CircularProgress />
-                        </Root>
-                    </div>
-                    )} */}
+                        {loading && (
+                            <Loading>
+                                <h3>Atualizando informações...</h3>
+                                <div>
+                                    <LoadingSpinner size={80}/>
+                                </div>
+                            </Loading>
+                        )}
                     </form>
                 </SideForm>
             </Container>

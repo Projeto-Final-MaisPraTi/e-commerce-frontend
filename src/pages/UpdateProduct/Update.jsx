@@ -11,7 +11,6 @@ import { getFilteredProducts } from '../../services/ProductService';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  /* flex: 2; */
   width: 90%;
   margin: auto;
   border-radius: 5px;
@@ -128,14 +127,13 @@ const ButtonsUpdate = styled.div`
 `;
 
 const Update = () => {
-  const [textoBusca, setTextoBusca] = useState('');
-  const [resultadoBusca, setResultadoBusca] = useState();
+  const [resultadoBusca, setResultadoBusca] = useState(false);
   const [load, setLoad] = useState(null);
   const [notFound, setNotFound] = useState(null);
   // vai receber um objeto com (id do produto)id: , (nome do produto)nome:
   const [itemUpdate, setItemUpdate] = useState(null);
   const [deleteItem, setDeleteItem] = useState(null);
-  const [categoria, setCategoria] = useState(null);
+  const [categoria, setCategoria] = useState("");
   const [filtros, setFiltros] = useState({});
 
   const handleFiltros = (key, value) => {
@@ -160,14 +158,14 @@ const Update = () => {
   }
 
   const handleChangeCategory = (event) => {
-    const selectedValue = event.target.value == "" ? null : event.target.value;
+    const selectedValue = event.target.value == "" ? false : event.target.value;
     setCategoria(selectedValue);
     handleFiltros("categoria", selectedValue);
     console.log(categoria);
   };
 
   // FUNÇÃO PARA BUSCAR O PRODUTO COM O TEXTO INSERIDO
-  const buscarProduto = async (textoBusca) => {
+  const buscarProduto = async () => {
     // SE JA TIVER OUTRA BUSCA, FINALIZA ELA
     setResultadoBusca(null);
     setNotFound(null);
@@ -214,7 +212,7 @@ const Update = () => {
       // DA UMA PAUSA PARA MOSTRAR O QUE FOI REDENRIZADO DENTRO DO POPUP
       await sleep(3000);
       // FAZ NOVAMENTE A BUSCA ANTERIOR PARA MOSTRAR OS MESMOS PRODUTOS MAS SEM O PRODUTO DELETADO
-      buscarProduto(textoBusca);
+      buscarProduto();
     } catch (error) {
       alert("Falha ao deletar o produto!")
       console.log(error);
@@ -250,7 +248,7 @@ const Update = () => {
             </SelectCategorie>
           </SearchInput>
         {/* AO CLICAR EM BUSCAR E CHAMADA UM FUNÇAO PARA BUSCAR OS PRODUTOS NO BANCO E COLOCAR TODOS OS PRODUTOS ENCONTRADOS EM UMA VARIAVEL */}
-        <button onClick={() => buscarProduto(textoBusca)}>Buscar</button>
+        <button onClick={buscarProduto}>Buscar</button>
       </SearchBar>
       {/* QUADRANTE ONDE E MOSTRADO O RESUTADO DE UMA BUSCA */}
       <ShowProducts>

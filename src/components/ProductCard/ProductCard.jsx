@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./ProductCard.module.css";
 import StarRating from "./StarRating";
 const ProductNotFound = "https://placehold.co/400x300";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -22,7 +23,8 @@ const ProductCard = ({ product }) => {
     <div className={styles.productCard} onClick={handleClick}>
       {product.discount === 35 && <div className={styles.badge}>-35%</div>}
       <div className={styles.productImage}>
-        <img src={productImage} alt={product.name} className={styles.productImage} />
+        <img 
+        src={productImage} alt={product.name} className={styles.productImage} />
       </div>
       <div className={styles.productDetails}>
         <h4>{product.name}</h4>
