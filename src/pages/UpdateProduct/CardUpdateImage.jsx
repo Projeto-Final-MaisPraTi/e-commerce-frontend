@@ -32,8 +32,11 @@ const Header = styled.div`
 
 const CardUpdateImage = ({ url, deleteImage }) => {
 
+    let src;
     if (url instanceof File) {
-        url = URL.createObjectURL(url)
+        src = URL.createObjectURL(url)
+    } else {
+        src = url;
     }
 
     return (
@@ -42,7 +45,7 @@ const CardUpdateImage = ({ url, deleteImage }) => {
                 <CiSquareRemove onClick={() => deleteImage(url)} style={{ color: 'red', fontSize: '30px', cursor: 'pointer' }} />
             </Header>
             <Image>
-                <img src={url} alt="" />
+                <img src={src} alt="" />
             </Image>
         </Container>
     )

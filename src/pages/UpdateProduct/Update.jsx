@@ -44,6 +44,7 @@ const SearchBar = styled.div`
   }
 `
 
+
 const SelectCategorie = styled.div`
   display: flex;
   height: 100%;

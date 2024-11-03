@@ -6,6 +6,7 @@
     "preco": 7261.0,
     "descricao": "iPhone 14 Pro. Capture detalhes incríveis com uma câmera principal de 48MP. Experimente o iPhone de uma maneira totalmente nova com a Ilha Dinâmica e a tela Sempre Ativa. E fique tranquilo com recursos de segurança inovadores.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 35,
     "flashSale": false
   },
@@ -16,6 +17,7 @@
     "preco": 2998.0,
     "descricao": "Smartphone topo de linha da Samsung, com display de 6.1, processador Snapdragon 8 Gen 2 e câmera tripla de 50 MP",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 0,
     "flashSale": true
   },
@@ -26,6 +28,7 @@
     "preco": 3344.0,
     "descricao": "Modelo premium do Google, com tela OLED de 6.7, chip Google Tensor G2 e câmeras potentes com recursos avançados de IA",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 35,
     "flashSale": false
   },
@@ -36,6 +39,7 @@
     "preco": 1670.0,
     "descricao": "Flagship da OnePlus com Snapdragon 8 Gen 3, tela AMOLED de 6.7 e sistema de câmeras aprimorado com Hasselblad",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 0,
     "flashSale": false
   },
@@ -46,6 +50,7 @@
     "preco": 3012.0,
     "descricao": "Smartphone intermediário premium da Xiaomi, equipado com chip MediaTek Dimensity 8200 Ultra, tela AMOLED de 6.67 e câmera tripla de 50 MP",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 0,
     "flashSale": false
   },
@@ -56,6 +61,7 @@
     "preco": 6699.0,
     "descricao": "Smartphone da Apple, equipado com chip da Apple A16, 5G, 6-core CPU, 8-core GPU, 6GB de RAM e 512GB de armazenamento",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 0,
     "flashSale": false
   },
@@ -66,6 +72,7 @@
     "preco": 7559.0,
     "descricao": "Chip Apple M2 com CPU de 10 núcleos.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 35,
     "flashSale": false
   },
@@ -76,6 +83,7 @@
     "preco": 16399.0,
     "descricao": "Modelo de 14.2 polegadas com chip Apple M2 Pro e GPU de 16 núcleos.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 0,
     "flashSale": true
   },
@@ -86,6 +94,7 @@
     "preco": 13399.0,
     "descricao": "Notebook de 13.4 polegadas com Intel Core i7 e 16GB de RAM.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 35,
     "flashSale": false
   },
@@ -96,6 +105,7 @@
     "preco": 699.0,
     "descricao": "Notebook conversível com Intel Evo Core i7 e tela sensível ao toque.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 35,
     "flashSale": false
   },
@@ -106,6 +116,7 @@
     "preco": 4049.0,
     "descricao": "Notebook ultraleve com Intel Core i7 e SSD de 1TB.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 0,
     "flashSale": true
   },
@@ -116,6 +127,7 @@
     "preco": 7856.0,
     "descricao": "Notebook ultraleve com Intel Core i7 e SSD de 1TB.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 0,
     "flashSale": false
   },
@@ -126,6 +138,7 @@
     "preco": 7019.0,
     "descricao": "Smartwatch com display Retina de 41mm e GPS.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 0,
     "flashSale": false
   },
@@ -136,6 +149,7 @@
     "preco": 2849.0,
     "descricao": "Smartwatch com display AMOLED de 1.4 polegadas e monitor de batimentos cardíacos.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 0,
     "flashSale": true
   },
@@ -146,6 +160,7 @@
     "preco": 310.0,
     "descricao": "Smartwatch de rastreamento avançado de fitness com GPS e display AMOLED.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 35,
     "flashSale": false
   },
@@ -156,6 +171,7 @@
     "preco": 2649.0,
     "descricao": "Smartwatch com GPS integrado e monitoramento de batimentos cardíacos 24/7.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 0,
     "flashSale": false
   },
@@ -166,6 +182,7 @@
     "preco": 1192.0,
     "descricao": "Smartwatch com display AMOLED de 1.43 polegadas e GPS.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 0,
     "flashSale": true
   },
@@ -176,6 +193,7 @@
     "preco": 7121.0,
     "descricao": "Smartwatch com display Retina de 44mm e GPS.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 0,
     "flashSale": false
   },
@@ -186,6 +204,7 @@
     "preco": 17012.0,
     "descricao": "Câmera mirrorless full-frame com sensor de 20.1MP e vídeo 4K.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 35,
     "flashSale": false
   },
@@ -196,6 +215,7 @@
     "preco": 14505.0,
     "descricao": "Câmera mirrorless full-frame de 24.5MP com processadores duplos.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 0,
     "flashSale": true
   },
@@ -206,6 +226,7 @@
     "preco": 10600.0,
     "descricao": "Câmera mirrorless full-frame de 24.2MP com estabilização de 5 eixos.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 35,
     "flashSale": false
   },
@@ -216,6 +237,7 @@
     "preco": 14440.0,
     "descricao": "Câmera mirrorless APS-C de 26.1MP com estabilização no corpo.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 0,
     "flashSale": false
   },
@@ -226,6 +248,7 @@
     "preco": 7720.0,
     "descricao": "Câmera Micro Four Thirds de 20.3MP com gravação 4K ilimitada.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "desconto": 35,
     "flashSale": false
   },
@@ -235,6 +258,7 @@
     "cor": "Preto",
     "descricao": "Fones de ouvido sem fio com cancelamento de ruído e 30 horas de bateria.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "preco": 2447.0,
     "desconto": 35,
     "flashSale": false
@@ -245,6 +269,7 @@
     "cor": "Preto",
     "descricao": "Fones de ouvido sem fio premium com cancelamento de ruído de classe mundial.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "preco": 2629.0,
     "desconto": 0,
     "flashSale": true
@@ -255,6 +280,7 @@
     "cor": "Branco",
     "descricao": "Fones de ouvido over-ear de alta fidelidade com cancelamento de ruído ativo.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "preco": 3999.0,
     "desconto": 0,
     "flashSale": true
@@ -265,6 +291,7 @@
     "cor": "Preto",
     "descricao": "Headphones open-back para audiófilos com som de qualidade de referência.",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "preco": 4880.0,
     "desconto": 35,
     "flashSale": false
@@ -274,6 +301,7 @@
     "categoria": "Headphones",
     "cor": "Preto",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "preco": 1399.0,
     "descricao": "Headphones open-back profissionais para escuta de precisão.",
     "desconto": 0,
@@ -284,6 +312,7 @@
     "categoria": "Headphones",
     "cor": "Preto",
     "estoque": 50,
+    "images": ["", "", "", ""],
     "descricao": "Fones de ouvido sem fio com cancelamento de ruído ativo e corpo leve..",
     "preco": 783.64,
     "desconto": 0,

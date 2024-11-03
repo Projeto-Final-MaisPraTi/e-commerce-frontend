@@ -267,8 +267,9 @@ function UpdateProduct() {
                 images: { value: result.images, edit: false },
                 cover: { value: result.cover, edit: false }
             })
+            const corEncontrada = opcoesDeCores.find((opcao) => opcao.nome === result.cor);
+            setCorSelecionada(corEncontrada.valor);
         });
-        console.log(produto);
     }, []);
 
 
@@ -377,6 +378,7 @@ function UpdateProduct() {
 
     const handleChangeColor = (event) => {
         setCorSelecionada(event.target.value);
+        console.log(event.target.value);
 
         const corEncontrada = opcoesDeCores.find((opcao) => opcao.valor === event.target.value);
         if (corEncontrada) {

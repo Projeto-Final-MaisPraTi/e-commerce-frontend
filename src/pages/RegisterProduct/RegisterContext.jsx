@@ -28,7 +28,7 @@ export const RegisterProvider = ({ children }) => {
     } else if (type == "cover") {
       setCover(value);
     } else if (type == "img") {
-      setImage([value]);
+      setImage(value);
     }
   };
 

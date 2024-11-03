@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import PreviewProduct from "../../components/PreviewProduct/PreviewProduct";
 import { categories, opcoesDeCores } from "../../utils/ProductOptions";
 import LoadingSpinner from "../../components/SpinnerComponent/LoadingSpinner";
-import { supabase } from "../../services/supabaseClient";
+import CardUpdateImage from "../UpdateProduct/CardUpdateImage";
 
 const Container = styled.div`
   display: flex;
@@ -82,16 +82,126 @@ const SideForm = styled.div`
   }
 `;
 
-// const CorAtualSelecionada = styled.span`
-//   border: 2px solid black;
-//   border-radius: 5px;
-//   padding: 15px;
-//   margin-left: 10px;
-//   width: 20px;
-//   height: 20px;
-//   display: inline-block;
-//   background-color: ${(props) => props.cor};
-// `;
+const ImageCover = styled.div`
+    display: flex;
+    height: 320px;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
+    margin: auto;
+`
+
+const ImageDetails = styled.div`
+    display: flex;
+    height: 300px;
+    width: 90%;
+    box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: auto;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    padding: 10px;
+    `
+
+const UploadFile = styled.div`
+    
+`
+
+const ContainerAddImage = styled.div`
+    box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
+    width: 200px;
+    height: 250px;
+    border-radius: 5px;
+`
+
+const ImageWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const PopUpDeleteImage = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    padding: 10px;
+    width: 350px;
+    height: 150px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    color: #333;
+    p{
+        font-weight: 400;
+
+    }
+    p span {
+    color: #a00606;
+    font-weight: 700;
+    font-size: 15px;
+    }
+`
+
+const ButtonsDeleteImage = styled.div`
+  display: flex;
+  gap: 40px;
+  margin-top: 10px;
+  button {
+    padding: 5px 20px 5px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+  .yes {
+    background-color: #0765bd;
+    color: white
+  }
+  .no {
+    background-color: #e02108;
+    color: white;
+  }
+`;
+
+const InputArea = styled.input`
+    width: 80%;
+    height: 35px;
+    font-size: 20px;
+    padding: 5px;
+    margin: auto;
+`
+
+const SelectBox = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px auto 5px auto;
+    label {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 0px;
+    }
+    input {
+        margin-left: 10px;
+        width: 18px;
+        height: 18px;
+        padding: 0;
+    }
+    span {
+        color: gray;
+        font-size: 15px;
+        margin-left: 5px;
+    }
+`
+
+const UploadImageDetails = styled.div`
+  
+`
 
 const Register = () => {
   const { setValues, data } = useRegister();
@@ -99,6 +209,8 @@ const Register = () => {
   const [category, setCategory] = useState("");
   const [progressBar, setProgressBar] = useState(null);
   const [progressInsertDB, setProgressInsertDB] = useState(null);
+  const [deleteCoverImage, setDeleteCover] = useState(false);
+  const [deleteImage, setDeleteImage] = useState(false);
 
   // Muda a categoria selecionada
   const handleChangeCategory = (event) => {
@@ -106,6 +218,26 @@ const Register = () => {
     setCategory(selectedValue);
     setValues(selectedValue, "category");
   };
+
+  const handleDeleteCover = () => {
+    setValues("", "cover");
+    setDeleteCover(false);
+  }
+
+  const handleDeleteImageDetails = () => {
+    console.log("Cheguei");
+    console.log(deleteImage);
+    if (data.images != null) {
+        console.log(data.images);
+        const updatedImages = data.images.filter(image => image.name !== deleteImage.name);
+        if (!updatedImages) {
+          setValues([], "img");
+        } else {
+          setValues(updatedImages, "img");
+        }
+    }
+    setDeleteImage(false);
+}
 
   // Pega o primeiro indice para a imagem de capa
   const handleCoverFile = (event) => {
@@ -122,7 +254,7 @@ const Register = () => {
     }
   };
 
-  // Pega todas as outras imagens para o produto
+  // Pega todas imagens de detalhes para o produto
   const handleFiles = (event) => {
     const files = event.target.files;
     if (files.length > 0) {
@@ -131,7 +263,9 @@ const Register = () => {
       Array.from(files).forEach(file => {
         images.push(file)
       });
-      setValues(images, "img");
+      let newImgs = [...data.images, ...images];
+      setValues(newImgs, "img");
+      console.log(data.images);
       // let filesRead = 0;
 
       // for (let i = 0; i < files.length; i++) {
@@ -147,8 +281,6 @@ const Register = () => {
       //   };
       //   reader.readAsDataURL(file);
       // }
-    } else {
-      setValues("", "img");
     }
   };
   //Seleciona a cor (Precisa colocar a logica para quando o produto não tiver uma cor)
@@ -282,6 +414,42 @@ const Register = () => {
             </div>
           </div>
           <div>
+            <div>
+              <label >Imagem de capa:</label>
+            </div>
+            <ImageCover >
+              {data.cover ?
+                <CardUpdateImage url={data.cover} deleteImage={setDeleteCover} />
+                :
+                <UploadFile>
+                  <label htmlFor="upload-button" style={{ cursor: 'pointer' }}>
+                    <ContainerAddImage>
+                      <ImageWrapper>
+                        <span>Adicionar imagem</span>
+                      </ImageWrapper>
+                    </ContainerAddImage>
+                  </label>
+                  <InputArea
+                    id="upload-button"
+                    type="file"
+                    accept="image/*"
+                    style={{ display: 'none' }}
+                    onChange={handleCoverFile}
+                  />
+                </UploadFile>
+              }
+              {deleteCoverImage &&
+                <PopUpDeleteImage>
+                  <p>Deseja remover esta imagem ?</p>
+                  <ButtonsDeleteImage>
+                    <button type="button" className="yes" onClick={handleDeleteCover}>Sim</button>
+                    <button type="button" className="no" onClick={() => setDeleteCover(false)}>Não</button>
+                  </ButtonsDeleteImage>
+                </PopUpDeleteImage>
+              }
+            </ImageCover>
+          </div>
+          {/* <div>
             <label htmlFor="">Imagem de capa:</label>
             <br />
             <input
@@ -290,8 +458,42 @@ const Register = () => {
               accept="image/*"
               onChange={handleCoverFile}
             />
-          </div>
-          <div>
+          </div> */}
+          <UploadImageDetails>
+            <SelectBox>
+              <label>Imagem de detalhes:</label>
+            </SelectBox>
+            <ImageDetails>
+              {data.images && data.images.map((img, index) => <CardUpdateImage key={`Image${index}`} url={img} deleteImage={setDeleteImage} />)}
+              <UploadFile>
+                <label htmlFor="upload-button-details" style={{ cursor: 'pointer' }}>
+                  <ContainerAddImage>
+                    <ImageWrapper>
+                      <span>Adicionar imagem</span>
+                    </ImageWrapper>
+                  </ContainerAddImage>
+                </label>
+                <InputArea
+                  id="upload-button-details"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: 'none' }}
+                  onChange={handleFiles}
+                  multiple
+                />
+              </UploadFile>
+              {deleteImage &&
+                <PopUpDeleteImage>
+                  <p>Deseja remover esta imagem ?</p>
+                  <ButtonsDeleteImage>
+                    <button type="button" className="yes" onClick={handleDeleteImageDetails}>Sim</button>
+                    <button type="button" className="no" onClick={() => setDeleteImage(false)}>Não</button>
+                  </ButtonsDeleteImage>
+                </PopUpDeleteImage>
+              }
+            </ImageDetails>
+          </UploadImageDetails>
+          {/* <div>
             <label htmlFor="">Imagem dos detalhes:</label>
             <br />
             <input
@@ -301,7 +503,7 @@ const Register = () => {
               accept="image/*"
               onChange={handleFiles}
             />
-          </div>
+          </div> */}
           <div className="button_submit">
             <input type="submit" value={"Enviar"} />
           </div>
@@ -319,7 +521,7 @@ const Register = () => {
           )}
         </form>
       </SideForm>
-    </Container>
+    </Container >
   );
 };
 
