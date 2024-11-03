@@ -32,7 +32,7 @@ const ProductCard = ({ product }) => {
           <StarRating rating={product.rating} />
         </div>
         <div className={styles.productPrice}>
-          {product.discount === 0 ? (
+          {!product.discount ? (
             <p className={styles.price}>R$ {product.price}</p>
           ) : (
             <div className={styles.discount}>

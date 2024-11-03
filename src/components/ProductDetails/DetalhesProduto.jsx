@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./DetalhesProduto.module.css";
 import StarRating from "../ProductCard/StarRating";
 import ProductsData from "../../utils/ProductsData";
 import PageNotFound from "../404NotFound/404NotFound";
+import { getProductDetails } from "../../services/ProductService";
 
 const DetalhesProduto = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { id } = useParams(); // Obtém o ID do produto da URL
   const productId = parseInt(id); // Converte o ID para um número inteiro
-  const product = ProductsData.find((item) => item.id === productId); // Busca o produto com o ID correspondente
+  // const product = ProductsData.find((item) => item.id === productId); // Busca o produto com o ID correspondente
+  const [product, setProduct] = useState();
+
+  useEffect(() => {
+    getProductDetails(id).then(result => {
+        setProduct(result);
+        console.log(result);
+    });
+}, []);
 
   // Verifica se o produto existe
   if (!product) {
@@ -41,12 +50,12 @@ const DetalhesProduto = () => {
       <div className={styles.productDetails}>
         <h1>{product.name}</h1>
         <p className={styles.price}>
-          {product.discount === 0 ? (
-            <p className={styles.price}>R$ {product.price}</p>
+          {!product.priceDiscount ? (
+            <p className={styles.price}>{product.price}</p>
           ) : (
             <div className={styles.discount}>
               <p className={styles.discountPrice}>
-                R$ {(product.price - (product.price / 100) * product.discount).toFixed(3)}
+                {product.priceDiscount}
                 <span className={styles.badge}>{product.discount}% off</span>
               </p>
             </div>

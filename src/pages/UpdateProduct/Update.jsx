@@ -192,6 +192,7 @@ const Update = () => {
     }
   };
 
+
   // FUNÇÃO PARA REPRODUZIR O SLEEP (UMA PAUSA)
   const sleep = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));

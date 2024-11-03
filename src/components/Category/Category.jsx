@@ -38,10 +38,10 @@ function Category({ selectedCategory }) {
             <div className={styles.discount}>
               <p className={styles.noDiscountPrice}>
                 De: <del>R$ {product.preco}</del>{" "}
-                <span className={styles.badge}>10% off</span>
+                <span className={styles.badge}>{product.discount}% off</span>
               </p>
               <p className={styles.discountPrice}>
-                Por: R$ {(product.preco - (product.preco / 100) * 10).toFixed(3)}
+                Por: R$ {(product.preco - (product.preco / 100) * product.discount).toFixed(3)}
               </p>
             </div>
           )}
