@@ -33,15 +33,15 @@ function Category({ selectedCategory }) {
             </div>
           </div>
           {product.discount === 0 ? (
-            <p className={styles.price}>R$ {product.preco}</p>
+            <p className={styles.price}>{product.preco}</p>
           ) : (
             <div className={styles.discount}>
               <p className={styles.noDiscountPrice}>
-                De: <del>R$ {product.preco}</del>{" "}
+                De: <del>{product.preco}</del>{" "}
                 <span className={styles.badge}>{product.discount}% off</span>
               </p>
               <p className={styles.discountPrice}>
-                Por: R$ {(product.preco - (product.preco / 100) * product.discount).toFixed(3)}
+                Por: R$ {product.priceDiscount}
               </p>
             </div>
           )}

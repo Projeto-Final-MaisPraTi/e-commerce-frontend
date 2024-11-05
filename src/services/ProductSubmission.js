@@ -1,4 +1,3 @@
-import { uploadImages } from "./UploadImageService";
 import { createProduct } from "./ProductService";
 import { supabase } from "./supabaseClient";
 
@@ -17,8 +16,7 @@ export const submitProduct = async (productData, images, setProgressBar, setProg
   let completeProductData;
   try {
     setProgressBar(true);
-    const imageUrls = await handleUpload(images);
-    // const imageUrls = await uploadImages(images); // Faz o upload das imagens
+    const imageUrls = await handleUpload(images); // upload das imagens no Supabase
     completeProductData = { ...data, images: imageUrls }; // Organiza os dados
     setProgressBar(null);
   } catch (error) {
@@ -43,9 +41,6 @@ export const handleUpload = async (files) => {
   if (files.length === 0) return;
 
   const urls = [];
-
-  // Bucket no Supabase
-  // const supabaseUrl = 'https://pabcuykqmeeindoyvkok.supabase.co';
 
   for (const file of files) {
     const partes = file.name.split('.');

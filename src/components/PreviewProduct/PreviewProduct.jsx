@@ -29,8 +29,15 @@ const StyProduct = styled(ProductCard)`
 const PreviewProduct = ({ name, price, cover }) => {
   let product = {};
 
+  function formatCurrency(value) {
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    }).format(value);
+  }
+
   product["name"] = name;
-  product["price"] = price ? `${price}`.replace(",", ".") : "999.99";
+  product["price"] = price ? formatCurrency(String(price).replace(',','.')) : "R$ 999.99";
   let array;
   if (!cover || cover == false) {
     array = null;

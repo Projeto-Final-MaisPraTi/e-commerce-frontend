@@ -7,7 +7,6 @@ import PreviewProduct from "../../components/PreviewProduct/PreviewProduct";
 import CurrencyInput from 'react-currency-input-field';
 import CardUpdateImage from "./CardUpdateImage";
 import { deleteImageByUrl } from "../../services/ImageService";
-import { deleteImagesFirebase } from "../../services/DeleteImageFirebase";
 import { categories, opcoesDeCores } from "../../utils/ProductOptions";
 import { handleUpload, handleOneUpload } from "../../services/ProductSubmission";
 
@@ -274,22 +273,6 @@ function UpdateProduct() {
 
 
     // ADICIONA IMAGEM PARA OS DETALHES
-
-    // const handleAddImage = (event) => {
-    //     const file = event.target.files[0];
-    //     if (file) {
-    //         const reader = new FileReader();
-    //         reader.onloadend = () => {
-    //             const newImageUrl = reader.result;
-
-    //             setNewImages(prevImages => [...prevImages, newImageUrl]);
-
-    //             setImageFiles(prevFiles => [...prevFiles, file]);
-    //         }
-    //         console.log(newImages);
-    //         reader.readAsDataURL(file);
-    //     }
-    // };
     
     const handleAddImages = (event) => {
         const files = Array.from(event.target.files);
@@ -339,7 +322,7 @@ function UpdateProduct() {
             let nameImage = getNameImage(produto.cover.value);
             let url = produto.cover.value;
             await deleteImageByUrl(url);
-            await deleteImagesFirebase(nameImage);
+            // await deleteImagesFirebase(nameImage);
             console.log(nameImage);
         }
         handleChange('cover', null);

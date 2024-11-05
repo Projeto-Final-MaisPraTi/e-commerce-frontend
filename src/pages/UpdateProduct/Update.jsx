@@ -271,7 +271,7 @@ const Update = () => {
         {resultadoBusca && resultadoBusca.map((p) => {
           const produto = {
             id: p.id,
-            name: p.nome,
+            name: p.name,
             price: p.preco,
             rating: p.nota,
             images: [p.images]

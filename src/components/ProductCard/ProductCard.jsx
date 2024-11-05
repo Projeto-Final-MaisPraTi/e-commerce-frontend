@@ -33,11 +33,11 @@ const ProductCard = ({ product }) => {
         </div>
         <div className={styles.productPrice}>
           {!product.discount ? (
-            <p className={styles.price}>R$ {product.price}</p>
+            <p className={styles.price}>{product.price}</p>
           ) : (
             <div className={styles.discount}>
               <p className={styles.noDiscountPrice}>
-                De: <del>R$ {product.price}</del>
+                De: <del>{product.price}</del>
               </p>
               <p className={styles.discountPrice}>
                 Por: R$ {(product.price - (product.price / 100) * product.discount).toFixed(3)}
