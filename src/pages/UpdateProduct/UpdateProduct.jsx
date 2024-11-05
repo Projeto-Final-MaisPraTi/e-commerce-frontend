@@ -7,7 +7,6 @@ import PreviewProduct from "../../components/PreviewProduct/PreviewProduct";
 import CurrencyInput from 'react-currency-input-field';
 import CardUpdateImage from "./CardUpdateImage";
 import { deleteImageByUrl } from "../../services/ImageService";
-import { deleteImagesFirebase } from "../../services/DeleteImageFirebase";
 import { categories, opcoesDeCores } from "../../utils/ProductOptions";
 import { handleUpload, handleOneUpload } from "../../services/ProductSubmission";
 
