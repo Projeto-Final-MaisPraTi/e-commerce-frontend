@@ -230,7 +230,7 @@ const Register = () => {
     if (data.images != null) {
         console.log(data.images);
         const updatedImages = data.images.filter(image => image.name !== deleteImage.name);
-        if (!updatedImages) {
+        if (updatedImages.length === 0) {
           setValues([], "img");
         } else {
           setValues(updatedImages, "img");
@@ -266,23 +266,9 @@ const Register = () => {
       let newImgs = [...data.images, ...images];
       setValues(newImgs, "img");
       console.log(data.images);
-      // let filesRead = 0;
-
-      // for (let i = 0; i < files.length; i++) {
-      //   const file = files[i];
-      //   const reader = new FileReader();
-      //   reader.onloadend = () => {
-      //     images.push(reader.result);
-      //     filesRead++;
-
-      //     if (filesRead === files.length) {
-      //       setValues(images, "img");
-      //     }
-      //   };
-      //   reader.readAsDataURL(file);
-      // }
     }
   };
+  
   //Seleciona a cor (Precisa colocar a logica para quando o produto não tiver uma cor)
   const [corSelecionada, setCorSelecionada] = useState("#000000");
 
@@ -306,7 +292,7 @@ const Register = () => {
     let imagens = [];
     imagens.push(data.cover);
     imagens = [...imagens, ...data.images.flat()];
-
+    console.log(data);
     try {
       let result = await submitProduct(
         data,

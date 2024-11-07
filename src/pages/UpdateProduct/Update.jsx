@@ -184,7 +184,7 @@ const Update = () => {
         return;
       }
       // SE NÃO A VARIAVEL ONDE OS PRODUTOS FICAR E SETADA COM O RESULTADO E OS PRODUTOS SÃO REDENRIZADOS NA TELA
-      setResultadoBusca(resultado);
+      setResultadoBusca(resultado.content);
     } catch (error) {
       alert("Erro ao buscar o produto");
       setNotFound(true);
@@ -274,7 +274,7 @@ const Update = () => {
             name: p.name,
             price: p.preco,
             rating: p.nota,
-            images: [p.images]
+            cover: p.cover
           }; return <CardUpdateProduct key={p.id} product={produto} update={setItemUpdate} delete={setDeleteItem}/>;
         })}
         {/* ATUALIZAÇÕES DO PRODUTO, DELETAR OU EDITAR */}

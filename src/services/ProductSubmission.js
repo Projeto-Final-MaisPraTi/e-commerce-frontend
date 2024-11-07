@@ -5,13 +5,13 @@ const supabaseUrl = 'https://pabcuykqmeeindoyvkok.supabase.co';
 
 export const submitProduct = async (productData, images, setProgressBar, setProgressInsertDB) => {
   let data = {
-    nome: productData.name,
-    descricao: productData.description,
-    categoria: productData.category,
-    estoque: productData.quantity,
-    nota: 0,
-    preco: productData.price.replace(",", "."),
-    cor: productData.color,
+    name: productData.name,
+    description: productData.description,
+    category: productData.category,
+    stock: productData.quantity,
+    rating: 0,
+    price: productData.price.replace(",", "."),
+    color: productData.color,
   };
   let completeProductData;
   try {
@@ -52,9 +52,9 @@ export const handleUpload = async (files) => {
 
     if (error) {
       console.error('Upload error:', error);
+      alert("Error: " + error)
       continue; // Ignora o arquivo em caso de erro
     }
-
     const url = `${supabaseUrl}/storage/v1/object/public/ecomerce/${data.path}`;
     urls.push(url);
   }
@@ -75,9 +75,12 @@ export const handleOneUpload = async (file) => {
 
   if (error) {
     console.error('Upload error:', error);
+    console.log(error);
     return;
   }
+  console.log(data);
   const url = `${supabaseUrl}/storage/v1/object/public/ecomerce/${data.path}`;
+  console.log(url);
 
   return(url);
 };

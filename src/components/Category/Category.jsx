@@ -24,20 +24,20 @@ function Category({ selectedCategory }) {
     <section className={styles.productList}>
       {selectedCategory.map((product) => (
         <div className={styles.productCard} key={product.id}>
-          <img src={product.images} alt={product.nome} className={styles.productImage} />
+          <img src={product.cover} alt={product.name} className={styles.productImage} />
           <div className={styles.productInfo}>
-            <h2 className={styles.productTitle}>{product.nome}</h2>
-            <p className={styles.description}>{product.descricao}</p>
+            <h2 className={styles.productTitle}>{product.name}</h2>
+            <p className={styles.description}>{product.description}</p>
             <div className={styles.reviews}>
               <StarRating rating={product.nota} />
             </div>
           </div>
-          {product.discount === 0 ? (
-            <p className={styles.price}>{product.preco}</p>
+          {!product.discount ? (
+            <p className={styles.price}>{product.price}</p>
           ) : (
             <div className={styles.discount}>
               <p className={styles.noDiscountPrice}>
-                De: <del>{product.preco}</del>{" "}
+                De: <del>{product.price}</del>{" "}
                 <span className={styles.badge}>{product.discount}% off</span>
               </p>
               <p className={styles.discountPrice}>
