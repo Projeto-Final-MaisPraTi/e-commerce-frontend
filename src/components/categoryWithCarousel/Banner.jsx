@@ -50,7 +50,7 @@ function Banner() {
             <BannerText>
                 <h2>Iphone 14 Pro 128GB</h2>
                 <p>O iPhone 14 Pro oferece uma experiência de última geração com sua tela Super Retina XDR e chip A16 Bionic, garantindo desempenho rápido e eficiente.</p>
-                <BannerButton>Ver mais!</BannerButton>
+                <BannerButton>Ver mais</BannerButton>
             </BannerText>
             <BannerImage>
                 <img src={img} />
