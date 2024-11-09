@@ -51,6 +51,7 @@ const PreviewProduct = ({ name, price, cover }) => {
     array = [urlImg];
   }
   product["images"] = array;
+  product["discount"] = 0;
 
   console.log(price);
   return (
