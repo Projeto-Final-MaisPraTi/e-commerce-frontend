@@ -8,7 +8,7 @@ export const RegisterProvider = ({ children }) => {
   const [image, setImage] = useState([]);
   const [color, setColor] = useState("Preto");
   const [description, setDescription] = useState();
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState();
   const [cover, setCover] = useState('');
 

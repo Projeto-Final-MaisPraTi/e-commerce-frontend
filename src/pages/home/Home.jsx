@@ -9,6 +9,7 @@ import FeaturesSection from "../../components/FeaturesSection/FeaturesSection.js
 import Footer from "../../components/Footer/ComponentFooter.jsx";
 
 function Home() {
+  // throw new Error("Teste de erro");
   return (
     <>
       <Header />
