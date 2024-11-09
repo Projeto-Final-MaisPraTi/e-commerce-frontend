@@ -1,6 +1,6 @@
 // src/components/BoxList/BoxList.jsx
-import BoxItem from './BoxItem.jsx';
-import { FaShoppingCart, FaUsers, FaDollarSign } from 'react-icons/fa';
+import BoxItem from "./BoxItem.jsx";
+import { FaShoppingCart, FaUsers, FaDollarSign } from "react-icons/fa";
 
 const BoxList = () => {
   return (

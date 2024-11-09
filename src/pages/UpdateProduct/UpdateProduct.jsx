@@ -4,11 +4,17 @@ import { getUpdateProduct, updateProduct } from "../../services/ProductService";
 import React, { useEffect, useState } from "react";
 import LoadingSpinner from "../../components/SpinnerComponent/LoadingSpinner";
 import PreviewProduct from "../../components/PreviewProduct/PreviewProduct";
-import CurrencyInput from 'react-currency-input-field';
-import CardUpdateImage from "./CardUpdateImage";
 import { deleteImageByUrl } from "../../services/ImageService";
-import { categories, opcoesDeCores } from "../../utils/ProductOptions";
-import { handleUpload, handleOneUpload } from "../../services/ProductSubmission";
+import { opcoesDeCores } from "../../utils/ProductOptions";
+import InputName from "../../components/ManagerProducts/Update/InputName";
+import InputDescription from "../../components/ManagerProducts/Update/InputDescription";
+import InputCategory from "../../components/ManagerProducts/Update/InputCategory";
+import InputQuantity from "../../components/ManagerProducts/Update/InputQuantity";
+import InputPrice from "../../components/ManagerProducts/Update/InputPrice";
+import InputColors from "../../components/ManagerProducts/Update/InputColors";
+import InputCover from "../../components/ManagerProducts/Update/InputCover";
+import InputAddImagesDetails from "../../components/ManagerProducts/Update/InputAddImagesDetails";
+import { createUpdateProdutoData } from "../../utils/utilsUpdateProduct";
 
 const Container = styled.div`
   display: flex;
@@ -87,130 +93,6 @@ const InputArea = styled.input`
     margin: auto;
 `
 
-const OptionColors = styled.div`
-    
-`
-
-const SelectColor = styled.div`
-    display: flex;
-    justify-content: center;
-    margin-bottom: 5px;
-`
-
-const ImageCover = styled.div`
-    display: flex;
-    height: 320px;
-    width: 300px;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
-    margin: auto;
-`
-
-const ImageDetails = styled.div`
-    display: flex;
-    height: 300px;
-    width: 90%;
-    box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin: auto;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-    padding: 10px;
-    `
-
-const UploadFile = styled.div`
-    
-`
-
-const ContainerAddImage = styled.div`
-    box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
-    width: 200px;
-    height: 250px;
-    border-radius: 5px;
-`
-
-const ImageWrapper = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-
-const PopUpDeleteImage = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: absolute;
-    padding: 10px;
-    width: 350px;
-    height: 150px;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-    color: #333;
-    p{
-        font-weight: 400;
-
-    }
-    p span {
-    color: #a00606;
-    font-weight: 700;
-    font-size: 15px;
-    }
-`
-
-const ButtonsDeleteImage = styled.div`
-  display: flex;
-  gap: 40px;
-  margin-top: 10px;
-  button {
-    padding: 5px 20px 5px 20px;
-    border: none;
-    border-radius: 5px;
-  }
-  .yes {
-    background-color: #0765bd;
-    color: white
-  }
-  .no {
-    background-color: #e02108;
-    color: white;
-  }
-`;
-
-const Label = styled.label`
-    
-`
-
-
-const SelectBox = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 15px auto 5px auto;
-    label {
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 0px;
-    }
-    input {
-        margin-left: 10px;
-        width: 18px;
-        height: 18px;
-        padding: 0;
-    }
-    span {
-        color: gray;
-        font-size: 15px;
-        margin-left: 5px;
-    }
-`
-
 const Loading = styled.div`
     margin-top: 15px;
 `
@@ -257,16 +139,16 @@ function UpdateProduct() {
         getProduct(id).then(result => {
             setProduto({
                 id: id,
-                nome: { value: result.nome, edit: false },
-                preco: { value: result.preco, edit: false },
-                cor: { value: result.cor, edit: false },
-                descricao: { value: result.descricao, edit: false },
-                estoque: { value: result.estoque, edit: false },
-                categoria: { value: result.categoria, edit: false },
+                name: { value: result.name, edit: false },
+                price: { value: result.price, edit: false },
+                color: { value: result.color, edit: false },
+                description: { value: result.description, edit: false },
+                stock: { value: result.stock, edit: false },
+                category: { value: result.category, edit: false },
                 images: { value: result.images, edit: false },
                 cover: { value: result.cover, edit: false }
             })
-            const corEncontrada = opcoesDeCores.find((opcao) => opcao.nome === result.cor);
+            const corEncontrada = opcoesDeCores.find((opcao) => opcao.nome === result.color);
             setCorSelecionada(corEncontrada.valor);
         });
     }, []);
@@ -316,7 +198,7 @@ function UpdateProduct() {
         const imageName = decodeURIComponent(url.split('/').pop().split('?')[0]);
         return (imageName);
     }
-
+    // Deleta a imagem de capa
     const handleDeleteCover = async () => {
         if (produto.cover.value && !(cover instanceof File) && produto.cover.value.includes('https:')) {
             let nameImage = getNameImage(produto.cover.value);
@@ -330,6 +212,7 @@ function UpdateProduct() {
         setDeleteCover(false);
     }
 
+    // Delete a imagem dos detalhes
     const handleDeleteImageDetails = async () => {
         if (!(cover instanceof File) && deleteImage.includes("https:")) {
             let nameImage = getNameImage(deleteImage);
@@ -352,12 +235,11 @@ function UpdateProduct() {
     // Muda a categoria selecionada
     const handleChangeCategory = (event) => {
         const selectedValue = event.target.value;
-        handleChange('categoria', selectedValue);
+        handleChange('category', selectedValue);
     };
 
-    // cor 
-    // também usado duas vezes em componentes diferentes
-
+    // Alterar cor selecionada
+    // Ver utilidade em outros componentes
 
     const handleChangeColor = (event) => {
         setCorSelecionada(event.target.value);
@@ -365,56 +247,21 @@ function UpdateProduct() {
 
         const corEncontrada = opcoesDeCores.find((opcao) => opcao.valor === event.target.value);
         if (corEncontrada) {
-            handleChange('cor', corEncontrada.nome);
+            handleChange('color', corEncontrada.nome);
         }
     };
 
-    const createUpdateProdutoData = async () => {
-        const data = {};
-        data['id'] = produto.id;
-        if (produto.nome.edit) {
-            data['nome'] = produto.nome.value;
-        }
-        if (produto.cor.edit) {
-            data['cor'] = produto.cor.value;
-        }
-        if (produto.descricao.edit) {
-            data['descricao'] = produto.descricao.value;
-        }
-        if (produto.estoque.edit) {
-            data['estoque'] = produto.estoque.value;
-        }
-        if (produto.categoria.edit) {
-            data['categoria'] = produto.estoque.value;
-        }
-        if (produto.images.edit && newImages.length > 0) {
-            console.log(newImages);
-            console.log(imageFiles);
-            const urlImages = await handleUpload(imageFiles);
-            data['images'] = urlImages;
-        }
-        if (produto.cover.edit) {
-            if (produto.cover.value && produto.cover.value instanceof File) {
-                const urlCover = await handleOneUpload(produto.cover.value);
-                setCover(urlCover);
-                data['cover'] = urlCover;
-            }
-        }
-        return data;
-    }
-
-
-
+    // Enviar os arquivos para fazer atulização
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             setLoading(true);
-            const data = await createUpdateProdutoData();
+            const data = await createUpdateProdutoData(produto, imageFiles, setCover);
             const resp = await updateProduct(data);
             console.log(resp);
             alert("Produto atualizado com sucesso!");
             setLoading(false);
-            window.location.reload();
+            // window.location.reload();
             return;
         } catch (error) {
             alert("Erro ao atualizar produto");
@@ -429,7 +276,7 @@ function UpdateProduct() {
             <>
                 <Container>
                     <WaitProduct>
-                        <LoadingSpinner size={80} />
+                        <LoadingSpinner size={70} />
                     </WaitProduct>
                 </Container>
             </>
@@ -440,190 +287,36 @@ function UpdateProduct() {
         <>
             <Container>
                 <SidePreview>
-                    <PreviewProduct name={produto.nome.value} price={produto.preco.value} cover={produto.cover.value} />
+                    <PreviewProduct name={produto.name.value} price={produto.price.value} cover={produto.cover.value} />
                 </SidePreview>
                 <SideForm>
                     <div className="title">
                         <h2>Editar Produto</h2>
                     </div>
                     <form onSubmit={handleSubmit}>
-                        <div>
-                            <SelectBox>
-                                <Label>Nome:</Label>
-                                <input type="checkbox" onChange={() => toggleEdit('nome')} />
-                                <span>( Editar nome ? )</span>
-                            </SelectBox>
-                            <InputArea disabled={!produto.nome.edit} type="text" value={produto.nome.value} onChange={(event) => handleChange('nome', event.target.value)} />
-                        </div>
-                        <div>
-                            <SelectBox>
-                                <Label>Descrição:</Label>
-                                <input type="checkbox" onChange={() => toggleEdit('descricao')} />
-                                <span>( Editar descrição ? )</span>
-                            </SelectBox>
-                            <textarea
-                                className="description"
-                                type="text"
-                                disabled={!produto.descricao.edit}
-                                value={produto.descricao.value}
-                                onChange={(event) => handleChange('descricao', event.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <SelectBox>
-                                <Label>Categoria:</Label>
-                                <input type="checkbox" onChange={() => toggleEdit('categoria')} />
-                                <span>( Editar categoria ? )</span>
-                            </SelectBox>
-                            <select disabled={!produto.categoria.edit} onChange={handleChangeCategory} value={produto.categoria.value}>
-                                {categories.map((cat, index) => (
-                                    <option key={index} value={cat.value} disabled={cat.disabled}>
-                                        {cat.label}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div>
-                            <SelectBox>
-                                <Label>Quantidade:</Label>
-                                <input type="checkbox" onChange={() => toggleEdit('estoque')} />
-                                <span>( Editar quantidade ? )</span>
-                            </SelectBox>
-                            <InputArea
-                                type="number"
-                                min={0}
-                                disabled={!produto.estoque.edit}
-                                placeholder="0"
-                                value={produto.estoque.value}
-                                onChange={(event) => handleChange('estoque', event.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <SelectBox>
-                                <label >Preço:</label>
-                                <input type="checkbox" onChange={() => toggleEdit('preco')} />
-                                <span>( Editar preço ? )</span>
-                            </SelectBox>
-                            <CurrencyInput
-                                className="currency-input"
-                                value={produto.preco.value}
-                                placeholder="R$ 0,00"
-                                decimalSeparator=","
-                                groupSeparator="."
-                                disabled={!produto.preco.edit}
-                                prefix="R$ "
-                                intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
-                                decimalsLimit={2}
-                                onValueChange={(value) => {
-                                    handleChange('preco', value)
-                                }}
-                            />
-                        </div>
-                        <OptionColors>
-                            <SelectBox>
-                                <label>Cor:</label>
-                                <input type="checkbox" onChange={() => toggleEdit('cor')} />
-                                <span>( Editar cor ? )</span>
-                            </SelectBox>
-                            <SelectColor>
-                                <select disabled={!produto.cor.edit} value={corSelecionada} onChange={handleChangeColor}>
-                                    {opcoesDeCores.map((opcao, index) => (
-                                        <option key={index} value={opcao.valor}>
-                                            {opcao.nome}
-                                        </option>
-                                    ))}
-                                </select>
-                                <span
-                                    style={{
-                                        border: "2px solid black",
-                                        borderRadius: "5px",
-                                        padding: "15px",
-                                        marginLeft: "10px",
-                                        width: "20px",
-                                        height: "20px",
-                                        display: "inline-block",
-                                        backgroundColor: corSelecionada,
-                                    }}
-                                ></span>
-                            </SelectColor>
-                        </OptionColors>
-                        <div>
-                            <SelectBox>
-                                <label >Imagem de capa:</label>
-                                <input type="checkbox" onChange={() => toggleEdit('cover')} />
-                                <span>( Editar imagem de capa ? )</span>
-                            </SelectBox>
-                            <ImageCover className={produto.cover.edit ? '' : 'disabled'}>
-                                {produto.cover.value ?
-                                    <CardUpdateImage url={produto.cover.value} deleteImage={setDeleteCover} />
-                                    :
-                                    <UploadFile>
-                                        <label htmlFor="upload-button" style={{ cursor: 'pointer' }}>
-                                            <ContainerAddImage>
-                                                <ImageWrapper>
-                                                    <span>Adicionar imagem</span>
-                                                </ImageWrapper>
-                                            </ContainerAddImage>
-                                        </label>
-                                        <InputArea
-                                            id="upload-button"
-                                            type="file"
-                                            accept="image/*"
-                                            style={{ display: 'none' }}
-                                            onChange={handleAddCoverImage}
-                                        />
-                                    </UploadFile>
-                                }
-                                {deleteCoverImage &&
-                                    <PopUpDeleteImage>
-                                        <p>Deseja realmente deletar esta imagem ?</p>
-                                        <p><span>A alteraçao é aplicada imediatamente</span></p>
-                                        <ButtonsDeleteImage>
-                                            <button type="button" className="yes" onClick={handleDeleteCover}>Sim</button>
-                                            <button type="button" className="no" onClick={() => setDeleteCover(false)}>Não</button>
-                                        </ButtonsDeleteImage>
-                                    </PopUpDeleteImage>
-                                }
-                            </ImageCover>
-                        </div>
-                        <div>
-                            <SelectBox>
-                                <label>Imagem de detalhes:</label>
-                                <input type="checkbox" onChange={() => toggleEdit('images')} />
-                                <span>( Editar imagem de detalhes ? )</span>
-                            </SelectBox>
-                            <ImageDetails className={produto.images.edit ? '' : 'disabled'}>
-                                {produto.images.value.map((img, index) => <CardUpdateImage key={`Image${index}`} url={img} deleteImage={setDeleteImage} />)}
-                                {newImages ? newImages.map((img, index) => <CardUpdateImage key={`newImage${index}`} url={img} deleteImage={setDeleteImage} />) : ''}
-                                <UploadFile>
-                                    <label htmlFor="upload-button" style={{ cursor: 'pointer' }}>
-                                        <ContainerAddImage>
-                                            <ImageWrapper>
-                                                <span>Adicionar imagem</span>
-                                            </ImageWrapper>
-                                        </ContainerAddImage>
-                                    </label>
-                                    <InputArea
-                                        id="upload-button"
-                                        type="file"
-                                        accept="image/*"
-                                        style={{ display: 'none' }}
-                                        onChange={handleAddImages}
-                                        multiple
-                                    />
-                                </UploadFile>
-                                {deleteImage &&
-                                    <PopUpDeleteImage>
-                                        <p>Deseja realmente deletar esta imagem ?</p>
-                                        <p><span>A alteraçao é aplicada imediatamente</span></p>
-                                        <ButtonsDeleteImage>
-                                            <button type="button" className="yes" onClick={handleDeleteImageDetails}>Sim</button>
-                                            <button type="button" className="no" onClick={() => setDeleteImage(false)}>Não</button>
-                                        </ButtonsDeleteImage>
-                                    </PopUpDeleteImage>
-                                }
-                            </ImageDetails>
-                        </div>
+                        <InputName edit={toggleEdit} product={produto} handleChange={handleChange}/>
+                        <InputDescription edit={toggleEdit} product={produto} handleChange={handleChange}/>
+                        <InputCategory edit={toggleEdit} product={produto} handleCategory={handleChangeCategory}/>
+                        <InputQuantity edit={toggleEdit} product={produto} handleChange={handleChange}/>
+                        <InputPrice edit={toggleEdit} product={produto} handleChange={handleChange}/>
+                        <InputColors edit={toggleEdit} product={produto} corSelect={corSelecionada} handleChange={handleChangeColor}/>
+                        <InputCover 
+                        product={produto}
+                        edit={toggleEdit}
+                        deleteCoverImage={deleteCoverImage}
+                        setDeleteCover={setDeleteCover}
+                        handleDeleteCover={handleDeleteCover}
+                        handleAddCoverImage={handleAddCoverImage}
+                        />
+                        <InputAddImagesDetails 
+                        product={produto}
+                        edit={toggleEdit}
+                        newImages={newImages}
+                        setDeleteImage={setDeleteImage}
+                        handleAddImages={handleAddImages}
+                        deleteImage={deleteImage}
+                        handleDeleteImageDetails={handleDeleteImageDetails}
+                        />
                         <div className="button_submit">
                             <InputArea type="submit" value={"Atualizar produto"} />
                         </div>

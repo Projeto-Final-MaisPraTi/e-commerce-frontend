@@ -2,7 +2,6 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/ComponentFooter";
 import Category from "../../components/Category/Category";
 import { useParams } from "react-router-dom";
-import { findProductByCategory } from "../../services/ProductService";
 import { getFilteredProducts } from "../../services/ProductService";
 import { useEffect, useState } from "react";
 
@@ -15,19 +14,25 @@ function CategoryPage() {
   }
 
   useEffect(() => {
-    getFilteredProducts(filterCategory).then(result => {
-      setData(result);
-      console.log(result);
-    });
-}, []);
+    if (!category) {
+      getFilteredProducts(filterCategory, null, 5).then(result => {
+        setData(result.content);
+        console.log(result);
+      });
+    } else {
+      getFilteredProducts(filterCategory).then(result => {
+        setData(result.content);
+        console.log(result);
+      })
+    }}, []);
 
-  return (
-    <>
-      <Header />
-        <Category selectedCategory={data} />
-      <Footer />
-    </>
-  );
+return (
+  <>
+    <Header />
+    <Category selectedCategory={data} />
+    <Footer />
+  </>
+);
 }
 
 export default CategoryPage;

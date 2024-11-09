@@ -2,88 +2,87 @@
 
 /* Estilos Básicos para BoxItem */
 .box-item {
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer; /* Indica que o box é interativo */
-    background-color: #fff; /* Cor de fundo padrão (branco) */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%; /* Garante que todos os boxes tenham a mesma altura */
-    min-height: 250px; /* Define uma altura mínima para os boxes */
-  }
-  
-  /* Efeito de crescimento e mudança de cor no hover */
-  .box-item:hover {
-    transform: scale(1.05);
-    background-color: #dc3545; /* Vermelho Bootstrap */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* Contêiner do Ícone para posicionamento relativo */
-  .icon-container {
-    position: relative;
-    width: 80px; /* Aumentado para acomodar melhor os círculos */
-    height: 80px; /* Aumentado para acomodar melhor os círculos */
-    margin: 0 auto; /* Centraliza horizontalmente */
-  }
-  
-  /* Estilos Comuns para os Círculos */
-  .circle {
-    position: absolute;
-    border-radius: 50%;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Círculo Maior */
-  .large-circle {
-    width: 80px; /* Aumentado */
-    height: 80px; /* Aumentado */
-    background-color: rgba(0, 0, 0, 0.2); /* Preto com 20% de opacidade */
-    top: 0;
-    left: 0;
-  }
-  
-  /* Círculo Menor */
-  .small-circle {
-    width: 50px; /* Aumentado */
-    height: 50px; /* Aumentado */
-    background-color: #000; /* Preto */
-    top: 15px; /* Centraliza verticalmente */
-    left: 15px; /* Centraliza horizontalmente */
-    z-index: 1; /* Garante que fique acima do círculo maior */
-  }
-  
-  /* Estilos para o Ícone */
-  .icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2; /* Garante que fique acima dos círculos */
-    transition: color 0.3s ease;
-    font-size: 1.5rem; /* Reduzido para caber dentro do círculo menor */
-  }
-  
-  /* Efeito no Hover: Mudança de Cores dos Círculos e Ícone */
-  .box-item:hover .large-circle {
-    background-color: rgba(220, 53, 69, 0.2); /* Vermelho com 20% de opacidade */
-  }
-  
-  .box-item:hover .small-circle {
-    background-color: #dc3545; /* Vermelho sólido */
-  }
-  
-  .box-item:hover .icon {
-    color: #000; /* Ícone preto no hover */
-  }
-  
-  /* Classes para cores de texto personalizadas */
-  .text-light-custom {
-    color: #f8f9fa !important; /* Branco Bootstrap */
-  }
-  
-  .text-dark-custom {
-    color: #212529 !important; /* Preto Bootstrap */
-  }
-  
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* Indica que o box é interativo */
+  background-color: #fff; /* Cor de fundo padrão (branco) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Garante que todos os boxes tenham a mesma altura */
+  min-height: 250px; /* Define uma altura mínima para os boxes */
+}
+
+/* Efeito de crescimento e mudança de cor no hover */
+.box-item:hover {
+  transform: scale(1.05);
+  background-color: #dc3545; /* Vermelho Bootstrap */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Contêiner do Ícone para posicionamento relativo */
+.icon-container {
+  position: relative;
+  width: 80px; /* Aumentado para acomodar melhor os círculos */
+  height: 80px; /* Aumentado para acomodar melhor os círculos */
+  margin: 0 auto; /* Centraliza horizontalmente */
+}
+
+/* Estilos Comuns para os Círculos */
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+/* Círculo Maior */
+.large-circle {
+  width: 80px; /* Aumentado */
+  height: 80px; /* Aumentado */
+  background-color: rgba(0, 0, 0, 0.2); /* Preto com 20% de opacidade */
+  top: 0;
+  left: 0;
+}
+
+/* Círculo Menor */
+.small-circle {
+  width: 50px; /* Aumentado */
+  height: 50px; /* Aumentado */
+  background-color: #000; /* Preto */
+  top: 15px; /* Centraliza verticalmente */
+  left: 15px; /* Centraliza horizontalmente */
+  z-index: 1; /* Garante que fique acima do círculo maior */
+}
+
+/* Estilos para o Ícone */
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2; /* Garante que fique acima dos círculos */
+  transition: color 0.3s ease;
+  font-size: 1.5rem; /* Reduzido para caber dentro do círculo menor */
+}
+
+/* Efeito no Hover: Mudança de Cores dos Círculos e Ícone */
+.box-item:hover .large-circle {
+  background-color: rgba(220, 53, 69, 0.2); /* Vermelho com 20% de opacidade */
+}
+
+.box-item:hover .small-circle {
+  background-color: #dc3545; /* Vermelho sólido */
+}
+
+.box-item:hover .icon {
+  color: #000; /* Ícone preto no hover */
+}
+
+/* Classes para cores de texto personalizadas */
+.text-light-custom {
+  color: #f8f9fa !important; /* Branco Bootstrap */
+}
+
+.text-dark-custom {
+  color: #212529 !important; /* Preto Bootstrap */
+}

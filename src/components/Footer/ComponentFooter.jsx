@@ -21,7 +21,7 @@ const Footer = () => {
               </Link>
               <p>
                 Nossa missão é conectar pessoas às inovações tecnológicas, oferecendo produtos de
-                qualidade. No nossa loja, buscamos sempre atender às necessidades em constante
+                qualidade. Em nossa loja, buscamos sempre atender às necessidades em constante
                 evolução dos nossos clientes, inspirando-os a explorar novas possibilidades.
               </p>
             </div>
@@ -42,7 +42,7 @@ const Footer = () => {
               </p>
               <p>
                 <a href="#" className="text-black" style={{ textDecoration: "none" }}>
-                  Logar / Registrar-se
+                  Entrar
                 </a>
               </p>
               <p>
