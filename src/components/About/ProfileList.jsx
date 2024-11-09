@@ -1,7 +1,7 @@
-import ProfileItem from "./ProfileItem";
-import profile1 from "../../assets/about_1.jpg";
-import profile2 from "../../assets/about_2.jpg";
-import profile3 from "../../assets/about_3.jpg";
+import ProfileItem from './ProfileItem';
+import profile1 from "../../assets/about_1.jpeg";
+import profile2 from "../../assets/about_2.jpeg";
+import profile3 from "../../assets/about_3.jpeg";
 
 const ProfileList = () => {
   return (
