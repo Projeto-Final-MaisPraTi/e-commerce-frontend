@@ -10,7 +10,7 @@ const ProfileItem = ({ image, name, title }) => {
             src={image}
             alt={name}
             className="card-img-top img-fluid"
-            style={{ height: "450px" }}
+            style={{ height: "450px", objectFit: "cover" }}
           />
         </div>
         <div className="card-body">

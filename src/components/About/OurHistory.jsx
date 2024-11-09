@@ -7,16 +7,12 @@ const OurHistory = () => {
     <div className="container my-5">
       <div className="row align-items-center">
         <div className="col-md-6">
-          <h2 className="mb-5 custom-title">Our Story</h2> {/* Aplicada a classe personalizada */}
+          <h2 className="mb-5 custom-title">Nossa história</h2> {/* Aplicada a classe personalizada */}
           <p className="custom-text">
-            Launched in 2015, Exclusive is South Asias premier online shopping marketplace with an
-            active presence in Bangladesh. Supported by a wide range of tailored marketing, data,
-            and service solutions, Exclusive has 10,500 sellers and 300 brands and serves 3 million
-            customers across the region.
+          Lançado em 2020, o Exclusive é o principal mercado de compras online da América do Norte com presença ativa no Canadá. Apoiado por uma diversas marcas, possuindo grande variedade de produtos e atendendo mais de 3 milhões de clientes em toda a região.
           </p>
           <p className="mt-3 custom-text">
-            Exclusive has more than 1 Million products to offer, growing at a very fast rate.
-            Exclusive offers a diverse assortment in categories ranging from consumer goods.
+          Buscamos oferecer aos consumidores o melhor da tecnologia, diversificando o estoque tanto quanto possível.
           </p>
         </div>
         <div className="col-md-6">

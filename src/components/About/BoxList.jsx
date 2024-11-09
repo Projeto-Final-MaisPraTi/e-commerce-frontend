@@ -8,31 +8,31 @@ const BoxList = () => {
       <div className="row">
         <BoxItem
           icon={<FaShoppingCart size={30} />}
-          number="10.5k"
-          description="Vendedores ativos no nosso site"
+          number="+4K"
+          description="Vendas por Dia"
           colorClass="bg-white" // Classe de background padrão (branco)
           iconColorClass="text-light-custom" // Classe para ícone branco
           textColorClass="text-dark-custom" // Classe para texto preto
         />
         <BoxItem
           icon={<FaDollarSign size={30} />}
-          number="33k"
-          description="Vendas de Produtos Mensais"
+          number="+50K"
+          description="Produtos Vendidos por Mês"
           colorClass="bg-white" // Classe de background padrão (branco)
           iconColorClass="text-light-custom" // Classe para ícone branco
           textColorClass="text-dark-custom" // Classe para texto preto
         />
         <BoxItem
           icon={<FaUsers size={30} />}
-          number="45.5k"
-          description="Clientes ativos no nosso site"
+          number="+3M"
+          description="Clientes Ativos no Nosso Site"
           colorClass="bg-white" // Classe de background padrão (branco)
           iconColorClass="text-light-custom" // Classe para ícone branco
           textColorClass="text-dark-custom" // Classe para texto preto
         />
         <BoxItem
           icon={<FaDollarSign size={30} />}
-          number="25k"
+          number="42.3M"
           description="Vendas Brutas Anuais no nosso site"
           colorClass="bg-white" // Classe de background padrão (branco)
           iconColorClass="text-light-custom" // Classe para ícone branco
