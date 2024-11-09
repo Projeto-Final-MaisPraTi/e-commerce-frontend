@@ -75,12 +75,9 @@ export const handleOneUpload = async (file) => {
 
   if (error) {
     console.error('Upload error:', error);
-    console.log(error);
     return;
   }
-  console.log(data);
   const url = `${supabaseUrl}/storage/v1/object/public/ecomerce/${data.path}`;
-  console.log(url);
 
   return(url);
 };

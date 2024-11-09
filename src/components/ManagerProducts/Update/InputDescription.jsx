@@ -1,4 +1,4 @@
-import { SelectBox, Label } from "./StyleFormsProduct";
+import { SelectBox, Label } from "../StyleFormsProduct";
 
 const InputDescription = ({product, handleChange, edit}) => {
     const toggleEdit = edit;
@@ -6,15 +6,15 @@ const InputDescription = ({product, handleChange, edit}) => {
         <div>
             <SelectBox>
                 <Label>Descrição:</Label>
-                <input type="checkbox" onChange={() => toggleEdit('descricao')} />
+                <input type="checkbox" onChange={() => toggleEdit('description')} />
                 <span>( Editar descrição ? )</span>
             </SelectBox>
             <textarea
                 className="description"
                 type="text"
-                disabled={!product.descricao.edit}
-                value={product.descricao.value}
-                onChange={(event) => handleChange('descricao', event.target.value)}
+                disabled={!product.description.edit}
+                value={product.description.value}
+                onChange={(event) => handleChange('description', event.target.value)}
             />
         </div>
     )

@@ -1,5 +1,5 @@
-import { SelectBox, OptionColors, SelectColor } from "./StyleFormsProduct";
-import { opcoesDeCores } from "../../utils/ProductOptions";
+import { SelectBox, OptionColors, SelectColor } from "../StyleFormsProduct";
+import { opcoesDeCores } from "../../../utils/ProductOptions";
 
 const InputColors = ({product, edit, corSelect, handleChange}) => {
     const toggleEdit = edit;
@@ -7,11 +7,11 @@ const InputColors = ({product, edit, corSelect, handleChange}) => {
     <OptionColors>
         <SelectBox>
             <label>Cor:</label>
-            <input type="checkbox" onChange={() => toggleEdit('cor')} />
+            <input type="checkbox" onChange={() => toggleEdit('color')} />
             <span>( Editar cor ? )</span>
         </SelectBox>
         <SelectColor>
-            <select disabled={!product.cor.edit} value={corSelect} onChange={handleChange}>
+            <select disabled={!product.color.edit} value={corSelect} onChange={handleChange}>
                 {opcoesDeCores.map((opcao, index) => (
                     <option key={index} value={opcao.valor}>
                         {opcao.nome}

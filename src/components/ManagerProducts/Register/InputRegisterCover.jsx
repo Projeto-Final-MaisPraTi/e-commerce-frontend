@@ -1,19 +1,16 @@
-import { SelectBox, ImageCover, UploadFile, ContainerAddImage, ImageWrapper, InputArea, PopUpDeleteImage, ButtonsDeleteImage } from "./StyleFormsProduct";
-import CardUpdateImage from "./CardUpdateImage";
+import { SelectBox, ImageCover, UploadFile, ContainerAddImage, ImageWrapper, InputArea, PopUpDeleteImage, ButtonsDeleteImage } from "../StyleFormsProduct";
+import CardUpdateImage from "../CardUpdateImage";
 
 
-const InputCover = ({product, edit, deleteCoverImage, setDeleteCover, handleDeleteCover, handleAddCoverImage}) => {
-    const toggleEdit = edit;
+const InputRegisterCover = ({product, deleteCoverImage, setDeleteCover, handleDeleteCover, handleAddCoverImage}) => {
     return (
         <div>
             <SelectBox>
                 <label >Imagem de capa:</label>
-                <input type="checkbox" onChange={() => toggleEdit('cover')} />
-                <span>( Editar imagem de capa ? )</span>
             </SelectBox>
-            <ImageCover className={product.cover.edit ? '' : 'disabled'}>
-                {product.cover.value ?
-                    <CardUpdateImage url={product.cover.value} deleteImage={setDeleteCover} />
+            <ImageCover>
+                {product.cover ?
+                    <CardUpdateImage url={product.cover} deleteImage={setDeleteCover} />
                     :
                     <UploadFile>
                         <label htmlFor="upload-button" style={{ cursor: 'pointer' }}>
@@ -35,7 +32,6 @@ const InputCover = ({product, edit, deleteCoverImage, setDeleteCover, handleDele
                 {deleteCoverImage &&
                     <PopUpDeleteImage>
                         <p>Deseja realmente deletar esta imagem ?</p>
-                        <p><span>A alteraçao é aplicada imediatamente</span></p>
                         <ButtonsDeleteImage>
                             <button type="button" className="yes" onClick={handleDeleteCover}>Sim</button>
                             <button type="button" className="no" onClick={() => setDeleteCover(false)}>Não</button>
@@ -47,4 +43,4 @@ const InputCover = ({product, edit, deleteCoverImage, setDeleteCover, handleDele
     );
 }
 
-export default InputCover;
+export default InputRegisterCover;

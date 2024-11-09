@@ -4,19 +4,17 @@ import { getUpdateProduct, updateProduct } from "../../services/ProductService";
 import React, { useEffect, useState } from "react";
 import LoadingSpinner from "../../components/SpinnerComponent/LoadingSpinner";
 import PreviewProduct from "../../components/PreviewProduct/PreviewProduct";
-import CurrencyInput from 'react-currency-input-field';
-import CardUpdateImage from "./CardUpdateImage";
 import { deleteImageByUrl } from "../../services/ImageService";
-import { categories, opcoesDeCores } from "../../utils/ProductOptions";
-import { handleUpload, handleOneUpload } from "../../services/ProductSubmission";
-import InputName from "./InputName";
-import InputDescription from "./InputDescription";
-import InputCategory from "./InputCategory";
-import InputQuantity from "./InputQuantity";
-import InputPrice from "./InputPrice";
-import InputColors from "./InputColors";
-import InputCover from "./InputCover";
-import InputAddImagesDetails from "./InputAddImagesDetails";
+import { opcoesDeCores } from "../../utils/ProductOptions";
+import InputName from "../../components/ManagerProducts/Update/InputName";
+import InputDescription from "../../components/ManagerProducts/Update/InputDescription";
+import InputCategory from "../../components/ManagerProducts/Update/InputCategory";
+import InputQuantity from "../../components/ManagerProducts/Update/InputQuantity";
+import InputPrice from "../../components/ManagerProducts/Update/InputPrice";
+import InputColors from "../../components/ManagerProducts/Update/InputColors";
+import InputCover from "../../components/ManagerProducts/Update/InputCover";
+import InputAddImagesDetails from "../../components/ManagerProducts/Update/InputAddImagesDetails";
+import { createUpdateProdutoData } from "../../utils/utilsUpdateProduct";
 
 const Container = styled.div`
   display: flex;
@@ -95,130 +93,6 @@ const InputArea = styled.input`
     margin: auto;
 `
 
-const OptionColors = styled.div`
-    
-`
-
-const SelectColor = styled.div`
-    display: flex;
-    justify-content: center;
-    margin-bottom: 5px;
-`
-
-const ImageCover = styled.div`
-    display: flex;
-    height: 320px;
-    width: 300px;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
-    margin: auto;
-`
-
-const ImageDetails = styled.div`
-    display: flex;
-    height: 300px;
-    width: 90%;
-    box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin: auto;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-    padding: 10px;
-    `
-
-const UploadFile = styled.div`
-    
-`
-
-const ContainerAddImage = styled.div`
-    box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
-    width: 200px;
-    height: 250px;
-    border-radius: 5px;
-`
-
-const ImageWrapper = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-
-const PopUpDeleteImage = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: absolute;
-    padding: 10px;
-    width: 350px;
-    height: 150px;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-    color: #333;
-    p{
-        font-weight: 400;
-
-    }
-    p span {
-    color: #a00606;
-    font-weight: 700;
-    font-size: 15px;
-    }
-`
-
-const ButtonsDeleteImage = styled.div`
-  display: flex;
-  gap: 40px;
-  margin-top: 10px;
-  button {
-    padding: 5px 20px 5px 20px;
-    border: none;
-    border-radius: 5px;
-  }
-  .yes {
-    background-color: #0765bd;
-    color: white
-  }
-  .no {
-    background-color: #e02108;
-    color: white;
-  }
-`;
-
-const Label = styled.label`
-    
-`
-
-
-const SelectBox = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 15px auto 5px auto;
-    label {
-        font-size: 20px;
-        font-weight: bold;
-        margin-bottom: 0px;
-    }
-    input {
-        margin-left: 10px;
-        width: 18px;
-        height: 18px;
-        padding: 0;
-    }
-    span {
-        color: gray;
-        font-size: 15px;
-        margin-left: 5px;
-    }
-`
-
 const Loading = styled.div`
     margin-top: 15px;
 `
@@ -265,16 +139,16 @@ function UpdateProduct() {
         getProduct(id).then(result => {
             setProduto({
                 id: id,
-                nome: { value: result.nome, edit: false },
-                preco: { value: result.preco, edit: false },
-                cor: { value: result.cor, edit: false },
-                descricao: { value: result.descricao, edit: false },
-                estoque: { value: result.estoque, edit: false },
-                categoria: { value: result.categoria, edit: false },
+                name: { value: result.name, edit: false },
+                price: { value: result.price, edit: false },
+                color: { value: result.color, edit: false },
+                description: { value: result.description, edit: false },
+                stock: { value: result.stock, edit: false },
+                category: { value: result.category, edit: false },
                 images: { value: result.images, edit: false },
                 cover: { value: result.cover, edit: false }
             })
-            const corEncontrada = opcoesDeCores.find((opcao) => opcao.nome === result.cor);
+            const corEncontrada = opcoesDeCores.find((opcao) => opcao.nome === result.color);
             setCorSelecionada(corEncontrada.valor);
         });
     }, []);
@@ -324,7 +198,7 @@ function UpdateProduct() {
         const imageName = decodeURIComponent(url.split('/').pop().split('?')[0]);
         return (imageName);
     }
-
+    // Deleta a imagem de capa
     const handleDeleteCover = async () => {
         if (produto.cover.value && !(cover instanceof File) && produto.cover.value.includes('https:')) {
             let nameImage = getNameImage(produto.cover.value);
@@ -338,6 +212,7 @@ function UpdateProduct() {
         setDeleteCover(false);
     }
 
+    // Delete a imagem dos detalhes
     const handleDeleteImageDetails = async () => {
         if (!(cover instanceof File) && deleteImage.includes("https:")) {
             let nameImage = getNameImage(deleteImage);
@@ -360,12 +235,11 @@ function UpdateProduct() {
     // Muda a categoria selecionada
     const handleChangeCategory = (event) => {
         const selectedValue = event.target.value;
-        handleChange('categoria', selectedValue);
+        handleChange('category', selectedValue);
     };
 
-    // cor 
-    // também usado duas vezes em componentes diferentes
-
+    // Alterar cor selecionada
+    // Ver utilidade em outros componentes
 
     const handleChangeColor = (event) => {
         setCorSelecionada(event.target.value);
@@ -373,51 +247,16 @@ function UpdateProduct() {
 
         const corEncontrada = opcoesDeCores.find((opcao) => opcao.valor === event.target.value);
         if (corEncontrada) {
-            handleChange('cor', corEncontrada.nome);
+            handleChange('color', corEncontrada.nome);
         }
     };
 
-    const createUpdateProdutoData = async () => {
-        const data = {};
-        data['id'] = produto.id;
-        if (produto.nome.edit) {
-            data['nome'] = produto.nome.value;
-        }
-        if (produto.cor.edit) {
-            data['cor'] = produto.cor.value;
-        }
-        if (produto.descricao.edit) {
-            data['descricao'] = produto.descricao.value;
-        }
-        if (produto.estoque.edit) {
-            data['estoque'] = produto.estoque.value;
-        }
-        if (produto.categoria.edit) {
-            data['categoria'] = produto.estoque.value;
-        }
-        if (produto.images.edit && newImages.length > 0) {
-            console.log(newImages);
-            console.log(imageFiles);
-            const urlImages = await handleUpload(imageFiles);
-            data['images'] = urlImages;
-        }
-        if (produto.cover.edit) {
-            if (produto.cover.value && produto.cover.value instanceof File) {
-                const urlCover = await handleOneUpload(produto.cover.value);
-                setCover(urlCover);
-                data['cover'] = urlCover;
-            }
-        }
-        return data;
-    }
-
-
-
+    // Enviar os arquivos para fazer atulização
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             setLoading(true);
-            const data = await createUpdateProdutoData();
+            const data = await createUpdateProdutoData(produto, imageFiles, setCover);
             const resp = await updateProduct(data);
             console.log(resp);
             alert("Produto atualizado com sucesso!");
@@ -437,7 +276,7 @@ function UpdateProduct() {
             <>
                 <Container>
                     <WaitProduct>
-                        <LoadingSpinner size={80} />
+                        <LoadingSpinner size={70} />
                     </WaitProduct>
                 </Container>
             </>
@@ -448,7 +287,7 @@ function UpdateProduct() {
         <>
             <Container>
                 <SidePreview>
-                    <PreviewProduct name={produto.nome.value} price={produto.preco.value} cover={produto.cover.value} />
+                    <PreviewProduct name={produto.name.value} price={produto.price.value} cover={produto.cover.value} />
                 </SidePreview>
                 <SideForm>
                     <div className="title">

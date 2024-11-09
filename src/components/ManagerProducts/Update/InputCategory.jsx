@@ -1,5 +1,5 @@
-import { SelectBox, Label } from "./StyleFormsProduct";
-import { categories } from "../../utils/ProductOptions";
+import { SelectBox, Label } from "../StyleFormsProduct";
+import { categories } from "../../../utils/ProductOptions";
 
 const InputCategory = ({product, edit, handleCategory}) => {
     const toggleEdit = edit;
@@ -7,10 +7,10 @@ const InputCategory = ({product, edit, handleCategory}) => {
         <div>
             <SelectBox>
                 <Label>Categoria:</Label>
-                <input type="checkbox" onChange={() => toggleEdit('categoria')} />
+                <input type="checkbox" onChange={() => toggleEdit('category')} />
                 <span>( Editar categoria ? )</span>
             </SelectBox>
-            <select disabled={!product.categoria.edit} onChange={handleCategory} value={product.categoria.value}>
+            <select disabled={!product.category.edit} onChange={handleCategory} value={product.category.value}>
                 {categories.map((cat, index) => (
                     <option key={index} value={cat.value} disabled={cat.disabled}>
                         {cat.label}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { findProductByName, deleteProductById } from "../../services/ProductService";
-import CardUpdateProduct from "./CardUpdateProduct";
+import CardUpdateProduct from "../../components/ManagerProducts/CardUpdateProduct";
 import LoadingSpinner from '../../components/SpinnerComponent/LoadingSpinner';
 import { categories } from '../../utils/ProductOptions';
 import styled from 'styled-components';

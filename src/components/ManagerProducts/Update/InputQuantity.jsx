@@ -1,4 +1,4 @@
-import { SelectBox, InputArea, Label } from "./StyleFormsProduct";
+import { SelectBox, InputArea, Label } from "../StyleFormsProduct";
 
 const InputQuantity = ({product, edit, handleChange}) => {
     const toggleEdit = edit;
@@ -6,16 +6,16 @@ const InputQuantity = ({product, edit, handleChange}) => {
         <div>
             <SelectBox>
                 <Label>Quantidade:</Label>
-                <input type="checkbox" onChange={() => toggleEdit('estoque')} />
+                <input type="checkbox" onChange={() => toggleEdit('stock')} />
                 <span>( Editar quantidade ? )</span>
             </SelectBox>
             <InputArea
                 type="number"
                 min={0}
-                disabled={!product.estoque.edit}
+                disabled={!product.stock.edit}
                 placeholder="0"
-                value={product.estoque.value}
-                onChange={(event) => handleChange('estoque', event.target.value)}
+                value={product.stock.value}
+                onChange={(event) => handleChange('stock', event.target.value)}
             />
         </div>
     );

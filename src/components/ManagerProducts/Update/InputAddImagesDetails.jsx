@@ -1,5 +1,5 @@
-import { SelectBox, UploadFile, ContainerAddImage, ImageWrapper, InputArea, PopUpDeleteImage, ButtonsDeleteImage, ImageDetails } from "./StyleFormsProduct";
-import CardUpdateImage from "./CardUpdateImage";
+import { SelectBox, UploadFile, ContainerAddImage, ImageWrapper, InputArea, PopUpDeleteImage, ButtonsDeleteImage, ImageDetails } from "../StyleFormsProduct";
+import CardUpdateImage from "../CardUpdateImage";
 
 const InputAddImagesDetails = ({product, edit, newImages, setDeleteImage, handleAddImages, deleteImage, handleDeleteImageDetails}) => {
     const toggleEdit = edit;
