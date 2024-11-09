@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import ProductCard from "../ProductCard/ProductCard";
 import ProductsData from "../../utils/ProductsData";
+import { getFlashSalesProducts } from "../../services/ProductService";
 
 const FlashSalesContainer = styled.div`
   padding: 20px 10%;
@@ -165,6 +166,18 @@ const FlashSales = () => {
 
   const filteredProducts = ProductsData.filter((product) => product.discount === 35);
 
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+
+    getFlashSalesProducts()
+    .then(result => {
+      setData(result.content)
+      });
+      console.log(data);
+  },[])
+
+
   const scroll = (direction) => {
     if (carouselRef.current) {
       const scrollAmount = 285; // 270px de largura + 15px de margem
@@ -241,7 +254,7 @@ const FlashSales = () => {
         </ArrowsWrapper>
       </Header>
       <ProductsCarousel ref={carouselRef}>
-        {filteredProducts.map((product) => (
+        {data.map((product) => (
           <ProductWrapper key={product.id}>
             <ProductCard product={product} />
           </ProductWrapper>

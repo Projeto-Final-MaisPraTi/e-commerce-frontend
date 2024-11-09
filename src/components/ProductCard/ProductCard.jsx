@@ -16,12 +16,11 @@ const ProductCard = ({ product }) => {
     return "Lista de produtos não encontrada";
   }
 
-  const productImage =
-    product.images && product.images.length > 0 ? product.images[0] : ProductNotFound;
+  const productImage = product.cover ? product.cover : product.images ?  product.images[0] : ProductNotFound;
 
   return (
     <div className={styles.productCard} onClick={handleClick}>
-      {product.discount === 35 && <div className={styles.badge}>-35%</div>}
+      {product.discount != 0 && <div className={styles.badge}>{product.discount}%</div>}
       <div className={styles.productImage}>
         <img 
         src={productImage} alt={product.name} className={styles.productImage} />
@@ -40,7 +39,7 @@ const ProductCard = ({ product }) => {
                 De: <del>{product.price}</del>
               </p>
               <p className={styles.discountPrice}>
-                Por: R$ {(product.price - (product.price / 100) * product.discount).toFixed(3)}
+                Por: R$ {product.priceDiscount}
               </p>
             </div>
           )}

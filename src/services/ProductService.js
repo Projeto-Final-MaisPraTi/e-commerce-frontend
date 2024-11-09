@@ -144,11 +144,31 @@ export const getProductDetails = async (id) => {
   }
 */
 
-export const getFilteredProducts = async (filters) => {
+export const getFilteredProducts = async (filters, page = 0, size = 10) => {
   try {
-    const response = await axios.get(API_URL + '/busca', { params: filters });
+    const response = await axios.get(API_URL + `/search?`,
+      { 
+        params: {
+          ...filters,
+          page: page,
+          size: size
+        } 
+      });
     return response.data;
   } catch (error) {
     console.error('Erro ao buscar produtos:', error);
+  }
+}
+
+// Função para buscar produtos de flash sales com paginação
+// Retorna uma paginação
+export const getFlashSalesProducts = async (page = 0, size = 10, sort = 'name,asc') => {
+  try {
+      const response = await axios.get(API_URL + `/flashsales?page=${page}`);
+      return response.data;
+
+  } catch (error) {
+      console.error('Erro ao buscar os produtos:', error);
+      return null;
   }
 }

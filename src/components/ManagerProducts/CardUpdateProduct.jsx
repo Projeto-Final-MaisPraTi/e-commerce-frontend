@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FaEdit } from "react-icons/fa";
 import { CiSquareRemove } from "react-icons/ci";
-import ProductCard from "../../components/ProductCard/ProductCard";
+import ProductCard from "../ProductCard/ProductCard";
 
 const Container = styled.div`
     border: 1px solid black;
@@ -25,7 +25,7 @@ const CardUpdateProduct = (props) => {
     const product = props.product;
     const setItemUpdate = props.update;
     const setDeleteItem = props.delete;
-
+    product["discount"] = 0;
     
     return (
         <Container>
