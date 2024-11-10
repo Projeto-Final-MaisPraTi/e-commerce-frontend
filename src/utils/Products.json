@@ -7,10 +7,10 @@
     "description": "iPhone 14 Pro. Capture detalhes incríveis com uma câmera principal de 48MP. Experimente o iPhone de uma maneira totalmente nova com a Ilha Dinâmica e a tela Sempre Ativa. E fique tranquilo com recursos de segurança inovadores.",
     "stock": 50,
     "images": [
-    "https://firebasestorage.googleapis.com/v0/b/maisecomerce.appspot.com/o/images%2Fimage_1_1730598347064.png?alt=media&token=478f1d82-55b2-4d54-b3be-b24ab1a4be8f",
-    "https://firebasestorage.googleapis.com/v0/b/maisecomerce.appspot.com/o/images%2Fimage_2_1730598347071.png?alt=media&token=0608a67a-d3be-4ef4-81d6-ab18f45ffe1a",
-    "https://firebasestorage.googleapis.com/v0/b/maisecomerce.appspot.com/o/images%2Fimage_3_1730598347075.png?alt=media&token=3c1c95ef-965f-4d3a-a2bd-1f3c812a3318",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/iphone_14_black_11730654456654.png"
+      "https://firebasestorage.googleapis.com/v0/b/maisecomerce.appspot.com/o/images%2Fimage_1_1730598347064.png?alt=media&token=478f1d82-55b2-4d54-b3be-b24ab1a4be8f",
+      "https://firebasestorage.googleapis.com/v0/b/maisecomerce.appspot.com/o/images%2Fimage_2_1730598347071.png?alt=media&token=0608a67a-d3be-4ef4-81d6-ab18f45ffe1a",
+      "https://firebasestorage.googleapis.com/v0/b/maisecomerce.appspot.com/o/images%2Fimage_3_1730598347075.png?alt=media&token=3c1c95ef-965f-4d3a-a2bd-1f3c812a3318",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/iphone_14_black_11730654456654.png"
     ],
     "discount": 35,
     "flashSale": false
@@ -23,10 +23,10 @@
     "description": "Smartphone topo de linha da Samsung, com display de 6.1, processador Snapdragon 8 Gen 2 e câmera tripla de 50 MP",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/image_1730644037865.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/image_1730644037868.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/image_1730644037869.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/image_1730644037871.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/image_1730644037865.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/image_1730644037868.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/image_1730644037869.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/image_1730644037871.png"
     ],
     "discount": 0,
     "flashSale": true
@@ -39,10 +39,10 @@
     "description": "Modelo premium do Google, com tela OLED de 6.7, chip Google Tensor G2 e câmeras potentes com recursos avançados de IA",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Google_Pixel_7_black_1.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Google_Pixel_7_black_2.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Google_Pixel_7_black_3.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Google_Pixel_7_black_4.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Google_Pixel_7_black_1.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Google_Pixel_7_black_2.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Google_Pixel_7_black_3.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Google_Pixel_7_black_4.png"
     ],
     "discount": 35,
     "flashSale": false
@@ -55,10 +55,10 @@
     "description": "Flagship da OnePlus com Snapdragon 8 Gen 3, tela AMOLED de 6.7 e sistema de câmeras aprimorado com Hasselblad",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/OnePlus_12_black_1.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/OnePlus_12_black_2.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/OnePlus_12_black_3.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/OnePlus_12_black_4.jpg"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/OnePlus_12_black_1.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/OnePlus_12_black_2.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/OnePlus_12_black_3.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/OnePlus_12_black_4.jpg"
     ],
     "discount": 0,
     "flashSale": false
@@ -75,7 +75,6 @@
       "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/1730648898587_MI_Xiaomi_13T_black_2.png",
       "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/1730648899598_MI_Xiaomi_13T_black_3.png",
       "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/1730648900788_MI_Xiaomi_13T_black_4.png"
-
     ],
     "discount": 0,
     "flashSale": false
@@ -88,10 +87,10 @@
     "description": "Smartphone da Apple, equipado com chip da Apple A16, 5G, 6-colore CPU, 8-colore GPU, 6GB de RAM e 512GB de armazenamento",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Iphone_15_pro_grey_11730649334113.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Iphone_15_pro_grey_21730649335576.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Iphone_15_pro_grey_31730649336418.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Iphone_15_pro_grey_41730649337642.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Iphone_15_pro_grey_11730649334113.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Iphone_15_pro_grey_21730649335576.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Iphone_15_pro_grey_31730649336418.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Iphone_15_pro_grey_41730649337642.png"
     ],
     "discount": 0,
     "flashSale": false
@@ -104,11 +103,10 @@
     "description": "Chip Apple M2 com CPU de 10 núcleos.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Air_M2_black_11730659337660.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Air_M2_black_21730659378398.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Air_M2_black_31730659379607.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Air_M2_black_41730659380579.png"
-    
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Air_M2_black_11730659337660.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Air_M2_black_21730659378398.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Air_M2_black_31730659379607.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Air_M2_black_41730659380579.png"
     ],
     "discount": 35,
     "flashSale": false
@@ -121,10 +119,10 @@
     "description": "Modelo de 14.2 polegadas com chip Apple M2 Pro e GPU de 16 núcleos.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Pro_M2_white_11730659572108.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Pro_M2_white_41730753181667.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Pro_M2_white_21730753182812.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Pro_M2_white_31730753183708.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Pro_M2_white_11730659572108.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Pro_M2_white_41730753181667.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Pro_M2_white_21730753182812.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/MacBook_Pro_M2_white_31730753183708.png"
     ],
     "discount": 0,
     "flashSale": true
@@ -137,10 +135,10 @@
     "description": "Notebook de 13.4 polegadas com Intel colore i7 e 16GB de RAM.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Dell_XPS_13_white_11730659632477.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Dell_XPS_13_white_21730753225374.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Dell_XPS_13_white_31730753226240.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Dell_XPS_13_white_41730753227236.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Dell_XPS_13_white_11730659632477.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Dell_XPS_13_white_21730753225374.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Dell_XPS_13_white_31730753226240.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Dell_XPS_13_white_41730753227236.png"
     ],
     "discount": 35,
     "flashSale": false
@@ -153,10 +151,10 @@
     "description": "Notebook conversível com Intel Evo colore i7 e tela sensível ao toque.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/HP_Spectre_13_black_11730660042557.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/HP_Spectre_13_black_31730753264980.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/HP_Spectre_13_black_21730753265883.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/HP_Spectre_13_black_41730753266909.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/HP_Spectre_13_black_11730660042557.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/HP_Spectre_13_black_31730753264980.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/HP_Spectre_13_black_21730753265883.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/HP_Spectre_13_black_41730753266909.png"
     ],
     "discount": 35,
     "flashSale": false
@@ -169,10 +167,10 @@
     "description": "Notebook ultraleve com Intel colore i7 e SSD de 1TB.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Lenovo_ThinkPad_X1_black_11730660124362.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Lenovo_ThinkPad_X1_black_41730753324262.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Lenovo_ThinkPad_X1_black_31730753325491.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Lenovo_ThinkPad_X1_black_21730753326377.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Lenovo_ThinkPad_X1_black_11730660124362.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Lenovo_ThinkPad_X1_black_41730753324262.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Lenovo_ThinkPad_X1_black_31730753325491.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Lenovo_ThinkPad_X1_black_21730753326377.png"
     ],
     "discount": 0,
     "flashSale": true
@@ -201,10 +199,10 @@
     "description": "Smartwatch com display Retina de 41mm e GPS.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_7_black_11730660245563.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_7_black_21730661605181.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_7_black_31730661606618.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_7_black_41730661607661.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_7_black_11730660245563.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_7_black_21730661605181.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_7_black_31730661606618.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_7_black_41730661607661.png"
     ],
     "discount": 0,
     "flashSale": false
@@ -217,10 +215,10 @@
     "description": "Smartwatch com display AMOLED de 1.4 polegadas e monitor de batimentos cardíacos.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Samsung_Galaxy_Watch4_Classic_black_11730660295290.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Samsung_Galaxy_Watch4_Classic_black_41730753580441.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Samsung_Galaxy_Watch4_Classic_black_31730753581971.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Samsung_Galaxy_Watch4_Classic_black_21730753583093.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Samsung_Galaxy_Watch4_Classic_black_11730660295290.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Samsung_Galaxy_Watch4_Classic_black_41730753580441.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Samsung_Galaxy_Watch4_Classic_black_31730753581971.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Samsung_Galaxy_Watch4_Classic_black_21730753583093.png"
     ],
     "discount": 0,
     "flashSale": true
@@ -233,10 +231,10 @@
     "description": "Smartwatch de rastreamento avançado de fitness com GPS e display AMOLED.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Garmin_Venu2_black_11730660352420.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Garmin_Venu2_black_31730753657169.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Garmin_Venu2_black_41730753658196.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Garmin_Venu2_black_21730753659255.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Garmin_Venu2_black_11730660352420.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Garmin_Venu2_black_31730753657169.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Garmin_Venu2_black_41730753658196.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Garmin_Venu2_black_21730753659255.png"
     ],
     "discount": 35,
     "flashSale": false
@@ -249,10 +247,10 @@
     "description": "Smartwatch com GPS integrado e monitoramento de batimentos cardíacos 24/7.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fitbit_Versa3_black_11730660392926.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fitbit_Versa3_black_31730753716369.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fitbit_Versa3_black_41730753717397.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fitbit_Versa3_black_21730753718337.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fitbit_Versa3_black_11730660392926.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fitbit_Versa3_black_31730753716369.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fitbit_Versa3_black_41730753717397.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fitbit_Versa3_black_21730753718337.png"
     ],
     "discount": 0,
     "flashSale": false
@@ -265,10 +263,10 @@
     "description": "Smartwatch com display AMOLED de 1.43 polegadas e GPS.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Huawei_Watch_GT3_black_11730660434668.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Huawei_Watch_GT3_black_21730753776248.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Huawei_Watch_GT3_black_41730753777252.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Huawei_Watch_GT3_black_31730753778345.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Huawei_Watch_GT3_black_11730660434668.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Huawei_Watch_GT3_black_21730753776248.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Huawei_Watch_GT3_black_41730753777252.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Huawei_Watch_GT3_black_31730753778345.png"
     ],
     "discount": 0,
     "flashSale": true
@@ -281,10 +279,10 @@
     "description": "Smartwatch com display Retina de 44mm e GPS.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_Ultra_black_11730660486165.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_Ultra_black_21730753817808.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_Ultra_black_31730753818811.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_Ultra_black_41730753819663.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_Ultra_black_11730660486165.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_Ultra_black_21730753817808.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_Ultra_black_31730753818811.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_Watch_Series_Ultra_black_41730753819663.png"
     ],
     "discount": 0,
     "flashSale": false
@@ -297,10 +295,10 @@
     "description": "Câmera mirrorless full-frame com sensor de 20.1MP e vídeo 4K.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Canon_EOS_R6_black_11730660578589.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Canon_EOS_R6_black_31730753872525.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Canon_EOS_R6_black_41730753873685.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Canon_EOS_R6_black_21730753874532.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Canon_EOS_R6_black_11730660578589.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Canon_EOS_R6_black_31730753872525.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Canon_EOS_R6_black_41730753873685.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Canon_EOS_R6_black_21730753874532.png"
     ],
     "discount": 35,
     "flashSale": false
@@ -313,10 +311,10 @@
     "description": "Câmera mirrorless full-frame de 24.5MP com processadores duplos.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Nikon_Z6_Li_black_11730660627069.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Nikon_Z6_Li_black_21730753917481.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Nikon_Z6_Li_black_31730753918392.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Nikon_Z6_Li_black_41730753919346.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Nikon_Z6_Li_black_11730660627069.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Nikon_Z6_Li_black_21730753917481.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Nikon_Z6_Li_black_31730753918392.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Nikon_Z6_Li_black_41730753919346.png"
     ],
     "discount": 0,
     "flashSale": true
@@ -329,10 +327,10 @@
     "description": "Câmera mirrorless full-frame de 24.2MP com estabilização de 5 eixos.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_Alpha_A7_III_black_11730660678206.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_Alpha_A7_III_black_31730753970794.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_Alpha_A7_III_black_21730753971689.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_Alpha_A7_III_black_41730753972662.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_Alpha_A7_III_black_11730660678206.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_Alpha_A7_III_black_31730753970794.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_Alpha_A7_III_black_21730753971689.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_Alpha_A7_III_black_41730753972662.png"
     ],
     "discount": 35,
     "flashSale": false
@@ -345,10 +343,10 @@
     "description": "Câmera mirrorless APS-C de 26.1MP com estabilização no colorpo.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fujifilm_XT4_black_11730660732172.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fujifilm_XT4_black_31730754013234.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fujifilm_XT4_black_21730754014218.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fujifilm_XT4_black_41730754015210.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fujifilm_XT4_black_11730660732172.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fujifilm_XT4_black_31730754013234.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fujifilm_XT4_black_21730754014218.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Fujifilm_XT4_black_41730754015210.png"
     ],
     "discount": 0,
     "flashSale": false
@@ -361,10 +359,10 @@
     "description": "Câmera Micro Four Thirds de 20.3MP com gravação 4K ilimitada.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Panasonic_Lumix_GH5II_11730660777534.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Panasonic_Lumix_GH5II_31730754081911.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Panasonic_Lumix_GH5II_21730754082881.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Panasonic_Lumix_GH5II_41730754083754.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Panasonic_Lumix_GH5II_11730660777534.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Panasonic_Lumix_GH5II_31730754081911.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Panasonic_Lumix_GH5II_21730754082881.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Panasonic_Lumix_GH5II_41730754083754.png"
     ],
     "discount": 35,
     "flashSale": false
@@ -376,10 +374,10 @@
     "description": "Fones de ouvido sem fio com cancelamento de ruído e 30 horas de bateria.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_WH_1000XM5_black_11730660835103.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_WH_1000XM5_black_41730674441127.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_WH_1000XM5_black_21730674442341.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_WH_1000XM5_black_31730674443175.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_WH_1000XM5_black_11730660835103.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_WH_1000XM5_black_41730674441127.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_WH_1000XM5_black_21730674442341.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sony_WH_1000XM5_black_31730674443175.png"
     ],
     "price": 2447.0,
     "discount": 35,
@@ -392,10 +390,10 @@
     "description": "Fones de ouvido sem fio premium com cancelamento de ruído de classe mundial.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Bose_QuietComfort45_black_11730660869625.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Bose_QuietComfort45_black_21730754181663.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Bose_QuietComfort45_black_31730754182609.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Bose_QuietComfort45_black_41730754183657.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Bose_QuietComfort45_black_11730660869625.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Bose_QuietComfort45_black_21730754181663.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Bose_QuietComfort45_black_31730754182609.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Bose_QuietComfort45_black_41730754183657.png"
     ],
     "price": 2629.0,
     "discount": 0,
@@ -408,10 +406,10 @@
     "description": "Fones de ouvido over-ear de alta fidelidade com cancelamento de ruído ativo.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_AirPods_Max_white_11730660909520.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_AirPods_Max_white_31730754219841.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_AirPods_Max_white_41730754220798.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_AirPods_Max_white_21730754221553.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_AirPods_Max_white_11730660909520.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_AirPods_Max_white_31730754219841.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_AirPods_Max_white_41730754220798.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Apple_AirPods_Max_white_21730754221553.png"
     ],
     "price": 3999.0,
     "discount": 0,
@@ -424,10 +422,10 @@
     "description": "Headphones open-back para audiófilos com som de qualidade de referência.",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sennheiser_HD_660S_black_11730660954037.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sennheiser_HD_660S_black_41730754260586.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sennheiser_HD_660S_black_21730754261724.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sennheiser_HD_660S_black_31730754262500.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sennheiser_HD_660S_black_11730660954037.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sennheiser_HD_660S_black_41730754260586.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sennheiser_HD_660S_black_21730754261724.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Sennheiser_HD_660S_black_31730754262500.png"
     ],
     "price": 4880.0,
     "discount": 35,
@@ -439,10 +437,10 @@
     "color": "Preto",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/AKG_Pro_K702_black_11730660994723.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/AKG_Pro_K702_black_31730754299003.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/AKG_Pro_K702_black_21730754299994.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/AKG_Pro_K702_black_41730754300985.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/AKG_Pro_K702_black_11730660994723.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/AKG_Pro_K702_black_31730754299003.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/AKG_Pro_K702_black_21730754299994.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/AKG_Pro_K702_black_41730754300985.png"
     ],
     "price": 1399.0,
     "description": "Headphones open-back profissionais para escuta de precisão.",
@@ -455,10 +453,10 @@
     "color": "Preto",
     "stock": 50,
     "images": [
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Logitech_G933_black_11730661028412.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Logitech_G933_black_41730754341832.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Logitech_G933_black_31730754342788.png",
-    "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Logitech_G933_black_21730754343783.png"
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Logitech_G933_black_11730661028412.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Logitech_G933_black_41730754341832.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Logitech_G933_black_31730754342788.png",
+      "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/Logitech_G933_black_21730754343783.png"
     ],
     "description": "Fones de ouvido sem fio com cancelamento de ruído ativo e colorpo leve..",
     "price": 783.64,

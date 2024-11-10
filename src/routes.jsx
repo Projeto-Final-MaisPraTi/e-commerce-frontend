@@ -78,10 +78,7 @@ const Rotas = () => (
             element={<PrivateRoute element={<CategoryPage />} />}
           />
           {/* Responsável: Erick */}
-          <Route
-            path="/manager"
-            element={<ManagerProduct />}
-          >
+          <Route path="/manager" element={<ManagerProduct />}>
             <Route index element={<HomeManager />} />
             <Route path="register" element={<RegisterProduct />} />
             <Route path="update" element={<SearchUpdateProduct />} />
