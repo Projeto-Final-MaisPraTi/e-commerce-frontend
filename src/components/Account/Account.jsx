@@ -1,10 +1,8 @@
 import "./Account.css";
-import useLanguage from "../../utils/useLanguage";
-import { useState, useEffect } from "react";
+import { useState /*,  useEffect */ } from "react";
 import { useNavigate, useLocation } from "react-router-dom"; // Para navegação e detecção da rota
 
 const Account = () => {
-  const { translations } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation(); // Para verificar a rota atual
 
@@ -34,10 +32,10 @@ const Account = () => {
     navigate("/payment"); // Redireciona para a página Payment
   };
 
-  useEffect(() => {
-    // Atualiza o título da página ou pode ser usado para outros efeitos colaterais
-    document.title = "My Account";
-  }, []);
+  // Atualiza o título da página ou pode ser usado para outros efeitos colaterais
+  // useEffect(() => {
+  //   document.title = "My Account";
+  // }, []);
 
   return (
     <div className="account-container">
@@ -45,7 +43,7 @@ const Account = () => {
         <div className="account-card">
           <div className="account-method">
             <h6>
-              <strong>{translations.account.account}</strong>
+              <strong>Gerenciar Minha Conta</strong>
             </h6>
             <div className="account-p">
               {/* "My Profile" com hover e estilo vermelho quando estiver na página /account */}
@@ -60,11 +58,11 @@ const Account = () => {
                   cursor: "pointer",
                 }}
               >
-                {translations.account.profile}
+                Meu Perfil
               </p>
 
               {/* Endereço */}
-              <p>{translations.account.address}</p>
+              <p>Livro de Endereços</p>
 
               {/* "My Payment Options" com hover e estilo */}
               <p
@@ -78,52 +76,52 @@ const Account = () => {
                   cursor: "pointer",
                 }}
               >
-                {translations.account.payment}
+                Minhas Opções de Pagamento
               </p>
             </div>
             <br />
           </div>
           <div className="account-method">
             <h6>
-              <strong>{translations.account.orders}</strong>
+              <strong>Meus Pedidos</strong>
             </h6>
             <div className="account-p">
-              <p>{translations.account.returns}</p>
-              <p>{translations.account.cancellations}</p>
+              <p>Minhas Devoluções</p>
+              <p>Meus Cancelamentos</p>
             </div>
           </div>
         </div>
       </section>
 
       <section className="account-form">
-        <h4 className="profile-title">Edit Your Profile</h4>
+        <h4 className="profile-title">Editar minhas informações</h4>
 
         <form className="form-a" onSubmit={handleSubmit}>
           <div className="form-group-a">
             <div className="input-container">
-              <label htmlFor="firstname">First Name</label>
+              <label htmlFor="firstname">Nome</label>
               <input
                 id="firstname"
                 type="text"
                 name="firstname"
-                placeholder={translations.account.formLabels.firstname}
+                placeholder="Nome"
                 value={formData.firstname}
                 onChange={handleChange}
-                aria-label={translations.account.formLabels.firstname}
+                aria-label="Nome"
               />
               {errors.firstname && <p className="error-text">{errors.firstname}</p>}
             </div>
 
             <div className="input-container">
-              <label htmlFor="lastName">Last Name</label>
+              <label htmlFor="lastName">Sobrenome</label>
               <input
                 id="lastName"
                 type="text"
                 name="lastName"
-                placeholder={translations.account.formLabels.lastname}
+                placeholder="Sobrenome"
                 value={formData.lastName}
                 onChange={handleChange}
-                aria-label={translations.account.formLabels.lastname}
+                aria-label="Sobrenome"
               />
               {errors.lastName && <p className="error-text">{errors.lastName}</p>}
             </div>
@@ -136,23 +134,23 @@ const Account = () => {
                 id="email"
                 type="email"
                 name="email"
-                placeholder={translations.account.formLabels.email}
+                placeholder="E-mail"
                 value={formData.email}
                 onChange={handleChange}
-                aria-label={translations.account.formLabels.email}
+                aria-label="E-mail"
               />
               {errors.email && <p className="error-text">{errors.email}</p>}
             </div>
 
             <div className="input-container">
-              <label htmlFor="address">Address</label>
+              <label htmlFor="address">Endereço</label>
               <input
                 id="address"
                 name="address"
-                placeholder={translations.account.formLabels.address}
+                placeholder="Endereço"
                 value={formData.address}
                 onChange={handleChange}
-                aria-label={translations.account.formLabels.address}
+                aria-label="Endereço"
               />
               {errors.address && <p className="error-text">{errors.address}</p>}
             </div>
@@ -160,15 +158,15 @@ const Account = () => {
 
           <div className="form-group-pass">
             <div className="input-container">
-              <label htmlFor="email">Password Changes</label>
+              <label htmlFor="email">Trocar Senha</label>
               <input
                 id="currentPassword"
                 type="password"
                 name="currentPassword"
-                placeholder={translations.account.formLabels.CurrentPassword}
+                placeholder="Senha"
                 value={formData.currentPassword}
                 onChange={handleChange}
-                aria-label={translations.account.formLabels.CurrentPassword}
+                aria-label="Senha"
               />
               {errors.currentPassword && <p className="error-text">{errors.currentPassword}</p>}
             </div>
@@ -180,10 +178,10 @@ const Account = () => {
                 id="newPassword"
                 type="password"
                 name="newPassword"
-                placeholder={translations.account.formLabels.NewPassword}
+                placeholder="Nova Senha"
                 value={formData.newPassword}
                 onChange={handleChange}
-                aria-label={translations.account.formLabels.NewPassword}
+                aria-label="Nova Senha"
               />
               {errors.newPassword && <p className="error-text">{errors.newPassword}</p>}
             </div>
@@ -195,10 +193,10 @@ const Account = () => {
                 id="confirmPassword"
                 type="password"
                 name="confirmPassword"
-                placeholder={translations.account.formLabels.ConfirmPassword}
+                placeholder="Confirmar Nova Senha"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                aria-label={translations.account.formLabels.ConfirmPassword}
+                aria-label="Confirmar Nova Senha"
               />
               {errors.confirmPassword && <p className="error-text">{errors.confirmPassword}</p>}
             </div>
@@ -206,11 +204,11 @@ const Account = () => {
 
           <div className="button-group">
             <button type="button" className="cancel-btn" onClick={handleCancel}>
-              Cancel
+              Cancelar
             </button>
 
             <button type="submit" className="save">
-              {translations.account.save}
+              Salvar
             </button>
           </div>
         </form>

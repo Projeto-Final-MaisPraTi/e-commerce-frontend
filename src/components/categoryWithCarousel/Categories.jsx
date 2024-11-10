@@ -15,23 +15,27 @@ const LinkList = styled.div`
     color: #000;
     text-decoration: none;
     margin-top: 10px;
+    transition: color 0.7s ease;
+
     &:hover {
-      border-bottom: solid 1px;
+      text-decoration: underline;
+      color: dodgerblue;
     }
   }
+
   @media (max-width: 767px) {
-    align-items: center;
+    align-items: center; /* Centraliza os links em telas pequenas */
   }
 `;
 
 function Category() {
   return (
     <LinkList className="col-12 col-md-2">
-      <Link to="/category/Phones">Phones</Link>
-      <Link to="/category/Computers">Computers</Link>
-      <Link to="/category/Smartwatches">SmartWatch</Link>
-      <Link to="/category/Cameras">Camera</Link>
-      <Link to="/category/Headphones">HeadPhones</Link>
+      <Link to="/category/Phones">Telefones</Link>
+      <Link to="/category/Computers">Computadores</Link>
+      <Link to="/category/Smartwatches">Relógios Digitais</Link>
+      <Link to="/category/Cameras">Câmeras</Link>
+      <Link to="/category/Headphones">Fones de Ouvido</Link>
     </LinkList>
   );
 }

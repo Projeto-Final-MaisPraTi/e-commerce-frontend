@@ -1,13 +1,14 @@
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/ComponentFooter";
-import ProductDetails from "../../components/ProductDetails/ProductDetails";
+// import ProductDetails from "../../components/ProductDetails/ProductDetails";
+import DetalhesProduto from "../../components/ProductDetails/DetalhesProduto";
 
 function Product() {
   return (
     <>
       <Header />
       <main>
-        <ProductDetails />
+        <DetalhesProduto />
       </main>
       <Footer />
     </>

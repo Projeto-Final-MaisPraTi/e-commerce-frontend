@@ -2,22 +2,18 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/Logo.png";
 import lupa from "../../../assets/icon_lupa.png";
-import wishlist from "../../../assets/icon_wishlist.png";
 import cart from "../../../assets/icon_cart.png";
 import userIcon from "../../../assets/icon_user=on.png";
 import user from "../../../assets/icon_user.png";
 import mallbagIcon from "../../../assets/icon_mallbag.png";
-import cancelIcon from "../../../assets/icon_cancel.png";
 import reviewsIcon from "../../../assets/icon_reviews.png";
 import logoutIcon from "../../../assets/icon_logout.png";
-import useLanguage from "../../../utils/useLanguage";
 import "./NavBar.css";
 
 const NavBar = ({ isUserLoggedIn }) => {
   const [isUserMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef(null);
   const searchInputRef = useRef(null);
-  const { translations } = useLanguage();
 
   const toggleUserMenu = () => {
     setUserMenuOpen((prev) => !prev);
@@ -55,10 +51,10 @@ const NavBar = ({ isUserLoggedIn }) => {
 
         {/* Links de navegação */}
         <div className="links-container">
-          <Link to="/">{translations.nav.home}</Link>
-          <Link to="/contact">{translations.nav.contact}</Link>
-          <Link to="/about">{translations.nav.about}</Link>
-          {!isUserLoggedIn && <Link to="/signup">{translations.nav.signup}</Link>}
+          <Link to="/">Início</Link>
+          <Link to="/contact">Contato</Link>
+          <Link to="/about">Sobre nós</Link>
+          {!isUserLoggedIn && <Link to="/login">Entrar</Link>}
         </div>
 
         {/* Barra de busca e ícones de ações */}
@@ -67,7 +63,7 @@ const NavBar = ({ isUserLoggedIn }) => {
           <div className="search-bar">
             <input
               ref={searchInputRef}
-              placeholder={translations.nav.searchPlaceholder}
+              placeholder="O que você está procurando"
               className="search-input"
             />
             <button onClick={handleSearch} className="search-button">
@@ -77,11 +73,6 @@ const NavBar = ({ isUserLoggedIn }) => {
 
           {/* Ícones de ações */}
           <div className="icon-group">
-            <div className="icon-button">
-              <Link to="/wishlist">
-                <img src={wishlist} alt="Wishlist Icon" />
-              </Link>
-            </div>
             <div className="icon-button">
               <Link to="/cart">
                 <img src={cart} alt="Cart Icon" />
@@ -99,31 +90,25 @@ const NavBar = ({ isUserLoggedIn }) => {
                     <div className="user-menu-item">
                       <Link to="/account">
                         <img src={user} alt="Account Icon" className="menu-item-icon" />
-                        {translations.nav.manageAccount}
+                        Gerenciar Minha Conta
                       </Link>
                     </div>
                     <div className="user-menu-item">
                       <Link to="/orders">
                         <img src={mallbagIcon} alt="Order Icon" className="menu-item-icon" />
-                        {translations.nav.myOrder}
-                      </Link>
-                    </div>
-                    <div className="user-menu-item">
-                      <Link to="/cancellations">
-                        <img src={cancelIcon} alt="Cancellations Icon" className="menu-item-icon" />
-                        {translations.nav.myCancellations}
+                        Meus Pedidos
                       </Link>
                     </div>
                     <div className="user-menu-item">
                       <Link to="/reviews">
                         <img src={reviewsIcon} alt="Reviews Icon" className="menu-item-icon" />
-                        {translations.nav.myReviews}
+                        Minhas Avanliações
                       </Link>
                     </div>
                     <div className="user-menu-item">
                       <Link to="/logout">
                         <img src={logoutIcon} alt="Logout Icon" className="menu-item-icon" />
-                        {translations.nav.logout}
+                        Sair
                       </Link>
                     </div>
                   </div>

@@ -4,26 +4,34 @@ import styled from "styled-components";
 const CarouselImg = styled.img`
   filter: drop-shadow(0 0 50px #ffffff9d);
 `;
+
 const CarouselDiv = styled.div`
   padding-left: 50px;
   border-left: solid 0.5px;
   border-color: #00000039;
+
   @media (max-width: 767px) {
+    padding-left: 0; /* Remove padding em telas menores */
     border-left: none;
   }
 `;
+
 const CarouselBackground = styled.div`
   background-color: black;
   margin-top: 40px;
 `;
+
 const TextCarousel = styled.div`
   margin: auto;
   color: white;
   padding-left: 20px;
+
   @media (max-width: 767px) {
     text-align: center;
+    padding-left: 0; /* Remove padding em telas menores */
   }
 `;
+
 const Indicators = styled.div`
   button {
     border-radius: 100%;
@@ -33,13 +41,14 @@ const Indicators = styled.div`
 `;
 
 const CaroselButton = styled.button`
-  background-color: #00ff66;
+  background-color: dodgerblue;
   border: none;
   border-radius: 4px;
   padding: 10px 30px;
   color: #fff;
+
   &:hover {
-    background-color: #03b349;
+    background-color: #1f81e2;
   }
 `;
 

@@ -1,14 +1,12 @@
 import SuperHeader from "./SuperHeader/SuperHeader";
 import NavBar from "./NavBar/NavBar";
-import FooterHeader from "./FooterHeader/FooterHeader";
+import { isAuthenticated } from "../../auth";
 
 const Header = () => {
-  const isUserLogged = true;
   return (
     <>
       <SuperHeader />
-      <NavBar isUserLoggedIn={isUserLogged} />
-      <FooterHeader />
+      <NavBar isUserLoggedIn={isAuthenticated} />
     </>
   );
 };

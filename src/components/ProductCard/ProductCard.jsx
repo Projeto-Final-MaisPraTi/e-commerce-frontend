@@ -1,13 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./ProductCard.module.css";
-const ProductNotFound = "https://via.placeholder.com/400x300";
 import StarRating from "./StarRating";
-import useLanguage from "../../utils/useLanguage";
+const ProductNotFound = "https://placehold.co/400x300";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
-
-  const { translations } = useLanguage();
 
   const handleClick = () => {
     // Redireciona para a página de detalhes do produto
@@ -18,30 +16,33 @@ const ProductCard = ({ product }) => {
     return "Lista de produtos não encontrada";
   }
 
-  function formatarDinheiro(valor, moeda) {
-    const opcoes = {
-      style: 'currency',
-      currency: moeda,
-    };
-  
-    // Definindo a localidade com base na moeda
-    const locale = moeda === 'BRL' ? 'pt-BR' : 'en-US';
-    
-    const formato = new Intl.NumberFormat(locale, opcoes);
-    return formato.format(valor);
-  }
-
-  const productImage =
-    product.images && product.images.length > 0 ? product.images[0] : ProductNotFound;
+  const productImage = product.cover ? product.cover : product.images ?  product.images[0] : ProductNotFound;
 
   return (
     <div className={styles.productCard} onClick={handleClick}>
-      <img src={productImage} alt={product.name} className={styles.productImage} />
-      <div className={styles.productInfo}>
-        <h3 className={styles.productName}>{product.name}</h3>
-        <p className={styles.productPrice}>{formatarDinheiro(product.price, translations.currency)}</p>
-        <div className={styles.productRating}>
+      {product.discount != 0 && <div className={styles.badge}>{product.discount}%</div>}
+      <div className={styles.productImage}>
+        <img 
+        src={productImage} alt={product.name} className={styles.productImage} />
+      </div>
+      <div className={styles.productDetails}>
+        <h4>{product.name}</h4>
+        <div className={styles.reviews}>
           <StarRating rating={product.rating} />
+        </div>
+        <div className={styles.productPrice}>
+          {!product.discount ? (
+            <p className={styles.price}>{product.price}</p>
+          ) : (
+            <div className={styles.discount}>
+              <p className={styles.noDiscountPrice}>
+                De: <del>{product.price}</del>
+              </p>
+              <p className={styles.discountPrice}>
+                Por: R$ {product.priceDiscount}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

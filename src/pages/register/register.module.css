@@ -41,10 +41,16 @@
   border-radius: 10px;
 }
 
+.loginInput:focus,
+.loginInputPassword:focus {
+  outline: none;
+  border: 1px solid dodgerblue;
+}
+
 .buttonCreateAccount {
   width: 100%;
   padding: 10px;
-  background-color: #db4444;
+  background-color: dodgerblue;
   color: white;
   border: none;
   border-radius: 10px;
@@ -54,7 +60,7 @@
 }
 
 .buttonCreateAccount:hover {
-  background-color: #cc4646;
+  background-color: #1f81e2;
 }
 
 .divider {
@@ -64,7 +70,7 @@
 
 .divider::before,
 .divider::after {
-  content: '';
+  content: "";
   height: 1px;
   background-color: #ddd;
   position: absolute;
@@ -145,7 +151,6 @@
   font-size: 14px;
 }
 
-
 @media (max-width: 768px) {
   .loginBox {
     padding: 30px;
@@ -155,11 +160,11 @@
   .buttonCreateAccount {
     font-size: 14px;
   }
-  
+
   h2 {
     font-size: 1.3em;
   }
-  
+
   .buttonCreateAccount {
     font-size: 14px;
   }

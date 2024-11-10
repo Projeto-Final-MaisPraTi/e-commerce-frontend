@@ -1,11 +1,20 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { findProductById } from "../../services/ProductService";
+import { getUpdateProduct, updateProduct } from "../../services/ProductService";
 import React, { useEffect, useState } from "react";
-import CircularProgressBar from "../RegisterProduct/CircularProgressBar";
-import PreviewProduct from "../RegisterProduct/PreviewProduct";
-import CurrencyInput from 'react-currency-input-field';
-import CardUpdateImage from "./CardUpdateImage";
+import LoadingSpinner from "../../components/SpinnerComponent/LoadingSpinner";
+import PreviewProduct from "../../components/PreviewProduct/PreviewProduct";
+import { deleteImageByUrl } from "../../services/ImageService";
+import { opcoesDeCores } from "../../utils/ProductOptions";
+import InputName from "../../components/ManagerProducts/Update/InputName";
+import InputDescription from "../../components/ManagerProducts/Update/InputDescription";
+import InputCategory from "../../components/ManagerProducts/Update/InputCategory";
+import InputQuantity from "../../components/ManagerProducts/Update/InputQuantity";
+import InputPrice from "../../components/ManagerProducts/Update/InputPrice";
+import InputColors from "../../components/ManagerProducts/Update/InputColors";
+import InputCover from "../../components/ManagerProducts/Update/InputCover";
+import InputAddImagesDetails from "../../components/ManagerProducts/Update/InputAddImagesDetails";
+import { createUpdateProdutoData } from "../../utils/utilsUpdateProduct";
 
 const Container = styled.div`
   display: flex;
@@ -33,6 +42,8 @@ const SideForm = styled.div`
     flex-direction: column;
     align-items: center;
     box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
+    background-color: white;
+    border-radius: 5px;
     width: 100%;
     .title {
         text-align: center;
@@ -41,154 +52,82 @@ const SideForm = styled.div`
     form{
         text-align: center;
         width: 100%;
-        label {
-            margin-top: 10px;
-        }
         .description {
             padding: 10px;
             width: 80%;
             height: 100px;
         }
         .button_submit {
-            margin-top: 10px;
+            margin-top: 15px;
             input[type="submit"] {
-            line-height: 100%;
+                line-height: 100%;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                background-color: dodgerblue;
+
+                &:hover {
+                background-color: #3a9afa;
+                }
          }
     }
-    input {
+    .disabled {
+    pointer-events: none; 
+    opacity: 0.5; 
+    }
+    .currency-input {
+        width: 80%;
+        height: 35px;
+        font-size: 20px;
+        padding: 5px;
+        margin: auto;
+    }
+}
+`
+
+const InputArea = styled.input`
     width: 80%;
     height: 35px;
     font-size: 20px;
     padding: 5px;
     margin: auto;
-    }
-}
 `
 
-const InputArea = styled.div`
-    display: flex;
-    justify-content: center;
-`
-
-const OptionColors = styled.div`
-    
-`
-
-const SelectColor = styled.div`
-    display: flex;
-    justify-content: center;
-    margin-bottom: 5px;
-`
-
-const ImageCover = styled.div`
-    display: flex;
-    height: 320px;
-    width: 300px;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
-    margin: auto;
-`
-
-const ImageDetails = styled.div`
-    display: flex;
-    height: 300px;
-    width: 90%;
-    box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin: auto;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-    padding: 10px;
-    `
-
-const ContainerAddImage = styled.div`
-    box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
-    width: 200px;
-    height: 250px;
-    border-radius: 5px;
-`
-
-const ImageWrapper = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+const Loading = styled.div`
+    margin-top: 15px;
 `
 
 
 function UpdateProduct() {
     const { id } = useParams();
-    const [product, setProduct] = useState();
 
-    const [nome, setNome] = useState();
-    const [preco, setPreco] = useState(999.99);
-    /* const [image, setImage] = useState([]); */
-    const [cor, setCor] = useState('Preto');
-    const [descricao, setDescricao] = useState();
-    const [estoque, setEstoque] = useState();
-
-    const [newImages, setNewImages] = useState();
-
-    const handleAddImage = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            const newImageUrl = URL.createObjectURL(file);
-            if (newImages) {
-                setNewImages([...newImages, newImageUrl]);
-            } else {
-                setNewImages([newImageUrl]);
-            }
-            console.log(newImages);
-            product.images = [...product.images, newImageUrl];
-        }
-    };
-
-
-
-    const [categoria, setCategoria] = useState();
-
-    const categories = [
-        { value: "", label: "Categories", disabled: true },
-        { value: "Phones", label: "Phones" },
-        { value: "Computers", label: "Computers" },
-        { value: "SmartWatches", label: "SmartWatches" },
-        { value: "Cameras", label: "Cameras" },
-        { value: "Headphones", label: "Headphones" },
-    ];
-
-    // Muda a categoria selecionada
-    const handleChangeCategory = (event) => {
-        const selectedValue = event.target.value;
-        setCategoria(selectedValue);
-    };
-
-    // cor 
-
+    const [produto, setProduto] = useState();
+    const [newImages, setNewImages] = useState([]);
+    const [imageFiles, setImageFiles] = useState([]);
+    const [cover, setCover] = useState();
+    const [deleteImage, setDeleteImage] = useState(false);
+    const [deleteCoverImage, setDeleteCover] = useState(false);
     const [corSelecionada, setCorSelecionada] = useState("#000000");
+    const [loading, setLoading] = useState(false);
 
-    const opcoesDeCores = [
-        { nome: "Preto", valor: "#000000" },
-        { nome: "Branco", valor: "#ffffff" },
-    ];
+    const handleChange = (key, value) => {
+        setProduto(prevState => ({
+            ...prevState,
+            [key]: { ...prevState[key], value }
+        }));
+    };
 
-
-    const handleChangeColor = (event) => {
-        setCorSelecionada(event.target.value);
-
-        const corEncontrada = opcoesDeCores.find((opcao) => opcao.valor === event.target.value);
-        if (corEncontrada) {
-            setCor(corEncontrada.nome);
-        }
+    const toggleEdit = (key) => {
+        setProduto(prevState => ({
+            ...prevState,
+            [key]: { ...prevState[key], edit: !prevState[key].edit }
+        }));
     };
 
     const getProduct = async (id) => {
         let product;
         try {
-            product = await findProductById(id);
+            product = await getUpdateProduct(id);
         } catch (error) {
             console.log(error);
             return;
@@ -198,27 +137,146 @@ function UpdateProduct() {
 
     useEffect(() => {
         getProduct(id).then(result => {
-            setNome(result.nome);
-            setPreco(result.preco);
-            setCor(result.cor);
-            setDescricao(result.descricao);
-            setEstoque(result.estoque);
-            setCategoria(result.categoria);
-            setProduct(result);
+            setProduto({
+                id: id,
+                name: { value: result.name, edit: false },
+                price: { value: result.price, edit: false },
+                color: { value: result.color, edit: false },
+                description: { value: result.description, edit: false },
+                stock: { value: result.stock, edit: false },
+                category: { value: result.category, edit: false },
+                images: { value: result.images, edit: false },
+                cover: { value: result.cover, edit: false }
+            })
+            const corEncontrada = opcoesDeCores.find((opcao) => opcao.nome === result.color);
+            setCorSelecionada(corEncontrada.valor);
         });
-        console.log(product);
     }, []);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+
+    // ADICIONA IMAGEM PARA OS DETALHES
+    
+    const handleAddImages = (event) => {
+        const files = Array.from(event.target.files);
+        if (files) {
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    const newImageUrl = reader.result;
+    
+                    setNewImages(prevImages => [...prevImages, newImageUrl]);
+    
+                    setImageFiles(prevFiles => [...prevFiles, file]);
+                }
+                reader.readAsDataURL(file);
+            })
+            console.log(newImages);
+            console.log(imageFiles);
+        }
     };
 
-    if (!product) {
+
+    // ADICIONA IMAGEM DE CAPA    
+
+    const handleAddCoverImage = async (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                handleChange('cover', file);
+                setCover(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    // DELETAR A IMAGEM DE CAPA //
+
+    const getNameImage = (imageUrl) => {
+        const url = imageUrl;
+        // Extrair o nome da imagem
+        const imageName = decodeURIComponent(url.split('/').pop().split('?')[0]);
+        return (imageName);
+    }
+    // Deleta a imagem de capa
+    const handleDeleteCover = async () => {
+        if (produto.cover.value && !(cover instanceof File) && produto.cover.value.includes('https:')) {
+            let nameImage = getNameImage(produto.cover.value);
+            let url = produto.cover.value;
+            await deleteImageByUrl(url);
+            // await deleteImagesFirebase(nameImage);
+            console.log(nameImage);
+        }
+        handleChange('cover', null);
+        setCover(false);
+        setDeleteCover(false);
+    }
+
+    // Delete a imagem dos detalhes
+    const handleDeleteImageDetails = async () => {
+        if (!(cover instanceof File) && deleteImage.includes("https:")) {
+            let nameImage = getNameImage(deleteImage);
+            let url = deleteImage;
+            await deleteImageByUrl(url);
+            // await deleteImagesFirebase(nameImage);
+        }
+        if (produto.images.value != null) {
+            const updatedImages = produto.images.value.filter(image => image !== deleteImage);
+            handleChange('images', updatedImages);
+        }
+        if (newImages) {
+            const prevImages = newImages.filter(image => image !== deleteImage);
+            setNewImages(prevImages);
+        }
+        setDeleteImage(false);
+    }
+
+
+    // Muda a categoria selecionada
+    const handleChangeCategory = (event) => {
+        const selectedValue = event.target.value;
+        handleChange('category', selectedValue);
+    };
+
+    // Alterar cor selecionada
+    // Ver utilidade em outros componentes
+
+    const handleChangeColor = (event) => {
+        setCorSelecionada(event.target.value);
+        console.log(event.target.value);
+
+        const corEncontrada = opcoesDeCores.find((opcao) => opcao.valor === event.target.value);
+        if (corEncontrada) {
+            handleChange('color', corEncontrada.nome);
+        }
+    };
+
+    // Enviar os arquivos para fazer atulização
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            setLoading(true);
+            const data = await createUpdateProdutoData(produto, imageFiles, setCover);
+            const resp = await updateProduct(data);
+            console.log(resp);
+            alert("Produto atualizado com sucesso!");
+            setLoading(false);
+            // window.location.reload();
+            return;
+        } catch (error) {
+            alert("Erro ao atualizar produto");
+            setLoading(false);
+            console.log(error);
+        }
+    };
+
+
+    if (!produto) {
         return (
             <>
                 <Container>
                     <WaitProduct>
-                        <CircularProgressBar size={80} />
+                        <LoadingSpinner size={70} />
                     </WaitProduct>
                 </Container>
             </>
@@ -229,143 +287,47 @@ function UpdateProduct() {
         <>
             <Container>
                 <SidePreview>
-                    <PreviewProduct name={nome} price={preco} cover={product.images[0]} />
+                    <PreviewProduct name={produto.name.value} price={produto.price.value} cover={produto.cover.value} />
                 </SidePreview>
                 <SideForm>
                     <div className="title">
-                        <h2>Update Product</h2>
+                        <h2>Editar Produto</h2>
                     </div>
                     <form onSubmit={handleSubmit}>
-                        <div>
-                            <label>Name:</label>
-                            <br />
-                            <input type="text" value={nome} onChange={(event) => setNome(event.target.value)} />
-                            {/* <input type="checkbox" /> */}
-                        </div>
-                        <div>
-                            <label>Description:</label>
-                            <br />
-                            <textarea
-                                className="description"
-                                type="text"
-                                value={descricao}
-                                onChange={(event) => setDescricao(event.target.value)}
-                            />
-                            {/* <input type="checkbox" /> */}
-                        </div>
-                        <div>
-                            <label htmlFor="">Category:</label>
-                            <br />
-                            <select name="" id="" onChange={handleChangeCategory} value={categoria}>
-                                {categories.map((cat, index) => (
-                                    <option key={index} value={cat.value} disabled={cat.disabled}>
-                                        {cat.label}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div>
-                            <label>Quantity:</label>
-                            <br />
-                            <input
-                                type="number"
-                                min={0}
-                                placeholder="0"
-                                value={estoque}
-                                onChange={(event) => setEstoque(event.target.value)}
-                            />
-                            {/* <input type="checkbox" /> */}
-                        </div>
-                        <div>
-                            <label >Value:</label>
-                            <br />
-                            <CurrencyInput
-                                value={preco}
-                                placeholder="R$ 0,00"
-                                decimalSeparator=","
-                                groupSeparator="."
-                                prefix="R$ "
-                                intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
-                                decimalsLimit={2}
-                                onValueChange={(value) => {
-                                    setPreco(value)
-                                    console.log(value);
-                                }}
-                            />
-                        </div>
-                        <OptionColors>
-                            <label>Cor</label>
-                            <SelectColor>
-                                <select value={corSelecionada} onChange={handleChangeColor}>
-                                    {opcoesDeCores.map((opcao, index) => (
-                                        <option key={index} value={opcao.valor}>
-                                            {opcao.nome}
-                                        </option>
-                                    ))}
-                                </select>
-                                <span
-                                    style={{
-                                        border: "2px solid black",
-                                        borderRadius: "5px",
-                                        padding: "15px",
-                                        marginLeft: "10px",
-                                        width: "20px",
-                                        height: "20px",
-                                        display: "inline-block",
-                                        backgroundColor: corSelecionada,
-                                    }}
-                                ></span>
-                            </SelectColor>
-                        </OptionColors>
-                        <div>
-                            <label >Cover Image:</label>
-                            <br />
-                            <ImageCover>
-                                <CardUpdateImage url={product.images[0]} />
-                            </ImageCover>
-                        </div>
-                        <div>
-                            <label>Image Details:</label>
-                            <br />
-                            <ImageDetails>
-                                {product.images.slice(1, product.images.length).map((img) => <CardUpdateImage url={img} />)}
-                                <div>
-                                    <label htmlFor="upload-button" style={{ cursor: 'pointer' }}>
-                                        <ContainerAddImage>
-                                            <ImageWrapper>
-                                                <span>Adicionar imagem</span>
-                                            </ImageWrapper>
-                                        </ContainerAddImage>
-                                    </label>
-                                    <input
-                                        id="upload-button"
-                                        type="file"
-                                        accept="image/*"
-                                        style={{ display: 'none' }}
-                                        onChange={handleAddImage}
-                                    />
-                                </div>
-                            </ImageDetails>
-                        </div>
+                        <InputName edit={toggleEdit} product={produto} handleChange={handleChange}/>
+                        <InputDescription edit={toggleEdit} product={produto} handleChange={handleChange}/>
+                        <InputCategory edit={toggleEdit} product={produto} handleCategory={handleChangeCategory}/>
+                        <InputQuantity edit={toggleEdit} product={produto} handleChange={handleChange}/>
+                        <InputPrice edit={toggleEdit} product={produto} handleChange={handleChange}/>
+                        <InputColors edit={toggleEdit} product={produto} corSelect={corSelecionada} handleChange={handleChangeColor}/>
+                        <InputCover 
+                        product={produto}
+                        edit={toggleEdit}
+                        deleteCoverImage={deleteCoverImage}
+                        setDeleteCover={setDeleteCover}
+                        handleDeleteCover={handleDeleteCover}
+                        handleAddCoverImage={handleAddCoverImage}
+                        />
+                        <InputAddImagesDetails 
+                        product={produto}
+                        edit={toggleEdit}
+                        newImages={newImages}
+                        setDeleteImage={setDeleteImage}
+                        handleAddImages={handleAddImages}
+                        deleteImage={deleteImage}
+                        handleDeleteImageDetails={handleDeleteImageDetails}
+                        />
                         <div className="button_submit">
-                            <input type="submit" value={"Update"} />
+                            <InputArea type="submit" value={"Atualizar produto"} />
                         </div>
-                        {/* {progressBar && (
-                    <Box sx={{ width: "100%", marginTop: "8px" }}>
-                        <h5>Fazendo upload das imagens</h5>
-                        <Root>
-                        <CircularProgress />
-                        </Root>
-                    </Box>
-                    )}
-                    {progressInsertDB && (
-                    <div className="loading_banco_de_dados">
-                        <h5>Fazendo upload no banco de dados</h5>
-                        <Root>
-                        <CircularProgress />
-                        </Root>
-                    </div>
-                    )} */}
+                        {loading && (
+                            <Loading>
+                                <h3>Atualizando informações...</h3>
+                                <div>
+                                    <LoadingSpinner size={80}/>
+                                </div>
+                            </Loading>
+                        )}
                     </form>
                 </SideForm>
             </Container>

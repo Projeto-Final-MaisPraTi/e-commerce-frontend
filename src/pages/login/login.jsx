@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import styles from "./login.module.css";
-import useLanguage from "../../utils/useLanguage.jsx";
 import Header from "../../components/Header/Header.jsx";
 import Footer from "../../components/Footer/ComponentFooter.jsx";
 
 const Login = () => {
-  const { translations } = useLanguage();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: "", password: "" });
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const loginWithGoogle = useGoogleLogin({
     onSuccess: (tokenResponse) => console.log(tokenResponse),
@@ -22,15 +23,15 @@ const Login = () => {
     const newErrors = { email: "", password: "" };
 
     if (!email) {
-      newErrors.email = translations.login.emailRequired;
+      newErrors.email = "E-mail é obrigatório!";
       valid = false;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-      newErrors.email = translations.login.emailInvalid;
+      newErrors.email = "E-mail inválido!";
       valid = false;
     }
 
     if (!password) {
-      newErrors.password = translations.login.passwordRequired;
+      newErrors.password = "Senha é obrigatória!";
       valid = false;
     }
 
@@ -38,11 +39,29 @@ const Login = () => {
     return valid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (validate()) {
-      console.log({ email, password });
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_BACKEND_URL}/api/login`,
+          { email, password },
+          { headers: { "Content-Type": "application/json" } },
+        );
+
+        localStorage.setItem("jwt", JSON.stringify(response.data.token)); // Salva o token no localStorage
+        navigate("/"); // Redireciona para a página inicial
+      } catch (error) {
+        if (error.response) {
+          // Erros enviados pelo backend
+          setErrorMessage(error.response.data.message || "Erro no login.");
+        } else {
+          // Erros de conexão
+          console.error("Erro na requisição:", error);
+          setErrorMessage("Erro de conexão. Tente novamente mais tarde.");
+        }
+      }
     }
   };
 
@@ -52,10 +71,9 @@ const Login = () => {
 
       <div className={styles.loginContainer}>
         <div className={styles.loginBox}>
-          <h2 className={styles.welcomeBack}>{translations.login.welcomeBack}</h2>
+          <h2 className={styles.welcomeBack}>Bem-vindo de volta!</h2>
           <p className={styles.dontHaveAccount}>
-            {translations.login.dontHaveAccount}
-            <a href="/register">{translations.login.signUp}</a>
+            Ainda não tem uma conta? <Link to="/register">Cadastre-se</Link>
           </p>
 
           <form onSubmit={handleSubmit} className={styles.loginForm}>
@@ -70,23 +88,26 @@ const Login = () => {
 
             <input
               type="password"
-              placeholder={translations.login.password}
+              placeholder="Senha"
               className={styles.loginInputPassword}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             {errors.password && <p className={styles.error}>{errors.password}</p>}
 
+            {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+
             <button type="submit" className={styles.loginButton}>
-              {translations.login.login}
+              Entrar
             </button>
           </form>
 
           <div className={styles.divider}>
-            <span>{translations.login.or}</span>
+            <span>OU</span>
           </div>
 
           <button onClick={() => loginWithGoogle()} className={styles.googleButton}>
+            {/* Google SVG */}
             <svg
               className={styles.googleIcon}
               xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +130,7 @@ const Login = () => {
                 d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
               />
             </svg>
-            {translations.login.googleButton}
+            Fazer login com o Google
           </button>
         </div>
       </div>

@@ -1,0 +1,169 @@
+.productList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px;
+  margin: 5%; /* Reduz a margem para telas menores */
+}
+
+.productCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.productCard:hover {
+  transform: scale(1.05);
+}
+
+.productImage {
+  width: 15%;
+  border-radius: 8px;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.productTitle {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.description {
+  font-size: 1em;
+  color: gray;
+  margin-bottom: 15px;
+}
+
+.reviews {
+  font-size: 12px;
+  color: #f39c12;
+}
+
+.price {
+  font-size: 1.2em;
+  color: black;
+  font-weight: bold;
+  width: 17%; /* Largura padrão para o preço */
+}
+
+.badge {
+  background-color: #ff4757;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+.noDiscountPrice {
+  color: red;
+  font-weight: bold;
+}
+
+.discountPrice {
+  color: green;
+  font-weight: bold;
+}
+
+.buyButton {
+  background-color: dodgerblue;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buyButton:hover {
+  text-decoration: underline;
+  background-color: #1f81e2;
+}
+
+/* Ajustes de responsividade para telas menores */
+@media (max-width: 768px) {
+  .productList {
+    flex-direction: column;
+    align-items: center;
+    margin: 5%;
+  }
+
+  .productCard {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px; /* Ajuste do padding em telas menores */
+  }
+
+  .productImage {
+    width: 80%; /* Expande a imagem para visibilidade em telas menores */
+    margin-bottom: 15px;
+  }
+
+  .productInfo {
+    width: 100%;
+    margin-bottom: 10px; /* Adiciona espaço entre as informações do produto e o preço */
+  }
+
+  .productTitle {
+    font-size: 1.3em;
+  }
+
+  .description {
+    font-size: 0.9em;
+  }
+
+  .reviews {
+    align-self: center;
+  }
+
+  .price {
+    width: auto; /* Permite que o preço se ajuste à largura disponível */
+    font-size: 1.1em;
+  }
+
+  .buyButton {
+    width: 100%; /* Botão ocupa toda a largura no mobile */
+    padding: 12px;
+  }
+}
+
+/* Ajustes adicionais para dispositivos móveis pequenos */
+@media (max-width: 480px) {
+  .productCard {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .productTitle {
+    font-size: 1.2em;
+  }
+
+  .description {
+    font-size: 0.85em;
+  }
+
+  .price {
+    font-size: 1em;
+    width: auto; /* Garante que o preço se ajuste corretamente em telas pequenas */
+  }
+
+  .productImage {
+    width: 100%;
+    height: auto;
+  }
+
+  .buyButton {
+    padding: 10px;
+    font-size: 1em;
+  }
+}

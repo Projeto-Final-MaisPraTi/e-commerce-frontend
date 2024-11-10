@@ -1,0 +1,194 @@
+.contactContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 101px 135px 100px;
+}
+
+.contactInfo {
+  flex: 1;
+  margin-right: 30px;
+}
+
+.contactCard {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 51px 35px;
+  border-radius: 8px;
+  margin-right: 8px;
+  background-color: white;
+}
+
+.contactMethod {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.contactMethod h3 {
+  color: black;
+  font-size: 18px;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  position: relative;
+}
+
+.contactMethod h3::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: dodgerblue;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.contactMethod h3 img {
+  position: relative;
+  z-index: 1;
+}
+
+.contactForm {
+  flex: 2;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 8px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 32px;
+}
+
+.formGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  gap: 16px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border: 1px solid dodgerblue;
+  outline: none;
+}
+
+.formGroup input {
+  height: 50px;
+}
+
+textarea {
+  height: 193px;
+  resize: none;
+}
+
+.errorText {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.sendButton {
+  background-color: dodgerblue;
+  color: white;
+  padding: 10px 48px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-end;
+}
+
+.sendButton:hover {
+  background-color: #1f81e2;
+}
+
+/* Ajustes de responsividade */
+@media (max-width: 768px) {
+  .contactContainer {
+    flex-direction: column;
+    margin: 2rem 1.5rem;
+  }
+
+  .contactInfo {
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .formGroup {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sendButton {
+    align-self: center;
+  }
+}
+
+@media (max-width: 1250px) and (min-width: 1001px) {
+  .contactContainer {
+    margin: 100px 5vw;
+  }
+}
+
+@media (max-width: 1000px) {
+  .contactContainer {
+    margin: 50px 3vw;
+  }
+}
+
+@media (min-width: 1920px) {
+  .contactContainer {
+    margin: 10rem 8rem;
+  }
+
+  .contactMethod h3 {
+    font-size: 1.5rem;
+  }
+
+  .contactMethod p {
+    font-size: 1.125rem;
+  }
+
+  .formGroup input,
+  .formGroup textarea {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 3840px) {
+  .contactContainer {
+    margin: 15rem 12rem;
+    padding: 2.5rem;
+  }
+
+  .contactMethod h3 {
+    font-size: 2rem;
+  }
+
+  .contactMethod p {
+    font-size: 1.25rem;
+  }
+
+  .formGroup input,
+  .formGroup textarea {
+    padding: 1.25rem;
+  }
+}

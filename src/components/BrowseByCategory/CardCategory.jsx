@@ -5,54 +5,82 @@ import Phones from "../../assets/svgs/Phones";
 import SmartWatch from "../../assets/svgs/SmartWatch";
 import Camera from "../../assets/svgs/Camera";
 import Computers from "../../assets/svgs/Computers";
-import useLanguage from "../../utils/useLanguage";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
-  width: 80%;
+  padding: 20px 10%;
   margin: auto;
   margin-top: 20px;
+
   .title {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+
     p {
-      color: #db4444;
+      color: dodgerblue;
       font-weight: bold;
       margin: 0;
+      font-size: 1.8em; /* Ajuste de fonte para telas grandes */
     }
   }
+
   .color {
     margin-right: 10px;
     height: 30px;
     width: 18px;
-    background-color: #db4444;
+    background-color: dodgerblue;
     border-radius: 5px;
+
+    @media (min-width: 2560px) {
+      height: 40px;
+      width: 25px;
+    }
   }
 `;
+
 const CategoriesContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
   overflow-x: scroll;
   scroll-behavior: smooth;
   justify-content: center;
-  -ms-overflow-style: none; /* Oculta a barra de rolagem no IE e Edge */
+  -ms-overflow-style: none;
   scrollbar-width: none;
   height: 200px;
   margin-top: 15px;
-  @media (max-width: 450px) {
-    align-items: center;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
+
   @media (max-width: 1220px) {
     justify-content: flex-start;
   }
+
+  @media (max-width: 450px) {
+    height: 180px;
+    gap: 10px;
+  }
+
+  @media (min-width: 2560px) {
+    height: 250px; /* Ajuste de altura para 4K */
+    gap: 20px; /* Maior espaçamento entre itens */
+  }
 `;
+
 const Categories = styled.div`
   .apresentation {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      font-size: 2em; /* Maior fonte em telas 4K */
+    }
   }
+
   .slide {
     display: inline-block;
     height: 200px;
@@ -60,28 +88,65 @@ const Categories = styled.div`
     border: solid 1px grey;
     text-align: center;
     border-radius: 3px;
-    /* margin: auto; */
+    transition: background-color 0.3s;
+
     p {
       margin-top: 10px;
+      font-size: 1.2em; /* Aumenta a fonte do texto */
     }
   }
+
   .slide + .slide {
     margin-left: 15px;
   }
+
   .slide:hover {
-    background-color: #db4444;
+    background-color: dodgerblue;
+
     p {
       color: white;
     }
+
     cursor: pointer;
   }
+
   @media (max-width: 1300px) {
     .slide {
       height: 180px;
       width: 180px;
     }
   }
+
+  @media (max-width: 768px) {
+    .slide {
+      height: 160px;
+      width: 160px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .apresentation {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .slide {
+      height: 140px;
+      width: 140px;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    .slide {
+      height: 250px;
+      width: 250px;
+      p {
+        font-size: 1.4em;
+      }
+    }
+  }
 `;
+
 const Itens = styled.div`
   display: flex;
   flex-direction: column;
@@ -90,22 +155,24 @@ const Itens = styled.div`
   min-width: 180px;
   height: 100%;
 `;
+
 const ArrowsWrapper = styled.div`
-  display: flex; /* Coloca as setas lado a lado */
-  gap: 10px; /* Adiciona espaço entre as setas */
+  display: flex;
+  gap: 10px;
   margin-bottom: 10px;
+
   @media (min-width: 1200px) {
     display: none;
   }
 `;
+
 const ArrowButton = styled.button`
-  background-color: #ccc; /* Fundo cinza */
+  background-color: #ccc;
   color: #000;
   border: none;
-  border-radius: 50%; /* Torna o botão redondo */
-  width: 40px; /* Ajusta o tamanho do botão */
+  border-radius: 50%;
+  width: 40px;
   height: 40px;
-  /* margin: auto; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,20 +180,24 @@ const ArrowButton = styled.button`
   z-index: 99;
 
   &:hover {
-    background-color: #bbb; /* Cor de fundo ao passar o mouse */
+    background-color: #bbb;
+  }
+
+  @media (min-width: 2560px) {
+    width: 60px;
+    height: 60px; /* Aumenta os botões de navegação para 4K */
   }
 `;
+
 const Right = styled(FaChevronRight)`
-  position: absolute;
   fill: grey;
 `;
+
 const Left = styled(FaChevronLeft)`
-  position: absolute;
   fill: grey;
 `;
 
 function CardCategory() {
-  const { translations } = useLanguage();
   const [hovered, setHover] = useState();
   const navigate = useNavigate();
 
@@ -155,12 +226,11 @@ function CardCategory() {
     <Container>
       <div className="title">
         <span className="color"></span>
-        <p>{translations.home.Categories.p}</p>
+        <p>Categorias</p>
       </div>
-      {/* <Right /> */}
       <Categories>
         <div className="apresentation">
-          <h2>{translations.home.Categories.h2}</h2>
+          <h2>Navegue Por Categoria</h2>
           <ArrowsWrapper>
             <ArrowButton onClick={() => scroll("left")}>
               <Left />
@@ -178,8 +248,8 @@ function CardCategory() {
             onMouseLeave={handleMouseLeave}
           >
             <Itens>
-              <Phones color={hovered == "Phones" ? "white" : "black"} />
-              <p>{translations.home.Categories.phone}</p>
+              <Phones color={hovered === "Phones" ? "white" : "black"} />
+              <p>Telefones</p>
             </Itens>
           </div>
           <div
@@ -189,8 +259,8 @@ function CardCategory() {
             onMouseLeave={handleMouseLeave}
           >
             <Itens>
-              <Computers color={hovered == "Computers" ? "white" : "black"} />
-              <p>{translations.home.Categories.computer}</p>
+              <Computers color={hovered === "Computers" ? "white" : "black"} />
+              <p>Computadores</p>
             </Itens>
           </div>
           <div
@@ -200,8 +270,8 @@ function CardCategory() {
             onMouseLeave={handleMouseLeave}
           >
             <Itens>
-              <SmartWatch color={hovered == "SmartWatch" ? "white" : "black"} />
-              <p>{translations.home.Categories.watch}</p>
+              <SmartWatch color={hovered === "SmartWatch" ? "white" : "black"} />
+              <p>Relógios Digitais</p>
             </Itens>
           </div>
           <div
@@ -211,8 +281,8 @@ function CardCategory() {
             onMouseLeave={handleMouseLeave}
           >
             <Itens>
-              <Camera color={hovered == "Camera" ? "white" : "black"} />
-              <p>{translations.home.Categories.camera}</p>
+              <Camera color={hovered === "Camera" ? "white" : "black"} />
+              <p>Câmeras</p>
             </Itens>
           </div>
           <div
@@ -222,16 +292,10 @@ function CardCategory() {
             onMouseLeave={handleMouseLeave}
           >
             <Itens>
-              <Headphones color={hovered == "Headphones" ? "white" : "black"} />
-              <p>{translations.home.Categories.headPhone}</p>
+              <Headphones color={hovered === "Headphones" ? "white" : "black"} />
+              <p>Fones de Ouvido</p>
             </Itens>
           </div>
-          {/* <div className="slide" onMouseOver={() => handleMouseHover("Gaming")} onMouseLeave={handleMouseLeave}>
-                <Itens>
-                    <Gaming color={hovered == "Gaming" ? "white": "black"}/>
-                    <p>{translations.home.Categories.gaming}</p>
-                </Itens>
-            </div> */}
         </CategoriesContainer>
       </Categories>
     </Container>

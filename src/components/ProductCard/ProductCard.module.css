@@ -1,43 +1,123 @@
 .productCard {
-  width: 270px;
-  height: 320px;
-  border-radius: 8px;
+  position: relative;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  justify-content: space-between;
+  transition: 0.3s;
 }
 
 .productCard:hover {
   transform: scale(1.05);
-  transition: transform 0.5s;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
-.productImage {
-  width: 95%;
-  height: 13rem;
-  padding: 12px;
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff4757;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.productImage img {
+  width: 100%;
+  height: 170px;
+  margin-top: 30px;
   object-fit: contain;
-  margin: 0 auto;
 }
 
-.productInfo {
-  margin-bottom: 8px;
+.productDetails {
+  padding: 20px;
 }
 
-.productName {
-  font-size: 1rem;
+.productDetails h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: black;
+  font-weight: bold;
+}
+
+.reviews {
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #f39c12;
 }
 
 .productPrice {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #db4444;
+  font-size: 20px;
+  color: red;
+  margin-bottom: 15px;
 }
 
-.productRating {
-  margin-top: 4px;
-  font-size: 1.2rem;
+.price {
+  font-size: 1.2em;
+  color: black;
+  font-weight: bold;
+}
+
+.noDiscountPrice {
+  color: red;
+  font-weight: bold;
+}
+
+.discountPrice {
+  color: green;
+  font-weight: bold;
+}
+
+/* MEDIA QUERIES */
+
+/* Tablets (768px e menos) */
+@media (max-width: 768px) {
+  .productCard {
+    margin: 0 auto;
+  }
+
+  .productDetails h4 {
+    font-size: 16px; /* Reduz o tamanho da fonte do título */
+  }
+
+  .productPrice {
+    font-size: 18px; /* Reduz o tamanho da fonte do preço */
+  }
+
+  .badge {
+    font-size: 12px; /* Reduz o tamanho da fonte do badge */
+    padding: 4px 8px;
+  }
+}
+
+/* Smartphones (480px e menos) */
+@media (max-width: 480px) {
+  .productCard {
+    width: 90%; /* Ainda menor para se ajustar a smartphones */
+    margin: 0 auto;
+  }
+
+  .productDetails {
+    padding: 15px; /* Reduz o padding interno para melhor uso do espaço */
+  }
+
+  .productDetails h4 {
+    font-size: 14px; /* Menor fonte para o título */
+  }
+
+  .productPrice {
+    font-size: 16px; /* Menor fonte para o preço */
+  }
+
+  .badge {
+    font-size: 10px;
+    padding: 3px 6px; /* Ajusta o tamanho do badge */
+  }
+
+  .reviews {
+    font-size: 10px; /* Reduz a fonte dos reviews */
+  }
 }

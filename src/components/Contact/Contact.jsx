@@ -1,11 +1,10 @@
-import "./Contact.css";
+import styles from "./Contact.module.css";
 import phoneIcon from "../../assets/icon-phone.png";
 import emailIcon from "../../assets/icon-mail.png";
-import useLanguage from "../../utils/useLanguage";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
-  const { translations } = useLanguage();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -31,18 +30,18 @@ const Contact = () => {
   const validate = () => {
     const newErrors = {};
     if (!formData.name || formData.name.length < 3) {
-      newErrors.name = translations.contact.formErrors.invalidName;
+      newErrors.name = "O nome deve ter pelo menos 3 caracteres";
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email || !emailRegex.test(formData.email)) {
-      newErrors.email = translations.contact.formErrors.invalidEmail;
+      newErrors.email = "Por favor, insira um e-mail válido";
     }
     const phoneRegex = /^[0-9]{10,}$/;
     if (!formData.phone || !phoneRegex.test(formData.phone)) {
-      newErrors.phone = translations.contact.formErrors.invalidPhone;
+      newErrors.phone = "O número de telefone deve conter pelo menos 10 dígitos";
     }
     if (!formData.message || formData.message.length < 10) {
-      newErrors.message = translations.contact.formErrors.shortMessage;
+      newErrors.message = "A mensagem deve ter pelo menos 10 caracteres";
     }
     return newErrors;
   };
@@ -58,89 +57,88 @@ const Contact = () => {
   };
 
   return (
-    <div className="contact-container">
-      <section className="contact-info">
-        <div className="contact-card">
-          <div className="contact-method">
+    <div className={styles.contactContainer}>
+      <section className={styles.contactInfo}>
+        <div className={styles.contactCard}>
+          <div className={styles.contactMethod}>
             <h3>
               <img src={phoneIcon} alt="Ícone de telefone" />
-              {translations.contact.callToUs}
+              Ligue Para Nós
             </h3>
-            <p>{translations.contact.availability}</p>
-            <p>{translations.contact.phone}</p>
+            <p>Estamos disponíveis 24 horas por dia, 7 dias por semana.</p>
+            <Link to="tel:+880011122222">+880011122222</Link>
           </div>
           <hr />
-          <div className="contact-method">
+          <div className={styles.contactMethod}>
             <h3>
               <img src={emailIcon} alt="Ícone de email" />
-              {translations.contact.writeToUs}
+              Escreva Para Nós
             </h3>
-            <p>{translations.contact.formResponse}</p>
-            <p>{translations.contact.emails}</p>
-            <p>{translations.contact.supportEmail}</p>
+            <p>Preencha nosso formulário e entraremos em contato em até 24 horas.</p>
+            <Link to="mailto:suport@example.com">support@exclusive.com</Link>
           </div>
         </div>
       </section>
 
-      <section className="contact-form">
+      <section className={styles.contactForm}>
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <div className="input-container">
+          <div className={styles.formGroup}>
+            <div className={styles.inputContainer}>
               <input
                 id="name"
                 type="text"
                 name="name"
-                placeholder={translations.contact.formLabels.name}
+                placeholder="Seu Nome"
                 value={formData.name}
                 onChange={handleChange}
-                aria-label={translations.contact.formLabels.name}
+                aria-label="Sei Nome"
               />
-              {errors.name && <p className="error-text">{errors.name}</p>}
+              {errors.name && <p className={styles.errorText}>{errors.name}</p>}
             </div>
 
-            <div className="input-container">
+            <div className={styles.inputContainer}>
               <input
                 id="email"
                 type="email"
                 name="email"
-                placeholder={translations.contact.formLabels.email}
+                placeholder="Seu E-mail"
                 value={formData.email}
                 onChange={handleChange}
-                aria-label={translations.contact.formLabels.email}
+                aria-label="Seu E-mail"
               />
-              {errors.email && <p className="error-text">{errors.email}</p>}
+              {errors.email && <p className={styles.errorText}>{errors.email}</p>}
             </div>
 
-            <div className="input-container">
+            <div className={styles.inputContainer}>
               <input
                 id="phone"
                 type="tel"
                 name="phone"
-                placeholder={translations.contact.formLabels.phone}
+                placeholder="Seu Telefone"
                 value={formData.phone}
                 onChange={handleChange}
-                aria-label={translations.contact.formLabels.phone}
+                aria-label="Seu Telefone"
               />
-              {errors.phone && <p className="error-text">{errors.phone}</p>}
+              {errors.phone && <p className={styles.errorText}>{errors.phone}</p>}
             </div>
           </div>
 
-          <div className="form-group">
-            <div className="input-container">
+          <div className={styles.formGroup}>
+            <div className={styles.inputContainer}>
               <textarea
                 id="message"
                 name="message"
-                placeholder={translations.contact.formLabels.message}
+                placeholder="Sua Mensagem"
                 value={formData.message}
                 onChange={handleChange}
-                aria-label={translations.contact.formLabels.message}
+                aria-label="Campo vazio ou inválido"
               ></textarea>
-              {errors.message && <p className="error-text">{errors.message}</p>}
+              {errors.message && <p className={styles.errorText}>{errors.message}</p>}
             </div>
           </div>
 
-          <button type="submit" className="send-button">
-            {translations.contact.sendMessage}
+          <button type="submit" className={styles.sendButton}>
+            Enviar Mensagem
           </button>
         </form>
       </section>
