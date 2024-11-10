@@ -1,19 +1,18 @@
-.checkout-container{
+.checkout-container {
   font-family: Poppins, Inter, sans-serif;
   margin: 0 10vw;
   text-align: center;
   margin-bottom: 50px;
-  
 }
-.checkout-informations{
-  display: grid; 
-  grid-template-columns: repeat(2, 1fr); /* Três colunas iguais */ 
-  grid-template-rows: auto; /* Ajusta automaticamente a altura das linhas */ 
+.checkout-informations {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Três colunas iguais */
+  grid-template-rows: auto; /* Ajusta automaticamente a altura das linhas */
   grid-gap: 10px;
-  .checkout-box1{
+  .checkout-box1 {
     grid-column: 1;
   }
-  .checkout-box2{
+  .checkout-box2 {
     grid-column: 2;
   }
 }
@@ -24,14 +23,11 @@
   padding: 10px 0;
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
-  div{
+  div {
     margin-bottom: 24px;
   }
-
-  
-
 }
-.checkout-heading{
+.checkout-heading {
   padding-top: 15px;
 }
 
@@ -43,10 +39,11 @@
   text-align: center;
 }
 /*Comando de baixo é para remover as setas dos input do tipo number de ter umas setas para aumentar ou diminuir os valores(anotado pois vou esquecer a utilidade)*/
-input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-
-
-
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 .checkout-button {
   background: dodgerblue;
@@ -56,55 +53,50 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
   text-transform: uppercase;
   border-radius: 5px;
   transition: 0.2s;
-  &:hover{
+  &:hover {
     transform: scale(1.05);
     background-color: rgb(26, 118, 209);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
   }
 }
 
-.checkout-payment{
+.checkout-payment {
   padding: 2px;
   border-radius: 5px;
-  
 }
 
-
-
-.checkout-cardInformations{
-  label{
+.checkout-cardInformations {
+  label {
     text-align: center;
   }
-  input{
+  input {
     border: 1px solid;
     border-radius: 5px;
     padding: 5px;
   }
-  .checkout-numberCardLabel{
+  .checkout-numberCardLabel {
     margin: 5px 10%;
   }
-  #numberCard{
+  #numberCard {
     margin: 5px 10%;
     width: 80%;
   }
-  &>div{
+  & > div {
     margin-top: 15px;
     margin: 0 10%;
     display: flex;
     justify-content: space-around;
-    div{
+    div {
       width: 40%;
     }
-    label{
+    label {
       width: 100%;
     }
-    input{
+    input {
       width: 100%;
     }
   }
 }
-
-
 
 @media (max-width: 1465px) {
   /*.grid-container {
@@ -113,30 +105,28 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
   .item1, .item2, .item3, .item4 { 
     grid-column: 1;
   }*/
-  .checkout-cardInformations{
-    &>div{
+  .checkout-cardInformations {
+    & > div {
       display: block;
-      div{
+      div {
         width: 100%;
       }
-      label{
+      label {
         width: 100%;
       }
-      input{
+      input {
         width: 100%;
       }
     }
   }
-  
 }
 @media (max-width: 900px) {
-  .checkout-informations{
+  .checkout-informations {
     display: block;
   }
-
 }
 @media (max-width: 650px) {
-  .checkout-container{
+  .checkout-container {
     margin: 0;
   }
 }
