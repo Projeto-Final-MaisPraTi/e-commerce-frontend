@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/Logo.png";
 import lupa from "../../../assets/icon_lupa.png";
 import cart from "../../../assets/icon_cart.png";
@@ -9,11 +9,13 @@ import mallbagIcon from "../../../assets/icon_mallbag.png";
 import reviewsIcon from "../../../assets/icon_reviews.png";
 import logoutIcon from "../../../assets/icon_logout.png";
 import "./NavBar.css";
+import { logout } from "../../../auth";
 
 const NavBar = ({ isUserLoggedIn }) => {
   const [isUserMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef(null);
   const searchInputRef = useRef(null);
+  const navigate = useNavigate();
 
   const toggleUserMenu = () => {
     setUserMenuOpen((prev) => !prev);
@@ -32,6 +34,11 @@ const NavBar = ({ isUserLoggedIn }) => {
     }
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -42,14 +49,12 @@ const NavBar = ({ isUserLoggedIn }) => {
   return (
     <div className="navbar-container">
       <div className="navbar-content">
-        {/* Logo */}
         <div className="logo-container">
           <Link to="/">
             <img src={logo} alt="Logo" className="logo" />
           </Link>
         </div>
 
-        {/* Links de navegação */}
         <div className="links-container">
           <Link to="/">Início</Link>
           <Link to="/contact">Contato</Link>
@@ -57,9 +62,7 @@ const NavBar = ({ isUserLoggedIn }) => {
           {!isUserLoggedIn && <Link to="/login">Entrar</Link>}
         </div>
 
-        {/* Barra de busca e ícones de ações */}
         <div className="actions-container">
-          {/* Barra de busca */}
           <div className="search-bar">
             <input
               ref={searchInputRef}
@@ -71,7 +74,6 @@ const NavBar = ({ isUserLoggedIn }) => {
             </button>
           </div>
 
-          {/* Ícones de ações */}
           <div className="icon-group">
             <div className="icon-button">
               <Link to="/cart">
@@ -79,7 +81,6 @@ const NavBar = ({ isUserLoggedIn }) => {
               </Link>
             </div>
 
-            {/* Menu de usuário (condicional) */}
             {isUserLoggedIn && (
               <div className="user-menu-container" ref={userMenuRef}>
                 <div className="icon-button" onClick={toggleUserMenu}>
@@ -102,14 +103,14 @@ const NavBar = ({ isUserLoggedIn }) => {
                     <div className="user-menu-item">
                       <Link to="/reviews">
                         <img src={reviewsIcon} alt="Reviews Icon" className="menu-item-icon" />
-                        Minhas Avanliações
+                        Minhas Avaliações
                       </Link>
                     </div>
                     <div className="user-menu-item">
-                      <Link to="/logout">
+                      <button className="logout-button" onClick={handleLogout}>
                         <img src={logoutIcon} alt="Logout Icon" className="menu-item-icon" />
                         Sair
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 )}

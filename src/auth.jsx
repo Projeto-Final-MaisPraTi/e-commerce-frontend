@@ -1,12 +1,16 @@
-// export const isAuthenticated = () => {
-//   if (typeof window == "undefined") {
-//     return false;
-//   }
-//   if (localStorage.getItem("jwt")) {
-//     return JSON.parse(localStorage.getItem("jwt"));
-//   } else {
-//     return false;
-//   }
-// };
+export const isAuthenticated = () => {
+  if (typeof window == "undefined") {
+    return false;
+  }
+  if (localStorage.getItem("jwt")) {
+    return localStorage.getItem("jwt");
+  } else {
+    return false;
+  }
+};
 
-export const isAuthenticated = true;
+export const logout = () => {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("jwt");
+  }
+};
