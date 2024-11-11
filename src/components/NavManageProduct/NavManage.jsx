@@ -24,6 +24,16 @@ const Nav = styled.nav`
       }
     }
   }
+  @media screen and (max-width: 500px){
+    width: 95%;
+    .nav-links {
+      flex-direction: column;
+      gap: 0;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 0px;
+    }
+  }
 `;
 
 const NavManage = () => {

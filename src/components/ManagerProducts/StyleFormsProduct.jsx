@@ -57,6 +57,9 @@ export const ImageCover = styled.div`
     align-items: center;
     box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
     margin: auto;
+    @media screen and (max-width: 500px) {
+        text-align: center;
+    }
 `
 
 export const UploadFile = styled.div`

@@ -19,6 +19,9 @@ const Container = styled.div`
   display: flex;
   gap: 20px;
   width: 100%;
+  @media screen and (max-width: 500px){
+    flex-direction: column;
+  }
 `;
 
 const SidePreview = styled.div`
@@ -86,6 +89,16 @@ const SideForm = styled.div`
       }
     }
     margin-top: 10px;
+  }
+  @media screen and (max-width: 500px){
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    form {
+      margin-top: 0px;
+      padding: 0px;
+    }
   }
 `;
 

@@ -1,10 +1,20 @@
 import { SelectBox, ImageCover, UploadFile, ContainerAddImage, ImageWrapper, InputArea, PopUpDeleteImage, ButtonsDeleteImage } from "../StyleFormsProduct";
 import CardUpdateImage from "../CardUpdateImage";
+import styled from "styled-components";
+
+const Container = styled.div`
+    
+    
+    @media screen and (max-width:500px){
+        margin: 0;
+        text-align: center;
+    }
+`
 
 
 const InputRegisterCover = ({product, deleteCoverImage, setDeleteCover, handleDeleteCover, handleAddCoverImage}) => {
     return (
-        <div>
+        <Container>
             <SelectBox>
                 <label >Imagem de capa:</label>
             </SelectBox>
@@ -39,7 +49,7 @@ const InputRegisterCover = ({product, deleteCoverImage, setDeleteCover, handleDe
                     </PopUpDeleteImage>
                 }
             </ImageCover>
-        </div>
+        </Container>
     );
 }
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL = "http://localhost:8080/api/product"; // URL para criar produtos
-
+// const API_URL = "http://192.168.4.24:8080/api/product";
 // rota para criar os produtos
 
 export const createProduct = async (productData) => {

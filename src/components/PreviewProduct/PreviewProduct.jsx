@@ -16,6 +16,11 @@ const Container = styled.div`
     width: 100%;
     margin: auto;
   }
+  @media screen and (max-width: 500px){
+    padding: 10px 0px;
+    margin: auto;
+    width: 100%;
+  }
 `;
 
 const StyProduct = styled(ProductCard)`
