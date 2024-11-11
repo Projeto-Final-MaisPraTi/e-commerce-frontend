@@ -33,7 +33,7 @@ const Container = styled.div`
 
   .produtos {
     display: flex;
-    gap: 15px;
+    justify-content: space-between;
     padding: 15px;
     width: 100%;
     overflow-x: auto;
@@ -125,7 +125,7 @@ const BestSelling = () => {
     if (width >= 2560) {
       setMaxProducts(8);
     } else if (width >= 1200) {
-      setMaxProducts(6);
+      setMaxProducts(4);
     } else if (width >= 768) {
       setMaxProducts(4);
     } else {

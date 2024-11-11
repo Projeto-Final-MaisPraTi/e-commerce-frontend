@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import useRegister from "./useRegister";
-import React, { useState } from "react";
+import { useState } from "react";
 import { submitProduct } from "../../services/ProductSubmission";
 import Box from "@mui/material/Box";
 import PreviewProduct from "../../components/PreviewProduct/PreviewProduct";
@@ -102,7 +102,6 @@ const SideForm = styled.div`
   }
 `;
 
-
 const Register = () => {
   const { setValues, data } = useRegister();
   // Categorias
@@ -123,16 +122,16 @@ const Register = () => {
   const handleDeleteCover = () => {
     setValues("cover", "");
     setDeleteCover(false);
-  }
+  };
 
   const handleDeleteImageDetails = () => {
     if (data.images != null) {
-        console.log(data.images);
-        const updatedImages = data.images.filter(image => image.name !== deleteImage.name);
-        setValues("img", updatedImages);
+      console.log(data.images);
+      const updatedImages = data.images.filter((image) => image.name !== deleteImage.name);
+      setValues("img", updatedImages);
     }
     setDeleteImage(false);
-}
+  };
 
   // Pega o primeiro indice para a imagem de capa
   const handleCoverFile = (event) => {
@@ -149,22 +148,20 @@ const Register = () => {
     const files = event.target.files;
     if (files) {
       const images = [];
-      Array.from(files).forEach(file => {
-        images.push(file)
+      Array.from(files).forEach((file) => {
+        images.push(file);
       });
       let newImgs = [...data.images, ...images];
       setValues("img", newImgs);
     }
   };
-  
+
   //Seleciona a cor
 
   const handleChangeColor = (event) => {
     setCorSelecionada(event.target.value);
 
-    const corEncontrada = opcoesDeCores.find(
-      (opcao) => opcao.valor === event.target.value
-    );
+    const corEncontrada = opcoesDeCores.find((opcao) => opcao.valor === event.target.value);
     if (corEncontrada) {
       setValues("color", corEncontrada.nome);
     }
@@ -180,14 +177,9 @@ const Register = () => {
     imagens.push(data.cover);
     imagens = [...imagens, ...data.images.flat()];
     try {
-      let result = await submitProduct(
-        data,
-        imagens,
-        setProgressBar,
-        setProgressInsertDB
-      );
+      let result = await submitProduct(data, imagens, setProgressBar, setProgressInsertDB);
       alert("Produto cadastrado!");
-      console.log(result)
+      console.log(result);
     } catch (error) {
       console.error("Erro ao enviar o produto:", error);
       alert("Erro ao cadastrar o produto.");
@@ -198,31 +190,27 @@ const Register = () => {
   return (
     <Container>
       <SidePreview>
-        <PreviewProduct
-          name={data.name}
-          price={data.price}
-          cover={data.cover}
-        />
+        <PreviewProduct name={data.name} price={data.price} cover={data.cover} />
       </SidePreview>
       <SideForm>
         <div className="title">
           <h2>Registrar Produto</h2>
         </div>
         <form onSubmit={handleSubmit}>
-          <InputRegisterName handleChange={setValues}/>
-          <InputRegisterDescription product={data} handleChange={setValues}/>
-          <InputRegisterCategory product={data} handleCategory={handleChangeCategory}/>
-          <InputRegisterQuantity product={data} handleChange={setValues}/>
-          <InputRegisterPrice product={data} handleChange={setValues}/>
-          <InputRegisterColors corSelect={corSelecionada} handleChange={handleChangeColor}/>
-          <InputRegisterCover 
+          <InputRegisterName handleChange={setValues} />
+          <InputRegisterDescription product={data} handleChange={setValues} />
+          <InputRegisterCategory product={data} handleCategory={handleChangeCategory} />
+          <InputRegisterQuantity product={data} handleChange={setValues} />
+          <InputRegisterPrice product={data} handleChange={setValues} />
+          <InputRegisterColors corSelect={corSelecionada} handleChange={handleChangeColor} />
+          <InputRegisterCover
             product={data}
             deleteCoverImage={deleteCoverImage}
             setDeleteCover={setDeleteCover}
             handleDeleteCover={handleDeleteCover}
             handleAddCoverImage={handleCoverFile}
           />
-          <InputRegisterAddImagesDetails 
+          <InputRegisterAddImagesDetails
             product={data}
             setDeleteImage={setDeleteImage}
             handleAddImages={handleFiles}
@@ -246,7 +234,7 @@ const Register = () => {
           )}
         </form>
       </SideForm>
-    </Container >
+    </Container>
   );
 };
 

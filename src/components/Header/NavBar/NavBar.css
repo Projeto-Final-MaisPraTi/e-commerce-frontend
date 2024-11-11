@@ -124,15 +124,19 @@
   cursor: pointer;
 }
 
-.user-menu-item:hover {
+.user-menu-item:hover,
+.user-menu-item .logout-button:hover {
   text-decoration: underline;
   color: white;
 }
 
-.user-menu-item a {
+.user-menu-item a,
+.user-menu-item .logout-button {
   text-decoration: none;
   color: white;
   font-size: 14px;
+  background-color: transparent;
+  border: none;
 }
 
 .user-menu-item img {
