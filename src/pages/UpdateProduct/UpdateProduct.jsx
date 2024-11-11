@@ -261,7 +261,7 @@ function UpdateProduct() {
             console.log(resp);
             alert("Produto atualizado com sucesso!");
             setLoading(false);
-            // window.location.reload();
+            window.location.reload();
             return;
         } catch (error) {
             alert("Erro ao atualizar produto");

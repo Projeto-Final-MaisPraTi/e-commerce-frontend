@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGoogleLogin } from "@react-oauth/google";
+// import { useGoogleLogin } from "@react-oauth/google";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "./login.module.css";
@@ -13,10 +13,10 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const loginWithGoogle = useGoogleLogin({
-    onSuccess: (tokenResponse) => console.log(tokenResponse),
-    onError: () => console.log("Login Failed"),
-  });
+  // const loginWithGoogle = useGoogleLogin({
+  //   onSuccess: (tokenResponse) => console.log(tokenResponse),
+  //   onError: () => console.log("Login Failed"),
+  // });
 
   const validate = () => {
     let valid = true;
@@ -102,12 +102,11 @@ const Login = () => {
             </button>
           </form>
 
-          <div className={styles.divider}>
+          {/* <div className={styles.divider}>
             <span>OU</span>
           </div>
 
           <button onClick={() => loginWithGoogle()} className={styles.googleButton}>
-            {/* Google SVG */}
             <svg
               className={styles.googleIcon}
               xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +130,7 @@ const Login = () => {
               />
             </svg>
             Fazer login com o Google
-          </button>
+          </button> */}
         </div>
       </div>
 

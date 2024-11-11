@@ -17,7 +17,7 @@ import UpdateProduct from "./pages/UpdateProduct/UpdateProduct.jsx";
 import HomeManager from "./pages/HomeManagerProduct/HomeManager.jsx";
 import MyPayment from "./pages/MyPayment/MyPayment.jsx";
 import About from "./pages/About/AboutPage.jsx";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+import ErrorBoundary from "./pages/Error/ErrorBoundary.jsx";
 
 const PrivateRoute = ({ element: Component, ...rest }) => {
   return isAuthenticated ? (
@@ -28,7 +28,7 @@ const PrivateRoute = ({ element: Component, ...rest }) => {
 };
 
 const Rotas = () => (
-  <GoogleOAuthProvider clientId="1092492564673-82i70fnc9vjtmq7kbldo38girs5urlgr.apps.googleusercontent.com">
+  <ErrorBoundary>
     <BrowserRouter>
       <Routes>
         {/* Responsável: Todos */}
@@ -76,10 +76,7 @@ const Rotas = () => (
           element={<PrivateRoute element={<CategoryPage />} />}
         />
         {/* Responsável: Erick */}
-        <Route
-          path="/manager"
-          element={<ManagerProduct />}
-        >
+        <Route path="/manager" element={<ManagerProduct />}>
           <Route index element={<HomeManager />} />
           <Route path="register" element={<RegisterProduct />} />
           <Route path="update" element={<SearchUpdateProduct />} />
@@ -89,7 +86,7 @@ const Rotas = () => (
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
-  </GoogleOAuthProvider>
+  </ErrorBoundary>
 );
 
 export default Rotas;
