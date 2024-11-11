@@ -20,18 +20,18 @@ function Checkout() {
               <input
                 className="checkout-input checkout-validation"
                 type="text"
-                name="endereco"
-                id="endereco"
+                name="address"
+                id="address"
                 required
-                placeholder="Endereço"
+                placeholder="Rua"
               />
           </div>
           <div>
-              <input className="checkout-input" type="text" name="optional" id="optional" placeholder="Complemento (opcional)"/>
+              <input className="checkout-input" type="number" name="number" id="number" placeholder="Número" required/>
           </div>
-          
           <div>
-              <input className="checkout-input checkout-validation" type="text" name="number" id="number" required placeholder="Telefone"/>
+            <input className="checkout-input2" type="text" placeholder="UF" required/>
+            <input className="checkout-input2" type="number" placeholder="CEP" required/>
           </div>
       
     </div>

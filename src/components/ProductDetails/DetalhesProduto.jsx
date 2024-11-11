@@ -5,13 +5,29 @@ import StarRating from "../ProductCard/StarRating";
 import ProductsData from "../../utils/ProductsData";
 import PageNotFound from "../404NotFound/404NotFound";
 import { getProductDetails } from "../../services/ProductService";
+import { useNavigate } from "react-router-dom";
+import { addItemToCart } from '../../services/CartService';
+
 
 const DetalhesProduto = () => {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const { id } = useParams(); // Obtém o ID do produto da URL
   const productId = parseInt(id); // Converte o ID para um número inteiro
   // const product = ProductsData.find((item) => item.id === productId); // Busca o produto com o ID correspondente
   const [product, setProduct] = useState();
+
+  const handleAddToCart = async () => {
+    try {
+       const itemCartData = {
+         productDetailsDTO: { id: product.id },
+          quantidade: 1
+         };
+         const response = await addItemToCart(itemCartData);
+         console.log('Item adicionado ao carrinho com sucesso:', response); 
+         //navigate(`/cart`);
+        } catch (error) { console.error('Erro ao adicionar item ao carrinho:', error); }
+  };
 
   useEffect(() => {
     getProductDetails(id).then(result => {
@@ -69,7 +85,7 @@ const DetalhesProduto = () => {
           <StarRating rating={product.rating} />
         </div>
 
-        <button className={styles.addToCart}>Adicionar ao Carrinho</button>
+        <button className={styles.addToCart} onClick={handleAddToCart}>Adicionar ao Carrinho</button>
 
         <div className={styles.infoCard}>
           <div className={styles.infoSection}>
