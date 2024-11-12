@@ -6,19 +6,19 @@ import Footer from "../../components/Footer/ComponentFooter.jsx";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({ name: "", email: "", password: "" });
+  const [errors, setErrors] = useState({ username: "", email: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const validate = () => {
     let valid = true;
-    const newErrors = { name: "", email: "", password: "" };
+    const newErrors = { username: "", email: "", password: "" };
 
-    if (!name) {
-      newErrors.name = "Nome é obrigatório!";
+    if (!username) {
+      newErrors.username = "Nome é obrigatório!";
       valid = false;
     }
 
@@ -45,14 +45,15 @@ const Register = () => {
     if (validate()) {
       try {
         const response = await axios.post(
-          `${import.meta.env.VITE_BACKEND_URL}/api/register`,
-          { name, email, password },
+          `${import.meta.env.VITE_BACKEND_URL}/auth/register`,
+          { username, email, password },
           { headers: { "Content-Type": "application/json" } },
         );
 
-        if (response.data.token) {
+        console.log(response.data);
+        if (response.data.accessToken) {
           // Armazena o token JWT e redireciona para a página inicial
-          localStorage.setItem("jwt", response.data.token);
+          localStorage.setItem("jwt", response.data.accessToken);
           navigate("/");
         } else {
           setErrorMessage("Erro no registro. Tente novamente.");
@@ -73,7 +74,6 @@ const Register = () => {
   return (
     <>
       <Header />
-
       <div className={styles.registerContainer}>
         <div className={styles.registerBox}>
           <h2 className={styles.createAccount}>Crie uma conta</h2>
@@ -84,10 +84,10 @@ const Register = () => {
               type="text"
               placeholder="Nome"
               className={styles.loginName}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
-            {errors.name && <p className={styles.error}>{errors.name}</p>}
+            {errors.username && <p className={styles.error}>{errors.username}</p>}
 
             <input
               type="email"
@@ -119,7 +119,6 @@ const Register = () => {
           </p>
         </div>
       </div>
-
       <Footer />
     </>
   );

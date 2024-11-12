@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <>
       <SuperHeader />
-      <NavBar isUserLoggedIn={isAuthenticated} />
+      <NavBar isUserLoggedIn={isAuthenticated()} />
     </>
   );
 };
