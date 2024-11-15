@@ -26,6 +26,11 @@
   div {
     margin-bottom: 24px;
   }
+  .checkout-divDoubleInputs{
+   input{
+    margin-bottom: 24px;
+   } 
+  }
 }
 .checkout-heading {
   padding-top: 15px;
@@ -34,14 +39,14 @@
 .checkout-input {
   border: 2px solid grey;
   border-radius: 4px;
-  padding: 10px;
+  padding: 13px 10px;
   width: 80%;
   text-align: center;
 }
 .checkout-input2 {
   border: 2px solid grey;
   border-radius: 4px;
-  padding: 10px;
+  padding: 15px 10px;
   width: 35%;
   text-align: center;
   margin: 0 5%;
@@ -89,6 +94,14 @@ input[type="number"]::-webkit-inner-spin-button {
   #numberCard {
     margin: 5px 10%;
     width: 80%;
+  }
+  .checkout-installmentsLabel{
+    width: 80%;
+    margin: 5px 10%;
+  }
+  #checkout-installments{
+    padding: 2px 8px;
+    border-radius: 5px;
   }
   & > div {
     margin-top: 15px;

@@ -16,7 +16,7 @@ function Checkout() {
             <h1 className="checkout-heading">Informações Gerais</h1>
             <div>
               <input
-                className="checkout-input checkout-validation"
+                className="checkout-input"
                 type="text"
                 name="city"
                 id="city"
@@ -26,7 +26,7 @@ function Checkout() {
             </div>
             <div>
               <input
-                className="checkout-input checkout-validation"
+                className="checkout-input"
                 type="text"
                 name="address"
                 id="address"
@@ -37,9 +37,9 @@ function Checkout() {
           <div>
               <input className="checkout-input" type="number" name="number" id="number" placeholder="Número" required/>
           </div>
-          <div>
-            <input className="checkout-input2" type="text" placeholder="UF" required/>
-            <input className="checkout-input2" type="number" placeholder="CEP" required/>
+          <div className={paymentMethod === "card" && ("checkout-divDoubleInputs")}>
+            <input className={paymentMethod === "card" ? ("checkout-input") : ("checkout-input2")} type="text" placeholder="UF" required/>
+            <input className={paymentMethod === "card" ? ("checkout-input") : ("checkout-input2")} placeholder="CEP" required/>
           </div>
       
     </div>
@@ -56,20 +56,33 @@ function Checkout() {
             {paymentMethod === "card" && (
               <div className="checkout-cardInformations">
                 <hr />
-                <label htmlFor="name" className="checkout-numberCardLabel">
+                <label className="checkout-numberCardLabel">
                   Número do Cartão:
-                </label>{" "}
+                </label>
                 <input type="number" id="numberCard" name="numberCard" required />
                 <div>
                   <div>
-                    <label htmlFor="name">Validade:</label>{" "}
-                    <input type="date" id="validity" name="validity" required />
+                    <label >Validade:</label>
+                    <input type="month" id="validity" name="validity" required />
                   </div>
                   <div>
-                    <label htmlFor="name">Código de Segurança:</label>{" "}
+                    <label >Código de Segurança:</label>
                     <input type="number" id="securityCode" name="securityCode" required />
                   </div>
                 </div>
+                    <label className="checkout-installmentsLabel">Parcelas:</label>
+                    <select id="checkout-installments" name="installments"> 
+                      <option value="1">1</option> 
+                      <option value="2">2</option> 
+                      <option value="3">3</option> 
+                      <option value="4">4</option> 
+                      <option value="5">5</option> 
+                      <option value="6">6</option> 
+                      <option value="7">7</option> 
+                      <option value="8">8</option> 
+                      <option value="9">9</option> 
+                      <option value="10">10</option> 
+                    </select>
               </div>
             )}
             <hr />

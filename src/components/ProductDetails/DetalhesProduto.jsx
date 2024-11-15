@@ -18,15 +18,13 @@ const DetalhesProduto = () => {
   const [product, setProduct] = useState();
 
   const handleAddToCart = async () => {
-    try {
        const itemCartData = {
-         productDetailsDTO: { id: product.id },
-          quantidade: 1
+         "productDetailsDTO": { "id": product.id},
+          "quantidade": 1
          };
          const response = await addItemToCart(itemCartData);
          console.log('Item adicionado ao carrinho com sucesso:', response); 
          //navigate(`/cart`);
-        } catch (error) { console.error('Erro ao adicionar item ao carrinho:', error); }
   };
 
   useEffect(() => {
