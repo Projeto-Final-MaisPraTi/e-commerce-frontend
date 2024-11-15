@@ -38,15 +38,15 @@
 
 .checkout-input {
   border: 2px solid grey;
-  border-radius: 4px;
+  border-radius: 15px;
   padding: 13px 10px;
   width: 80%;
   text-align: center;
 }
 .checkout-input2 {
   border: 2px solid grey;
-  border-radius: 4px;
-  padding: 15px 10px;
+  border-radius: 15px;
+  padding: 13px 10px;
   width: 35%;
   text-align: center;
   margin: 0 5%;
@@ -95,6 +95,28 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 5px 10%;
     width: 80%;
   }
+  .checkout-expiryDate{
+    display: flex;
+    width: 100%;
+    border: 1px solid;
+    border-radius: 5px;
+    input{
+      border: none;
+    }
+    p{
+      padding: 5px 0;
+      margin: 0;
+    }
+    #checkout-expiryMonth{
+      text-align: end;
+      padding-right: 1px;
+    }
+    #checkout-expiryYear{
+      text-align: start;
+      padding-left: 1px;
+    }
+  }
+
   .checkout-installmentsLabel{
     width: 80%;
     margin: 5px 10%;

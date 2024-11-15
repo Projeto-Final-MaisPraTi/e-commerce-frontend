@@ -63,7 +63,11 @@ function Checkout() {
                 <div>
                   <div>
                     <label >Validade:</label>
-                    <input type="month" id="validity" name="validity" required />
+                    <div class="checkout-expiryDate"> 
+                      <input type="text" id="checkout-expiryMonth" name="expiryMonth" placeholder="Mês" maxlength="2"/>
+                      <p>/</p>
+                      <input type="text" id="checkout-expiryYear" name="expiryYear" placeholder="Ano" maxlength="2"/>
+                    </div>
                   </div>
                   <div>
                     <label >Código de Segurança:</label>
@@ -72,7 +76,7 @@ function Checkout() {
                 </div>
                     <label className="checkout-installmentsLabel">Parcelas:</label>
                     <select id="checkout-installments" name="installments"> 
-                      <option value="1">1</option> 
+                      <option value="1" selected>1</option> 
                       <option value="2">2</option> 
                       <option value="3">3</option> 
                       <option value="4">4</option> 
