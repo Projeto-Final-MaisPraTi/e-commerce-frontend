@@ -24,7 +24,7 @@ const Nav = styled.nav`
       }
     }
   }
-  @media screen and (max-width: 500px){
+  @media screen and (max-width: 780px){
     width: 95%;
     .nav-links {
       flex-direction: column;
@@ -33,6 +33,9 @@ const Nav = styled.nav`
       align-items: center;
       padding: 10px 0px;
     }
+  }
+  @media screen and (max-width: 1080px){
+    width: 95%;
   }
 `;
 

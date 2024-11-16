@@ -45,7 +45,7 @@ export const getUpdateProduct = async (id) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error ao procurar produto:", error);
+    console.error("Error ao procurar produto update:", error);
     throw error; // Repassa o erro
   }
 };
@@ -77,7 +77,7 @@ export const findProductByName = async (name) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error ao procurar produto:", error);
+    console.error("Error ao procurar produto por nome:", error);
     throw error; // Repassa o erro
   }
 };
@@ -153,9 +153,10 @@ export const getFilteredProducts = async (filters, page = 0, size = 10) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Erro ao buscar produtos:", error);
+    console.error("Erro ao buscar produtos por filtro:", error);
   }
 };
+
 
 // Função para buscar produtos de flash sales com paginação
 // Retorna uma paginação
@@ -164,7 +165,27 @@ export const getFlashSalesProducts = async (page = 0, size = 10, sort = "name,as
     const response = await axios.get(API_URL + `/flashsales?page=${page}`);
     return response.data;
   } catch (error) {
-    console.error("Erro ao buscar os produtos:", error);
+    console.error("Erro ao buscar os produtos em venda relampago:", error);
+    return null;
+  }
+};
+
+export const getBestSellersProducts = async (page = 0, size = 10, sort = "name,asc") => {
+  try {
+    const response = await axios.get(API_URL + `/bestsellers?page=${page}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar os produtos mais vendidos:", error);
+    return null;
+  }
+};
+
+export const getAllProducts = async (page = 0, size = 10, sort = "name,asc") => {
+  try {
+    const response = await axios.get(API_URL + `?page=${page}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar os todos os produtos:", error);
     return null;
   }
 };

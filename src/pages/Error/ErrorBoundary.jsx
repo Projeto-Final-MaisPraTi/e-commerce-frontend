@@ -6,8 +6,17 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
   height: 100vh;
   background-color: white;
+  img {
+    max-width: 24rem;
+  }
+  @media screen and (max-width: 500px) {
+    img {
+      max-width: 16rem;
+    }
+  }
 `;
 
 // Error Boundary Component

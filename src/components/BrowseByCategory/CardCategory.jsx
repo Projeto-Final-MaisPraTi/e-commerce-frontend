@@ -22,7 +22,12 @@ const Container = styled.div`
       color: dodgerblue;
       font-weight: bold;
       margin: 0;
-      font-size: 1.8em; /* Ajuste de fonte para telas grandes */
+      font-size: 1.5em; /* Ajuste de fonte para telas grandes */
+    }
+    @media screen and (max-width: 480px){
+      p {
+        font-size: 1.2em;
+      }
     }
   }
 
@@ -75,11 +80,18 @@ const Categories = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     h2 {
       font-size: 2em; /* Maior fonte em telas 4K */
     }
   }
+  @media screen and (max-width: 480px) {
+    .apresentation {
+      display: flex;
+      h2 {
+      font-size: 1.5em;
+    }
+  }
+}
 
   .slide {
     display: inline-block;
@@ -125,14 +137,18 @@ const Categories = styled.div`
   }
 
   @media (max-width: 480px) {
+    .title p{
+      font-size: 1em;
+    }
     .apresentation {
-      flex-direction: column;
+      font-size: 13px;
+      flex-direction: row;
       align-items: center;
     }
 
     .slide {
       height: 140px;
-      width: 140px;
+      width: 150px;
     }
   }
 
@@ -152,7 +168,7 @@ const Itens = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 180px;
+  min-width: 150px;
   height: 100%;
 `;
 

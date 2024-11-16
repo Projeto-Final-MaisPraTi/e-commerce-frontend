@@ -4,6 +4,7 @@ import StarRating from "./StarRating";
 const ProductNotFound = "https://placehold.co/400x300";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
+
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
 
@@ -39,7 +40,7 @@ const ProductCard = ({ product }) => {
                 De: <del>{product.price}</del>
               </p>
               <p className={styles.discountPrice}>
-                Por: R$ {product.priceDiscount}
+                Por: {product.priceDiscount}
               </p>
             </div>
           )}

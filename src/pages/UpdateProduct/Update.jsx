@@ -14,6 +14,9 @@ const Container = styled.div`
   width: 90%;
   margin: auto;
   border-radius: 5px;
+  @media screen and (max-width: 500px){
+    width: 100%;
+  }
 `
 
 const SearchBar = styled.div`
@@ -42,6 +45,14 @@ const SearchBar = styled.div`
       background-color: #3a9afa;
     }
   }
+  @media screen and (max-width: 780px){
+    flex-direction: column;
+    height: auto;
+    button {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+  }
 `
 
 
@@ -49,6 +60,11 @@ const SelectCategorie = styled.div`
   display: flex;
   height: 100%;
   align-items: center;
+  @media screen and (max-width:780px){
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+  }
 `
 
 const SearchInput = styled.div`
@@ -59,7 +75,17 @@ const SearchInput = styled.div`
   select {
     height: 100%;
   }
-  
+  @media screen and (max-width: 780px){
+    flex-direction: column;
+    select {
+      height: 40px;
+      width: 100%;
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 `
 
 const ShowProducts = styled.div`
@@ -78,6 +104,11 @@ const ShowProducts = styled.div`
     & > * {
         flex: 0 0 auto; /* Garante que os itens não crescerão ou encolherão */
     }
+  @media screen and (max-width: 500px){
+    margin: 10px auto; 
+    padding: 10px 0px;
+    gap: 10px;
+  }
 `
 
 const Loading = styled.div`
@@ -239,16 +270,16 @@ const Update = () => {
           </div>
           <SelectCategorie>
             <label>Categoria:</label>
-              <select name="" id="" onChange={handleChangeCategory} value={categoria}>
-              <option value="">Todas</option>
+              <select onChange={handleChangeCategory} value={categoria}>
+                <option value="">Todas</option>
                 {categories.map((cat, index) => (
                   <option key={index} value={cat.value} disabled={cat.disabled}>
                     {cat.label}
                   </option>
                 ))}
               </select>
-            </SelectCategorie>
-          </SearchInput>
+          </SelectCategorie>
+        </SearchInput>
         {/* AO CLICAR EM BUSCAR E CHAMADA UM FUNÇAO PARA BUSCAR OS PRODUTOS NO BANCO E COLOCAR TODOS OS PRODUTOS ENCONTRADOS EM UMA VARIAVEL */}
         <button onClick={buscarProduto}>Buscar</button>
       </SearchBar>

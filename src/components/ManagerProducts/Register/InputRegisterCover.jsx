@@ -6,8 +6,8 @@ const Container = styled.div`
     
     
     @media screen and (max-width:500px){
-        margin: 0;
         text-align: center;
+        margin: 0;
     }
 `
 

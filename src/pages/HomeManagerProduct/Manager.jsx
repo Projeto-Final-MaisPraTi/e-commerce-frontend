@@ -5,15 +5,20 @@ import NavManage from "../../components/NavManageProduct/NavManage";
 import { Outlet } from "react-router-dom";
 
 const Container = styled.div`
+  width: 95%;
+  margin: auto;
   transition: 0.5s;
+  @media screen and (max-width: 800px){
+    width: 100%;
+  }
 `;
 
 function ManagerProduct() {
   return (
     <>
       <Header />
-      <NavManage />
       <Container>
+        <NavManage />
         <Outlet />
       </Container>
       <Footer />

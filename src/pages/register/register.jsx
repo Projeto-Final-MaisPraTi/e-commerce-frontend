@@ -45,7 +45,7 @@ const Register = () => {
     if (validate()) {
       try {
         const response = await axios.post(
-          `${import.meta.env.VITE_BACKEND_URL}/auth/register`,
+          `${import.meta.env.VITE_API_HOST}/auth/register`,
           { username, email, password },
           { headers: { "Content-Type": "application/json" } },
         );
