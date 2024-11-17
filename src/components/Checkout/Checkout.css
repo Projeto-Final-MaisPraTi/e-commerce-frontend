@@ -26,6 +26,11 @@
   div {
     margin-bottom: 24px;
   }
+  .checkout-divDoubleInputs{
+   input{
+    margin-bottom: 24px;
+   } 
+  }
 }
 .checkout-heading {
   padding-top: 15px;
@@ -33,10 +38,18 @@
 
 .checkout-input {
   border: 2px solid grey;
-  border-radius: 4px;
-  padding: 10px;
+  border-radius: 15px;
+  padding: 13px 10px;
   width: 80%;
   text-align: center;
+}
+.checkout-input2 {
+  border: 2px solid grey;
+  border-radius: 15px;
+  padding: 13px 10px;
+  width: 35%;
+  text-align: center;
+  margin: 0 5%;
 }
 /*Comando de baixo é para remover as setas dos input do tipo number de ter umas setas para aumentar ou diminuir os valores(anotado pois vou esquecer a utilidade)*/
 input[type="number"]::-webkit-outer-spin-button,
@@ -53,7 +66,8 @@ input[type="number"]::-webkit-inner-spin-button {
   text-transform: uppercase;
   border-radius: 5px;
   transition: 0.2s;
-  &:hover {
+  margin-top: 10px;
+  &:hover{
     transform: scale(1.05);
     background-color: rgb(26, 118, 209);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
@@ -81,6 +95,36 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 5px 10%;
     width: 80%;
   }
+  .checkout-expiryDate{
+    display: flex;
+    width: 100%;
+    border: 1px solid;
+    border-radius: 5px;
+    input{
+      border: none;
+    }
+    p{
+      padding: 5px 0;
+      margin: 0;
+    }
+    #checkout-expiryMonth{
+      text-align: end;
+      padding-right: 1px;
+    }
+    #checkout-expiryYear{
+      text-align: start;
+      padding-left: 1px;
+    }
+  }
+
+  .checkout-installmentsLabel{
+    width: 80%;
+    margin: 5px 10%;
+  }
+  #checkout-installments{
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
   & > div {
     margin-top: 15px;
     margin: 0 10%;
@@ -99,14 +143,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 @media (max-width: 1465px) {
-  /*.grid-container {
-     grid-template-columns: 1fr; 
-    } 
-  .item1, .item2, .item3, .item4 { 
-    grid-column: 1;
-  }*/
-  .checkout-cardInformations {
-    & > div {
+  .checkout-cardInformations{
+    &>div{
       display: block;
       div {
         width: 100%;
@@ -119,15 +157,32 @@ input[type="number"]::-webkit-inner-spin-button {
       }
     }
   }
+  .checkout-input2 {
+    width: 80%;
+    margin: 0;
+    margin-bottom: 24px;
+  }
+  
 }
 @media (max-width: 900px) {
   .checkout-informations {
     display: block;
+    margin-left: 10%;
+    width: 80%;
   }
+  .checkout-form{
+    margin: 0;
+    padding: 10px 0;
+  }
+
 }
 @media (max-width: 650px) {
   .checkout-container {
     margin: 0;
+  }
+  .checkout-informations{
+   margin-left: 5%;
+   width: 90%; 
   }
 }
 @media (max-width: 400px) {

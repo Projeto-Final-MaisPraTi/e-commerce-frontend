@@ -17,6 +17,7 @@ import UpdateProduct from "./pages/UpdateProduct/UpdateProduct.jsx";
 import HomeManager from "./pages/HomeManagerProduct/HomeManager.jsx";
 import MyPayment from "./pages/MyPayment/MyPayment.jsx";
 import About from "./pages/About/AboutPage.jsx";
+import PurchaseSuccess from "./pages/PurchaseSuccess/PurchaseSuccess.jsx";
 import ErrorBoundary from "./pages/Error/ErrorBoundary.jsx";
 
 const PrivateRoute = ({ element: Component, ...rest }) => {
@@ -37,6 +38,7 @@ const Rotas = () => (
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/purchase-sucess" element={<PurchaseSuccess />} />
         <Route
           exact
           path="/login"

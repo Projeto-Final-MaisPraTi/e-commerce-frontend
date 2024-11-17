@@ -16,7 +16,7 @@ function Checkout() {
             <h1 className="checkout-heading">Informações Gerais</h1>
             <div>
               <input
-                className="checkout-input checkout-validation"
+                className="checkout-input"
                 type="text"
                 name="city"
                 id="city"
@@ -26,35 +26,23 @@ function Checkout() {
             </div>
             <div>
               <input
-                className="checkout-input checkout-validation"
-                type="text"
-                name="endereco"
-                id="endereco"
-                required
-                placeholder="Endereço"
-              />
-            </div>
-            <div>
-              <input
                 className="checkout-input"
                 type="text"
-                name="optional"
-                id="optional"
-                placeholder="Complemento (opcional)"
-              />
-            </div>
-
-            <div>
-              <input
-                className="checkout-input checkout-validation"
-                type="text"
-                name="number"
-                id="number"
+                name="address"
+                id="address"
                 required
-                placeholder="Telefone"
+                placeholder="Rua"
               />
-            </div>
           </div>
+          <div>
+              <input className="checkout-input" type="number" name="number" id="number" placeholder="Número" required/>
+          </div>
+          <div className={paymentMethod === "card" && ("checkout-divDoubleInputs")}>
+            <input className={paymentMethod === "card" ? ("checkout-input") : ("checkout-input2")} type="text" placeholder="UF" required/>
+            <input className={paymentMethod === "card" ? ("checkout-input") : ("checkout-input2")} placeholder="CEP" required/>
+          </div>
+      
+    </div>
 
           <div className="checkout-box checkout-box2">
             <h1>Informações de Pagamento</h1>
@@ -68,20 +56,37 @@ function Checkout() {
             {paymentMethod === "card" && (
               <div className="checkout-cardInformations">
                 <hr />
-                <label htmlFor="name" className="checkout-numberCardLabel">
+                <label className="checkout-numberCardLabel">
                   Número do Cartão:
-                </label>{" "}
+                </label>
                 <input type="number" id="numberCard" name="numberCard" required />
                 <div>
                   <div>
-                    <label htmlFor="name">Validade:</label>{" "}
-                    <input type="date" id="validity" name="validity" required />
+                    <label >Validade:</label>
+                    <div className="checkout-expiryDate"> 
+                      <input type="text" id="checkout-expiryMonth" name="expiryMonth" placeholder="Mês" maxLength="2"/>
+                      <p>/</p>
+                      <input type="text" id="checkout-expiryYear" name="expiryYear" placeholder="Ano" maxLength="2"/>
+                    </div>
                   </div>
                   <div>
-                    <label htmlFor="name">Código de Segurança:</label>{" "}
+                    <label >Código de Segurança:</label>
                     <input type="number" id="securityCode" name="securityCode" required />
                   </div>
                 </div>
+                    <label className="checkout-installmentsLabel">Parcelas:</label>
+                    <select id="checkout-installments" name="installments"> 
+                      <option value="1" selected>1</option> 
+                      <option value="2">2</option> 
+                      <option value="3">3</option> 
+                      <option value="4">4</option> 
+                      <option value="5">5</option> 
+                      <option value="6">6</option> 
+                      <option value="7">7</option> 
+                      <option value="8">8</option> 
+                      <option value="9">9</option> 
+                      <option value="10">10</option> 
+                    </select>
               </div>
             )}
             <hr />

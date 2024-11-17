@@ -105,7 +105,7 @@ const ShoppingCart = () => {
         <p>
           Total Atualizado: <span>${totalWithDiscount.toFixed(2)}</span>
         </p>
-        <hr />
+        {/*<hr />
         <div className={styles.couponSection}>
           <input
             type="text"
@@ -114,7 +114,7 @@ const ShoppingCart = () => {
             onChange={(e) => setCoupon(e.target.value)}
           />
           <button onClick={applyCoupon}>Aplicar cupom</button>
-        </div>
+        </div>*/}
         <Link to="/checkout">
           <button type="submit" className={styles.cartCheckoutButton}>
             Prosseguir para pagamento
