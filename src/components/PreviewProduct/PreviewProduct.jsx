@@ -7,6 +7,7 @@ const Container = styled.div`
   padding: 10px;
   background-color: white;
   border-radius: 4px;
+  pointer-events: none;
   h2 {
     text-align: center;
   }

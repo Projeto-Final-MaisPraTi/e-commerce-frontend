@@ -41,7 +41,7 @@ function Category({ selectedCategory }) {
                 <span className={styles.badge}>{product.discount}% off</span>
               </p>
               <p className={styles.discountPrice}>
-                Por: R$ {product.priceDiscount}
+                Por: {product.priceDiscount}
               </p>
             </div>
           )}

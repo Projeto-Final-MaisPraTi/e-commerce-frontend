@@ -3,6 +3,8 @@ import ProductCard from "../ProductCard/ProductCard";
 import ProductsData from "../../utils/ProductsData";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getBestSellersProducts } from "../../services/ProductService";
+import ProductCardSkeleton from "../ProductCard/ProductCardSkeleton";
 
 const Container = styled.div`
   padding: 20px 10%;
@@ -33,8 +35,9 @@ const Container = styled.div`
 
   .produtos {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 15px;
+    gap: 20px;
     width: 100%;
     overflow-x: auto;
     -ms-overflow-style: none;
@@ -46,7 +49,7 @@ const Container = styled.div`
 
     & > * {
       flex: 0 1 calc(25% - 15px); /* 4 colunas por linha */
-      box-sizing: border-box;
+     box-sizing: border-box;
     }
   }
 
@@ -73,6 +76,7 @@ const Container = styled.div`
 
     .produtos > * {
       flex: 0 1 100%; /* 1 coluna em telas muito pequenas */
+      gap:10px;
     }
   }
 `;
@@ -117,6 +121,7 @@ const SecTitle = styled.div`
 const BestSelling = () => {
   const [maxProducts, setMaxProducts] = useState(7);
   const [randomProducts, setRandomProducts] = useState([]);
+  const [load, setLoad] = useState(true);
   const navigate = useNavigate();
 
   const handleMaxProducts = () => {
@@ -125,7 +130,7 @@ const BestSelling = () => {
     if (width >= 2560) {
       setMaxProducts(8);
     } else if (width >= 1200) {
-      setMaxProducts(4);
+      setMaxProducts(5);
     } else if (width >= 768) {
       setMaxProducts(4);
     } else {
@@ -133,10 +138,22 @@ const BestSelling = () => {
     }
   };
 
+
   useEffect(() => {
-    const filteredProducts = ProductsData.filter((product) => product.isBestSelling);
-    const shuffledProducts = filteredProducts.sort(() => 0.5 - Math.random());
-    setRandomProducts(shuffledProducts);
+
+    getBestSellersProducts()
+    .then(result => {
+
+      const shuffledProducts = result.content.sort(() => 0.5 - Math.random());
+      setRandomProducts(shuffledProducts);
+      setLoad(false);
+      handleMaxProducts();
+    }).catch(error =>  {
+      console.log("Erro ao carregar:" + error)
+    });
+  },[])
+
+  useEffect(() => {
     handleMaxProducts();
     window.addEventListener("resize", handleMaxProducts);
 
@@ -160,9 +177,14 @@ const BestSelling = () => {
         <button onClick={handleViewAllClick}>Ver Todos</button>
       </SecTitle>
       <div className="produtos">
-        {randomProducts.slice(0, maxProducts).map((product) => (
+      {load && (
+          Array.from({ length: maxProducts }).map((_, index) => (
+            <ProductCardSkeleton cards={1} key={index} />
+          ))
+        )}
+        {randomProducts ? randomProducts.slice(0, maxProducts).map((product) => (
           <ProductCard key={product.id} product={product} />
-        ))}
+        )): ''}
       </div>
     </Container>
   );

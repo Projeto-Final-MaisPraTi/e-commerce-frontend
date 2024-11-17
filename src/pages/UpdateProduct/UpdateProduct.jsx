@@ -23,6 +23,12 @@ const Container = styled.div`
   padding: 30px;
   gap: 20px;
   transition: 0.3s;
+  @media screen and (max-width: 1020px){
+    width: 95%;
+    margin: 10px auto;
+    padding: 0;
+    flex-direction: column;
+  }
 `;
 
 const WaitProduct = styled.div`
@@ -34,7 +40,7 @@ const WaitProduct = styled.div`
     margin: auto;
 `
 const SidePreview = styled.div`
-    padding: 0 10px;
+   height: 100%;
 `
 
 const SideForm = styled.div`
@@ -81,6 +87,10 @@ const SideForm = styled.div`
         font-size: 20px;
         padding: 5px;
         margin: auto;
+    }
+    @media screen and (max-width: 500px){
+        padding: 0;
+        margin-top: 0;
     }
 }
 `
@@ -155,7 +165,7 @@ function UpdateProduct() {
 
 
     // ADICIONA IMAGEM PARA OS DETALHES
-    
+
     const handleAddImages = (event) => {
         const files = Array.from(event.target.files);
         if (files) {
@@ -163,9 +173,9 @@ function UpdateProduct() {
                 const reader = new FileReader();
                 reader.onloadend = () => {
                     const newImageUrl = reader.result;
-    
+
                     setNewImages(prevImages => [...prevImages, newImageUrl]);
-    
+
                     setImageFiles(prevFiles => [...prevFiles, file]);
                 }
                 reader.readAsDataURL(file);
@@ -284,31 +294,30 @@ function UpdateProduct() {
     }
 
     return (
-        <>
-            <Container>
-                <SidePreview>
-                    <PreviewProduct name={produto.name.value} price={produto.price.value} cover={produto.cover.value} />
-                </SidePreview>
-                <SideForm>
-                    <div className="title">
-                        <h2>Editar Produto</h2>
-                    </div>
-                    <form onSubmit={handleSubmit}>
-                        <InputName edit={toggleEdit} product={produto} handleChange={handleChange}/>
-                        <InputDescription edit={toggleEdit} product={produto} handleChange={handleChange}/>
-                        <InputCategory edit={toggleEdit} product={produto} handleCategory={handleChangeCategory}/>
-                        <InputQuantity edit={toggleEdit} product={produto} handleChange={handleChange}/>
-                        <InputPrice edit={toggleEdit} product={produto} handleChange={handleChange}/>
-                        <InputColors edit={toggleEdit} product={produto} corSelect={corSelecionada} handleChange={handleChangeColor}/>
-                        <InputCover 
+        <Container>
+            <SidePreview>
+                <PreviewProduct name={produto.name.value} price={produto.price.value} cover={produto.cover.value} />
+            </SidePreview>
+            <SideForm>
+                <div className="title">
+                    <h2>Editar Produto</h2>
+                </div>
+                <form onSubmit={handleSubmit}>
+                    <InputName edit={toggleEdit} product={produto} handleChange={handleChange} />
+                    <InputDescription edit={toggleEdit} product={produto} handleChange={handleChange} />
+                    <InputCategory edit={toggleEdit} product={produto} handleCategory={handleChangeCategory} />
+                    <InputQuantity edit={toggleEdit} product={produto} handleChange={handleChange} />
+                    <InputPrice edit={toggleEdit} product={produto} handleChange={handleChange} />
+                    <InputColors edit={toggleEdit} product={produto} corSelect={corSelecionada} handleChange={handleChangeColor} />
+                    <InputCover
                         product={produto}
                         edit={toggleEdit}
                         deleteCoverImage={deleteCoverImage}
                         setDeleteCover={setDeleteCover}
                         handleDeleteCover={handleDeleteCover}
                         handleAddCoverImage={handleAddCoverImage}
-                        />
-                        <InputAddImagesDetails 
+                    />
+                    <InputAddImagesDetails
                         product={produto}
                         edit={toggleEdit}
                         newImages={newImages}
@@ -316,22 +325,21 @@ function UpdateProduct() {
                         handleAddImages={handleAddImages}
                         deleteImage={deleteImage}
                         handleDeleteImageDetails={handleDeleteImageDetails}
-                        />
-                        <div className="button_submit">
-                            <InputArea type="submit" value={"Atualizar produto"} />
-                        </div>
-                        {loading && (
-                            <Loading>
-                                <h3>Atualizando informações...</h3>
-                                <div>
-                                    <LoadingSpinner size={80}/>
-                                </div>
-                            </Loading>
-                        )}
-                    </form>
-                </SideForm>
-            </Container>
-        </>
+                    />
+                    <div className="button_submit">
+                        <InputArea type="submit" value={"Atualizar produto"} />
+                    </div>
+                    {loading && (
+                        <Loading>
+                            <h3>Atualizando informações...</h3>
+                            <div>
+                                <LoadingSpinner size={80} />
+                            </div>
+                        </Loading>
+                    )}
+                </form>
+            </SideForm>
+        </Container>
     );
 }
 

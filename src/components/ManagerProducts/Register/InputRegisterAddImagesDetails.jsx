@@ -1,9 +1,18 @@
 import { SelectBox, UploadFile, ContainerAddImage, ImageWrapper, InputArea, PopUpDeleteImage, ButtonsDeleteImage, ImageDetails } from "../StyleFormsProduct";
 import CardUpdateImage from "../CardUpdateImage";
+import styled from "styled-components";
+
+const Container = styled.div`
+
+    @media screen and (max-width:500px){
+        text-align: center;
+        margin: 0;
+    }
+`
 
 const InputRegisterAddImagesDetails = ({product, setDeleteImage, handleAddImages, deleteImage, handleDeleteImageDetails}) => {
     return (
-        <div>
+        <Container>
             <SelectBox>
                 <label>Imagem de detalhes:</label>
             </SelectBox>
@@ -36,7 +45,7 @@ const InputRegisterAddImagesDetails = ({product, setDeleteImage, handleAddImages
                     </PopUpDeleteImage>
                 }
             </ImageDetails>
-        </div>
+        </Container>
     )
 }
 

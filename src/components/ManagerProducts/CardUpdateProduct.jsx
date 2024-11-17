@@ -8,6 +8,14 @@ const Container = styled.div`
     border-radius: 5px;
     padding: 10px;
     background-color: white;
+    @media screen and (max-width: 500px){
+        width: 160px;
+        padding: 5px 0px;
+    }
+`
+
+const Card = styled.div`
+    /* pointer-events: none; */
 `
 
 const EditItens = styled.div`
@@ -35,7 +43,9 @@ const CardUpdateProduct = (props) => {
                     <CiSquareRemove style={{ color: 'red', fontSize: '30px', cursor: 'pointer'}} onClick={() => setDeleteItem({id: product.id, nome: product.name})}/>
                 </Itens>
             </EditItens>
-            <ProductCard product={product}/>
+            <Card>
+                <ProductCard product={product}/>
+            </Card>
         </Container>
     )
 }

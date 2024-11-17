@@ -7,8 +7,10 @@ const InputAddImagesDetails = ({product, edit, newImages, setDeleteImage, handle
         <div>
             <SelectBox>
                 <label>Imagem de detalhes:</label>
-                <input type="checkbox" onChange={() => toggleEdit('images')} />
-                <span>( Editar imagem de detalhes ? )</span>
+                <div>
+                    <input type="checkbox" onChange={() => toggleEdit('images')} />
+                    <span>( Editar imagem de detalhes ? )</span>
+                </div>
             </SelectBox>
             <ImageDetails className={product.images.edit ? '' : 'disabled'}>
                 {product.images.value.map((img, index) => <CardUpdateImage key={`Image${index}`} url={img} deleteImage={setDeleteImage} />)}

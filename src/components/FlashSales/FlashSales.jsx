@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ProductCard from "../ProductCard/ProductCard";
 import ProductsData from "../../utils/ProductsData";
 import { getFlashSalesProducts } from "../../services/ProductService";
+import ProductCardSkeleton from "../ProductCard/ProductCardSkeleton";
 
 const FlashSalesContainer = styled.div`
   padding: 20px 10%;
@@ -163,6 +164,7 @@ const ProductWrapper = styled.div`
 const FlashSales = () => {
   const [timeLeft, setTimeLeft] = useState(116196); // 03:23:19:56 em segundos
   const carouselRef = useRef(null);
+  const [load, setLoad] = useState(true);
 
   const filteredProducts = ProductsData.filter((product) => product.discount === 35);
 
@@ -172,9 +174,11 @@ const FlashSales = () => {
 
     getFlashSalesProducts()
     .then(result => {
-      setData(result.content)
+      setData(result.content);
+      setLoad(false);
+      }).catch(error => {
+        console.log(error);
       });
-      console.log(data);
   },[])
 
 
@@ -254,6 +258,7 @@ const FlashSales = () => {
         </ArrowsWrapper>
       </Header>
       <ProductsCarousel ref={carouselRef}>
+        {load && <ProductCardSkeleton cards={5}/>}
         {data.map((product) => (
           <ProductWrapper key={product.id}>
             <ProductCard product={product} />

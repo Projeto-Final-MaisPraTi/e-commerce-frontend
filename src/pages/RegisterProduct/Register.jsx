@@ -19,7 +19,7 @@ const Container = styled.div`
   display: flex;
   gap: 20px;
   width: 100%;
-  @media screen and (max-width: 500px){
+  @media screen and (max-width: 880px){
     flex-direction: column;
   }
 `;
@@ -29,7 +29,6 @@ const SidePreview = styled.div`
 `;
 
 const SideForm = styled.div`
-  flex: 2;
   box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
   width: 100%;
   text-align: center;
@@ -95,9 +94,18 @@ const SideForm = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    .title h2 {
+      font-size: 30px;
+    }
     form {
       margin-top: 0px;
       padding: 0px;
+    }
+    input {
+      width: 95%;
+    }
+    .description {
+      width: 95%;
     }
   }
 `;
