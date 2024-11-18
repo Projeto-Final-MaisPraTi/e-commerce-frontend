@@ -1,27 +1,59 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import styles from "./ShoppingCart.module.css";
 import icon_cancel_cart from "../../assets/icon_cancel_cart.png";
-import galaxy_s23 from "../../assets/phones/Samsung_Galaxy_S23_black_1.png";
-import Fitbit_Versa3 from "../../assets/smartwatches/Fitbit_Versa3_black_1.png";
 
 const ShoppingCart = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: "Samsung Galaxy S23", price: 550, quantity: 1, image: galaxy_s23 },
-    { id: 2, name: "FitBit Versa 3", price: 550, quantity: 2, image: Fitbit_Versa3 },
-    { id: 3, name: "Samsung Galaxy S23", price: 150, quantity: 1, image: galaxy_s23 },
-    { id: 4, name: "Samsung Galaxy S23", price: 100, quantity: 1, image: galaxy_s23 },
-    { id: 5, name: "Samsung Galaxy S23", price: 100, quantity: 1, image: galaxy_s23 },
-    { id: 6, name: "Samsung Galaxy S23", price: 100, quantity: 1, image: galaxy_s23 },
-    { id: 7, name: "Samsung Galaxy S23", price: 100, quantity: 1, image: galaxy_s23 },
-    { id: 8, name: "Samsung Galaxy S23", price: 100, quantity: 1, image: galaxy_s23 },
-    { id: 9, name: "Samsung Galaxy S23", price: 100, quantity: 1, image: galaxy_s23 },
-    { id: 10, name: "Samsung Galaxy S23", price: 100, quantity: 1, image: galaxy_s23 },
-    { id: 11, name: "Samsung Galaxy S23", price: 100, quantity: 1, image: galaxy_s23 },
-  ]);
-
+  const [cartItems, setCartItems] = useState([]);
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
+
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/itemcart`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
+        console.log("Resposta ao buscar produtos do carrinho no backend: " + response.data.items);
+        setCartItems(response.data.items);
+      } catch (error) {
+        console.error("Erro ao buscar itens do carrinho:", error);
+      }
+    };
+
+    fetchCartItems();
+  }, []);
+
+  useEffect(() => {
+    // Fetch valid coupon
+    const fetchValidCoupon = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/coupons/valid`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
+
+        console.log("Resposta ao buscar cupom no backend: " + response.data);
+        if (response.data) {
+          console.log("Cupom valido: " + response.data);
+          setCoupon(response.data.codigo);
+          setDiscount(response.data.desconto_porcentagem / 100);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar cupom válido:", error);
+      }
+    };
+
+    fetchValidCoupon();
+  }, []);
 
   const removeItem = (id) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
@@ -34,14 +66,33 @@ const ShoppingCart = () => {
   };
 
   const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-  const totalWithDiscount = subtotal - discount;
+  const discountAmount = subtotal * discount;
+  const totalWithDiscount = subtotal - discountAmount;
 
-  const applyCoupon = () => {
-    if (coupon === "DISCOUNT10") {
-      setDiscount(subtotal * 0.1); // Aplica 10% de desconto
-    } else {
+  const applyCoupon = async () => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/coupons/mark-used`,
+        { codigo: coupon },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        },
+      );
+
+      if (response.data.valid) {
+        setDiscount(response.data.desconto_porcentagem / 100);
+      } else {
+        setDiscount(0);
+        alert("Cupom inválido.");
+      }
+    } catch (error) {
+      console.error("Erro ao aplicar cupom:", error);
       setDiscount(0);
-      alert("Cupom inválido.");
+      alert("Erro ao aplicar cupom.");
     }
   };
 
@@ -73,7 +124,7 @@ const ShoppingCart = () => {
                   <img src={item.image} alt={item.name} className={styles.cartProductImage} />
                   <span>{item.name}</span>
                 </td>
-                <td>${item.price}</td>
+                <td>R$ {item.price.toFixed(2)}</td>
                 <td>
                   <select
                     className={styles.quantitySelector}
@@ -96,25 +147,25 @@ const ShoppingCart = () => {
         <h5>Resumo do carrinho</h5>
         <hr />
         <p>
-          Subtotal: <span>${subtotal.toFixed(2)}</span>
+          Subtotal: <span>R$ {subtotal.toFixed(2)}</span>
         </p>
         <p>
-          Desconto: <span>${discount.toFixed(2)}</span>
+          Desconto: <span>R$ {discountAmount.toFixed(2)}</span>
         </p>
         <hr />
         <p>
-          Total Atualizado: <span>${totalWithDiscount.toFixed(2)}</span>
+          Total Atualizado: <span>R$ {totalWithDiscount.toFixed(2)}</span>
         </p>
-        {/*<hr />
+        <hr />
         <div className={styles.couponSection}>
           <input
             type="text"
-            placeholder="Coupon Code"
+            placeholder="Código do Cupom"
             value={coupon}
             onChange={(e) => setCoupon(e.target.value)}
           />
           <button onClick={applyCoupon}>Aplicar cupom</button>
-        </div>*/}
+        </div>
         <Link to="/checkout">
           <button type="submit" className={styles.cartCheckoutButton}>
             Prosseguir para pagamento
