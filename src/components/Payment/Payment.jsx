@@ -80,7 +80,7 @@ const Payment = () => {
     const isValidCardHolder =
       /^[A-Za-zÀ-ÿ\s]+$/.test(formData.cardHolder) && formData.cardHolder.trim().length >= 3;
     if (!isValidCardHolder) {
-      newErrors.cardHolder = "O nome do titular deve conter pelo menos 3 letras.";
+      newErrors.cardHolder = "O nome do titular deve conter pelo menos 3 letras e apenas letras.";
     }
 
     // Validação da data de validade
@@ -193,15 +193,29 @@ const Payment = () => {
     setIsEditingIndex(null); // Resetar o índice de edição
   };
 
-  const isOnPaymentPage = location.pathname === "/payment";
+  const [isPaymentHovered, setIsPaymentHovered] = useState(false); // Estado para hover em payment
+  const [isProfileHovered, setIsProfileHovered] = useState(false); // Estado para hover em profile
+  const [isOrderHovered, setIsOrderHovered] = useState(false); // Estado para hover em profile
 
-  const handlePaymentClick = () => {
-    navigate("/payment");
-  };
+  // Verifica se estamos na página /account, /payment ou /order
+  const isOnProfilePage = location.pathname === "/account";
+  const isOnPaymentPage = location.pathname === "/payment";
+  const isOnOrderPage = location.pathname === "/order";
 
   const handleProfileClick = () => {
-    navigate("/account");
+    navigate("/account"); // Redireciona para a página Account
   };
+  const handlePaymentClick = () => {
+    navigate("/payment"); // Redireciona para a página Payment
+  };
+  const handleOrderClick = () => {
+    navigate("/order"); // Redireciona para a página Order
+  };
+
+  useEffect(() => {
+    // Atualiza o título da página ou pode ser usado para outros efeitos colaterais
+    document.title = "My Payment";
+  }, []);
 
   return (
     <div className="payment-container">
@@ -209,7 +223,7 @@ const Payment = () => {
         <div className="payment-card">
           <div className="payment-method">
             <h6>
-              <strong>Gerenciar Minha Conta</strong>
+              <strong>Gerenciar minha conta</strong>
             </h6>
             <div className="payment-p">
               <p
@@ -222,38 +236,36 @@ const Payment = () => {
                   fontWeight: isProfileTitleHovered ? "bold" : "normal",
                 }}
               >
-                Meu Perfil
+                Meu perfil
               </p>
-              <p>Livro de Endereços</p>
               <p
                 className="payment-option"
                 onClick={handlePaymentClick}
-                onMouseEnter={() => setIsPaymentTitleHovered(true)}
-                onMouseLeave={() => setIsPaymentTitleHovered(false)}
+                onMouseEnter={() => setIsPaymentHovered(true)}
+                onMouseLeave={() => setIsPaymentHovered(false)}
                 style={{
+                  fontWeight: isPaymentHovered ? "bold" : "normal", // Negrito ao passar o mouse
+                  color: isOnPaymentPage ? "blue" : "black", // Vermelho quando na página /account
                   cursor: "pointer",
-                  fontWeight: isOnPaymentPage
-                    ? "normal"
-                    : isPaymentTitleHovered
-                    ? "bold"
-                    : "normal",
-                  color: isOnPaymentPage ? "red" : "black",
                 }}
               >
-                Minhas Opções de Pagamento
+                Minhas opções de pagamento
+              </p>
+              <p
+                className="order-option"
+                onClick={handleOrderClick}
+                onMouseEnter={() => setIsOrderHovered(true)}
+                onMouseLeave={() => setIsOrderHovered(false)}
+                style={{
+                  fontWeight: isOrderHovered ? "bold" : "normal", // Negrito ao passar o mouse
+                  color: isOnOrderPage ? "blue" : "black", // Vermelho quando na página /order
+                  cursor: "pointer",
+                }}
+              >
+                Minhas compras
               </p>
             </div>
             <br />
-          </div>
-
-          <div className="payment-method">
-            <h6>
-              <strong>Meus Pedidos</strong>
-            </h6>
-            <div className="payment-p">
-              <p>Minhas Devoluções</p>
-              <p>Meus Cancelamentos</p>
-            </div>
           </div>
         </div>
       </section>

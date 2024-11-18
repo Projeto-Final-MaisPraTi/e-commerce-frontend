@@ -26,19 +26,18 @@ function Checkout() {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const cartResponse = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/cart`);
+        const cartResponse = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/itemcart`);
         setCartItems(cartResponse.data.items);
         setTotal(cartResponse.data.total);
         setDiscount(cartResponse.data.discount);
 
-        const addressResponse = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/user/address`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            },
+        const addressResponse = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/address`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            "Content-Type": "application/json",
           },
-        );
+          withCredentials: true,
+        });
 
         if (addressResponse.data) {
           setFormData((prevFormData) => ({
@@ -82,7 +81,7 @@ function Checkout() {
     try {
       // Atualize o endereço do usuário
       await axios.put(
-        `${import.meta.env.VITE_BACKEND_URL}/api/user/address`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/address`,
         {
           city: formData.city,
           address: formData.address,
@@ -101,7 +100,7 @@ function Checkout() {
 
       // Enviar os dados de checkout
       const paymentResponse = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/payment`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/payments`,
         checkoutData,
         {
           headers: {

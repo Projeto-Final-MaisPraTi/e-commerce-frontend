@@ -1,16 +1,17 @@
 import Header from "../../components/Header/Header";
-import Account from "../../components/Account/Account";
+import Order from "../../components/Order/Order";
 import Footer from "../../components/Footer/ComponentFooter";
-function MyAccount() {
+
+function MyOrder() {
   return (
     <>
       <Header />
       <main>
-        <Account />
+        <Order />
       </main>
       <Footer />
     </>
   );
 }
 
-export default MyAccount;
+export default MyOrder;

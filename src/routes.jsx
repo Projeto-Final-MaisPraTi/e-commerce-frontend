@@ -19,6 +19,7 @@ import MyPayment from "./pages/MyPayment/MyPayment.jsx";
 import About from "./pages/About/AboutPage.jsx";
 import PurchaseSuccess from "./pages/PurchaseSuccess/PurchaseSuccess.jsx";
 import ErrorBoundary from "./pages/Error/ErrorBoundary.jsx";
+import MyOrder from "./pages/MyOrder/MyOrder.jsx";
 
 const PrivateRoute = ({ element: Component, ...rest }) => {
   return isAuthenticated() ? (
@@ -56,6 +57,7 @@ const Rotas = () => (
         <Route exact path="/checkout" element={<PrivateRoute element={<CheckoutPage />} />} />
         <Route exact path="/account" element={<PrivateRoute element={<MyAccount />} />} />
         <Route exact path="/payment" element={<PrivateRoute element={<MyPayment />} />} />
+        <Route exact path="/order" element={<PrivateRoute element={<MyOrder />} />} />
         <Route
           exact
           path="/category/:category"
