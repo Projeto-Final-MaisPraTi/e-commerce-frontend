@@ -1,10 +1,13 @@
-import { useState } from "react";
 import styles from "./DetalhesProduto.module.css";
 import StarRating from "../ProductCard/StarRating";
 import PageNotFound from "../404NotFound/404NotFound";
 import { getProductDetails } from "../../services/ProductService";
 import { useNavigate } from "react-router-dom";
 import { addItemToCart } from '../../services/CartService';
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+
 
 
 const DetalhesProduto = () => {
