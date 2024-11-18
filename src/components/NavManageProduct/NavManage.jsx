@@ -24,6 +24,19 @@ const Nav = styled.nav`
       }
     }
   }
+  @media screen and (max-width: 780px){
+    width: 95%;
+    .nav-links {
+      flex-direction: column;
+      gap: 0;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 0px;
+    }
+  }
+  @media screen and (max-width: 1080px){
+    width: 95%;
+  }
 `;
 
 const NavManage = () => {

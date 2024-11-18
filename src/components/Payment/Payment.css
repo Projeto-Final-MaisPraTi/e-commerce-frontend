@@ -37,14 +37,16 @@
   font-size: 16px;
   color: rgb(0, 0, 0);
   opacity: 50%;
-  margin-left: 30px;
+  margin-left: 0px;
   margin-bottom: 5px;
 }
+
 
 /* Formulário de Conta */
 .payment-form {
   flex: 2;
-  box-shadow: 0 0 5px rgba(255, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 .form-p {
@@ -104,17 +106,18 @@
   resize: none;
 }
 
+
 /* Estilo para Saved Cards */
 .saved-cards {
   margin: 20px 80px 28px 80px;
-  color: #db4444;
+  color: #1f81e2;
   /* Muda a cor do texto para vermelho */
 }
 
 .saved-cards h4 {
   font-size: 18px;
   margin-bottom: 15px;
-  color: #db4444;
+  color: #1f81e2;
   /* Muda a cor do título para vermelho */
   padding-bottom: 5px;
   /* Espaçamento abaixo do título */
@@ -156,7 +159,7 @@
 .delete-btn {
   background-color: transparent;
   border: none;
-  color: #db4444;
+  color: #1f81e2;
   cursor: pointer;
   font-size: 14px;
   transition: color 0.3s ease, font-weight 0.3s ease;
@@ -164,7 +167,7 @@
 
 .edit-btn:hover,
 .delete-btn:hover {
-  color: #e04e53;
+  color: #1f81e2;
   font-weight: bold;
   /* Negrito ao passar o mouse */
 }

@@ -3,6 +3,7 @@ import styles from "./Category.module.css";
 import StarRating from "../ProductCard/StarRating";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Category({ selectedCategory }) {
   // const location = useLocation(); // Hook para acessar o state
@@ -19,6 +20,11 @@ function Category({ selectedCategory }) {
   //     }
   //   }
   // }
+  const navigate = useNavigate();
+  const handleClick = (id) => {
+    // Redireciona para a página de detalhes do produto
+    navigate(`/product/${id}`);
+  };
 
   return (
     <section className={styles.productList}>
@@ -41,11 +47,11 @@ function Category({ selectedCategory }) {
                 <span className={styles.badge}>{product.discount}% off</span>
               </p>
               <p className={styles.discountPrice}>
-                Por: R$ {product.priceDiscount}
+                Por: {product.priceDiscount}
               </p>
             </div>
           )}
-          <button className={styles.buyButton}>Comprar</button>
+          <button className={styles.buyButton} onClick={()=>handleClick(product.id)}>Ver Mais</button>
         </div>
       ))}
     </section>

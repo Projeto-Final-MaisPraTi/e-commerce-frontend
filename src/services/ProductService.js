@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL = "http://localhost:8080/api/product"; // URL para criar produtos
-
+// const API_URL = "http://192.168.4.24:8080/api/product";
 // rota para criar os produtos
 
 export const createProduct = async (productData) => {
@@ -22,12 +22,11 @@ export const createProduct = async (productData) => {
 
 export const updateProduct = async (productData) => {
   try {
-    const response = await axios.put(API_URL + '/update', productData,
-      {
+    const response = await axios.put(API_URL + "/update", productData, {
       headers: {
         "Content-Type": "application/json",
-      }}
-    );
+      },
+    });
     return response.data; // Retorna os dados do produto atualizados
   } catch (error) {
     console.error("Error ao atualizar produto:", error);
@@ -39,31 +38,31 @@ export const updateProduct = async (productData) => {
 
 export const getUpdateProduct = async (id) => {
   try {
-    const response = await axios.get(API_URL + '/' + id + '/update', {
-        headers: {
-        'Content-Type': 'application/json'
-        }
+    const response = await axios.get(API_URL + "/" + id + "/update", {
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     return response.data;
-} catch (error) {
-    console.error('Error ao procurar produto:', error);
+  } catch (error) {
+    console.error("Error ao procurar produto update:", error);
     throw error; // Repassa o erro
-}
-}
+  }
+};
 
 // deleta o produto pelo id
 
 export const deleteProductById = async (id) => {
   try {
-      const response = await axios.delete(API_URL + '/' + id, {
-          headers: {
-          'Content-Type': 'application/json'
-          }
-      });
-      return response.data;
+    const response = await axios.delete(API_URL + "/" + id, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
   } catch (error) {
-      console.error('Error ao deletar produto:', error);
-      throw error; // Repassa o erro
+    console.error("Error ao deletar produto:", error);
+    throw error; // Repassa o erro
   }
 };
 
@@ -78,7 +77,7 @@ export const findProductByName = async (name) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error ao procurar produto:", error);
+    console.error("Error ao procurar produto por nome:", error);
     throw error; // Repassa o erro
   }
 };
@@ -86,32 +85,32 @@ export const findProductByName = async (name) => {
 // pegar produtos pelo id, retorna só o simples
 
 export const findProductById = async (id) => {
-    try {
-        const response = await axios.get(API_URL + '/' + id, {
-            headers: {
-            'Content-Type': 'application/json'
-            }
-        });
-        return response.data;
-    } catch (error) {
-        console.error('Error ao procurar produto:', error);
-        throw error; // Repassa o erro
-    }
+  try {
+    const response = await axios.get(API_URL + "/" + id, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error ao procurar produto:", error);
+    throw error; // Repassa o erro
+  }
 };
 
 // procurar por uma categoria
 
 export const findProductByCategory = async (category) => {
   try {
-      const response = await axios.get(API_URL + '/search?category=' + category, {
-          headers: {
-          'Content-Type': 'application/json'
-          }
-      });
-      return response.data;
+    const response = await axios.get(API_URL + "/search?category=" + category, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
   } catch (error) {
-      console.error('Error ao procurar categoria:', error);
-      throw error; // Repassa o erro
+    console.error("Error ao procurar categoria:", error);
+    throw error; // Repassa o erro
   }
 };
 
@@ -119,18 +118,17 @@ export const findProductByCategory = async (category) => {
 
 export const getProductDetails = async (id) => {
   try {
-      const response = await axios.get(API_URL +'/'+ id + '/details', {
-          headers: {
-          'Content-Type': 'application/json'
-          }
-      });
-      return response.data;
+    const response = await axios.get(API_URL + "/" + id + "/details", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
   } catch (error) {
-      console.error('Error ao procurar detalhes do produto:', error);
-      throw error; // Repassa o erro
+    console.error("Error ao procurar detalhes do produto:", error);
+    throw error; // Repassa o erro
   }
 };
-
 
 /*
   procurar o produto por fitros, o objeto pode ter um unico filtro ou todos os filtros
@@ -146,29 +144,48 @@ export const getProductDetails = async (id) => {
 
 export const getFilteredProducts = async (filters, page = 0, size = 10) => {
   try {
-    const response = await axios.get(API_URL + `/search?`,
-      { 
-        params: {
-          ...filters,
-          page: page,
-          size: size
-        } 
-      });
+    const response = await axios.get(API_URL + `/search?`, {
+      params: {
+        ...filters,
+        page: page,
+        size: size,
+      },
+    });
     return response.data;
   } catch (error) {
-    console.error('Erro ao buscar produtos:', error);
+    console.error("Erro ao buscar produtos por filtro:", error);
   }
-}
+};
+
 
 // Função para buscar produtos de flash sales com paginação
 // Retorna uma paginação
-export const getFlashSalesProducts = async (page = 0, size = 10, sort = 'name,asc') => {
+export const getFlashSalesProducts = async (page = 0, size = 10, sort = "name,asc") => {
   try {
-      const response = await axios.get(API_URL + `/flashsales?page=${page}`);
-      return response.data;
-
+    const response = await axios.get(API_URL + `/flashsales?page=${page}`);
+    return response.data;
   } catch (error) {
-      console.error('Erro ao buscar os produtos:', error);
-      return null;
+    console.error("Erro ao buscar os produtos em venda relampago:", error);
+    return null;
   }
-}
+};
+
+export const getBestSellersProducts = async (page = 0, size = 10, sort = "name,asc") => {
+  try {
+    const response = await axios.get(API_URL + `/bestsellers?page=${page}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar os produtos mais vendidos:", error);
+    return null;
+  }
+};
+
+export const getAllProducts = async (page = 0, size = 10, sort = "name,asc") => {
+  try {
+    const response = await axios.get(API_URL + `?page=${page}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar os todos os produtos:", error);
+    return null;
+  }
+};

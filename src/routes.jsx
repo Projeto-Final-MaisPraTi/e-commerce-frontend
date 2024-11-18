@@ -1,8 +1,8 @@
-import { isAuthenticated } from "./auth";
+import { isAuthenticated, logout } from "./auth";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home/Home.jsx";
-import Login from "./pages/Login/login.jsx";
-import Register from "./pages/Register/register.jsx";
+import Login from "./pages/login/login.jsx";
+import Register from "./pages/register/register.jsx";
 import ContactPage from "./pages/ContactPage/ContactPage.jsx";
 import CartPage from "./pages/Cart/CartPage.jsx";
 import CheckoutPage from "./pages/Checkout/Checkout.jsx";
@@ -17,49 +17,47 @@ import UpdateProduct from "./pages/UpdateProduct/UpdateProduct.jsx";
 import HomeManager from "./pages/HomeManagerProduct/HomeManager.jsx";
 import MyPayment from "./pages/MyPayment/MyPayment.jsx";
 import About from "./pages/About/AboutPage.jsx";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+import PurchaseSuccess from "./pages/PurchaseSuccess/PurchaseSuccess.jsx";
+import ErrorBoundary from "./pages/Error/ErrorBoundary.jsx";
+import MyOrder from "./pages/MyOrder/MyOrder.jsx";
 
 const PrivateRoute = ({ element: Component, ...rest }) => {
-  return isAuthenticated ? (
+  return isAuthenticated() ? (
     Component
   ) : (
     <Navigate to="/login" replace state={{ from: rest.location }} />
   );
 };
 
+const Logout = () => {
+  logout();
+  return <Navigate to="/login" replace />;
+}
+
 const Rotas = () => (
-  <GoogleOAuthProvider clientId="1092492564673-82i70fnc9vjtmq7kbldo38girs5urlgr.apps.googleusercontent.com">
+  <ErrorBoundary>
     <BrowserRouter>
       <Routes>
-        {/* Responsável: Todos */}
         <Route exact path="/" element={<Home />} />
-        {/* Responsável: Danilo */}
-        {/* Verifica se está autenticado e redireciona caso esteja */}
+        <Route exact path="/purchase-sucess" element={<PurchaseSuccess />} />
         <Route
           exact
           path="/login"
-          element={isAuthenticated ? <Navigate to="/" replace /> : <Login />}
+          element={isAuthenticated() ? <Navigate to="/" replace /> : <Login />}
         />
-
         <Route
           exact
           path="/register"
-          element={isAuthenticated ? <Navigate to="/" replace /> : <Register />}
+          element={isAuthenticated() ? <Navigate to="/" replace /> : <Register />}
         />
-        {/* Responsável: José */}
         <Route exact path="/about" element={<About />} />
-        {/* Responsável: Henrique */}
-        <Route exact path="/product/:id" element={<PrivateRoute element={<Product />} />} />
-        {/* Responsável: Gabriel W. */}
+        <Route exact path="/product/:id" element={<Product />} />
         <Route exact path="/contact" element={<ContactPage />} />
-        {/* Responsável: Gabriel W. */}
         <Route exact path="/cart" element={<PrivateRoute element={<CartPage />} />} />
-        {/* Responsável: Francieli */}
         <Route exact path="/checkout" element={<PrivateRoute element={<CheckoutPage />} />} />
-        {/* Responsável: Luiz Lobato */}
         <Route exact path="/account" element={<PrivateRoute element={<MyAccount />} />} />
         <Route exact path="/payment" element={<PrivateRoute element={<MyPayment />} />} />
-        {/* Responsável: Gabriel Bertollo */}
+        <Route exact path="/order" element={<PrivateRoute element={<MyOrder />} />} />
         <Route
           exact
           path="/category/:category"
@@ -75,21 +73,17 @@ const Rotas = () => (
           path="/category/bestselling"
           element={<PrivateRoute element={<CategoryPage />} />}
         />
-        {/* Responsável: Erick */}
-        <Route
-          path="/manager"
-          element={<ManagerProduct />}
-        >
+        <Route path="/manager" element={<ManagerProduct />}>
           <Route index element={<HomeManager />} />
           <Route path="register" element={<RegisterProduct />} />
           <Route path="update" element={<SearchUpdateProduct />} />
           <Route path="update/:id" element={<UpdateProduct />} />
         </Route>
-        {/* Rota para capturar qualquer caminho inválido */}
+        <Route exact path="/logout" element={<Logout />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
-  </GoogleOAuthProvider>
+  </ErrorBoundary>
 );
 
 export default Rotas;

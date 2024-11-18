@@ -12,6 +12,10 @@ const Container = styled.div`
   gap: 20px;
   border-radius: 5px;
   transition: 0.5s;
+  @media screen and (max-width: 500px){
+    width: 95%;
+    font-size: 14px;
+  }
 `;
 
 const HomeManager = () => {

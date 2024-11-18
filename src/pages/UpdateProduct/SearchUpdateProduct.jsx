@@ -11,6 +11,10 @@ const Container = styled.div`
   border-radius: 5px;
   gap: 20px;
   transition: 0.3s;
+  @media screen and (max-width: 1080px){
+    width: 95%;
+    padding: 15px 8px;
+  }
 `;
 
 function SearchUpdateProduct() {

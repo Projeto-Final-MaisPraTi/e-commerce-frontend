@@ -7,6 +7,7 @@ const Container = styled.div`
   padding: 10px;
   background-color: white;
   border-radius: 4px;
+  pointer-events: none;
   h2 {
     text-align: center;
   }
@@ -15,6 +16,11 @@ const Container = styled.div`
     justify-content: center;
     width: 100%;
     margin: auto;
+  }
+  @media screen and (max-width: 500px){
+    padding: 10px 0px;
+    margin: auto;
+    width: 100%;
   }
 `;
 

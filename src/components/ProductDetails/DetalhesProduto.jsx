@@ -1,17 +1,29 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 import styles from "./DetalhesProduto.module.css";
 import StarRating from "../ProductCard/StarRating";
-import ProductsData from "../../utils/ProductsData";
 import PageNotFound from "../404NotFound/404NotFound";
 import { getProductDetails } from "../../services/ProductService";
+import { useNavigate } from "react-router-dom";
+import { addItemToCart } from '../../services/CartService';
+
 
 const DetalhesProduto = () => {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const { id } = useParams(); // Obtém o ID do produto da URL
   const productId = parseInt(id); // Converte o ID para um número inteiro
   // const product = ProductsData.find((item) => item.id === productId); // Busca o produto com o ID correspondente
   const [product, setProduct] = useState();
+
+  const handleAddToCart = async () => {
+       const itemCartData = {
+         "productDetailsDTO": { "id": product.id},
+          "quantidade": 1
+         };
+         const response = await addItemToCart(itemCartData);
+         console.log('Item adicionado ao carrinho com sucesso:', response); 
+         //navigate(`/cart`);
+  };
 
   useEffect(() => {
     getProductDetails(id).then(result => {
@@ -49,7 +61,7 @@ const DetalhesProduto = () => {
 
       <div className={styles.productDetails}>
         <h1>{product.name}</h1>
-        <p className={styles.price}>
+        <div className={styles.price}>
           {!product.priceDiscount ? (
             <p className={styles.price}>{product.price}</p>
           ) : (
@@ -61,7 +73,7 @@ const DetalhesProduto = () => {
             </div>
           )}
           {/* R$ {product.price} {product.discount === 35 && <span className={styles.badge}>-{product.discount}%</span>} */}
-        </p>
+        </div>
         <p className={styles.description}>{product.description}</p>
 
         <p className={styles.colorSelection}>Cor disponível: {product.color}</p>
@@ -69,7 +81,7 @@ const DetalhesProduto = () => {
           <StarRating rating={product.rating} />
         </div>
 
-        <button className={styles.addToCart}>Adicionar ao Carrinho</button>
+        <button className={styles.addToCart} onClick={handleAddToCart}>Adicionar ao Carrinho</button>
 
         <div className={styles.infoCard}>
           <div className={styles.infoSection}>

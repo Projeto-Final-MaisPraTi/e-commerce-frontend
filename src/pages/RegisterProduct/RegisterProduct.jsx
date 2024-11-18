@@ -9,6 +9,12 @@ const Container = styled.div`
   padding: 30px;
   gap: 20px;
   transition: 0.5s;
+  @media screen and (max-width: 880px){
+    padding: 10px 0px;
+    width: 95%;
+    margin: auto;
+    justify-content: center;
+  }
 `;
 
 function RegisterProduct() {

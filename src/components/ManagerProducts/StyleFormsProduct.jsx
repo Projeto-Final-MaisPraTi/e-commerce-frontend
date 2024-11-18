@@ -17,6 +17,10 @@ export const SelectBox = styled.div`
     align-items: center;
     justify-content: center;
     margin: 15px auto 5px auto;
+    div {
+            display: flex;
+            align-items: center;
+    }
     label {
         font-size: 20px;
         font-weight: bold;
@@ -32,6 +36,28 @@ export const SelectBox = styled.div`
         color: gray;
         font-size: 15px;
         margin-left: 5px;
+    }
+    @media screen and (max-width: 380px){
+        label {
+            font-size: 13px;
+        }
+    }
+    @media screen and (max-width: 550px){
+        width: 95%;
+        label {
+            font-size: 16px;
+        }
+        span {
+            font-size: 10px;
+        }
+    }
+    @media screen and (max-width: 1200px){
+        label {
+            font-size: 16px;
+        }
+        span {
+            font-size: 11px;
+        }
     }
 `
 
@@ -57,6 +83,9 @@ export const ImageCover = styled.div`
     align-items: center;
     box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
     margin: auto;
+    @media screen and (max-width: 500px) {
+        text-align: center;
+    }
 `
 
 export const UploadFile = styled.div`
@@ -123,7 +152,7 @@ export const ButtonsDeleteImage = styled.div`
 export const ImageDetails = styled.div`
     display: flex;
     height: 300px;
-    width: 90%;
+    width: 100%;
     box-shadow: 0 0 5px rgba(3, 0, 0, 0.2);
     justify-content: center;
     align-items: center;
@@ -132,4 +161,7 @@ export const ImageDetails = styled.div`
     flex-wrap: wrap;
     overflow-y: scroll;
     padding: 10px;
+    @media screen and (max-width: 500px){
+        width: 95%;
+    }
 `
