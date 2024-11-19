@@ -20,30 +20,64 @@ Este repositório contém o código-fonte do **frontend** de uma aplicação de 
 ## 📂 Estrutura do Projeto
 
 A organização das pastas no projeto segue boas práticas, conforme detalhado abaixo:
-
+```
 e-commerce-frontend/ 
-###├── assets/ # Recursos estáticos, como imagens e ícones
-###├── components/ # Componentes reutilizáveis da interface
-###├── Global/ # Configurações globais, como estilos ou temas
-###├── pages/ # Páginas principais da aplicação
-###├── services/ # Módulos para consumo de APIs e lógica de integração
-###├── utils/ # Funções utilitárias e helpers
-###└── main.jsx # Ponto de entrada do aplicativo
-
+├── assets/  Recursos estáticos, como imagens e ícones
+├── components/  Componentes reutilizáveis da interface
+├── Global/  Configurações globais, como estilos ou temas
+├── pages/  Páginas principais da aplicação
+├── services/  Módulos para consumo de APIs e lógica de integração
+├── utils/  Funções utilitárias e helpers
+└── main.jsx  Ponto de entrada do aplicativo
+```
 ## 👥 Colaboradores
 
 Este projeto foi desenvolvido com a colaboração de:
 
-- 👨‍💻 Danilo  
-- 👨‍💻 Enzo  
+- 👨‍💻 Danilo Paravani 
+- 👨‍💻 Enzo Janssen
 - 👨‍💻 Erick Ramos  
 - 👩‍💻 Francieli  
 - 👨‍💻 Gabriel Willian  
-- 👨‍💻 Gabriel  
+- 👨‍💻 Gabriel Bertollo
 - 👨‍💻 Henrique Junqueira  
 - 👨‍💻 José Carlos  
 - 👨‍💻 Luiz Nonato  
 - 👨‍💻 Marlon Muller  
+
+## 🌐 Rotas do Projeto
+
+A aplicação utiliza **React Router** para gerenciar as rotas. Abaixo estão listadas as principais rotas, suas descrições e as condições de acesso (privadas ou públicas):
+
+| Rota                      | Descrição                                                       | Tipo       |
+|---------------------------|-----------------------------------------------------------------|------------|
+| `/`                       | Página inicial com o catálogo de produtos.                    | Pública    |
+| `/purchase-sucess`        | Página de confirmação de compra bem-sucedida.                 | Pública    |
+| `/login`                  | Página de login para autenticação.                            | Pública    |
+| `/register`               | Página de registro de novos usuários.                         | Pública    |
+| `/about`                  | Página com informações sobre o e-commerce.                    | Pública    |
+| `/product/:id`            | Página de detalhes de um produto específico.                  | Pública    |
+| `/contact`                | Página de contato.                                            | Pública    |
+| `/cart`                   | Página do carrinho de compras.                                | Privada    |
+| `/checkout`               | Página para finalização de compras.                          | Privada    |
+| `/account`                | Página de gerenciamento da conta do usuário.                 | Privada    |
+| `/payment`                | Página com informações de pagamento.                         | Privada    |
+| `/order`                  | Página com detalhes dos pedidos do usuário.                  | Privada    |
+| `/category/:category`     | Página para explorar produtos por categoria.                 | Privada    |
+| `/category/explore`       | Página para explorar todas as categorias.                    | Privada    |
+| `/category/bestselling`   | Página com os produtos mais vendidos.                        | Privada    |
+| `/manager`                | Área administrativa com sub-rotas.                           | Privada    |
+| `/manager/register`       | Sub-rota para registro de novos produtos.                    | Privada    |
+| `/manager/update`         | Sub-rota para buscar produtos para edição.                   | Privada    |
+| `/manager/update/:id`     | Sub-rota para editar um produto específico.                  | Privada    |
+| `/logout`                 | Rota para realizar logout do sistema.                        | Privada    |
+| `*`                       | Página de erro 404 para rotas não encontradas.               | Pública    |
+
+Observações
+- **Rotas Privadas**: Exigem autenticação para acesso. Caso o usuário não esteja autenticado, ele será redirecionado para a página de login.
+- **Rotas Dinâmicas**: Algumas rotas incluem parâmetros, como `:id` e `:category`, que são utilizados para renderizar conteúdos específicos.
+
+Essa estrutura garante uma navegação organizada e segura, respeitando as permissões de acesso.
 
 ## 🖥️ Como Executar
 
@@ -69,7 +103,6 @@ Os arquivos estarão na pasta <code>dist/</code>.
 ## 🚀 Roadmap
 
 Planejamos expandir o projeto com as seguintes funcionalidades:
-- Autenticação de usuários (login e cadastro).
 - Dashboard para gerenciamento de produtos.
 - Integração com gateways de pagamento.
 - Implementação de melhorias em acessibilidade.
