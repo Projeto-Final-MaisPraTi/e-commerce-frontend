@@ -1,8 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/ComponentFooter";
-import OurHistory from "../../components/About/ourHistory.jsx";
-import BoxList from "../../components/About/boxList.jsx";
+import OurHistory from "../../components/About/OurHistory.jsx";
+import BoxList from "../../components/About/BoxList.jsx";
 import ProfileList from "../../components/About/ProfileList.jsx";
 import FeaturesSection from "../../components/FeaturesSection/FeaturesSection.jsx";
 
