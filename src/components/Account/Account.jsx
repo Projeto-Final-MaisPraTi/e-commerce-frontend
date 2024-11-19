@@ -1,5 +1,5 @@
 import "./Account.css";
-import { useState /*,  useEffect */ } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom"; // Para navegação e detecção da rota
 
 const Account = () => {
@@ -19,23 +19,27 @@ const Account = () => {
   const [errors, setErrors] = useState({});
   const [isPaymentHovered, setIsPaymentHovered] = useState(false); // Estado para hover em payment
   const [isProfileHovered, setIsProfileHovered] = useState(false); // Estado para hover em profile
+  const [isOrderHovered, setIsOrderHovered] = useState(false); // Estado para hover em profile
 
-  // Verifica se estamos na página /account ou /payment
+  // Verifica se estamos na página /account, /payment ou /order
   const isOnProfilePage = location.pathname === "/account";
   const isOnPaymentPage = location.pathname === "/payment";
+  const isOnOrderPage = location.pathname === "/order";
 
   const handleProfileClick = () => {
     navigate("/account"); // Redireciona para a página Account
   };
-
   const handlePaymentClick = () => {
     navigate("/payment"); // Redireciona para a página Payment
   };
+  const handleOrderClick = () => {
+    navigate("/order"); // Redireciona para a página Order
+  };
 
-  // Atualiza o título da página ou pode ser usado para outros efeitos colaterais
-  // useEffect(() => {
-  //   document.title = "My Account";
-  // }, []);
+  useEffect(() => {
+    // Atualiza o título da página ou pode ser usado para outros efeitos colaterais
+    document.title = "My Account";
+  }, []);
 
   return (
     <div className="account-container">
@@ -43,7 +47,7 @@ const Account = () => {
         <div className="account-card">
           <div className="account-method">
             <h6>
-              <strong>Gerenciar Minha Conta</strong>
+              <strong>Gerenciar minha conta</strong>
             </h6>
             <div className="account-p">
               {/* "My Profile" com hover e estilo vermelho quando estiver na página /account */}
@@ -54,15 +58,12 @@ const Account = () => {
                 onMouseLeave={() => setIsProfileHovered(false)}
                 style={{
                   fontWeight: isProfileHovered ? "bold" : "normal", // Negrito ao passar o mouse
-                  color: isOnProfilePage ? "red" : "black", // Vermelho quando na página /account
+                  color: isOnProfilePage ? "blue" : "black", // Vermelho quando na página /account
                   cursor: "pointer",
                 }}
               >
-                Meu Perfil
+                Meu perfil
               </p>
-
-              {/* Endereço */}
-              <p>Livro de Endereços</p>
 
               {/* "My Payment Options" com hover e estilo */}
               <p
@@ -72,29 +73,33 @@ const Account = () => {
                 onMouseLeave={() => setIsPaymentHovered(false)}
                 style={{
                   fontWeight: isPaymentHovered ? "bold" : "normal", // Negrito ao passar o mouse
-                  color: isOnPaymentPage ? "red" : "black", // Vermelho quando na página /payment
+                  color: isOnPaymentPage ? "blue" : "black", // Vermelho quando na página /payment
                   cursor: "pointer",
                 }}
               >
-                Minhas Opções de Pagamento
+                Minhas opções de pagamento
               </p>
             </div>
+            <p
+              className="order-option"
+              onClick={handleOrderClick}
+              onMouseEnter={() => setIsOrderHovered(true)}
+              onMouseLeave={() => setIsOrderHovered(false)}
+              style={{
+                fontWeight: isOrderHovered ? "bold" : "normal", // Negrito ao passar o mouse
+                color: isOnOrderPage ? "blue" : "black", // Vermelho quando na página /order
+                cursor: "pointer",
+              }}
+            >
+              Minhas compras
+            </p>
             <br />
-          </div>
-          <div className="account-method">
-            <h6>
-              <strong>Meus Pedidos</strong>
-            </h6>
-            <div className="account-p">
-              <p>Minhas Devoluções</p>
-              <p>Meus Cancelamentos</p>
-            </div>
           </div>
         </div>
       </section>
 
       <section className="account-form">
-        <h4 className="profile-title">Editar minhas informações</h4>
+        <h4 className="profile-title">Edit Your Profile</h4>
 
         <form className="form-a" onSubmit={handleSubmit}>
           <div className="form-group-a">
@@ -134,39 +139,39 @@ const Account = () => {
                 id="email"
                 type="email"
                 name="email"
-                placeholder="E-mail"
+                placeholder="Seu Email"
                 value={formData.email}
                 onChange={handleChange}
-                aria-label="E-mail"
+                aria-label="Seu Email"
               />
               {errors.email && <p className="error-text">{errors.email}</p>}
             </div>
 
-            <div className="input-container">
+            {/* <div className="input-container">
               <label htmlFor="address">Endereço</label>
               <input
                 id="address"
                 name="address"
-                placeholder="Endereço"
+                placeholder="Seu endereço"
                 value={formData.address}
                 onChange={handleChange}
-                aria-label="Endereço"
+                aria-label="Seu endereço"
               />
               {errors.address && <p className="error-text">{errors.address}</p>}
-            </div>
+            </div> */}
           </div>
 
           <div className="form-group-pass">
             <div className="input-container">
-              <label htmlFor="email">Trocar Senha</label>
+              <label htmlFor="email">Password Changes</label>
               <input
                 id="currentPassword"
                 type="password"
                 name="currentPassword"
-                placeholder="Senha"
+                placeholder="Senha atual"
                 value={formData.currentPassword}
                 onChange={handleChange}
-                aria-label="Senha"
+                aria-label="Senha atual"
               />
               {errors.currentPassword && <p className="error-text">{errors.currentPassword}</p>}
             </div>
@@ -178,10 +183,10 @@ const Account = () => {
                 id="newPassword"
                 type="password"
                 name="newPassword"
-                placeholder="Nova Senha"
+                placeholder="Nova senha"
                 value={formData.newPassword}
                 onChange={handleChange}
-                aria-label="Nova Senha"
+                aria-label="Nova senha"
               />
               {errors.newPassword && <p className="error-text">{errors.newPassword}</p>}
             </div>
@@ -193,10 +198,10 @@ const Account = () => {
                 id="confirmPassword"
                 type="password"
                 name="confirmPassword"
-                placeholder="Confirmar Nova Senha"
+                placeholder="Confirme sua senha"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                aria-label="Confirmar Nova Senha"
+                aria-label="Confirme sua senha"
               />
               {errors.confirmPassword && <p className="error-text">{errors.confirmPassword}</p>}
             </div>
@@ -204,11 +209,11 @@ const Account = () => {
 
           <div className="button-group">
             <button type="button" className="cancel-btn" onClick={handleCancel}>
-              Cancelar
+              Cancel
             </button>
 
             <button type="submit" className="save">
-              Salvar
+              Salvar mudanças
             </button>
           </div>
         </form>

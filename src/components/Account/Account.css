@@ -65,14 +65,15 @@ label {
   font-size: 16px;
   color: black;
   opacity: 50%;
-  margin-left: 30px;
+  margin-left: 0px;
   margin-bottom: 5px;
 }
 
 /* Formulário de Conta */
 .account-form {
   flex: 2;
-  box-shadow: 0 0 5px rgba(255, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 .form-a {
@@ -156,7 +157,7 @@ label {
 }
 
 .save {
-  background-color: #db4444;
+  background-color: #1f81e2;
   color: white;
   padding: 14px 53px;
   border: none;
