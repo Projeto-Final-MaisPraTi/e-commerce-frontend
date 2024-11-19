@@ -19,10 +19,10 @@ const ShoppingCart = () => {
           },
           withCredentials: true,
         });
-        console.log("Resposta ao buscar produtos do carrinho no backend: " + response.data.items);
+        console.log("Resposta ao buscar produtos do carrinho no backend:", response.data.items);
         setCartItems(response.data.items);
       } catch (error) {
-        console.error("Erro ao buscar itens do carrinho:", error);
+        console.error("Erro ao buscar itens do carrinho: ", error);
       }
     };
 
@@ -30,7 +30,6 @@ const ShoppingCart = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch valid coupon
     const fetchValidCoupon = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/coupons/valid`, {
@@ -41,14 +40,14 @@ const ShoppingCart = () => {
           withCredentials: true,
         });
 
-        console.log("Resposta ao buscar cupom no backend: " + response.data);
+        console.log("Resposta ao buscar cupom no backend: ", response.data);
         if (response.data) {
-          console.log("Cupom valido: " + response.data);
+          console.log("Cupom válido:", response.data);
           setCoupon(response.data.codigo);
           setDiscount(response.data.desconto_porcentagem / 100);
         }
       } catch (error) {
-        console.error("Erro ao buscar cupom válido:", error);
+        console.error("Erro ao buscar cupom válido: ", error);
       }
     };
 
@@ -90,7 +89,7 @@ const ShoppingCart = () => {
         alert("Cupom inválido.");
       }
     } catch (error) {
-      console.error("Erro ao aplicar cupom:", error);
+      console.error("Erro ao aplicar cupom: ", error);
       setDiscount(0);
       alert("Erro ao aplicar cupom.");
     }
