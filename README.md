@@ -22,14 +22,28 @@ Este repositório contém o código-fonte do **frontend** de uma aplicação de 
 A organização das pastas no projeto segue boas práticas, conforme detalhado abaixo:
 
 e-commerce-frontend/ 
-**├── assets/ # Recursos estáticos, como imagens e ícones**
-**├── components/ # Componentes reutilizáveis da interface**
-**├── Global/ # Configurações globais, como estilos ou temas**
-**├── pages/ # Páginas principais da aplicação**
-**├── services/ # Módulos para consumo de APIs e lógica de integração**
-**├── utils/ # Funções utilitárias e helpers**
-**└── main.jsx # Ponto de entrada do aplicativo**
+###├── assets/ # Recursos estáticos, como imagens e ícones
+###├── components/ # Componentes reutilizáveis da interface
+###├── Global/ # Configurações globais, como estilos ou temas
+###├── pages/ # Páginas principais da aplicação
+###├── services/ # Módulos para consumo de APIs e lógica de integração
+###├── utils/ # Funções utilitárias e helpers
+###└── main.jsx # Ponto de entrada do aplicativo
 
+## 👥 Colaboradores
+
+Este projeto foi desenvolvido com a colaboração de:
+
+- 👨‍💻 Danilo  
+- 👨‍💻 Enzo  
+- 👨‍💻 Erick Ramos  
+- 👩‍💻 Francieli  
+- 👨‍💻 Gabriel Willian  
+- 👨‍💻 Gabriel  
+- 👨‍💻 Henrique Junqueira  
+- 👨‍💻 José Carlos  
+- 👨‍💻 Luiz Nonato  
+- 👨‍💻 Marlon Muller  
 
 ## 🖥️ Como Executar
 
@@ -49,9 +63,7 @@ e-commerce-frontend/
 ## 📦 Build para Produção
 
 Para gerar a versão de produção, execute:  
-<code>
-npm run build
-</code>  
+<code>npm run build</code>  
 Os arquivos estarão na pasta <code>dist/</code>.
 
 ## 🚀 Roadmap
