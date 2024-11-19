@@ -22,32 +22,26 @@ Este repositório contém o código-fonte do **frontend** de uma aplicação de 
 A organização das pastas no projeto segue boas práticas, conforme detalhado abaixo:
 
 e-commerce-frontend/ 
-├── assets/ # Recursos estáticos, como imagens e ícones 
-├── components/ # Componentes reutilizáveis da interface 
-├── Global/ # Configurações globais, como estilos ou temas 
-├── pages/ # Páginas principais da aplicação 
-├── services/ # Módulos para consumo de APIs e lógica de integração 
-├── utils/ # Funções utilitárias e helpers 
-└── main.jsx # Ponto de entrada do aplicativo
+**├── assets/ # Recursos estáticos, como imagens e ícones**
+**├── components/ # Componentes reutilizáveis da interface**
+**├── Global/ # Configurações globais, como estilos ou temas**
+**├── pages/ # Páginas principais da aplicação**
+**├── services/ # Módulos para consumo de APIs e lógica de integração**
+**├── utils/ # Funções utilitárias e helpers**
+**└── main.jsx # Ponto de entrada do aplicativo**
 
 
 ## 🖥️ Como Executar
 
 1. **Clone o repositório**:  
-   <code>
-   git clone https://github.com/Projeto-Final-MaisPraTi/e-commerce-frontend.git  
-   cd e-commerce-frontend
-   </code>
+   <code>git clone https://github.com/Projeto-Final-MaisPraTi/e-commerce-frontend.git  
+   cd e-commerce-frontend</code>
 
 2. **Instale as dependências**:  
-   <code>
-   npm install
-   </code>
+   <code>npm install</code>
 
 3. **Inicie o servidor de desenvolvimento**:  
-   <code>
-   npm run dev
-   </code>
+   <code>npm run dev</code>
 
 4. **Acesse a aplicação**:  
    Abra [http://localhost:5173](http://localhost:5173) no navegador.
