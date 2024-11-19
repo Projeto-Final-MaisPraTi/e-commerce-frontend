@@ -462,5 +462,54 @@
     "price": 783.64,
     "discount": 0,
     "flashSale": false
-  }
+  },
+  {
+    "name": "Headset Gamer Havit",
+    "price": 154.99,
+    "category": "Headphones",
+    "description": "Headset Gamer Havit H2002D Aparência e textura proporcionais, simples e generosas. Jaqueta de liga leve com frente e superfície de plástico com revestimento de piano. Design Gamer em preto, para combinar com seu setup e além de ter qualidade surpreendente por um preço baixo. Head set Gamer Havit com excelente custo benefício. Desempenho e Compatibilidade com PC, PS4 e XBOX Faixa de cabeça ajustável suspensa única, design ergonômico, confortável de usar, antiviolência e não fácil de danificar.",
+    "stock": 50,
+    "discount": 5,
+    "flashSale": false,
+    "color": "Preto",
+    "images": [
+        "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/havit11731022269592.webp",
+        "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/havit51731017295486.jpg",
+        "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/havit41731017296434.jpg",
+        "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/havit31731017298126.jpg"
+    ]
+},
+{
+    "name": "Smartphone Samsung Galaxy S24",
+    "price": 4292.10,
+    "category": "Phones",
+    "description": "Smartphone Samsung Galaxy S24, Galaxy AI, Câmera Tripla Traseira de até 50MP, Selfie de 12MP, Tela de 6.2\" 1-120Hz, 256GB, 8GB de RAM, eSIM.",
+    "stock": 50,
+    "discount": 0,
+    "flashSale": false,
+    "color": "Branco",
+    "images": [
+        "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/s241731160460228.jpg",
+        "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/s24-21731160461500.jpg",
+        "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/s24-31731160462509.jpg",
+        "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/s24-41731160463423.jpg",
+        "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/s24-61731160464371.jpg"
+    ]
+},
+{
+    "name": "Poco X6 5G",
+    "price": 1849.00,
+    "category": "Phones",
+    "description": "Fotografia profissional no seu bolso\nDescubra infinitas possibilidades para suas fotos com as 3 câmeras principais de sua equipe. Teste sua criatividade e jogue com iluminação, diferentes planos e efeitos para obter ótimos resultados.\n\nAlém disso, o dispositivo possui uma câmera frontal de 16 Mpx para que você possa tirar selfies divertidas ou fazer videochamadas.\n\nExperiência visual incrível\nAssista às suas séries e filmes favoritos com a melhor definição na sua tela AMOLED de 6.67\". Desfrute de cores brilhantes e detalhes precisos em todo o seu conteúdo.",
+    "stock": 50,
+    "discount": 0,
+    "flashSale": false,
+    "color": "Preto",
+    "images": [
+        "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/11731860320600.webp",
+        "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/41731860321783.webp",
+        "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/31731860322479.webp",
+        "https://pabcuykqmeeindoyvkok.supabase.co/storage/v1/object/public/ecomerce/public/productImages/21731860323215.webp"
+    ]
+}
 ]

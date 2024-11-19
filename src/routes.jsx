@@ -1,4 +1,4 @@
-import { isAuthenticated, logout } from "./auth";
+import { isAuthenticated, logout, getDecodedTokenRole } from "./auth";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home/Home.jsx";
 import Login from "./pages/login/login.jsx";
@@ -69,7 +69,8 @@ const Rotas = () => (
           path="/category/bestselling"
           element={<PrivateRoute element={<CategoryPage />} />}
         />
-        <Route path="/manager" element={<ManagerProduct />}>
+        <Route path="/manager/*" element={
+          <PrivateRoute element={<ManagerProduct admin={getDecodedTokenRole()}/>} />}>
           <Route index element={<HomeManager />} />
           <Route path="register" element={<RegisterProduct />} />
           <Route path="update" element={<SearchUpdateProduct />} />

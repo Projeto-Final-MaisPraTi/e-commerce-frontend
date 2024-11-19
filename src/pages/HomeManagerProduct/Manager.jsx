@@ -3,6 +3,7 @@ import Footer from "../../components/Footer/ComponentFooter";
 import styled from "styled-components";
 import NavManage from "../../components/NavManageProduct/NavManage";
 import { Outlet } from "react-router-dom";
+import PageNotFound from "../404NotFound/PageNotFound";
 
 const Container = styled.div`
   width: 95%;
@@ -13,7 +14,11 @@ const Container = styled.div`
   }
 `;
 
-function ManagerProduct() {
+function ManagerProduct({admin}) {
+  console.log(admin);
+  if (!admin) {
+    return <PageNotFound/>
+  }
   return (
     <>
       <Header />
