@@ -73,14 +73,14 @@ const NavBar = ({ isUserLoggedIn }) => {
             </button>
           </div>
 
-          <div className="icon-group">
-            <div className="icon-button">
-              <Link to="/cart">
-                <img src={cart} alt="Cart Icon" />
-              </Link>
-            </div>
+          {isUserLoggedIn && (
+            <div className="icon-group">
+              <div className="icon-button">
+                <Link to="/cart">
+                  <img src={cart} alt="Cart Icon" />
+                </Link>
+              </div>
 
-            {isUserLoggedIn && (
               <div className="user-menu-container" ref={userMenuRef}>
                 <div className="icon-button" onClick={toggleUserMenu}>
                   <img src={userIcon} alt="User Icon" />
@@ -114,8 +114,8 @@ const NavBar = ({ isUserLoggedIn }) => {
                   </div>
                 )}
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -56,11 +56,7 @@ const Rotas = () => (
         <Route exact path="/checkout" element={<PrivateRoute element={<CheckoutPage />} />} />
         <Route exact path="/account" element={<PrivateRoute element={<MyAccount />} />} />
         <Route exact path="/orders" element={<PrivateRoute element={<MyOrder />} />} />
-        <Route
-          exact
-          path="/category/:category"
-          element={<PrivateRoute element={<CategoryPage />} />}
-        />
+        <Route exact path="/category/:category" element={<CategoryPage />} />
         <Route
           exact
           path="/category/explore"

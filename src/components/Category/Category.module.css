@@ -5,6 +5,7 @@
   flex-wrap: wrap;
   padding: 20px;
   margin: 5%; /* Reduz a margem para telas menores */
+  border: 1px solid blue
 }
 
 .productCard {
@@ -14,8 +15,9 @@
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 10px;
   transition: transform 0.3s ease;
+  border: 1px solid purple;
 }
 
 .productCard:hover {
@@ -24,7 +26,9 @@
 
 .productImage {
   width: 15%;
+  height: 200px;
   border-radius: 8px;
+  border: 1px solid red;
 }
 
 .productInfo {
@@ -105,7 +109,7 @@
   }
 
   .productImage {
-    width: 80%; /* Expande a imagem para visibilidade em telas menores */
+    width: 60%; /* Expande a imagem para visibilidade em telas menores */
     margin-bottom: 15px;
   }
 

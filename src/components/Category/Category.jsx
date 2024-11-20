@@ -1,8 +1,6 @@
-import Products from "../../utils/ProductsData";
 import styles from "./Category.module.css";
 import StarRating from "../ProductCard/StarRating";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Category({ selectedCategory }) {
