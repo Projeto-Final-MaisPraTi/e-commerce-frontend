@@ -59,23 +59,19 @@ const Account = () => {
   const validateUpdatedFields = (fields) => {
     const newErrors = {};
 
-    // Validação do nome (aceitar letras com acento)
     if (fields.name && !/^[A-Za-zÀ-ÿ\s]{3,}$/.test(fields.name)) {
       newErrors.name = "O nome deve conter pelo menos 3 caracteres e pode incluir letras com acento.";
     }
 
-    // Validação do e-mail
     if (fields.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) {
       newErrors.email = "Por favor, insira um e-mail válido com '@' e '.com'.";
     }
 
-    // Validação das senhas
     if (fields.currentPassword || fields.newPassword || fields.confirmPassword) {
       if (!fields.currentPassword || fields.currentPassword !== storedPassword) {
         newErrors.currentPassword = "A senha atual está incorreta.";
       }
 
-      // Nova senha deve ter 8 caracteres numéricos
       if (fields.newPassword && !/^\d{8}$/.test(fields.newPassword)) {
         newErrors.newPassword = "A nova senha deve ter exatamente 8 caracteres numéricos.";
       }
@@ -85,7 +81,6 @@ const Account = () => {
       }
     }
 
-    // Verificar se há campos obrigatórios vazios
     for (const [key, value] of Object.entries(fields)) {
       if (!value.trim()) {
         newErrors[key] = "Este campo é obrigatório.";
@@ -99,7 +94,6 @@ const Account = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Identifica campos modificados
     const updatedFields = {};
     for (const key in formData) {
       if (formData[key] !== initialFormData[key]) {
@@ -107,11 +101,10 @@ const Account = () => {
       }
     }
 
-    // Valida campos modificados
     if (validateUpdatedFields(updatedFields)) {
       console.log("Alterações salvas:", updatedFields);
 
-      // Atualiza a senha armazenada, se alterada
+      
       if (updatedFields.newPassword) {
         setStoredPassword(updatedFields.newPassword);
       }
