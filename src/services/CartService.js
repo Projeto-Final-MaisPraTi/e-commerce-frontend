@@ -18,4 +18,19 @@ export const addItemToCart = async (itemCartData) => {
 };
 
 
+export const getAllCartItems = async () => {
+  try {
+    const response = await axios.get(API_URL,{
+      headers:{
+        "Authorization":localStorage.getItem("jwt"),
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar os todos os produtos:", error);
+    return null;
+  }
+};
+
+
 
