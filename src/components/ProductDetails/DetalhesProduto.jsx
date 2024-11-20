@@ -66,7 +66,7 @@ const DetalhesProduto = () => {
         <h1>{product.name}</h1>
         <div className={styles.price}>
           {!product.priceDiscount ? (
-            <p className={styles.price}>R$ {product.price}</p>
+            <p className={styles.price}>{product.price}</p>
           ) : (
             <div className={styles.discount}>
               <p className={styles.discountPrice}>
