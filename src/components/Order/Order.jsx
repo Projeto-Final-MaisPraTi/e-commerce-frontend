@@ -35,7 +35,6 @@ const Order = () => {
   };
 
   const handleCancelOrder = (orderId) => {
-    // Solicitar confirmação do usuário
     const confirmCancel = window.confirm("Deseja realmente cancelar esse pedido?");
     if (confirmCancel) {
       const updatedOrders = orders.map((order) => {
