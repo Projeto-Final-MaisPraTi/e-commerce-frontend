@@ -1,5 +1,7 @@
 import axios from "axios";
 
+
+const token = localStorage.getItem("jwt");
 const API_URL = "http://localhost:8080/api/product"; // URL para criar produtos
 // const API_URL = "http://192.168.4.24:8080/api/product";
 // rota para criar os produtos
@@ -57,6 +59,7 @@ export const deleteProductById = async (id) => {
     const response = await axios.delete(API_URL + "/" + id, {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, 
       },
     });
     return response.data;

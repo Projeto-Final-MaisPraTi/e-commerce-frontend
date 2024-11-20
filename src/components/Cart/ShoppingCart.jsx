@@ -19,8 +19,8 @@ const ShoppingCart = () => {
           },
           withCredentials: true,
         });
-        console.log("Resposta ao buscar produtos do carrinho no backend:", response.data.items);
-        setCartItems(response.data.items);
+        console.log("Resposta ao buscar produtos do carrinho no backend:", response.data);
+        setCartItems(response.data);
       } catch (error) {
         console.error("Erro ao buscar itens do carrinho: ", error);
       }
@@ -28,7 +28,7 @@ const ShoppingCart = () => {
 
     fetchCartItems();
   }, []);
-
+  console.log(cartItems);
   useEffect(() => {
     const fetchValidCoupon = async () => {
       try {
@@ -54,8 +54,21 @@ const ShoppingCart = () => {
     fetchValidCoupon();
   }, []);
 
-  const removeItem = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+  const removeItem = async (id) => {
+    try {
+      const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/itemcart/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
+      setCartItems(cartItems.filter((item) => item.id !== id));
+  
+    } catch (error) {
+      alert("Erro ao remover item do carrinho");
+      console.log(error);
+    }
   };
 
   const updateQuantity = (id, quantity) => {
@@ -64,7 +77,9 @@ const ShoppingCart = () => {
     );
   };
 
-  const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const subtotal = cartItems.reduce((total, item) => {
+    return total + ((item.preco * item.quantidade) - ((item.preco * item.quantidade) * (item.productDTO.discount /100)));
+  }, 0);
   const discountAmount = subtotal * discount;
   const totalWithDiscount = subtotal - discountAmount;
 
@@ -115,15 +130,15 @@ const ShoppingCart = () => {
                     src={icon_cancel_cart}
                     alt="Remove item icon"
                     className={styles.removeItem}
-                    aria-label={`Remover ${item.name}`}
+                    aria-label={`Remover ${item.productDTO.name}`}
                     onClick={() => removeItem(item.id)}
                   />
                 </td>
                 <td className={styles.productInfo}>
-                  <img src={item.image} alt={item.name} className={styles.cartProductImage} />
-                  <span>{item.name}</span>
+                  <img src={item.productDTO.cover} alt={item.productDTO.name} className={styles.cartProductImage} />
+                  <span>{item.productDTO.name}</span>
                 </td>
-                <td>R$ {item.price.toFixed(2)}</td>
+                <td>{item.productDTO.priceDiscount ? item.productDTO.priceDiscount : item.productDTO.price}</td>
                 <td>
                   <select
                     className={styles.quantitySelector}

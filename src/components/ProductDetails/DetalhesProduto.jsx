@@ -32,7 +32,6 @@ const DetalhesProduto = () => {
   useEffect(() => {
     getProductDetails(id).then((result) => {
       setProduct(result);
-      console.log(result);
     });
   }, [id]);
 
@@ -71,7 +70,7 @@ const DetalhesProduto = () => {
           ) : (
             <div className={styles.discount}>
               <p className={styles.discountPrice}>
-                R$ {product.priceDiscount}
+                 {product.priceDiscount}
                 <span className={styles.badge}>{product.discount}% off</span>
               </p>
             </div>
