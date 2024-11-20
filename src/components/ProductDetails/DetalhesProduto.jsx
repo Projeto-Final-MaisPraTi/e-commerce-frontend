@@ -3,37 +3,37 @@ import StarRating from "../ProductCard/StarRating";
 import PageNotFound from "../404NotFound/404NotFound";
 import { getProductDetails } from "../../services/ProductService";
 import { useNavigate } from "react-router-dom";
-import { addItemToCart } from '../../services/CartService';
+import { addItemToCart } from "../../services/CartService";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-
-
-
 
 const DetalhesProduto = () => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const { id } = useParams(); // Obtém o ID do produto da URL
   const productId = parseInt(id); // Converte o ID para um número inteiro
-  // const product = ProductsData.find((item) => item.id === productId); // Busca o produto com o ID correspondente
   const [product, setProduct] = useState();
 
   const handleAddToCart = async () => {
-       const itemCartData = {
-         "productDetailsDTO": { "id": product.id},
-          "quantidade": 1
-         };
-         const response = await addItemToCart(itemCartData);
-         console.log('Item adicionado ao carrinho com sucesso:', response); 
-         //navigate(`/cart`);
+    try {
+      const itemCartData = {
+        productDetailsDTO: { id: product.id },
+        quantidade: 1,
+      };
+      const response = await addItemToCart(itemCartData);
+      console.log("Item adicionado ao carrinho com sucesso:", response);
+      navigate(`/cart`);
+    } catch (error) {
+      console.error("Erro ao adicionar item ao carrinho:", error);
+      alert("Erro ao adicionar item ao carrinho. Tente novamente mais tarde.");
+    }
   };
 
   useEffect(() => {
-    getProductDetails(id).then(result => {
-        setProduct(result);
-        console.log(result);
+    getProductDetails(id).then((result) => {
+      setProduct(result);
     });
-}, []);
+  }, [id]);
 
   // Verifica se o produto existe
   if (!product) {
@@ -66,7 +66,7 @@ const DetalhesProduto = () => {
         <h1>{product.name}</h1>
         <div className={styles.price}>
           {!product.priceDiscount ? (
-            <p className={styles.price}>{product.price}</p>
+            <p className={styles.price}>R$ {product.price}</p>
           ) : (
             <div className={styles.discount}>
               <p className={styles.discountPrice}>
@@ -75,17 +75,15 @@ const DetalhesProduto = () => {
               </p>
             </div>
           )}
-          {/* R$ {product.price} {product.discount === 35 && <span className={styles.badge}>-{product.discount}%</span>} */}
         </div>
         <p className={styles.description}>{product.description}</p>
-
         <p className={styles.colorSelection}>Cor disponível: {product.color}</p>
         <div className={styles.reviews}>
           <StarRating rating={product.rating} />
         </div>
-
-        <button className={styles.addToCart} onClick={handleAddToCart}>Adicionar ao Carrinho</button>
-
+        <button className={styles.addToCart} onClick={handleAddToCart}>
+          Adicionar ao Carrinho
+        </button>
         <div className={styles.infoCard}>
           <div className={styles.infoSection}>
             <h3>Entrega Gratuita</h3>

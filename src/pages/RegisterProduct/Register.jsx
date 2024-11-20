@@ -134,7 +134,6 @@ const Register = () => {
 
   const handleDeleteImageDetails = () => {
     if (data.images != null) {
-      console.log(data.images);
       const updatedImages = data.images.filter((image) => image.name !== deleteImage.name);
       setValues("img", updatedImages);
     }
@@ -175,23 +174,59 @@ const Register = () => {
     }
   };
 
+  const validDataInput = () => {
+    if (!data.name?.trim() || data.name === "Title") {
+      alert("Campo nome não pode estar vazio'");
+      return false;
+    }
+    if (!data.description) {
+      alert("Campo descrição não pode estar vazio");
+      return false;
+    }
+    if (!data.category) {
+      alert("Campo categoria não pode estar vazio");
+      return false;
+    }
+    if (!data.quantity || isNaN(data.quantity) || Number(data.quantity) <= 0) {
+      alert("Campo quantidade deve ser um número válido maior que 0");
+      return false;
+    }
+    if (!data.price || isNaN(data.price) || Number(data.price) <= 0) {
+      alert("Campo preço deve ser um número válido maior que 0");
+      return false;
+    }
+    if (!data.color) {
+      alert("Campo cor não pode estar vazio");
+      return false;
+    }
+    if (!data.cover) {
+      alert("Campo capa (cover) não pode estar vazio");
+      return false;
+    }
+  
+    return true;
+  };
+  
+
   // Enviar para o banco de dados
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Necessário confirmar todos os dados antes de enviar
+    if (!validDataInput()) {
+      return ;
+    }
 
     // União das imagens
-    let imagens = [];
-    imagens.push(data.cover);
-    imagens = [...imagens, ...data.images.flat()];
-    try {
-      let result = await submitProduct(data, imagens, setProgressBar, setProgressInsertDB);
-      alert("Produto cadastrado!");
-      console.log(result);
-    } catch (error) {
-      console.error("Erro ao enviar o produto:", error);
-      alert("Erro ao cadastrar o produto.");
-    }
+    // let imagens = [];
+    // imagens.push(data.cover);
+    // imagens = [...imagens, ...data.images.flat()];
+    // try {
+    //   let result = await submitProduct(data, imagens, setProgressBar, setProgressInsertDB);
+    //   alert("Produto cadastrado!");
+    // } catch (error) {
+    //   console.error("Erro ao enviar o produto:", error);
+    //   alert("Erro ao cadastrar o produto.");
+    // }
   };
   // A maioria dos inputs ainda precisam de validação
 
