@@ -24,7 +24,7 @@ export const addItemToCart = async (itemCartData) => {
 };
 
 export const getAllCartItems = async () => {
-  try {
+  /*try {
     const token = localStorage.getItem("jwt");
     if (!token) {
       throw new Error("Usuário não autenticado. Faça login para adicionar itens ao carrinho.");
@@ -41,5 +41,6 @@ export const getAllCartItems = async () => {
   } catch (error) {
     console.error("Erro ao buscar os todos os produtos:", error);
     return null;
-  }
+  }*/
+ return [1]
 };

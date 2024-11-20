@@ -75,6 +75,18 @@ function Checkout() {
   const handlePaymentChange = (event) => {
     setPaymentMethod(event.target.value);
   };
+  const handleKeyUp = (event) => {
+    if (event.target.name === 'expiryMonth' && event.target.value.length === 2) {
+      document.getElementById('checkout-expiryYear').focus();
+    }
+  };
+  
+  const handleKeyDown = (event) => {
+    if (event.key === 'Backspace' && event.target.name === 'expiryYear' && event.target.value === '') {
+      document.getElementById('checkout-expiryMonth').focus();
+    }
+  };
+  
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
