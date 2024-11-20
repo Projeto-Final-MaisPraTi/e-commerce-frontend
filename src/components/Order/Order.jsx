@@ -109,9 +109,7 @@ const Order = () => {
                 <td>{order.total}</td>
                 <td>
                   <span
-                    className={`status ${
-                      order.status === "Realizado" ? "completed" : "cancelled"
-                    }`}
+                    className={`status ${order.status === "Realizado" ? "completed" : "cancelled"}`}
                   >
                     {order.status}
                   </span>

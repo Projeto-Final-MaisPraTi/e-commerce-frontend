@@ -26,16 +26,16 @@ const Account = () => {
   useEffect(() => {
     document.title = "My Account";
     setFormData({
-      name: "Luiz Lobato",
-      email: "luiz@email.com",
+      name: "",
+      email: "",
       currentPassword: "",
       newPassword: "",
       confirmPassword: "",
     });
     setInitialFormData({
-      name: "Luiz Lobato",
-      email: "luiz@email.com",
-      currentPassword: "", 
+      name: "",
+      email: "",
+      currentPassword: "",
       newPassword: "",
       confirmPassword: "",
     });
@@ -60,7 +60,8 @@ const Account = () => {
     const newErrors = {};
 
     if (fields.name && !/^[A-Za-zÀ-ÿ\s]{3,}$/.test(fields.name)) {
-      newErrors.name = "O nome deve conter pelo menos 3 caracteres e pode incluir letras com acento.";
+      newErrors.name =
+        "O nome deve conter pelo menos 3 caracteres e pode incluir letras com acento.";
     }
 
     if (fields.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) {
@@ -104,19 +105,18 @@ const Account = () => {
     if (validateUpdatedFields(updatedFields)) {
       console.log("Alterações salvas:", updatedFields);
 
-      
       if (updatedFields.newPassword) {
         setStoredPassword(updatedFields.newPassword);
       }
 
       alert("Alterações salvas com sucesso!");
-      setInitialFormData({ ...formData }); 
+      setInitialFormData({ ...formData });
       setFormData({
         ...formData,
-        currentPassword: "", 
+        currentPassword: "",
         newPassword: "",
         confirmPassword: "",
-      }); 
+      });
     }
   };
 
@@ -125,7 +125,9 @@ const Account = () => {
     setErrors({});
   };
 
-  const isSaveButtonDisabled = Object.keys(formData).every(key => formData[key] === initialFormData[key]);
+  const isSaveButtonDisabled = Object.keys(formData).every(
+    (key) => formData[key] === initialFormData[key],
+  );
 
   return (
     <div className="account-container">
@@ -206,9 +208,7 @@ const Account = () => {
                 onChange={handleChange}
                 aria-label="Senha atual"
               />
-              {errors.currentPassword && (
-                <p className="error-text">{errors.currentPassword}</p>
-              )}
+              {errors.currentPassword && <p className="error-text">{errors.currentPassword}</p>}
               <input
                 id="newPassword"
                 type="password"
@@ -228,9 +228,7 @@ const Account = () => {
                 onChange={handleChange}
                 aria-label="Confirme sua senha"
               />
-              {errors.confirmPassword && (
-                <p className="error-text">{errors.confirmPassword}</p>
-              )}
+              {errors.confirmPassword && <p className="error-text">{errors.confirmPassword}</p>}
             </div>
           </div>
 
@@ -238,11 +236,7 @@ const Account = () => {
             <button type="button" className="cancel-btn" onClick={handleCancel}>
               Cancelar
             </button>
-            <button 
-              type="submit" 
-              className="save" 
-              disabled={isSaveButtonDisabled}
-            >
+            <button type="submit" className="save" disabled={isSaveButtonDisabled}>
               Salvar
             </button>
           </div>
