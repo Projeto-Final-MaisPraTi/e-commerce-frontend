@@ -70,7 +70,7 @@ const DetalhesProduto = () => {
           ) : (
             <div className={styles.discount}>
               <p className={styles.discountPrice}>
-                 {product.priceDiscount}
+                {product.priceDiscount}
                 <span className={styles.badge}>{product.discount}% off</span>
               </p>
             </div>

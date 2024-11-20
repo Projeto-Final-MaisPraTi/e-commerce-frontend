@@ -9,15 +9,15 @@ const Container = styled.div`
   width: 95%;
   margin: auto;
   transition: 0.5s;
-  @media screen and (max-width: 800px){
+  @media screen and (max-width: 800px) {
     width: 100%;
   }
 `;
 
-function ManagerProduct({admin}) {
+function ManagerProduct({ admin }) {
   console.log(admin);
   if (!admin) {
-    return <PageNotFound/>
+    return <PageNotFound />;
   }
   return (
     <>
