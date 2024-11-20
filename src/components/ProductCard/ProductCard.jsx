@@ -1,14 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./ProductCard.module.css";
 import StarRating from "./StarRating";
-const ProductNotFound = "https://placehold.co/400x300";
 
+const ProductNotFound = "https://placehold.co/400x300";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    // Redireciona para a página de detalhes do produto
     navigate(`/product/${product.id}`);
   };
 
@@ -16,19 +15,31 @@ const ProductCard = ({ product }) => {
     return "Lista de produtos não encontrada";
   }
 
-  const productImage = product.cover ? product.cover : product.images ?  product.images[0] : ProductNotFound;
+  const productImage = product.cover
+    ? product.cover
+    : product.images
+    ? product.images[0]
+    : ProductNotFound;
 
   return (
     <div className={styles.productCard} onClick={handleClick}>
-      {product.discount != 0 && <div className={styles.badge}>{product.discount}%</div>}
+      {product.discount !== 0 && (
+        <div className={styles.badge}>{product.discount}%</div>
+      )}
       <div className={styles.productImage}>
-        <img 
-        src={productImage} alt={product.name} className={styles.productImage} />
+        <img src={productImage} alt={product.name} className={styles.productImage} />
       </div>
       <div className={styles.productDetails}>
         <h4>{product.name}</h4>
         <div className={styles.reviews}>
-          <StarRating rating={product.rating} />
+          {/* Exibe as estrelas com base na média de avaliações */}
+          <StarRating rating={product.rating || 0} />
+          {/* Exibe a quantidade de avaliações, se disponível */}
+          {product.reviewsCount ? (
+            <span>({product.reviewsCount} avaliações)</span>
+          ) : (
+            <span>(Sem avaliações)</span>
+          )}
         </div>
         <div className={styles.productPrice}>
           {!product.discount ? (
