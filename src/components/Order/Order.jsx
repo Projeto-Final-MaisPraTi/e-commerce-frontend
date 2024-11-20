@@ -23,6 +23,8 @@ const Order = () => {
     },
   ]);
 
+  const hasOrders = orders.length < 0; // Verifica se há pedidos
+
   const isOnProfilePage = location.pathname === "/account";
   const isOnOrderPage = location.pathname === "/orders";
 
@@ -85,52 +87,64 @@ const Order = () => {
       </section>
 
       <section className="order-list">
-        <h6 className="order-title">Meus Pedidos</h6>
+        <h6 className="order-title">Histórico</h6>
 
-        <table className="order-table">
-          <thead>
-            <tr>
-              <th>Número</th>
-              <th>Data</th>
-              <th>Total</th>
-              <th>Status</th>
-              <th>Opcões</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order) => (
-              <tr key={order.id}>
-                <td>
-                  <a href className="order-id">
-                    {order.id}
-                  </a>
-                </td>
-                <td>{order.date}</td>
-                <td>{order.total}</td>
-                <td>
-                  <span
-                    className={`status ${order.status === "Realizado" ? "completed" : "cancelled"}`}
-                  >
-                    {order.status}
-                  </span>
-                </td>
-                <td>
-                  <button
-                    className="cancel-order-btn"
-                    onClick={() => handleCancelOrder(order.id)}
-                    disabled={order.status === "Cancelado"}
-                    style={{
-                      opacity: order.status === "Cancelado" ? "0.5" : "1",
-                      cursor: order.status === "Cancelado" ? "not-allowed" : "pointer",
-                    }}
-                  >
-                    Cancelar Pedido
-                  </button>
-                </td>
+        {hasOrders ? (
+          <table className="order-table">
+            <thead>
+              <tr>
+                <th>Número</th>
+                <th>Data</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Opções</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order.id}>
+                  <td>
+                    <a href="#" className="order-id">
+                      {order.id}
+                    </a>
+                  </td>
+                  <td>{order.date}</td>
+                  <td>{order.total}</td>
+                  <td>
+                    <span
+                      className={`status ${
+                        order.status === "Realizado" ? "completed" : "cancelled"
+                      }`}
+                    >
+                      {order.status}
+                    </span>
+                  </td>
+                  <td>
+                    <button
+                      className="cancel-order-btn"
+                      onClick={() => handleCancelOrder(order.id)}
+                      disabled={order.status === "Cancelado"}
+                      style={{
+                        opacity: order.status === "Cancelado" ? "0.5" : "1",
+                        cursor: order.status === "Cancelado" ? "not-allowed" : "pointer",
+                      }}
+                    >
+                      Cancelar Pedido
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div className="no-orders">
+            <p>Você ainda não tem pedidos para mostrar.{" "}
+              <a href="/" className="link-to-home">
+                Faça o seu primeiro pedido aqui.
+              </a>
+            </p>
+          </div>
+        )}
       </section>
     </div>
   );
