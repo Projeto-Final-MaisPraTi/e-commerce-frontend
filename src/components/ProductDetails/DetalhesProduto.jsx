@@ -1,6 +1,6 @@
 import styles from "./DetalhesProduto.module.css";
 import StarRating from "../ProductCard/StarRating";
-import PageNotFound from "../404NotFound/404NotFound";
+import DotsLoader from "../DotLoader/DotLoader";
 import { getProductDetails } from "../../services/ProductService";
 import { useNavigate } from "react-router-dom";
 import { addItemToCart } from "../../services/CartService";
@@ -37,7 +37,7 @@ const DetalhesProduto = () => {
 
   // Verifica se o produto existe
   if (!product) {
-    return <PageNotFound />;
+    return <DotsLoader />;
   }
 
   const moveSlide = (direction) => {

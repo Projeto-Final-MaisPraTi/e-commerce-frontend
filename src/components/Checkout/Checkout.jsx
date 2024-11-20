@@ -20,22 +20,25 @@ function Checkout() {
     securityCode: "",
     installments: "1",
   });
-  const handleValidityChange = (event) => { 
-    const { name, value } = event.target; 
-    setFormData({ ...formData, [name]: value.replace(/[^0-9]/g, '').slice(0, 2), }); 
-  }; 
-  
-  
-    const handleKeyUp = (event) => { 
-      if (event.target.name === 'expiryMonth' && event.target.value.length === 2) { 
-        document.getElementById('checkout-expiryYear').focus(); 
-      } 
-    };
-    const handleKeyDown = (event) => { 
-      if (event.key === 'Backspace' && event.target.name === 'expiryYear' && event.target.value === '') { 
-        document.getElementById('checkout-expiryMonth').focus(); 
-      } 
-    };
+  const handleValidityChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value.replace(/[^0-9]/g, "").slice(0, 2) });
+  };
+
+  const handleKeyUp = (event) => {
+    if (event.target.name === "expiryMonth" && event.target.value.length === 2) {
+      document.getElementById("checkout-expiryYear").focus();
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (
+      event.key === "Backspace" &&
+      event.target.name === "expiryYear" &&
+      event.target.value === ""
+    ) {
+      document.getElementById("checkout-expiryMonth").focus();
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -233,29 +236,29 @@ function Checkout() {
                   <div>
                     <label>Validade:</label>
                     <div className="checkout-expiryDateBox">
-                    <div className="checkout-expiryDateInput">
-                      <input
-                        type="text"
-                        id="checkout-expiryMonth"
-                        name="expiryMonth"
-                        value={formData.expiryMonth}
-                        onChange={handleValidityChange}
-                        onKeyUp={handleKeyUp}
-                        placeholder="MM"
-                        maxLength="2"
-                      />
-                      <p>/</p>
-                      <input
-                        type="text"
-                        id="checkout-expiryYear"
-                        name="expiryYear"
-                        value={formData.expiryYear}
-                        onChange={handleValidityChange}
-                        onKeyDown={handleKeyDown}
-                        placeholder="AA"
-                        maxLength="2"
-                      />
-                    </div>
+                      <div className="checkout-expiryDateInput">
+                        <input
+                          type="text"
+                          id="checkout-expiryMonth"
+                          name="expiryMonth"
+                          value={formData.expiryMonth}
+                          onChange={handleValidityChange}
+                          onKeyUp={handleKeyUp}
+                          placeholder="MM"
+                          maxLength="2"
+                        />
+                        <p>/</p>
+                        <input
+                          type="text"
+                          id="checkout-expiryYear"
+                          name="expiryYear"
+                          value={formData.expiryYear}
+                          onChange={handleValidityChange}
+                          onKeyDown={handleKeyDown}
+                          placeholder="AA"
+                          maxLength="2"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

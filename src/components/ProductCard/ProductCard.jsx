@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import styles from "./ProductCard.module.css";
 import StarRating from "./StarRating";
 const ProductNotFound = "https://placehold.co/400x300";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 
 const ProductCard = ({ product }) => {

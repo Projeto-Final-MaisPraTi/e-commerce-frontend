@@ -23,13 +23,19 @@ export const addItemToCart = async (itemCartData) => {
   }
 };
 
-
 export const getAllCartItems = async () => {
   try {
-    const response = await axios.get(API_URL,{
-      headers:{
-        "Authorization":localStorage.getItem("jwt"),
-      }
+    const token = localStorage.getItem("jwt");
+    if (!token) {
+      throw new Error("Usuário não autenticado. Faça login para adicionar itens ao carrinho.");
+    }
+
+    const response = await axios.get(API_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        // "Content-Type": "application/json",
+      },
+      withCredentials: true,
     });
     return response.data;
   } catch (error) {
@@ -37,6 +43,3 @@ export const getAllCartItems = async () => {
     return null;
   }
 };
-
-
-
