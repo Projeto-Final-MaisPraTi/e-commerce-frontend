@@ -155,7 +155,8 @@ const Account = () => {
               onMouseLeave={() => setIsOrderHovered(false)}
             >
               Meus Pedidos
-            </p>
+            </p> 
+            <br/>
           </div>
         </div>
       </section>
