@@ -7,12 +7,17 @@ import { addItemToCart } from "../../services/CartService";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const DetalhesProduto = () => {
+const DetalhesProduto = ({product}) => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const { id } = useParams(); // Obtém o ID do produto da URL
   const productId = parseInt(id); // Converte o ID para um número inteiro
-  const [product, setProduct] = useState();
+  // const [product, setProduct] = useState();
+
+  // Verifica se o produto existe
+  if (!product) {
+    return <PageNotFound />;
+  }
 
   const handleAddToCart = async () => {
     try {
@@ -29,16 +34,6 @@ const DetalhesProduto = () => {
     }
   };
 
-  useEffect(() => {
-    getProductDetails(id).then((result) => {
-      setProduct(result);
-    });
-  }, [id]);
-
-  // Verifica se o produto existe
-  if (!product) {
-    return <PageNotFound />;
-  }
 
   const moveSlide = (direction) => {
     setCurrentSlide((prev) => (prev + direction + product.images.length) % product.images.length);
@@ -66,7 +61,7 @@ const DetalhesProduto = () => {
         <h1>{product.name}</h1>
         <div className={styles.price}>
           {!product.priceDiscount ? (
-            <p className={styles.price}>R$ {product.price}</p>
+            <p className={styles.price}>{product.price}</p>
           ) : (
             <div className={styles.discount}>
               <p className={styles.discountPrice}>

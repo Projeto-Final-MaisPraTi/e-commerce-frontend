@@ -71,14 +71,27 @@ const ShoppingCart = () => {
     }
   };
 
-  const updateQuantity = (id, quantity) => {
-    setCartItems(
-      cartItems.map((item) => (item.id === id ? { ...item, quantity: Number(quantity) } : item)),
-    );
+  const updateQuantity = async (id, quantity) => {
+    try {
+      const resp = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/api/itemcart/${id}/quantity`, 
+      {"quantity": parseInt(quantity)},
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
+      setCartItems(
+        cartItems.map((item) => (item.id === id ? { ...item, quantity: Number(quantity), preco:resp.data.preco } : item)),
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const subtotal = cartItems.reduce((total, item) => {
-    return total + ((item.preco * item.quantidade) - ((item.preco * item.quantidade) * (item.productDTO.discount /100)));
+    return total + ((item.preco) - ((item.preco) * (item.productDTO.discount /100)));
   }, 0);
   const discountAmount = subtotal * discount;
   const totalWithDiscount = subtotal - discountAmount;
