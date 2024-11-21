@@ -162,12 +162,12 @@ label {
   display: inline-block;
 }
 
-.status.completed {
+.status.realizado {
   background-color: #d1fadf;
   color: #38a169;
 }
 
-.status.cancelled {
+.status.cancelado {
   background-color: #fde2e2;
   color: #e53e3e;
 }

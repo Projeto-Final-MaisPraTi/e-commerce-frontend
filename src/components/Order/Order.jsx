@@ -30,14 +30,14 @@ const Order = () => {
     try {
       // Atualiza a lista de pedidos localmente
       const updatedOrders = orders.map((order) => {
-        if (order.id === orderId && order.status === "Realizado") {
-          return { ...order, status: "Cancelado" };
+        if (order.id === orderId && order.typeSaleStatus === "REALIZADO") {
+          return { ...order, typeSaleStatus: "CANCELADO" };
         }
         return order;
       });
       setOrders(updatedOrders);
 
-      // Envia a requisição para o backend para cancelar o pedido
+     // Envia a requisição para o backend para cancelar o pedido
       const token = localStorage.getItem("jwt");
       await axios.put(
         `${import.meta.env.VITE_BACKEND_URL}/api/sales/${orderId}/disable`,
@@ -60,14 +60,14 @@ const Order = () => {
     const fetchOrders = async () => {
       const token = localStorage.getItem("jwt");
       try {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/sales`, {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/sales/user`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
 
-        setOrders(response.data.orders);
+        setOrders(response.data);
         setLoading(false); // Dados carregados
       } catch (error) {
         setError(error.message);
@@ -82,9 +82,9 @@ const Order = () => {
     return <p>Carregando pedidos...</p>;
   }
 
-  if (error) {
-    return <p>Erro: {error}</p>;
-  }
+  // if (error) {
+  //   return <p>Erro: {error}</p>;
+  // }
 
   return (
     <div className="order-container">
@@ -133,30 +133,30 @@ const Order = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
+              {orders && orders.map((order) => (
                 <tr key={order.id}>
                   <td>
-                    <a className="order-id">{order.id}</a>
+                    <a className="order-id">#{order.id}</a>
                   </td>
                   <td>{order.date}</td>
                   <td>{order.total}</td>
                   <td>
                     <span
                       className={`status ${
-                        order.status === "Realizado" ? "Realizado" : "Cancelado"
+                        order.typeSaleStatus === "REALIZADO" ? "realizado" : "cancelado"
                       }`}
                     >
-                      {order.status}
+                      {order.typeSaleStatus}
                     </span>
                   </td>
                   <td>
                     <button
                       className="cancel-order-btn"
                       onClick={() => handleCancelOrder(order.id)}
-                      disabled={order.status === "Cancelado"}
+                      disabled={order.typeSaleStatus === "CANCELADO"}
                       style={{
-                        opacity: order.status === "Cancelado" ? "0.5" : "1",
-                        cursor: order.status === "Cancelado" ? "not-allowed" : "pointer",
+                        opacity: order.typeSaleStatus === "CANCELADO" ? "0.5" : "1",
+                        cursor: order.typeSaleStatus === "CANCELADO" ? "not-allowed" : "pointer",
                       }}
                     >
                       Cancelar Pedido
