@@ -11,7 +11,7 @@ const Order = () => {
   const [isOrderHovered, setIsOrderHovered] = useState(false);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true); // Para indicar se os dados estão sendo carregados
-  const [error, setError] = useState(null); // Para armazenar erros, caso ocorram
+  const [error, setError] = useState(null);
 
   const hasOrders = orders.length > 0; // Verifica se há pedidos
 
@@ -38,7 +38,7 @@ const Order = () => {
       setOrders(updatedOrders);
 
       // Envia a requisição para o backend para cancelar o pedido
-      const token = localStorage.getItem("jwt"); // Pegue o token do localStorage ou de onde for guardado
+      const token = localStorage.getItem("jwt");
       await axios.put(
         `${import.meta.env.VITE_BACKEND_URL}/api/sales/${orderId}/disable`,
         {},
@@ -51,14 +51,14 @@ const Order = () => {
       );
       alert("Pedido cancelado com sucesso!");
     } catch (error) {
-      setError(error.message); // Se houver erro, exibe mensagem de erro
+      setError(error.message);
       alert("Erro ao cancelar pedido");
     }
   };
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const token = localStorage.getItem("jwt"); // Pegue o token do localStorage ou de onde for guardado
+      const token = localStorage.getItem("jwt");
       try {
         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/sales`, {
           headers: {
@@ -67,10 +67,10 @@ const Order = () => {
           },
         });
 
-        setOrders(response.data.orders); // Supondo que o backend retorne os pedidos com um campo 'orders'
+        setOrders(response.data.orders);
         setLoading(false); // Dados carregados
       } catch (error) {
-        setError(error.message); // Se houver erro, exibe mensagem de erro
+        setError(error.message);
         setLoading(false);
       }
     };
@@ -79,11 +79,11 @@ const Order = () => {
   }, []);
 
   if (loading) {
-    return <p>Carregando pedidos...</p>; // Mensagem enquanto os pedidos estão sendo carregados
+    return <p>Carregando pedidos...</p>;
   }
 
   if (error) {
-    return <p>Erro: {error}</p>; // Exibe erro, caso haja algum
+    return <p>Erro: {error}</p>;
   }
 
   return (
