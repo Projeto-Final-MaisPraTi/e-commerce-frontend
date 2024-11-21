@@ -180,8 +180,6 @@ function UpdateProduct() {
                 }
                 reader.readAsDataURL(file);
             })
-            console.log(newImages);
-            console.log(imageFiles);
         }
     };
 
@@ -214,8 +212,6 @@ function UpdateProduct() {
             let nameImage = getNameImage(produto.cover.value);
             let url = produto.cover.value;
             await deleteImageByUrl(url);
-            // await deleteImagesFirebase(nameImage);
-            console.log(nameImage);
         }
         handleChange('cover', null);
         setCover(false);
@@ -253,7 +249,6 @@ function UpdateProduct() {
 
     const handleChangeColor = (event) => {
         setCorSelecionada(event.target.value);
-        console.log(event.target.value);
 
         const corEncontrada = opcoesDeCores.find((opcao) => opcao.valor === event.target.value);
         if (corEncontrada) {
@@ -268,7 +263,6 @@ function UpdateProduct() {
             setLoading(true);
             const data = await createUpdateProdutoData(produto, imageFiles, setCover);
             const resp = await updateProduct(data);
-            console.log(resp);
             alert("Produto atualizado com sucesso!");
             setLoading(false);
             window.location.reload();

@@ -122,10 +122,10 @@ const PopupUpdate = styled.div`
   align-items: center;
   flex-direction: column;
   position: absolute;
-  height: 150px;
+  height: 160px;
   width: 350px;
   padding: 20px;
-  border: 1px solid black;
+  border: 1px solid #868686;
   margin-top: 40px;
   background-color: #f0f0f0;
   border-radius: 4px;
@@ -136,13 +136,13 @@ const PopupUpdate = styled.div`
   p span {
     color: #a00606;
     font-weight: 800;
+    padding: 10px;
   }
 `
 
 const ButtonsUpdate = styled.div`
   display: flex;
   gap: 40px;
-  margin-top: 10px;
   button {
     padding: 5px 20px 5px 20px;
     border: none;
@@ -193,7 +193,6 @@ const Update = () => {
     const selectedValue = event.target.value == "" ? false : event.target.value;
     setCategoria(selectedValue);
     handleFiltros("categoria", selectedValue);
-    console.log(categoria);
   };
 
   // FUNÇÃO PARA BUSCAR O PRODUTO COM O TEXTO INSERIDO
@@ -252,7 +251,6 @@ const Update = () => {
     }
     // FECHA O POPUP DE DELETAR O PRODUTO
     setDeleteItem(null);
-    console.log(res);
   }
 
   return (

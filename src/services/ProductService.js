@@ -1,13 +1,14 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/product"; // URL para criar produtos
-// const API_URL = "http://192.168.4.24:8080/api/product";
+const token = localStorage.getItem("jwt");
+const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/product`; // URL para criar produtos
 // rota para criar os produtos
 
 export const createProduct = async (productData) => {
   try {
     const response = await axios.post(API_URL, productData, {
       headers: {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
@@ -24,6 +25,7 @@ export const updateProduct = async (productData) => {
   try {
     const response = await axios.put(API_URL + "/update", productData, {
       headers: {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
@@ -40,6 +42,7 @@ export const getUpdateProduct = async (id) => {
   try {
     const response = await axios.get(API_URL + "/" + id + "/update", {
       headers: {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
@@ -56,7 +59,8 @@ export const deleteProductById = async (id) => {
   try {
     const response = await axios.delete(API_URL + "/" + id, {
       headers: {
-        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
       },
     });
     return response.data;
@@ -72,6 +76,7 @@ export const findProductByName = async (name) => {
   try {
     const response = await axios.get(API_URL + "/search?name=" + name, {
       headers: {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
@@ -88,6 +93,7 @@ export const findProductById = async (id) => {
   try {
     const response = await axios.get(API_URL + "/" + id, {
       headers: {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
@@ -104,6 +110,7 @@ export const findProductByCategory = async (category) => {
   try {
     const response = await axios.get(API_URL + "/search?category=" + category, {
       headers: {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
@@ -120,6 +127,7 @@ export const getProductDetails = async (id) => {
   try {
     const response = await axios.get(API_URL + "/" + id + "/details", {
       headers: {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     });
@@ -156,7 +164,6 @@ export const getFilteredProducts = async (filters, page = 0, size = 10) => {
     console.error("Erro ao buscar produtos por filtro:", error);
   }
 };
-
 
 // Função para buscar produtos de flash sales com paginação
 // Retorna uma paginação

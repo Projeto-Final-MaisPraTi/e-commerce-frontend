@@ -50,7 +50,6 @@ const Register = () => {
           { headers: { "Content-Type": "application/json" } },
         );
 
-        console.log(response.data);
         if (response.data.accessToken) {
           // Armazena o token JWT e redireciona para a página inicial
           localStorage.setItem("jwt", response.data.accessToken);

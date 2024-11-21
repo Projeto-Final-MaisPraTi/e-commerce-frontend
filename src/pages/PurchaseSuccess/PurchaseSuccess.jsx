@@ -57,7 +57,7 @@ const PurchaseSuccess = () => {
   const navigate = useNavigate();
 
   const handleGoToPurchases = () => {
-    navigate('/cart');
+    navigate('/orders');
   };
 
   return (

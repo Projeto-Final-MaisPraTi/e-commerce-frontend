@@ -9,7 +9,7 @@ import mallbagIcon from "../../../assets/icon_mallbag.png";
 import reviewsIcon from "../../../assets/icon_reviews.png";
 import logoutIcon from "../../../assets/icon_logout.png";
 import "./NavBar.css";
-import { logout } from "../../../auth";
+import { logout, getDecodedTokenRole } from "../../../auth";
 
 const NavBar = ({ isUserLoggedIn }) => {
   const [isUserMenuOpen, setUserMenuOpen] = useState(false);
@@ -54,14 +54,13 @@ const NavBar = ({ isUserLoggedIn }) => {
             <img src={logo} alt="Logo" className="logo" />
           </Link>
         </div>
-
         <div className="links-container">
           <Link to="/">Início</Link>
           <Link to="/contact">Contato</Link>
           <Link to="/about">Sobre nós</Link>
+          {isUserLoggedIn && getDecodedTokenRole() && <Link to="/manager">Gerenciador</Link>}
           {!isUserLoggedIn && <Link to="/login">Entrar</Link>}
         </div>
-
         <div className="actions-container">
           <div className="search-bar">
             <input
@@ -74,14 +73,14 @@ const NavBar = ({ isUserLoggedIn }) => {
             </button>
           </div>
 
-          <div className="icon-group">
-            <div className="icon-button">
-              <Link to="/cart">
-                <img src={cart} alt="Cart Icon" />
-              </Link>
-            </div>
+          {isUserLoggedIn && (
+            <div className="icon-group">
+              <div className="icon-button">
+                <Link to="/cart">
+                  <img src={cart} alt="Cart Icon" />
+                </Link>
+              </div>
 
-            {isUserLoggedIn && (
               <div className="user-menu-container" ref={userMenuRef}>
                 <div className="icon-button" onClick={toggleUserMenu}>
                   <img src={userIcon} alt="User Icon" />
@@ -115,8 +114,8 @@ const NavBar = ({ isUserLoggedIn }) => {
                   </div>
                 )}
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

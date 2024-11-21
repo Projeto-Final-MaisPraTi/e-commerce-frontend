@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/images";
+const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/images`;
 
 export const deleteImageByUrl = async (url) => {
   try {

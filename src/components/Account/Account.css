@@ -1,31 +1,24 @@
-/* Estilos Gerais */
 .account-container {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  margin: 181px 135px 140px 180px;
+  margin: 80px 120px 140px 200px;
 }
 
-/* Ajuste do Título */
 h4 {
   margin-top: 28px;
   margin-bottom: 10px;
   font-size: 20px;
   font-weight: normal;
-  color: #db4444;
+  color: #1f81e2;
   text-align: left;
-  /* Certifica que o título esteja alinhado à esquerda */
 }
 
-/* Novo Estilo para Alinhar o Título com os Demais Elementos */
 .profile-title {
   display: table;
-  /* Faz com que o título se comporte como parte da tabela */
   width: 100%;
-  /* Garante que o título tenha a mesma largura dos elementos da tabela */
   margin-bottom: 20px;
-  padding-left: 80px;
-  /* Ajuste no espaçamento à esquerda */
+  padding-left: 32px;
 }
 
 label {
@@ -35,21 +28,54 @@ label {
   text-align: justify;
 }
 
-/* Cartão de Informação */
 .account-info {
-  flex: 0.75;
+  flex: 0.8;
   margin-right: 30px;
   margin-left: -85px;
 }
 
+.profile-option {
+  font-weight: normal;
+  color: black;
+  cursor: pointer;
+  transition: font-weight 0.2s, color 0.2s;
+}
+
+.profile-option.hovered {
+  font-weight: unset;
+  text-decoration: underline;
+}
+
+.profile-option.active {
+  color: #1f81e2;
+}
+
+.order-option {
+  font-weight: normal;
+  color: black;
+  cursor: pointer;
+  transition: font-weight 0.2s, color 0.2s;
+}
+
+.order-option.hovered {
+  font-weight: unset;
+}
+
+.order-option.active {
+  color: #000000;
+}
+
 .account-card {
-  box-shadow: 0 0 0px;
-  padding: 4px 35px 51px 35px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 30px 20px 455px 35px;
+  border-radius: 8px;
   margin-right: 8px;
+  background-color: white;
 }
 
 .account-method {
-  margin-bottom: 2px;
+  margin-bottom: 15px;
+  position: relative;
 }
 
 .account-method h8 {
@@ -62,38 +88,38 @@ label {
 }
 
 .account-method p {
-  font-size: 16px;
+  font-size: 18px;
   color: black;
-  opacity: 50%;
+  opacity: 80%;
   margin-left: 0px;
   margin-bottom: 5px;
 }
 
-/* Formulário de Conta */
 .account-form {
-  flex: 2;
+  flex: 2.2;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  background-color: white;
+  border-radius: 8px;
 }
 
 .form-a {
   display: flex;
   flex-direction: column;
-  margin: 20px 80px 28px 80px;
+  padding: 0px 32px 40px 32px;
 }
 
 .form-group-a {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25px;
-  gap: 50px;
+  margin-bottom: 10px;
+  gap: 20px;
 }
 
 .form-group-pass {
   display: flex;
   justify-content: space-between;
   margin-bottom: 16px;
-  gap: 16px;
+  gap: 20px;
 }
 
 .input-container {
@@ -103,29 +129,26 @@ label {
 }
 
 .form-group-a input,
-.form-groupa-a textarea {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: #f5f5f5;
-}
-
-.form-group-a input {
-  height: 50px;
-}
-
 .form-group-pass input,
-.form-group-pass textarea {
+.form-groupa-a textarea {
+  height: 50px;
   width: 100%;
   padding: 10px;
   border: none;
+  background-color: white;
+  border: 1px solid gray;
   border-radius: 4px;
-  background-color: #f5f5f5;
 }
 
-.form-group-pass input {
-  height: 50px;
+.form-group-a input:focus,
+.form-group-pass input:focus {
+  border: 1px solid dodgerblue;
+  outline: none;
+}
+
+#currentPassword,
+#newPassword {
+  margin-bottom: 10px;
 }
 
 .size textarea {
@@ -133,17 +156,15 @@ label {
   resize: none;
 }
 
-/* Estilo das mensagens de erro */
 .error-text {
   color: red;
   font-size: 12px;
   margin-top: 4px;
 }
 
-/* Botões */
 .button-group {
   display: flex;
-  justify-content: flex-end;
+  justify-content: right;
   margin-top: 15px;
 }
 
@@ -157,23 +178,26 @@ label {
 }
 
 .save {
-  background-color: #1f81e2;
+  background-color: dodgerblue;
   color: white;
-  padding: 14px 53px;
+  padding: 14px 25px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   align-self: flex-end;
+  opacity: 1;
 }
 
 .save:hover {
-  background-color: #e04e53;
+  background-color: #1f81e2;
 }
 
-/* Media Queries */
+.save:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
-/* Mobile (até 768px) */
 @media (max-width: 768px) {
   .account-container {
     flex-direction: column;
@@ -183,6 +207,35 @@ label {
   .account-info {
     margin-left: 0;
     margin-right: 0;
+  }
+
+  .account-card {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 30px 20px 0px 35px;
+    border-radius: 8px;
+    margin-right: 8px;
+    background-color: white;
+  }
+
+  .account-method p {
+    font-size: 18px;
+    color: black;
+    opacity: 80%;
+    margin-left: 0px;
+    margin-bottom: 5px;
+  }
+
+  .profile-title {
+    display: table;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-left: 36px;
+  }
+
+  .form-a {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 16px 10px 16px;
   }
 
   .form-group {
@@ -200,25 +253,28 @@ label {
   }
 
   .button-group {
-    justify-content: center;
+    justify-content: right;
   }
 }
 
-/* Para telas entre 1000px e 1250px */
 @media (max-width: 1250px) and (min-width: 1001px) {
   .account-container {
     margin: 100px 5vw;
   }
+
+  .account-info {
+    flex: 0.9;
+    margin-right: 30px;
+    margin-left: 0px;
+  }
 }
 
-/* Para telas até 1000px */
 @media (max-width: 1000px) {
   .account-container {
     margin: 50px 3vw;
   }
 }
 
-/* Full HD (1920px) */
 @media (min-width: 1920px) {
   .account-container {
     margin: 10rem 8rem;
@@ -238,7 +294,6 @@ label {
   }
 }
 
-/* 4K (3840px) */
 @media (min-width: 3840px) {
   .account-container {
     margin: 15rem 12rem;

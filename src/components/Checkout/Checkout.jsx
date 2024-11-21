@@ -2,13 +2,19 @@ import "./Checkout.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { formatPrice } from "../../utils/ProductUtils";
 
 function Checkout() {
+
   const [paymentMethod, setPaymentMethod] = useState("money");
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [discount, setDiscount] = useState(0);
+  const [totalToPay, setTotalToPay] = useState(0); // Valor total a pagar (final)
+  const [isLoading, setIsLoading] = useState(false); // Novo estado para carregamento
+  const [existAddress, setExistAddress] = useState(false);
   const [formData, setFormData] = useState({
+    addressId: "",
     city: "",
     address: "",
     number: "",
@@ -21,17 +27,23 @@ function Checkout() {
     installments: "1",
   });
 
+  const handleKeyUp = (event) => { 
+    if (event.target.name === 'expiryMonth' && event.target.value.length === 2) { 
+      document.getElementById('checkout-expiryYear').focus(); 
+    } 
+  };
+  const handleKeyDown = (event) => { 
+    if (event.key === 'Backspace' && event.target.name === 'expiryYear' && event.target.value === '') { 
+      document.getElementById('checkout-expiryMonth').focus(); 
+    } 
+  };
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const cartResponse = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/itemcart`);
-        setCartItems(cartResponse.data.items);
-        setTotal(cartResponse.data.total);
-        setDiscount(cartResponse.data.discount);
-
-        const addressResponse = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/address`, {
+        const cartResponse = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/itemcart`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwt")}`,
             "Content-Type": "application/json",
@@ -39,20 +51,62 @@ function Checkout() {
           withCredentials: true,
         });
 
-        if (addressResponse.data) {
-          setFormData((prevFormData) => ({
-            ...prevFormData,
-            city: addressResponse.data.city || "",
-            address: addressResponse.data.address || "",
-            number: addressResponse.data.number || "",
-            uf: addressResponse.data.uf || "",
-            cep: addressResponse.data.cep || "",
-          }));
+        if (Array.isArray(cartResponse.data)) {
+          const cartData = cartResponse.data;
+
+          // Calculando o valor total com os descontos dos produtos
+          const subtotal = cartData.reduce((total, item) => {
+            return total + ((item.preco) - ((item.preco) * (item.productDTO.discount /100)));
+            // const itemDiscount = item.productDTO.discount || 0; // Desconto do produto (caso tenha)
+            // const itemPrice = parseFloat(item.productDTO.price.replace("R$", "").replace(",", "."));
+            // const itemPriceDiscount = parseFloat(
+            //   item.productDTO.priceDiscount.replace("R$", "").replace(",", "."),
+            // );
+
+            // return total + itemPriceDiscount * item.quantidade; // Valor com desconto
+          }, 0);
+
+          setCartItems(cartData);
+          setTotal(subtotal);
+
+          // Caso não haja cupom, o desconto será 0
+          setDiscount(0);
+
+          // Calculando o total a pagar (total - desconto)
+          setTotalToPay(subtotal - 0); // Se houver cupom, o desconto será subtraído aqui
+        } else {
+          console.warn("A resposta da API não é um array.", cartResponse.data);
+          setCartItems([]);
         }
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
+        setCartItems([]); // Evita problemas mesmo se ocorrer um erro
       }
     };
+    const getAddress = async () => {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/address/user`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }).then(resp => {
+        setExistAddress(true);
+        handleAddressChange("addressId", resp.data.id);
+        handleAddressChange("city", resp.data.cidade);
+        handleAddressChange("address", resp.data.endereco);
+        handleAddressChange("number", resp.data.numero);
+        handleAddressChange("uf", resp.data.uf);
+        handleAddressChange("cep", resp.data.cep);
+      }).catch (error => {
+        if (error.response && error.response.status === 404) {
+          console.log('Endereço não encontrado para este usuário');
+        } else {
+          console.error('Erro ao carregar o endereço:', error);
+        }
+      })
+    }
+    getAddress();
     fetchCartItems();
   }, []);
 
@@ -68,26 +122,90 @@ function Checkout() {
     }));
   };
 
+  const handleAddressChange = (name, value) => {
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleValidityChange = (event) => {
+    const { name, value } = event.target;
+    const numericValue = value.replace(/[^0-9]/g, "");
+
+    if (name === "expiryMonth" && numericValue <= 12 && numericValue.length <= 2) {
+      setFormData((prevFormData) => ({ ...prevFormData, expiryMonth: numericValue }));
+    }
+
+    if (name === "expiryYear" && numericValue.length <= 2) {
+      setFormData((prevFormData) => ({ ...prevFormData, expiryYear: numericValue }));
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const checkoutData = {
-      ...formData,
-      paymentMethod,
-      total,
-      discount,
-      cartItems,
-    };
+    setIsLoading(true); // Ativa o carregamento
+
+    const currentYear = new Date().getFullYear() % 100; // Ano atual (últimos 2 dígitos)
+    const currentMonth = new Date().getMonth() + 1; // Mês atual
+
+    if (
+      paymentMethod === "card" &&
+      (Number(formData.expiryYear) < currentYear ||
+        (Number(formData.expiryYear) === currentYear &&
+          Number(formData.expiryMonth) < currentMonth))
+    ) {
+      alert("A validade do cartão é inválida ou já expirou.");
+      setIsLoading(false); // Desativa o carregamento
+      return;
+    }
 
     try {
-      // Atualize o endereço do usuário
-      await axios.put(
-        `${import.meta.env.VITE_BACKEND_URL}/api/address`,
+      if (existAddress) {
+        await axios.put(
+          `${import.meta.env.VITE_BACKEND_URL}/api/address`,
+          {
+            id: formData.addressId,
+            cidade: formData.city,
+            endereco: formData.address,
+            numero: formData.number,
+            uf: formData.uf,
+            cep: formData.cep,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          },
+        );
+      } else {
+        await axios.post(
+          `${import.meta.env.VITE_BACKEND_URL}/api/address`,
+          {
+            cidade: formData.city,
+            endereco: formData.address,
+            numero: formData.number,
+            uf: formData.uf,
+            cep: formData.cep,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          },
+        ).then(resp => {handleAddressChange("addressId", resp.data.id)});
+      }
+      console.log(formData.addressId);
+      const salesResponse = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/sales`,
         {
-          city: formData.city,
-          address: formData.address,
-          number: formData.number,
-          uf: formData.uf,
-          cep: formData.cep,
+          total: total,
+          discount, // Envia o desconto, que neste caso será 0 por enquanto
+          addressId: formData.addressId,
         },
         {
           headers: {
@@ -98,10 +216,26 @@ function Checkout() {
         },
       );
 
-      // Enviar os dados de checkout
+      const saleId = salesResponse.data.id;
+
       const paymentResponse = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/payments`,
-        checkoutData,
+        {
+          idSale: saleId,
+          tipo: paymentMethod,
+          valor: total,
+          valorParcela:total,
+          cardDetails:
+            paymentMethod === "card"
+              ? {
+                  nomeDoDono: "Ronaldo",
+                  numeroCartao: formData.numberCard,
+                  validade: `${formData.expiryMonth}/${formData.expiryYear}`,
+                  cvc: formData.securityCode,
+                  parcelas: formData.installments,
+                }
+              : null,
+        },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -111,16 +245,44 @@ function Checkout() {
         },
       );
 
-      // Redirecionar para a página de sucesso
-      navigate("/purchase-success", { state: { orderData: paymentResponse.data } });
+      const salesItensResponse = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/sales-items`,
+        {
+          idSale: saleId,
+          itemsCart: cartItems
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        },
+      );
+
+      if (paymentResponse.data.status === "REALIZADO") {
+        navigate("/purchase-success", { state: { orderData: salesResponse.data } });
+      } else {
+        alert("Erro no pagamento. Tente novamente.");
+        setIsLoading(false); // Desativa o carregamento
+      }
     } catch (error) {
-      console.error("Erro ao enviar dados do checkout:", error);
+      console.error("Erro ao finalizar o checkout:", error);
+      alert("Ocorreu um erro. Tente novamente mais tarde.");
+      setIsLoading(false); // Desativa o carregamento
     }
   };
 
   return (
     <form className="checkout-form" onSubmit={handleSubmit}>
+      {isLoading && ( // Overlay de carregamento
+        <div className="loading-overlay">
+          <div className="loading-spinner"></div>
+          <p>Processando seu pagamento...</p>
+        </div>
+      )}
       <div className="checkout-container">
+        {/* Informações gerais */}
         <div className="checkout-informations">
           <div className="checkout-box checkout-box1">
             <h1 className="checkout-heading">Informações Gerais</h1>
@@ -179,9 +341,10 @@ function Checkout() {
             </div>
           </div>
 
+          {/* Informações de pagamento */}
           <div className="checkout-box checkout-box2">
             <h1>Informações de Pagamento</h1>
-            <h5>Selecione a forma de pagamento</h5>
+            {/* Forma de pagamento */}
             <select
               className="checkout-payment"
               onChange={handlePaymentChange}
@@ -204,30 +367,6 @@ function Checkout() {
                 />
                 <div>
                   <div>
-                    <label>Validade:</label>
-                    <div className="checkout-expiryDate">
-                      <input
-                        type="text"
-                        id="checkout-expiryMonth"
-                        name="expiryMonth"
-                        value={formData.expiryMonth}
-                        onChange={handleInputChange}
-                        placeholder="Mês"
-                        maxLength="2"
-                      />
-                      <p>/</p>
-                      <input
-                        type="text"
-                        id="checkout-expiryYear"
-                        name="expiryYear"
-                        value={formData.expiryYear}
-                        onChange={handleInputChange}
-                        placeholder="Ano"
-                        maxLength="2"
-                      />
-                    </div>
-                  </div>
-                  <div>
                     <label>Código de Segurança:</label>
                     <input
                       type="number"
@@ -237,6 +376,34 @@ function Checkout() {
                       onChange={handleInputChange}
                       required
                     />
+                  </div>
+                  <div>
+                    <label>Validade:</label>
+                    <div className="checkout-expiryDateBox">
+                      <div className="checkout-expiryDateInput">
+                        <input
+                          type="text"
+                          id="checkout-expiryMonth"
+                          name="expiryMonth"
+                          value={formData.expiryMonth}
+                          onChange={handleValidityChange}
+                          onKeyUp={handleKeyUp}
+                          placeholder="MM"
+                          maxLength="2"
+                        />
+                        <p>/</p>
+                        <input
+                          type="text"
+                          id="checkout-expiryYear"
+                          name="expiryYear"
+                          value={formData.expiryYear}
+                          onChange={handleValidityChange}
+                          onKeyDown={handleKeyDown}
+                          placeholder="AA"
+                          maxLength="2"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <label className="checkout-installmentsLabel">Parcelas:</label>
@@ -260,19 +427,13 @@ function Checkout() {
               </div>
             )}
             <hr />
-            <p>
-              Valor Total: R$ <span>{total}</span>
-            </p>
-            <p>
-              Desconto: R$ <span>{discount}</span>
-            </p>
+            <p>Valor Total: {formatPrice(total)}</p>
+            <p>Desconto de Cupom: R$ {discount}</p>
             <hr />
-            <h3>
-              Total à Pagar: R$ <span>{total - discount}</span>
-            </h3>
+            <h3>Total a Pagar: R$ {totalToPay.toFixed(2)}</h3>
           </div>
         </div>
-        <button className="checkout-button">Confirmar</button>
+        <button className="checkout-button">Finalizar pagamento</button>
       </div>
     </form>
   );

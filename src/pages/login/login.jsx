@@ -41,7 +41,7 @@ const Login = () => {
         const response = await axios.post(
           `${import.meta.env.VITE_BACKEND_URL}/auth/login`,
           { email, password },
-          { headers: { "Content-Type": "application/json" } }
+          { headers: { "Content-Type": "application/json" } },
         );
 
         localStorage.setItem("jwt", response.data.accessToken);

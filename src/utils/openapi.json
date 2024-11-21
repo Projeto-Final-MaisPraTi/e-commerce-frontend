@@ -1,0 +1,3067 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "E-Commerce API",
+      "description": "API para gerenciamento de e-commerce"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8080",
+        "description": "Generated server url"
+      }
+    ],
+    "paths": {
+      "/api/users/{id}": {
+        "get": {
+          "tags": [
+            "user-controller"
+          ],
+          "operationId": "getUserById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/UserDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "user-controller"
+          ],
+          "operationId": "updateUser",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/UserDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "user-controller"
+          ],
+          "operationId": "deleteUser",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/sales/{id}": {
+        "get": {
+          "tags": [
+            "sales-controller"
+          ],
+          "operationId": "getSalesById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SalesDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "sales-controller"
+          ],
+          "operationId": "updateSales",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "user",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            {
+              "name": "payment",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/Payment"
+              }
+            },
+            {
+              "name": "coupons",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/Coupons"
+              }
+            },
+            {
+              "name": "salesItemsDTO",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/SalesItemsDTO"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SalesDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SalesDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "sales-controller"
+          ],
+          "operationId": "deleteSales",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/sales-items/{id}": {
+        "get": {
+          "tags": [
+            "sales-items-controller"
+          ],
+          "operationId": "getSalesItemById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SalesItemsDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "sales-items-controller"
+          ],
+          "operationId": "updateSalesItem",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "product",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SalesItemsDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SalesItemsDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "sales-items-controller"
+          ],
+          "operationId": "deleteSalesItem",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/reviews/{id}": {
+        "get": {
+          "tags": [
+            "reviews-controller"
+          ],
+          "operationId": "getReviewById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ReviewsDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "reviews-controller"
+          ],
+          "operationId": "updateReview",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "product",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            },
+            {
+              "name": "user",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewsDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ReviewsDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "reviews-controller"
+          ],
+          "operationId": "deleteReviews",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/product/update": {
+        "put": {
+          "tags": [
+            "product-controller"
+          ],
+          "summary": "Atualizar um produto",
+          "description": "Atualiza os detalhes de um produto existente.",
+          "operationId": "updateProduct",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductUpdateDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Produto atualizado com sucesso",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProductDetailsDTO"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Produto não encontrado",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProductDetailsDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/product-images/{id}": {
+        "get": {
+          "tags": [
+            "product-images-controller"
+          ],
+          "operationId": "getImageById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProductImagesDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "product-images-controller"
+          ],
+          "operationId": "updateProductImages",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "product",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductImagesDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProductImagesDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "product-images-controller"
+          ],
+          "operationId": "deleteImage",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/payments/{id}": {
+        "get": {
+          "tags": [
+            "payment-controller"
+          ],
+          "operationId": "getPaymentById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PaymentDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "payment-controller"
+          ],
+          "operationId": "updatePayment",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PaymentDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "payment-controller"
+          ],
+          "operationId": "deletePayment",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/itemcart/{id}": {
+        "get": {
+          "tags": [
+            "item-cart-controller"
+          ],
+          "operationId": "getCartItemById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ItemCartDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "item-cart-controller"
+          ],
+          "operationId": "updateItemCart",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemCartDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ItemCartDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "item-cart-controller"
+          ],
+          "operationId": "deleteItemCart",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/coupons/{id}": {
+        "get": {
+          "tags": [
+            "coupons-controller"
+          ],
+          "operationId": "getCouponById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CouponsDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "coupons-controller"
+          ],
+          "operationId": "updateCoupon",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CouponsDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CouponsDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "coupons-controller"
+          ],
+          "operationId": "deleteCoupon",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/address/{id}": {
+        "get": {
+          "tags": [
+            "address-controller"
+          ],
+          "operationId": "getAddressById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AddressDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "address-controller"
+          ],
+          "operationId": "updateAddress",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AddressDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "address-controller"
+          ],
+          "operationId": "deleteAddress",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/users": {
+        "get": {
+          "tags": [
+            "user-controller"
+          ],
+          "operationId": "getAllUsers",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/UserDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "user-controller"
+          ],
+          "operationId": "createUser",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/UserDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/sales": {
+        "get": {
+          "tags": [
+            "sales-controller"
+          ],
+          "operationId": "getAllSales",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SalesDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "sales-controller"
+          ],
+          "operationId": "createSales",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            {
+              "name": "payment",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/Payment"
+              }
+            },
+            {
+              "name": "coupons",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/Coupons"
+              }
+            },
+            {
+              "name": "salesItemsDTO",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/SalesItemsDTO"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SalesDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SalesDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/sales-items": {
+        "get": {
+          "tags": [
+            "sales-items-controller"
+          ],
+          "operationId": "getAllSalesItems",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SalesItemsDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "sales-items-controller"
+          ],
+          "operationId": "createSalesItem",
+          "parameters": [
+            {
+              "name": "product",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SalesItemsDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SalesItemsDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/reviews": {
+        "get": {
+          "tags": [
+            "reviews-controller"
+          ],
+          "operationId": "getAllReviews",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ReviewsDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "reviews-controller"
+          ],
+          "operationId": "createReview",
+          "parameters": [
+            {
+              "name": "product",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            },
+            {
+              "name": "user",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewsDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ReviewsDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/product": {
+        "get": {
+          "tags": [
+            "product-controller"
+          ],
+          "summary": "Buscar todos os produtos",
+          "description": "Retorna uma lista paginada de todos os produtos da loja.",
+          "operationId": "getAllProducts",
+          "parameters": [
+            {
+              "name": "pagination",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/Pageable"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Lista de produtos retornada com sucesso",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PageProductDTO"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Nenhum produto encontrado",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PageProductDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "product-controller"
+          ],
+          "summary": "Criar um novo produto",
+          "description": "Adiciona um novo produto ao banco de dados.",
+          "operationId": "createProduct",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductDetailsDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "201": {
+              "description": "Produto criado com sucesso",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProductDetailsDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/product/import": {
+        "post": {
+          "tags": [
+            "product-controller"
+          ],
+          "summary": "Importar múltiplos produtos",
+          "description": "Permite a criação de vários produtos de uma vez através de uma lista de detalhes de produto.",
+          "operationId": "createProducts",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductDetailsDTO"
+                  }
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Produtos criados com sucesso",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ProductDTO"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Erro na validação dos dados fornecidos",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ProductDTO"
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Erro interno ao criar os produtos",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ProductDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/product-images": {
+        "get": {
+          "tags": [
+            "product-images-controller"
+          ],
+          "operationId": "getAllProductImages",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ProductImagesDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "product-images-controller"
+          ],
+          "operationId": "createProductImages",
+          "parameters": [
+            {
+              "name": "product",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductImagesDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProductImagesDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/payments": {
+        "get": {
+          "tags": [
+            "payment-controller"
+          ],
+          "operationId": "getAllPayment",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/PaymentDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "payment-controller"
+          ],
+          "operationId": "createPayment",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PaymentDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/itemcart": {
+        "get": {
+          "tags": [
+            "item-cart-controller"
+          ],
+          "operationId": "getAllCartItems",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ItemCartDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "item-cart-controller"
+          ],
+          "operationId": "addItemToCart",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemCartDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ItemCartDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/images/add-cover": {
+        "post": {
+          "tags": [
+            "image-contoller"
+          ],
+          "operationId": "addCoverImage",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/coupons": {
+        "get": {
+          "tags": [
+            "coupons-controller"
+          ],
+          "operationId": "getAllCoupons",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/CouponsDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "coupons-controller"
+          ],
+          "operationId": "createCoupon",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CouponsDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CouponsDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/coupons/mark-used/{codigo}": {
+        "post": {
+          "tags": [
+            "coupons-controller"
+          ],
+          "operationId": "markCouponAsUsed",
+          "parameters": [
+            {
+              "name": "codigo",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/auth/register": {
+        "post": {
+          "tags": [
+            "auth-controller"
+          ],
+          "operationId": "register",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/auth/login": {
+        "post": {
+          "tags": [
+            "auth-controller"
+          ],
+          "operationId": "login",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/address": {
+        "get": {
+          "tags": [
+            "address-controller"
+          ],
+          "operationId": "getAllAddresses",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AddressDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "address-controller"
+          ],
+          "operationId": "createAddress",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddressDTO"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AddressDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/sales/{status}": {
+        "get": {
+          "tags": [
+            "sales-controller"
+          ],
+          "operationId": "getSalesByStatus",
+          "parameters": [
+            {
+              "name": "status",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "FINALIZADO",
+                  "ENVIANDO",
+                  "CANCELADO",
+                  "PENDENTE"
+                ]
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/SalesDTO"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/product/{id}": {
+        "get": {
+          "tags": [
+            "product-controller"
+          ],
+          "summary": "Buscar produto por ID",
+          "description": "Retorna os detalhes de um produto específico pelo ID.",
+          "operationId": "getProductById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Produto encontrado",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProductDetailsDTO"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Produto não encontrado",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProductDetailsDTO"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "product-controller"
+          ],
+          "summary": "Deletar produto por ID",
+          "description": "Remove um produto pelo ID.",
+          "operationId": "deleteProduct",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Produto deletado com sucesso"
+            },
+            "404": {
+              "description": "Produto não encontrado"
+            }
+          }
+        }
+      },
+      "/api/product/{id}/update": {
+        "get": {
+          "tags": [
+            "product-controller"
+          ],
+          "summary": "Buscar informações de produto para atualização",
+          "description": "Retorna os dados do produto com base no ID para preencher os campos de atualização no frontend. Cada campo de input será preenchido com o valor correspondente do produto.",
+          "operationId": "getProductUpdateById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Dados do produto retornados para atualização com sucesso",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProductUpdateDTO"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Produto não encontrado",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProductUpdateDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/product/{id}/details": {
+        "get": {
+          "tags": [
+            "product-controller"
+          ],
+          "summary": "Buscar detalhes do produto por ID",
+          "description": "Retorna os detalhes de um produto específico com base no ID fornecido, contendo todas as informações do produto.",
+          "operationId": "getProductDetailsById",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Detalhes do produto retornados com sucesso",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProductDetailsDTO"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Produto não encontrado",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProductDetailsDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/product/search": {
+        "get": {
+          "tags": [
+            "product-controller"
+          ],
+          "summary": "Buscar produtos por filtros",
+          "description": "Permite buscar produtos aplicando múltiplos filtros.",
+          "operationId": "getProduct",
+          "parameters": [
+            {
+              "name": "filters",
+              "in": "query",
+              "description": "Filtros de busca como nome, categoria, preço mínimo/máximo e cor.\n",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "nome": "string",
+                "categoria": "string",
+                "minPrice": "value",
+                "maxPrice": "value",
+                "color": "string"
+              }
+            },
+            {
+              "name": "pagination",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/Pageable"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Produtos encontrados",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PageProductDTO"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Nenhum produto encontrado com os filtros aplicados",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PageProductDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/product/flashsales": {
+        "get": {
+          "tags": [
+            "product-controller"
+          ],
+          "summary": "Buscar produtos em oferta relâmpago",
+          "description": "Retorna uma lista paginada de produtos em flash sales.",
+          "operationId": "getProductsInFlashSales",
+          "parameters": [
+            {
+              "name": "pagination",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/Pageable"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PageProductDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/product/bestsellers": {
+        "get": {
+          "tags": [
+            "product-controller"
+          ],
+          "summary": "Buscar os produtos mais vendidos",
+          "description": "Retorna uma lista paginada dos produtos mais vendidos da loja. Caso não haja produtos mais vendidos, retorna todos os produtos.",
+          "operationId": "getBestSellersProducts",
+          "parameters": [
+            {
+              "name": "pagination",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/Pageable"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Produtos mais vendidos retornados com sucesso",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PageProductDTO"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Nenhum produto encontrado(Provavel que não aconteça)",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PageProductDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/coupons/valid": {
+        "get": {
+          "tags": [
+            "coupons-controller"
+          ],
+          "operationId": "getValidCoupon",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CouponsDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/auth/decode": {
+        "get": {
+          "tags": [
+            "auth-controller"
+          ],
+          "operationId": "decodeToken",
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/images/delete-image": {
+        "delete": {
+          "tags": [
+            "image-contoller"
+          ],
+          "operationId": "deleteImage_1",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageUrlRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "UserDTO": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "username": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "typeRole": {
+              "type": "string",
+              "enum": [
+                "ADMIN",
+                "CLIENT"
+              ]
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        },
+        "CouponsDTO": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "codigo": {
+              "type": "string"
+            },
+            "desconto": {
+              "type": "number",
+              "format": "double"
+            },
+            "data_inicial": {
+              "type": "string",
+              "format": "date"
+            },
+            "data_final": {
+              "type": "string",
+              "format": "date"
+            },
+            "expirado": {
+              "type": "boolean"
+            }
+          }
+        },
+        "PaymentDTO": {
+          "required": [
+            "cvc",
+            "juros",
+            "nomeDoDono",
+            "numeroCartao",
+            "parcelas",
+            "status",
+            "tipo",
+            "validade",
+            "valor",
+            "valorParcela"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "tipo": {
+              "type": "string"
+            },
+            "nomeDoDono": {
+              "type": "string"
+            },
+            "numeroCartao": {
+              "pattern": "\\d{16}",
+              "type": "string"
+            },
+            "validade": {
+              "pattern": "(0[1-9]|1[0-2])/\\d{2}",
+              "type": "string"
+            },
+            "cvc": {
+              "pattern": "\\d{3}",
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "parcelas": {
+              "maximum": 12,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "juros": {
+              "type": "number",
+              "format": "double"
+            },
+            "valor": {
+              "type": "number",
+              "format": "double"
+            },
+            "valorParcela": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        },
+        "ProductDetailsDTO": {
+          "required": [
+            "category",
+            "name",
+            "price",
+            "stock"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "name": {
+              "type": "string"
+            },
+            "rating": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "price": {
+              "type": "string"
+            },
+            "priceDiscount": {
+              "type": "string"
+            },
+            "category": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "stock": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "discount": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "flashSale": {
+              "type": "boolean",
+              "example": false
+            },
+            "color": {
+              "type": "string"
+            },
+            "images": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "SalesDTO": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "total": {
+              "type": "number",
+              "format": "double"
+            },
+            "user": {
+              "$ref": "#/components/schemas/UserDTO"
+            },
+            "payment": {
+              "$ref": "#/components/schemas/PaymentDTO"
+            },
+            "coupons": {
+              "$ref": "#/components/schemas/CouponsDTO"
+            },
+            "salesItems": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SalesItemsDTO"
+              }
+            },
+            "typeSaleStatus": {
+              "type": "string",
+              "enum": [
+                "FINALIZADO",
+                "ENVIANDO",
+                "CANCELADO",
+                "PENDENTE"
+              ]
+            }
+          }
+        },
+        "SalesItemsDTO": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "productDetailsDTO": {
+              "$ref": "#/components/schemas/ProductDetailsDTO"
+            },
+            "quantidade": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "preco": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        },
+        "Address": {
+          "required": [
+            "cep",
+            "cidade",
+            "endereco",
+            "numero",
+            "uf"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "endereco": {
+              "type": "string"
+            },
+            "numero": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "cidade": {
+              "type": "string"
+            },
+            "uf": {
+              "maxLength": 2,
+              "minLength": 2,
+              "type": "string"
+            },
+            "cep": {
+              "pattern": "\\d{5}-\\d{3}",
+              "type": "string"
+            },
+            "user": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        },
+        "Coupons": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "codigo": {
+              "type": "string"
+            },
+            "desconto_porcentagem": {
+              "type": "number",
+              "format": "double"
+            },
+            "data_inicial": {
+              "type": "string",
+              "format": "date"
+            },
+            "finalDate": {
+              "type": "string",
+              "format": "date"
+            },
+            "ativo": {
+              "type": "boolean"
+            },
+            "usado": {
+              "type": "boolean"
+            }
+          }
+        },
+        "GrantedAuthority": {
+          "type": "object",
+          "properties": {
+            "authority": {
+              "type": "string"
+            }
+          }
+        },
+        "ItemCart": {
+          "required": [
+            "product",
+            "quantidade",
+            "user"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "quantidade": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "product": {
+              "$ref": "#/components/schemas/Product"
+            },
+            "user": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        },
+        "Payment": {
+          "required": [
+            "tipo",
+            "valor",
+            "valorParcela"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "tipo": {
+              "type": "string"
+            },
+            "valor": {
+              "type": "number",
+              "format": "double"
+            },
+            "valorParcela": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        },
+        "Product": {
+          "required": [
+            "categoria",
+            "cor",
+            "estoque",
+            "nome",
+            "preco"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nome": {
+              "type": "string"
+            },
+            "nota": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "preco": {
+              "type": "number",
+              "format": "double"
+            },
+            "cor": {
+              "type": "string"
+            },
+            "descricao": {
+              "type": "string"
+            },
+            "estoque": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "categoria": {
+              "type": "string"
+            },
+            "discount": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "flashSale": {
+              "type": "boolean"
+            },
+            "images": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ProductImages"
+              }
+            },
+            "itensVenda": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SalesItems"
+              }
+            },
+            "reviews": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Reviews"
+              }
+            }
+          }
+        },
+        "ProductImages": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "imagem": {
+              "type": "string"
+            },
+            "product": {
+              "$ref": "#/components/schemas/Product"
+            },
+            "capaProduto": {
+              "type": "boolean"
+            }
+          }
+        },
+        "Reviews": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "avaliacao": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "product": {
+              "$ref": "#/components/schemas/Product"
+            },
+            "user": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        },
+        "Sales": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "total": {
+              "type": "number",
+              "format": "double"
+            },
+            "typeSaleStatus": {
+              "type": "string",
+              "enum": [
+                "FINALIZADO",
+                "ENVIANDO",
+                "CANCELADO",
+                "PENDENTE"
+              ]
+            },
+            "user": {
+              "$ref": "#/components/schemas/User"
+            },
+            "payment": {
+              "$ref": "#/components/schemas/Payment"
+            },
+            "coupons": {
+              "$ref": "#/components/schemas/Coupons"
+            },
+            "salesItems": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SalesItems"
+              }
+            }
+          }
+        },
+        "SalesItems": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "sales": {
+              "$ref": "#/components/schemas/Sales"
+            },
+            "product": {
+              "$ref": "#/components/schemas/Product"
+            },
+            "quantidade": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "preco": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        },
+        "User": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "username": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "roles": {
+              "type": "string",
+              "enum": [
+                "ADMIN",
+                "CLIENT"
+              ]
+            },
+            "address": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Address"
+              }
+            },
+            "sales": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Sales"
+              }
+            },
+            "itemCart": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ItemCart"
+              }
+            },
+            "authorities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/GrantedAuthority"
+              }
+            },
+            "enabled": {
+              "type": "boolean"
+            },
+            "accountNonExpired": {
+              "type": "boolean"
+            },
+            "credentialsNonExpired": {
+              "type": "boolean"
+            },
+            "accountNonLocked": {
+              "type": "boolean"
+            }
+          }
+        },
+        "ReviewsDTO": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "avaliacao": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "id_produto": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "username": {
+              "type": "string"
+            }
+          }
+        },
+        "ProductUpdateDTO": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "name": {
+              "type": "string"
+            },
+            "price": {
+              "type": "number",
+              "format": "double"
+            },
+            "color": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "stock": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "category": {
+              "type": "string"
+            },
+            "cover": {
+              "type": "string"
+            },
+            "images": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "ProductImagesDTO": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "imagem": {
+              "type": "string"
+            },
+            "id_produto": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "ItemCartDTO": {
+          "required": [
+            "productDetailsDTO",
+            "quantidade",
+            "userDTO"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "productDetailsDTO": {
+              "$ref": "#/components/schemas/ProductDetailsDTO"
+            },
+            "quantidade": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "preco": {
+              "type": "number",
+              "format": "double"
+            },
+            "userDTO": {
+              "$ref": "#/components/schemas/UserDTO"
+            }
+          }
+        },
+        "AddressDTO": {
+          "required": [
+            "cep",
+            "cidade",
+            "endereco",
+            "numero",
+            "uf",
+            "user"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "endereco": {
+              "type": "string"
+            },
+            "numero": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "cidade": {
+              "type": "string"
+            },
+            "uf": {
+              "maxLength": 2,
+              "minLength": 2,
+              "type": "string"
+            },
+            "cep": {
+              "pattern": "\\d{5}-\\d{3}",
+              "type": "string"
+            },
+            "user": {
+              "$ref": "#/components/schemas/User"
+            }
+          }
+        },
+        "RegisterRequest": {
+          "required": [
+            "email",
+            "password",
+            "username"
+          ],
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "maxLength": 2147483647,
+              "minLength": 6,
+              "type": "string"
+            },
+            "typeRole": {
+              "type": "string",
+              "enum": [
+                "ADMIN",
+                "CLIENT"
+              ]
+            }
+          }
+        },
+        "ProductDTO": {
+          "required": [
+            "name",
+            "price"
+          ],
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "name": {
+              "type": "string"
+            },
+            "nota": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "discount": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "price": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "priceDiscount": {
+              "type": "string"
+            },
+            "cover": {
+              "type": "string"
+            }
+          }
+        },
+        "ImageDTO": {
+          "type": "object",
+          "properties": {
+            "idProduct": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "imageUrl": {
+              "type": "string"
+            }
+          }
+        },
+        "LoginRequest": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        },
+        "Pageable": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            },
+            "size": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "sort": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "PageProductDTO": {
+          "type": "object",
+          "properties": {
+            "totalElements": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "totalPages": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "size": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ProductDTO"
+              }
+            },
+            "number": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "sort": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SortObject"
+              }
+            },
+            "first": {
+              "type": "boolean"
+            },
+            "last": {
+              "type": "boolean"
+            },
+            "numberOfElements": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "pageable": {
+              "$ref": "#/components/schemas/PageableObject"
+            },
+            "empty": {
+              "type": "boolean"
+            }
+          }
+        },
+        "PageableObject": {
+          "type": "object",
+          "properties": {
+            "offset": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "sort": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SortObject"
+              }
+            },
+            "pageSize": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "pageNumber": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "paged": {
+              "type": "boolean"
+            },
+            "unpaged": {
+              "type": "boolean"
+            }
+          }
+        },
+        "SortObject": {
+          "type": "object",
+          "properties": {
+            "direction": {
+              "type": "string"
+            },
+            "nullHandling": {
+              "type": "string"
+            },
+            "ascending": {
+              "type": "boolean"
+            },
+            "property": {
+              "type": "string"
+            },
+            "ignoreCase": {
+              "type": "boolean"
+            }
+          }
+        },
+        "ImageUrlRequest": {
+          "type": "object",
+          "properties": {
+            "imageUrl": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "securitySchemes": {
+        "bearer-key": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    }
+  }

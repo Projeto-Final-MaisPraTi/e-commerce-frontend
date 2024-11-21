@@ -17,7 +17,7 @@ const Container = styled.div`
     width: 100%;
     margin: auto;
   }
-  @media screen and (max-width: 500px){
+  @media screen and (max-width: 500px) {
     padding: 10px 0px;
     margin: auto;
     width: 100%;
@@ -38,12 +38,12 @@ const PreviewProduct = ({ name, price, cover }) => {
   function formatCurrency(value) {
     return new Intl.NumberFormat("pt-BR", {
       style: "currency",
-      currency: "BRL"
+      currency: "BRL",
     }).format(value);
   }
 
   product["name"] = name;
-  product["price"] = price ? formatCurrency(String(price).replace(',','.')) : "R$ 999.99";
+  product["price"] = price ? formatCurrency(String(price).replace(",", ".")) : "R$ 999.99";
   let array;
   if (!cover || cover == false) {
     array = null;
@@ -59,7 +59,6 @@ const PreviewProduct = ({ name, price, cover }) => {
   product["images"] = array;
   product["discount"] = 0;
 
-  console.log(price);
   return (
     <Container>
       <div>

@@ -29,7 +29,7 @@ const SuperHeader = () => {
     <div className="super-header">
       <div className="super-header-content">
         <div className="text-link-container">
-          <p>Aproveite nossas incríveis ofertas - DESCONTO DE 35%!</p>
+          <p>Aproveite nossas incríveis ofertas - DESCONTO DE ATÉ 35%!</p>
           <a href="/">Compre Agora</a>
           <Link></Link>
         </div>
