@@ -24,7 +24,7 @@ const Account = () => {
   const isOnOrderPage = location.pathname === "/orders";
 
   useEffect(() => {
-    document.title = "My Account";
+    // document.title = "My Account";
     setFormData({
       name: "",
       email: "",
@@ -155,8 +155,8 @@ const Account = () => {
               onMouseLeave={() => setIsOrderHovered(false)}
             >
               Meus Pedidos
-            </p> 
-            <br/>
+            </p>
+            <br />
           </div>
         </div>
       </section>

@@ -51,7 +51,7 @@ const Order = () => {
   };
 
   useEffect(() => {
-    document.title = "My Orders";
+    // document.title = "My Orders";
   }, []);
 
   return (
@@ -104,9 +104,7 @@ const Order = () => {
               {orders.map((order) => (
                 <tr key={order.id}>
                   <td>
-                    <a className="order-id">
-                      {order.id}
-                    </a>
+                    <a className="order-id">{order.id}</a>
                   </td>
                   <td>{order.date}</td>
                   <td>{order.total}</td>
@@ -138,7 +136,8 @@ const Order = () => {
           </table>
         ) : (
           <div className="no-orders">
-            <p>Você ainda não tem pedidos para mostrar.{" "}
+            <p>
+              Você ainda não tem pedidos para mostrar.{" "}
               <a href="/" className="link-to-home">
                 Faça o seu primeiro pedido aqui.
               </a>
