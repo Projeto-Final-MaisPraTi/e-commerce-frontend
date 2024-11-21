@@ -92,9 +92,9 @@ const DetalhesProduto = ({product}) => {
   };
 
   useEffect(() => {
-    getProductDetails(id).then((result) => {
-      setProduct(result);
-    });
+    // getProductDetails(id).then((result) => {
+    //   setProduct(result);
+    // });
     fetchRatings();
   }, [id]);
 

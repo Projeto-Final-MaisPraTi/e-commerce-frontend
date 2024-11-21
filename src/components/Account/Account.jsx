@@ -27,7 +27,7 @@ const Account = () => {
     const fetchUserProfile = async () => {
       try {
         const token = localStorage.getItem("jwt");
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/profile`, {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -102,7 +102,14 @@ const Account = () => {
     if (validateUpdatedFields(updatedFields)) {
       try {
         const token = localStorage.getItem("jwt");
-        await axios.put(`${import.meta.env.VITE_BACKEND_URL}/users/update`, updatedFields, {
+        await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/users/update`, 
+          {
+            username: updatedFields.name,
+            email: updatedFields.email,
+            password: updatedFields.newPassword
+          }
+          ,
+          {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
