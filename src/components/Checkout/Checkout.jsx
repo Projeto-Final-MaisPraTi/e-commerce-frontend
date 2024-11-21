@@ -4,13 +4,16 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Checkout() {
+
   const [paymentMethod, setPaymentMethod] = useState("money");
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [totalToPay, setTotalToPay] = useState(0); // Valor total a pagar (final)
   const [isLoading, setIsLoading] = useState(false); // Novo estado para carregamento
+  const [existAddress, setExistAddress] = useState(false);
   const [formData, setFormData] = useState({
+    addressId: "",
     city: "",
     address: "",
     number: "",
@@ -22,6 +25,17 @@ function Checkout() {
     securityCode: "",
     installments: "1",
   });
+
+  const handleKeyUp = (event) => { 
+    if (event.target.name === 'expiryMonth' && event.target.value.length === 2) { 
+      document.getElementById('checkout-expiryYear').focus(); 
+    } 
+  };
+  const handleKeyDown = (event) => { 
+    if (event.key === 'Backspace' && event.target.name === 'expiryYear' && event.target.value === '') { 
+      document.getElementById('checkout-expiryMonth').focus(); 
+    } 
+  };
 
   const navigate = useNavigate();
 
@@ -41,12 +55,14 @@ function Checkout() {
 
           // Calculando o valor total com os descontos dos produtos
           const subtotal = cartData.reduce((total, item) => {
-            const itemDiscount = item.productDTO.discount || 0; // Desconto do produto (caso tenha)
-            const itemPriceDiscount = parseFloat(
-              item.productDTO.priceDiscount.replace("R$", "").replace(",", "."),
-            );
+            return total + ((item.preco) - ((item.preco) * (item.productDTO.discount /100)));
+            // const itemDiscount = item.productDTO.discount || 0; // Desconto do produto (caso tenha)
+            // const itemPrice = parseFloat(item.productDTO.price.replace("R$", "").replace(",", "."));
+            // const itemPriceDiscount = parseFloat(
+            //   item.productDTO.priceDiscount.replace("R$", "").replace(",", "."),
+            // );
 
-            return total + itemPriceDiscount * item.quantidade; // Valor com desconto
+            // return total + itemPriceDiscount * item.quantidade; // Valor com desconto
           }, 0);
 
           setCartItems(cartData);
@@ -66,7 +82,30 @@ function Checkout() {
         setCartItems([]); // Evita problemas mesmo se ocorrer um erro
       }
     };
-
+    const getAddress = async () => {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/address/user`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }).then(resp => {
+        setExistAddress(true);
+        handleAddressChange("addressId", resp.data.id);
+        handleAddressChange("city", resp.data.cidade);
+        handleAddressChange("address", resp.data.endereco);
+        handleAddressChange("number", resp.data.numero);
+        handleAddressChange("uf", resp.data.uf);
+        handleAddressChange("cep", resp.data.cep);
+      }).catch (error => {
+        if (error.response && error.response.status === 404) {
+          console.log('Endereço não encontrado para este usuário');
+        } else {
+          console.error('Erro ao carregar o endereço:', error);
+        }
+      })
+    }
+    getAddress();
     fetchCartItems();
   }, []);
 
@@ -78,6 +117,13 @@ function Checkout() {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleAddressChange = (name, value) => {
+    setFormData(prevData => ({
+      ...prevData,
       [name]: value,
     }));
   };
@@ -114,19 +160,51 @@ function Checkout() {
     }
 
     try {
-      const salesResponse = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/sales`,
-        {
-          items: cartItems.map((item) => ({ id: item.id, quantity: item.quantity })),
-          total,
-          discount,
-          address: {
-            city: formData.city,
-            address: formData.address,
-            number: formData.number,
+      if (existAddress) {
+        await axios.put(
+          `${import.meta.env.VITE_BACKEND_URL}/api/address`,
+          {
+            id: formData.addressId,
+            cidade: formData.city,
+            endereco: formData.address,
+            numero: formData.number,
             uf: formData.uf,
             cep: formData.cep,
           },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          },
+        );
+      } else {
+        await axios.post(
+          `${import.meta.env.VITE_BACKEND_URL}/api/address`,
+          {
+            cidade: formData.city,
+            endereco: formData.address,
+            numero: formData.number,
+            uf: formData.uf,
+            cep: formData.cep,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          },
+        ).then(resp => {handleAddressChange("addressId", resp.data.id)});
+      }
+      console.log(formData.addressId);
+      const salesResponse = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/sales`,
+        {
+          total: total,
+          discount, // Envia o desconto, que neste caso será 0 por enquanto
+          addressId: formData.addressId,
         },
         {
           headers: {
@@ -137,22 +215,40 @@ function Checkout() {
         },
       );
 
-      const saleId = salesResponse.data.saleId;
+      const saleId = salesResponse.data.id;
 
       const paymentResponse = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/payments`,
         {
-          saleId,
-          method: paymentMethod,
+          idSale: saleId,
+          tipo: paymentMethod,
+          valor: total,
+          valorParcela:total,
           cardDetails:
             paymentMethod === "card"
               ? {
-                  numberCard: formData.numberCard,
-                  expiryDate: `${formData.expiryMonth}/${formData.expiryYear}`,
-                  securityCode: formData.securityCode,
-                  installments: formData.installments,
+                  nomeDoDono: "Ronaldo",
+                  numeroCartao: formData.numberCard,
+                  validade: `${formData.expiryMonth}/${formData.expiryYear}`,
+                  cvc: formData.securityCode,
+                  parcelas: formData.installments,
                 }
               : null,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        },
+      );
+
+      const salesItensResponse = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/sales-items`,
+        {
+          idSale: saleId,
+          itemsCart: cartItems
         },
         {
           headers: {
@@ -330,10 +426,10 @@ function Checkout() {
               </div>
             )}
             <hr />
-            <p>Valor Total: R$ {total.toFixed(3)}</p>
+            <p>Valor Total: R$ {total.toFixed(2)}</p>
             <p>Desconto de Cupom: R$ {discount}</p>
             <hr />
-            <h3>Total a Pagar: R$ {totalToPay.toFixed(3)}</h3>
+            <h3>Total a Pagar: R$ {totalToPay.toFixed(2)}</h3>
           </div>
         </div>
         <button className="checkout-button">Finalizar pagamento</button>

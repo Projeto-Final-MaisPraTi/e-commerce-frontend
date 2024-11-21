@@ -38,7 +38,7 @@ const Rotas = () => (
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/purchase-sucess" element={<PurchaseSuccess />} />
+        <Route exact path="/purchase-success" element={<PurchaseSuccess />} />
         <Route
           exact
           path="/login"

@@ -36,17 +36,17 @@ const Footer = () => {
             <div className="col-md-4 col-lg-2 col-xl-2 mx-auto">
               <h5 className="text-uppercase mb-4 font-weight-bold">Conta</h5>
               <p>
-                <a href="#" className="text-black" style={{ textDecoration: "none" }}>
+                <a href="account" className="text-black" style={{ textDecoration: "none" }}>
                   Minha Conta
                 </a>
               </p>
               <p>
-                <a href="#" className="text-black" style={{ textDecoration: "none" }}>
+                <a href="login" className="text-black" style={{ textDecoration: "none" }}>
                   Entrar
                 </a>
               </p>
               <p>
-                <a href="#" className="text-black" style={{ textDecoration: "none" }}>
+                <a href="cart" className="text-black" style={{ textDecoration: "none" }}>
                   Carrinho
                 </a>
               </p>
