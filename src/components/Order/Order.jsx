@@ -23,7 +23,7 @@ const Order = () => {
     },
   ]);
 
-  const hasOrders = orders.length < 0; // Verifica se há pedidos
+  const hasOrders = orders.length > 0; // Verifica se há pedidos
 
   const isOnProfilePage = location.pathname === "/account";
   const isOnOrderPage = location.pathname === "/orders";
@@ -104,7 +104,7 @@ const Order = () => {
               {orders.map((order) => (
                 <tr key={order.id}>
                   <td>
-                    <a href="#" className="order-id">
+                    <a className="order-id">
                       {order.id}
                     </a>
                   </td>
