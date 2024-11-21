@@ -5,7 +5,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Contact = () => {
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -53,7 +52,15 @@ const Contact = () => {
       setErrors(validationErrors);
       return;
     }
-    console.log("Form Data Submitted:", formData);
+    console.log("Formulário enviado: ", formData);
+    e.target.reset();
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
+    setErrors({});
   };
 
   return (
