@@ -1,8 +1,7 @@
 import axios from "axios";
 
-
 const token = localStorage.getItem("jwt");
-const API_URL = "http://localhost:8080/api/product"; // URL para criar produtos
+const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/product`; // URL para criar produtos
 // const API_URL = "http://192.168.4.24:8080/api/product";
 // rota para criar os produtos
 
@@ -59,7 +58,7 @@ export const deleteProductById = async (id) => {
     const response = await axios.delete(API_URL + "/" + id, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, 
+        Authorization: `Bearer ${token}`,
       },
     });
     return response.data;
@@ -159,7 +158,6 @@ export const getFilteredProducts = async (filters, page = 0, size = 10) => {
     console.error("Erro ao buscar produtos por filtro:", error);
   }
 };
-
 
 // Função para buscar produtos de flash sales com paginação
 // Retorna uma paginação

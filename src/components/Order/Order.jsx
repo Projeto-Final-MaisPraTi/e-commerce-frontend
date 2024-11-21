@@ -1,6 +1,7 @@
 import "./Order.css";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Order = () => {
   const navigate = useNavigate();
@@ -8,20 +9,9 @@ const Order = () => {
 
   const [isProfileHovered, setIsProfileHovered] = useState(false);
   const [isOrderHovered, setIsOrderHovered] = useState(false);
-  const [orders, setOrders] = useState([
-    {
-      id: "#29VR5X89",
-      date: "19/11/2024",
-      total: "R$ 5.850,00",
-      status: "Realizado",
-    },
-    {
-      id: "#28VR5K59",
-      date: "12/10/2024",
-      total: "R$ 3.650,00",
-      status: "Cancelado",
-    },
-  ]);
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true); // Para indicar se os dados estão sendo carregados
+  const [error, setError] = useState(null); // Para armazenar erros, caso ocorram
 
   const hasOrders = orders.length > 0; // Verifica se há pedidos
 
@@ -36,9 +26,9 @@ const Order = () => {
     navigate("/orders");
   };
 
-  const handleCancelOrder = (orderId) => {
-    const confirmCancel = window.confirm("Deseja realmente cancelar esse pedido?");
-    if (confirmCancel) {
+  const handleCancelOrder = async (orderId) => {
+    try {
+      // Atualiza a lista de pedidos localmente
       const updatedOrders = orders.map((order) => {
         if (order.id === orderId && order.status === "Realizado") {
           return { ...order, status: "Cancelado" };
@@ -46,13 +36,55 @@ const Order = () => {
         return order;
       });
       setOrders(updatedOrders);
-      alert("Pedido cancelado!");
+
+      // Envia a requisição para o backend para cancelar o pedido
+      const token = localStorage.getItem("jwt"); // Pegue o token do localStorage ou de onde for guardado
+      await axios.put(
+        `${import.meta.env.VITE_BACKEND_URL}/api/sales/${orderId}/disable`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        },
+      );
+      alert("Pedido cancelado com sucesso!");
+    } catch (error) {
+      setError(error.message); // Se houver erro, exibe mensagem de erro
+      alert("Erro ao cancelar pedido");
     }
   };
 
   useEffect(() => {
-    // document.title = "My Orders";
+    const fetchOrders = async () => {
+      const token = localStorage.getItem("jwt"); // Pegue o token do localStorage ou de onde for guardado
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/sales`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        setOrders(response.data.orders); // Supondo que o backend retorne os pedidos com um campo 'orders'
+        setLoading(false); // Dados carregados
+      } catch (error) {
+        setError(error.message); // Se houver erro, exibe mensagem de erro
+        setLoading(false);
+      }
+    };
+
+    fetchOrders();
   }, []);
+
+  if (loading) {
+    return <p>Carregando pedidos...</p>; // Mensagem enquanto os pedidos estão sendo carregados
+  }
+
+  if (error) {
+    return <p>Erro: {error}</p>; // Exibe erro, caso haja algum
+  }
 
   return (
     <div className="order-container">
@@ -111,7 +143,7 @@ const Order = () => {
                   <td>
                     <span
                       className={`status ${
-                        order.status === "Realizado" ? "completed" : "cancelled"
+                        order.status === "Realizado" ? "Realizado" : "Cancelado"
                       }`}
                     >
                       {order.status}
