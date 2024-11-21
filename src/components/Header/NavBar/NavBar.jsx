@@ -99,12 +99,12 @@ const NavBar = ({ isUserLoggedIn }) => {
                         Meus Pedidos
                       </Link>
                     </div>
-                    <div className="user-menu-item">
+                    {/* <div className="user-menu-item">
                       <Link to="/reviews">
                         <img src={reviewsIcon} alt="Reviews Icon" className="menu-item-icon" />
                         Minhas Avaliações
                       </Link>
-                    </div>
+                    </div> */}
                     <div className="user-menu-item">
                       <button className="logout-button" onClick={handleLogout}>
                         <img src={logoutIcon} alt="Logout Icon" className="menu-item-icon" />
