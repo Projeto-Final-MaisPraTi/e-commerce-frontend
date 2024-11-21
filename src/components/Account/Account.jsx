@@ -24,7 +24,7 @@ const Account = () => {
   const isOnOrderPage = location.pathname === "/orders";
 
   useEffect(() => {
-    document.title = "My Account";
+    // document.title = "My Account";
     setFormData({
       name: "",
       email: "",
@@ -156,6 +156,7 @@ const Account = () => {
             >
               Meus Pedidos
             </p>
+            <br />
           </div>
         </div>
       </section>

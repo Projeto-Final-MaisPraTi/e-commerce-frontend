@@ -44,7 +44,7 @@ const DetalhesProduto = ({product}) => {
         },
       });
 
-      alert("Avaliação enviada com sucesso!");
+      // alert("Avaliação enviada com sucesso!");
       setUserRating(newRating);
 
       fetchRatings();

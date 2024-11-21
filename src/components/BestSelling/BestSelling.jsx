@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ProductCard from "../ProductCard/ProductCard";
-import ProductsData from "../../utils/ProductsData";
+// import ProductsData from "../../utils/ProductsData";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getBestSellersProducts } from "../../services/ProductService";
@@ -49,7 +49,7 @@ const Container = styled.div`
 
     & > * {
       flex: 0 1 calc(25% - 15px); /* 4 colunas por linha */
-     box-sizing: border-box;
+      box-sizing: border-box;
     }
   }
 
@@ -76,7 +76,7 @@ const Container = styled.div`
 
     .produtos > * {
       flex: 0 1 100%; /* 1 coluna em telas muito pequenas */
-      gap:10px;
+      gap: 10px;
     }
   }
 `;
@@ -138,20 +138,18 @@ const BestSelling = () => {
     }
   };
 
-
   useEffect(() => {
-
     getBestSellersProducts()
-    .then(result => {
-
-      const shuffledProducts = result.content.sort(() => 0.5 - Math.random());
-      setRandomProducts(shuffledProducts);
-      setLoad(false);
-      handleMaxProducts();
-    }).catch(error =>  {
-      console.log("Erro ao carregar:" + error)
-    });
-  },[])
+      .then((result) => {
+        const shuffledProducts = result.content.sort(() => 0.5 - Math.random());
+        setRandomProducts(shuffledProducts);
+        setLoad(false);
+        handleMaxProducts();
+      })
+      .catch((error) => {
+        console.log("Erro ao carregar:" + error);
+      });
+  }, []);
 
   useEffect(() => {
     handleMaxProducts();
@@ -177,14 +175,15 @@ const BestSelling = () => {
         <button onClick={handleViewAllClick}>Ver Todos</button>
       </SecTitle>
       <div className="produtos">
-      {load && (
+        {load &&
           Array.from({ length: maxProducts }).map((_, index) => (
             <ProductCardSkeleton cards={1} key={index} />
-          ))
-        )}
-        {randomProducts ? randomProducts.slice(0, maxProducts).map((product) => (
-          <ProductCard key={product.id} product={product} />
-        )): ''}
+          ))}
+        {randomProducts
+          ? randomProducts
+              .slice(0, maxProducts)
+              .map((product) => <ProductCard key={product.id} product={product} />)
+          : ""}
       </div>
     </Container>
   );
