@@ -2,6 +2,7 @@ import "./Checkout.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { formatPrice } from "../../utils/ProductUtils";
 
 function Checkout() {
 
@@ -426,7 +427,7 @@ function Checkout() {
               </div>
             )}
             <hr />
-            <p>Valor Total: R$ {total.toFixed(2)}</p>
+            <p>Valor Total: {formatPrice(total)}</p>
             <p>Desconto de Cupom: R$ {discount}</p>
             <hr />
             <h3>Total a Pagar: R$ {totalToPay.toFixed(2)}</h3>

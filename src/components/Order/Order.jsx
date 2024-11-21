@@ -2,6 +2,15 @@ import "./Order.css";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import { formatPrice } from "../../utils/ProductUtils";
+import styled from "styled-components";
+
+const Load = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+`
 
 const Order = () => {
   const navigate = useNavigate();
@@ -79,7 +88,7 @@ const Order = () => {
   }, []);
 
   if (loading) {
-    return <p>Carregando pedidos...</p>;
+    return <Load>Carregando pedidos...</Load>;
   }
 
   // if (error) {
@@ -139,7 +148,7 @@ const Order = () => {
                     <a className="order-id">#{order.id}</a>
                   </td>
                   <td>{order.date}</td>
-                  <td>{order.total}</td>
+                  <td>{formatPrice(order.total)}</td>
                   <td>
                     <span
                       className={`status ${
