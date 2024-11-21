@@ -1,6 +1,7 @@
 import "./Account.css";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -9,13 +10,11 @@ const Account = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    currentPassword: "",
     newPassword: "",
     confirmPassword: "",
   });
 
   const [initialFormData, setInitialFormData] = useState({ ...formData });
-  const [storedPassword, setStoredPassword] = useState("12345678"); // Simulação de senha atual armazenada
   const [errors, setErrors] = useState({});
   const [isProfileHovered, setIsProfileHovered] = useState(false);
   const [isOrderHovered, setIsOrderHovered] = useState(false);
@@ -23,22 +22,30 @@ const Account = () => {
   const isOnProfilePage = location.pathname === "/account";
   const isOnOrderPage = location.pathname === "/orders";
 
+  // Carrega os dados do usuário ao montar o componente
   useEffect(() => {
-    // document.title = "My Account";
-    setFormData({
-      name: "",
-      email: "",
-      currentPassword: "",
-      newPassword: "",
-      confirmPassword: "",
-    });
-    setInitialFormData({
-      name: "",
-      email: "",
-      currentPassword: "",
-      newPassword: "",
-      confirmPassword: "",
-    });
+    const fetchUserProfile = async () => {
+      try {
+        const token = localStorage.getItem("jwt");
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/profile`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
+
+        console.log("Resposta ao buscar os dados do usuário:", response.data);
+        const { username: name, email } = response.data;
+        setFormData({ ...formData, name, email });
+        setInitialFormData({ name, email, newPassword: "", confirmPassword: "" });
+      } catch (error) {
+        console.error("Erro ao buscar os dados do usuário:", error);
+        alert("Erro ao carregar os dados do perfil. Tente novamente mais tarde.");
+      }
+    };
+
+    fetchUserProfile();
   }, []);
 
   const handleProfileClick = () => navigate("/account");
@@ -68,13 +75,9 @@ const Account = () => {
       newErrors.email = "Por favor, insira um e-mail válido com '@' e '.com'.";
     }
 
-    if (fields.currentPassword || fields.newPassword || fields.confirmPassword) {
-      if (!fields.currentPassword || fields.currentPassword !== storedPassword) {
-        newErrors.currentPassword = "A senha atual está incorreta.";
-      }
-
-      if (fields.newPassword && !/^\d{8}$/.test(fields.newPassword)) {
-        newErrors.newPassword = "A nova senha deve ter exatamente 8 caracteres numéricos.";
+    if (fields.newPassword || fields.confirmPassword) {
+      if (fields.newPassword && fields.newPassword.length < 8) {
+        newErrors.newPassword = "A nova senha deve ter pelo menos 8 caracteres.";
       }
 
       if (fields.newPassword !== fields.confirmPassword) {
@@ -82,17 +85,11 @@ const Account = () => {
       }
     }
 
-    for (const [key, value] of Object.entries(fields)) {
-      if (!value.trim()) {
-        newErrors[key] = "Este campo é obrigatório.";
-      }
-    }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const updatedFields = {};
@@ -103,25 +100,32 @@ const Account = () => {
     }
 
     if (validateUpdatedFields(updatedFields)) {
-      console.log("Alterações salvas:", updatedFields);
+      try {
+        const token = localStorage.getItem("jwt");
+        await axios.put(`${import.meta.env.VITE_BACKEND_URL}/users/update`, updatedFields, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
 
-      if (updatedFields.newPassword) {
-        setStoredPassword(updatedFields.newPassword);
+        alert("Alterações salvas com sucesso!");
+        setInitialFormData({ ...formData });
+        setFormData({
+          ...formData,
+          newPassword: "",
+          confirmPassword: "",
+        });
+      } catch (error) {
+        console.error("Erro ao salvar as alterações:", error);
+        alert("Erro ao salvar as alterações. Tente novamente.");
       }
-
-      alert("Alterações salvas com sucesso!");
-      setInitialFormData({ ...formData });
-      setFormData({
-        ...formData,
-        currentPassword: "",
-        newPassword: "",
-        confirmPassword: "",
-      });
     }
   };
 
   const handleCancel = () => {
-    setFormData({ ...initialFormData, currentPassword: "", newPassword: "", confirmPassword: "" });
+    setFormData({ ...initialFormData, newPassword: "", confirmPassword: "" });
     setErrors({});
   };
 
@@ -200,16 +204,6 @@ const Account = () => {
           <div className="form-group-pass">
             <div className="input-container">
               <label htmlFor="password">Senha</label>
-              <input
-                id="currentPassword"
-                type="password"
-                name="currentPassword"
-                placeholder="Senha atual"
-                value={formData.currentPassword}
-                onChange={handleChange}
-                aria-label="Senha atual"
-              />
-              {errors.currentPassword && <p className="error-text">{errors.currentPassword}</p>}
               <input
                 id="newPassword"
                 type="password"
