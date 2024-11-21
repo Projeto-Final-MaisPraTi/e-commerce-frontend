@@ -1,6 +1,6 @@
 import styles from "./DetalhesProduto.module.css";
 import StarRating from "../ProductCard/StarRating";
-import PageNotFound from "../404NotFound/404NotFound";
+import DotsLoader from "../DotLoader/DotLoader";
 import { getProductDetails } from "../../services/ProductService";
 import { useNavigate } from "react-router-dom";
 import { addItemToCart } from "../../services/CartService";
@@ -65,7 +65,7 @@ const DetalhesProduto = ({product}) => {
           ) : (
             <div className={styles.discount}>
               <p className={styles.discountPrice}>
-                 {product.priceDiscount}
+                {product.priceDiscount}
                 <span className={styles.badge}>{product.discount}% off</span>
               </p>
             </div>

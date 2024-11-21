@@ -22,3 +22,24 @@ export const addItemToCart = async (itemCartData) => {
     throw error;
   }
 };
+
+export const getAllCartItems = async () => {
+  try {
+    const token = localStorage.getItem("jwt");
+    if (!token) {
+      throw new Error("Usuário não autenticado. Faça login para adicionar itens ao carrinho.");
+    }
+
+    const response = await axios.get(API_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        // "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar os todos os produtos:", error);
+    return null;
+  }
+};

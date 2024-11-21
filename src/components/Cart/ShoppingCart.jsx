@@ -19,7 +19,7 @@ const ShoppingCart = () => {
           },
           withCredentials: true,
         });
-        console.log("Resposta ao buscar produtos do carrinho no backend:", response.data);
+        // console.log("Resposta ao buscar produtos do carrinho no backend:", response.data);
         setCartItems(response.data);
       } catch (error) {
         console.error("Erro ao buscar itens do carrinho: ", error);
@@ -28,7 +28,6 @@ const ShoppingCart = () => {
 
     fetchCartItems();
   }, []);
-  console.log(cartItems);
   useEffect(() => {
     const fetchValidCoupon = async () => {
       try {
@@ -56,15 +55,17 @@ const ShoppingCart = () => {
 
   const removeItem = async (id) => {
     try {
-      const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/itemcart/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          "Content-Type": "application/json",
+      const response = await axios.delete(
+        `${import.meta.env.VITE_BACKEND_URL}/api/itemcart/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
         },
-        withCredentials: true,
-      });
+      );
       setCartItems(cartItems.filter((item) => item.id !== id));
-  
     } catch (error) {
       alert("Erro ao remover item do carrinho");
       console.log(error);
@@ -148,10 +149,18 @@ const ShoppingCart = () => {
                   />
                 </td>
                 <td className={styles.productInfo}>
-                  <img src={item.productDTO.cover} alt={item.productDTO.name} className={styles.cartProductImage} />
+                  <img
+                    src={item.productDTO.cover}
+                    alt={item.productDTO.name}
+                    className={styles.cartProductImage}
+                  />
                   <span>{item.productDTO.name}</span>
                 </td>
-                <td>{item.productDTO.priceDiscount ? item.productDTO.priceDiscount : item.productDTO.price}</td>
+                <td>
+                  {item.productDTO.priceDiscount
+                    ? item.productDTO.priceDiscount
+                    : item.productDTO.price}
+                </td>
                 <td>
                   <select
                     className={styles.quantitySelector}

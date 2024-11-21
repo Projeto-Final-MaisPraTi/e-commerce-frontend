@@ -1,6 +1,6 @@
 import { isAuthenticated, logout, getDecodedTokenRole } from "./auth";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Home from "./pages/Home/Home.jsx";
+import Home from "./pages/home/Home.jsx";
 import Login from "./pages/login/login.jsx";
 import Register from "./pages/register/register.jsx";
 import ContactPage from "./pages/ContactPage/ContactPage.jsx";
@@ -15,7 +15,6 @@ import SearchUpdateProduct from "./pages/UpdateProduct/SearchUpdateProduct.jsx";
 import ManagerProduct from "./pages/HomeManagerProduct/Manager.jsx";
 import UpdateProduct from "./pages/UpdateProduct/UpdateProduct.jsx";
 import HomeManager from "./pages/HomeManagerProduct/HomeManager.jsx";
-import MyPayment from "./pages/MyPayment/MyPayment.jsx";
 import About from "./pages/About/AboutPage.jsx";
 import PurchaseSuccess from "./pages/PurchaseSuccess/PurchaseSuccess.jsx";
 import ErrorBoundary from "./pages/Error/ErrorBoundary.jsx";
@@ -39,7 +38,7 @@ const Rotas = () => (
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/purchase-sucess" element={<PurchaseSuccess />} />
+        <Route exact path="/purchase-success" element={<PurchaseSuccess />} />
         <Route
           exact
           path="/login"
@@ -56,13 +55,8 @@ const Rotas = () => (
         <Route exact path="/cart" element={<PrivateRoute element={<CartPage />} />} />
         <Route exact path="/checkout" element={<PrivateRoute element={<CheckoutPage />} />} />
         <Route exact path="/account" element={<PrivateRoute element={<MyAccount />} />} />
-        <Route exact path="/payment" element={<PrivateRoute element={<MyPayment />} />} />
-        <Route exact path="/order" element={<PrivateRoute element={<MyOrder />} />} />
-        <Route
-          exact
-          path="/category/:category"
-          element={<PrivateRoute element={<CategoryPage />} />}
-        />
+        <Route exact path="/orders" element={<PrivateRoute element={<MyOrder />} />} />
+        <Route exact path="/category/:category" element={<CategoryPage />} />
         <Route
           exact
           path="/category/explore"
