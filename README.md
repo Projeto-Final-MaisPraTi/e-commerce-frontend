@@ -34,16 +34,16 @@ e-commerce-frontend/
 
 Este projeto foi desenvolvido com a colaboração de:
 
-- 👨‍💻 Danilo Paravani 
-- 👨‍💻 Enzo Janssen
-- 👨‍💻 Erick Ramos  
-- 👩‍💻 Francieli  
-- 👨‍💻 Gabriel Willian  
-- 👨‍💻 Gabriel Bertollo
-- 👨‍💻 Henrique Junqueira  
-- 👨‍💻 José Carlos  
-- 👨‍💻 Luiz Nonato  
-- 👨‍💻 Marlon Muller  
+- 👨‍💻 [Danilo Paravani](https://github.com/DaniloParavani) 
+- 👨‍💻 [Enzo Janssen](https://github.com/enzojanssen)
+- 👨‍💻 [Erick Ramos](https://github.com/erickramosxp)  
+- 👩‍💻 [Francieli](https://github.com/fran-lucini0908) 
+- 👨‍💻 [Gabriel Willian](https://github.com/gabrielwillianfb)  
+- 👨‍💻 [Gabriel Bertollo](https://github.com/GabrielPortalBertollo)
+- 👨‍💻 [Henrique Junqueira](https://github.com/henriquejunqueira)  
+- 👨‍💻 [José Carlos](https://github.com/JoseCarlosVSJ)  
+- 👨‍💻 [Luiz Nonato](https://github.com/luiznslobato)  
+- 👨‍💻 [Marlon Muller](https://github.com/MarlonMuller)  
 
 ## 🌐 Rotas do Projeto
 
