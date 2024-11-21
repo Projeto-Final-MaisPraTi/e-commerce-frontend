@@ -9,6 +9,7 @@ function Checkout() {
   const [total, setTotal] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [totalToPay, setTotalToPay] = useState(0); // Valor total a pagar (final)
+  const [isLoading, setIsLoading] = useState(false); // Novo estado para carregamento
   const [formData, setFormData] = useState({
     city: "",
     address: "",
@@ -41,7 +42,6 @@ function Checkout() {
           // Calculando o valor total com os descontos dos produtos
           const subtotal = cartData.reduce((total, item) => {
             const itemDiscount = item.productDTO.discount || 0; // Desconto do produto (caso tenha)
-            const itemPrice = parseFloat(item.productDTO.price.replace("R$", "").replace(",", "."));
             const itemPriceDiscount = parseFloat(
               item.productDTO.priceDiscount.replace("R$", "").replace(",", "."),
             );
@@ -57,8 +57,6 @@ function Checkout() {
 
           // Calculando o total a pagar (total - desconto)
           setTotalToPay(subtotal - 0); // Se houver cupom, o desconto será subtraído aqui
-
-          console.log("Dados retornados para o checkout: ", cartData);
         } else {
           console.warn("A resposta da API não é um array.", cartResponse.data);
           setCartItems([]);
@@ -99,6 +97,7 @@ function Checkout() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true); // Ativa o carregamento
 
     const currentYear = new Date().getFullYear() % 100; // Ano atual (últimos 2 dígitos)
     const currentMonth = new Date().getMonth() + 1; // Mês atual
@@ -110,34 +109,17 @@ function Checkout() {
           Number(formData.expiryMonth) < currentMonth))
     ) {
       alert("A validade do cartão é inválida ou já expirou.");
+      setIsLoading(false); // Desativa o carregamento
       return;
     }
 
     try {
-      await axios.put(
-        `${import.meta.env.VITE_BACKEND_URL}/api/address`,
-        {
-          city: formData.city,
-          address: formData.address,
-          number: formData.number,
-          uf: formData.uf,
-          cep: formData.cep,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        },
-      );
-
       const salesResponse = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/sales`,
         {
           items: cartItems.map((item) => ({ id: item.id, quantity: item.quantity })),
           total,
-          discount, // Envia o desconto, que neste caso será 0 por enquanto
+          discount,
           address: {
             city: formData.city,
             address: formData.address,
@@ -185,15 +167,23 @@ function Checkout() {
         navigate("/purchase-success", { state: { orderData: salesResponse.data } });
       } else {
         alert("Erro no pagamento. Tente novamente.");
+        setIsLoading(false); // Desativa o carregamento
       }
     } catch (error) {
       console.error("Erro ao finalizar o checkout:", error);
       alert("Ocorreu um erro. Tente novamente mais tarde.");
+      setIsLoading(false); // Desativa o carregamento
     }
   };
 
   return (
     <form className="checkout-form" onSubmit={handleSubmit}>
+      {isLoading && ( // Overlay de carregamento
+        <div className="loading-overlay">
+          <div className="loading-spinner"></div>
+          <p>Processando seu pagamento...</p>
+        </div>
+      )}
       <div className="checkout-container">
         {/* Informações gerais */}
         <div className="checkout-informations">
