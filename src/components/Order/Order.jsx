@@ -91,10 +91,6 @@ const Order = () => {
     return <Load>Carregando pedidos...</Load>;
   }
 
-  // if (error) {
-  //   return <p>Erro: {error}</p>;
-  // }
-
   return (
     <div className="order-container">
       <section className="order-info">
